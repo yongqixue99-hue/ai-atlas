@@ -1,0 +1,21 @@
+{
+  "name": "ai-atlas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/data.test.ts",
+    "test:e2e": "node tests/e2e.mjs",
+    "test:visual": "node tests/visual.mjs",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.55.1",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7"
+  }
+}

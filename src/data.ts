@@ -1,0 +1,1159 @@
+/**
+ * AI Atlas curated public-source dataset.
+ * Verification date is not a claim that every event or role is exhaustive/current.
+ * Relationship periods deliberately distinguish historical snapshots from latest checks.
+ */
+export interface Source {
+  id: string;
+  title: string;
+  url: string;
+  published?: string;
+  verified: string;
+}
+export interface Company {
+  id: string;
+  name: string;
+  cnName?: string;
+  initial: string;
+  category: string;
+  tagline: string;
+  description: string[];
+  founded: string;
+  location: string;
+  coverage: "dossier" | "preview";
+  sourceIds: string[];
+  topics: string[];
+}
+export interface Milestone {
+  date: string;
+  text: string;
+  sourceIds: string[];
+}
+export interface Person {
+  id: string;
+  name: string;
+  cnName: string;
+  initial: string;
+  role: string;
+  companyId: string;
+  summary: string;
+  paragraphs: string[];
+  milestones: Milestone[];
+  sourceIds: string[];
+}
+export type RelationshipType =
+  | "governance"
+  | "employment"
+  | "investment"
+  | "product";
+export interface Relationship {
+  id: string;
+  from: string;
+  to: string;
+  type: RelationshipType;
+  label: string;
+  detail: string;
+  period: string;
+  sourceIds: string[];
+  navigationOnly?: boolean;
+}
+export interface AdditionalEntity {
+  id: string;
+  name: string;
+  cnName?: string;
+  initial: string;
+  type: "organization" | "product";
+  summary: string;
+  sourceIds: string[];
+}
+export interface AtlasEvent {
+  id: string;
+  date: string;
+  title: string;
+  description: string;
+  entityIds: string[];
+  sourceIds: string[];
+}
+
+export const datasetDate = "2026-10-03";
+
+export const sources: Source[] = [
+  {
+    id: "openai-founding",
+    title: "OpenAI · Introducing OpenAI",
+    url: "https://openai.com/index/introducing-openai/",
+    verified: "2026-10-03",
+    published: "2015-12-11",
+  },
+  {
+    id: "openai-lp",
+    title: "OpenAI · OpenAI LP",
+    url: "https://openai.com/index/openai-lp/",
+    verified: "2026-10-03",
+    published: "2019-03-11",
+  },
+  {
+    id: "openai-api",
+    title: "OpenAI · OpenAI API",
+    url: "https://openai.com/index/openai-api/",
+    verified: "2026-10-03",
+    published: "2020-06-11",
+  },
+  {
+    id: "openai-chatgpt",
+    title: "OpenAI · Introducing ChatGPT",
+    url: "https://openai.com/index/chatgpt/",
+    verified: "2026-10-03",
+    published: "2022-11-30",
+  },
+  {
+    id: "openai-gpt4",
+    title: "OpenAI · GPT-4",
+    url: "https://openai.com/index/gpt-4/",
+    verified: "2026-10-03",
+    published: "2023-03-14",
+  },
+  {
+    id: "openai-roles-2022",
+    title: "OpenAI · Leadership team update",
+    url: "https://openai.com/index/leadership-team-update/",
+    verified: "2026-10-03",
+    published: "2022-05-05",
+  },
+  {
+    id: "openai-transition",
+    title: "OpenAI · Leadership transition",
+    url: "https://openai.com/index/openai-announces-leadership-transition/",
+    verified: "2026-10-03",
+    published: "2023-11-17",
+  },
+  {
+    id: "openai-return",
+    title: "OpenAI · Sam Altman returns as CEO",
+    url: "https://openai.com/index/sam-altman-returns-as-ceo-openai-has-a-new-initial-board/",
+    verified: "2026-10-03",
+    published: "2023-11-29",
+  },
+  {
+    id: "openai-review",
+    title: "OpenAI · Board review and governance update",
+    url: "https://openai.com/index/review-completed-altman-brockman-to-continue-to-lead-openai/",
+    verified: "2026-10-03",
+    published: "2024-03-08",
+  },
+  {
+    id: "openai-ilya-departure",
+    title:
+      "OpenAI · Ilya Sutskever leaves; Jakub Pachocki named Chief Scientist",
+    url: "https://openai.com/index/jakub-pachocki-announced-as-chief-scientist/",
+    verified: "2026-10-03",
+    published: "2024-05-14",
+  },
+  {
+    id: "openai-structure",
+    title: "OpenAI · Our structure（含 2025-10-28 重组说明）",
+    url: "https://openai.com/our-structure/",
+    verified: "2026-10-03",
+  },
+  {
+    id: "openai-microsoft-2019",
+    title: "OpenAI · Microsoft investment and partnership",
+    url: "https://openai.com/index/microsoft-invests-in-and-partners-with-openai/",
+    verified: "2026-10-03",
+    published: "2019-07-22",
+  },
+  {
+    id: "openai-microsoft-2026",
+    title: "OpenAI · The next phase of the Microsoft partnership",
+    url: "https://openai.com/index/next-phase-of-microsoft-partnership/",
+    verified: "2026-10-03",
+    published: "2026-04-27",
+  },
+  {
+    id: "openai-greg-2026",
+    title: "OpenAI · Views on AI policy（文中确认总裁身份）",
+    url: "https://openai.com/index/our-views-on-ai-policy-and-political-advocacy/",
+    verified: "2026-10-03",
+    published: "2026-06-01",
+  },
+  {
+    id: "openai-hq",
+    title: "OpenAI · 官方招聘页面（旧金山总部信息）",
+    url: "https://openai.com/careers/technical-threat-investigator-threat-intel-engineering-san-francisco/",
+    verified: "2026-10-03",
+  },
+  {
+    id: "yc-sam",
+    title: "Y Combinator · Sam Altman for President",
+    url: "https://www.ycombinator.com/blog/sam-altman-for-president",
+    verified: "2026-10-03",
+    published: "2014-02-21",
+  },
+  {
+    id: "seq2seq",
+    title:
+      "Sutskever, Vinyals & Le · Sequence to Sequence Learning with Neural Networks",
+    url: "https://arxiv.org/abs/1409.3215",
+    verified: "2026-10-03",
+    published: "2014-09-10",
+  },
+  {
+    id: "ssi-about",
+    title: "Safe Superintelligence · 公司使命与办公地点",
+    url: "https://ssi.inc/",
+    verified: "2026-10-03",
+  },
+  {
+    id: "ssi-updates",
+    title: "Safe Superintelligence · Updates（含 2025-07-03 人事公告）",
+    url: "https://ssi.inc/updates",
+    verified: "2026-10-03",
+  },
+  {
+    id: "ssi-founder",
+    title: "Sequoia Capital · Ilya Sutskever 创始人档案",
+    url: "https://sequoiacap.com/founder/ilya-sutskever",
+    verified: "2026-10-03",
+  },
+  {
+    id: "ssi-investor",
+    title: "Sequoia Capital · Safe Superintelligence 投资组合档案",
+    url: "https://sequoiacap.com/companies/safe-superintelligence",
+    verified: "2026-10-03",
+  },
+  {
+    id: "tml-about",
+    title: "Thinking Machines Lab · 公司介绍",
+    url: "https://thinkingmachines.ai/",
+    verified: "2026-10-03",
+  },
+  {
+    id: "tml-nvidia",
+    title: "Thinking Machines Lab · NVIDIA strategic partnership",
+    url: "https://thinkingmachines.ai/news/nvidia-partnership/",
+    verified: "2026-10-03",
+    published: "2026-03-10",
+  },
+  {
+    id: "tml-tinker",
+    title: "Thinking Machines Lab · Announcing Tinker",
+    url: "https://thinkingmachines.ai/news/announcing-tinker/",
+    verified: "2026-10-03",
+    published: "2025-10-01",
+  },
+  {
+    id: "tml-investor",
+    title: "Lightspeed · Thinking Machines 投资组合档案",
+    url: "https://lsvp.com/company/thinking-machines/",
+    verified: "2026-10-03",
+  },
+  {
+    id: "tml-location",
+    title: "Thinking Machines Lab · LinkedIn 公司页",
+    url: "https://www.linkedin.com/company/thinkingmachinesai",
+    verified: "2026-10-03",
+  },
+  {
+    id: "anthropic-about",
+    title: "Anthropic · Company",
+    url: "https://www.anthropic.com/company",
+    verified: "2026-10-03",
+  },
+  {
+    id: "anthropic-founding",
+    title: "Anthropic · Series B 公告与创立时间回顾",
+    url: "https://www.anthropic.com/news/anthropic-raises-series-b-to-build-safe-reliable-ai",
+    verified: "2026-10-03",
+    published: "2022-04-29",
+  },
+  {
+    id: "anthropic-leadership",
+    title: "Anthropic · Leadership",
+    url: "https://www.anthropic.com/company/leadership",
+    verified: "2026-10-03",
+  },
+  {
+    id: "anthropic-claude",
+    title: "Anthropic · Introducing Claude",
+    url: "https://www.anthropic.com/news/introducing-claude",
+    verified: "2026-10-03",
+    published: "2023-03-14",
+  },
+  {
+    id: "dario-bio",
+    title: "Dario Amodei · 本人官网简介",
+    url: "https://darioamodei.com/",
+    verified: "2026-10-03",
+  },
+  {
+    id: "deepmind-about",
+    title: "Google DeepMind · About",
+    url: "https://deepmind.google/about/",
+    verified: "2026-10-03",
+  },
+  {
+    id: "deepmind-formation",
+    title: "Google · Bringing together two world-class AI teams",
+    url: "https://blog.google/innovation-and-ai/technology/ai/april-ai-update/",
+    verified: "2026-10-03",
+    published: "2023-04-20",
+  },
+  {
+    id: "nobel-2024",
+    title: "诺贝尔奖官方 · 2024 年化学奖新闻稿",
+    url: "https://www.nobelprize.org/uploads/2024/10/press-chemistryprize2024-3.pdf",
+    verified: "2026-10-03",
+    published: "2024-10-09",
+  },
+  {
+    id: "meta-fair",
+    title: "Meta · Celebrating 10 years of FAIR",
+    url: "https://ai.meta.com/blog/fair-10-year-anniversary-open-science-meta/",
+    verified: "2026-10-03",
+    published: "2023-11-30",
+  },
+  {
+    id: "meta-llama3",
+    title: "Meta · Introducing Meta Llama 3",
+    url: "https://ai.meta.com/blog/meta-llama-3",
+    verified: "2026-10-03",
+    published: "2024-04-18",
+  },
+  {
+    id: "meta-location",
+    title: "Meta · Expanding our home in Menlo Park",
+    url: "https://about.fb.com/news/2018/09/expanding-our-home-in-menlo-park/",
+    verified: "2026-10-03",
+    published: "2018-09-04",
+  },
+  {
+    id: "xai-about",
+    title: "xAI / SpaceXAI · Company and historical milestones",
+    url: "https://x.ai/company",
+    verified: "2026-10-03",
+  },
+  {
+    id: "xai-grok",
+    title: "xAI · Announcing Grok",
+    url: "https://x.ai/news/grok",
+    verified: "2026-10-03",
+    published: "2023-11-03",
+  },
+  {
+    id: "xai-spacex",
+    title: "xAI · xAI joins SpaceX",
+    url: "https://x.ai/news/xai-joins-spacex",
+    verified: "2026-10-03",
+    published: "2026-02-02",
+  },
+  {
+    id: "deepseek-about",
+    title: "DeepSeek AI · LinkedIn 公司页",
+    url: "https://www.linkedin.com/company/deepseek-ai",
+    verified: "2026-10-03",
+  },
+  {
+    id: "deepseek-r1",
+    title: "DeepSeek · DeepSeek-R1 发布",
+    url: "https://deepseek.com/news/deepseek-r1/",
+    verified: "2026-10-03",
+    published: "2025-01-20",
+  },
+  {
+    id: "microsoft-facts",
+    title: "Microsoft · Facts about Microsoft",
+    url: "https://news.microsoft.com/facts-about-microsoft/",
+    verified: "2026-10-03",
+  },
+];
+
+export const companies: Company[] = [
+  {
+    id: "openai",
+    name: "OpenAI",
+    cnName: "OpenAI",
+    initial: "O",
+    category: "前沿模型实验室",
+    tagline: "从研究实验室，到面向世界的 AI 平台",
+    description: [
+      "OpenAI 于 2015 年以非营利研究组织的形式公开成立，目标是让先进人工智能的收益惠及全人类。其早期团队同时聚集了研究、工程与创业背景的人才。",
+      "2019 年，OpenAI 引入由非营利组织治理的 OpenAI LP，用当时的“收益上限”结构为计算资源和人才筹集资金。这是历史阶段的制度安排；理解今天的 OpenAI，需要继续追踪此后的重组。",
+      "技术与产品是两条相连的路径：2020 年的 API 把通用语言模型能力交给开发者；2022 年发布的 ChatGPT 以对话界面面向用户；2023 年的 GPT-4 则延续了扩大深度学习系统规模的研究路线。模型名称、用户产品与公司实体不应混为一谈。",
+      "2023 年 11 月的领导层变动让治理结构受到关注：董事会先宣布 Sam Altman 离任、Mira Murati 出任临时 CEO，随后公司公告确认 Altman 回任、Greg Brockman 回任总裁。2024 年 3 月的审查公告又确认 Altman 重返董事会。",
+      "2024 年 5 月，OpenAI 宣布联合创始人 Ilya Sutskever 离开，Jakub Pachocki 接任首席科学家。人物档案因此分别保留历史任职与后续去向，避免把早期创始团队直接当作现任管理层。",
+      "2025 年 10 月 28 日公布的重组后，非营利组织名称为 OpenAI Foundation，营利实体为 OpenAI Group PBC。Foundation 通过专属治理权控制 Group，并拥有任免其董事的权力；持股与控制权在这里是不同维度。",
+      "微软是重要投资者与技术合作方。2026 年 4 月的协议更新保留其主要云合作伙伴地位，同时允许 OpenAI 跨云提供产品，并将微软对相关模型与产品知识产权的许可改为非独家。",
+    ],
+    founded: "2015",
+    location: "美国 · 旧金山",
+    coverage: "dossier",
+    sourceIds: [
+      "openai-founding",
+      "openai-lp",
+      "openai-api",
+      "openai-chatgpt",
+      "openai-gpt4",
+      "openai-transition",
+      "openai-return",
+      "openai-review",
+      "openai-ilya-departure",
+      "openai-structure",
+      "openai-microsoft-2026",
+      "openai-hq",
+    ],
+    topics: ["GPT", "ChatGPT", "API", "公司治理", "AI 安全"],
+  },
+  {
+    id: "anthropic",
+    name: "Anthropic",
+    initial: "A",
+    category: "前沿模型实验室",
+    tagline: "以安全、可解释性与 Claude 为观察入口",
+    description: [
+      "Anthropic 于 2021 年初创立，官方将其定位为 AI 安全与研究公司，重点探索可靠、可解释、可引导的系统。Dario Amodei 与 Daniela Amodei 分别在 CEO 与总裁岗位领导公司。",
+      "2023 年 3 月，Anthropic 发布 Claude。其公开研究与产品之间的关系，是理解这家公司的核心线索。本条为有限预览，不构成完整组织架构或全部产品目录。",
+    ],
+    founded: "2021",
+    location: "美国 · 旧金山",
+    coverage: "preview",
+    sourceIds: [
+      "anthropic-about",
+      "anthropic-founding",
+      "anthropic-leadership",
+      "anthropic-claude",
+    ],
+    topics: ["Claude", "可解释性", "AI 安全"],
+  },
+  {
+    id: "google-deepmind",
+    name: "Google DeepMind",
+    cnName: "谷歌 DeepMind",
+    initial: "G",
+    category: "科技公司 AI 团队",
+    tagline: "从强化学习到科学发现的研究脉络",
+    description: [
+      "DeepMind 的历史始于 2010 年；2023 年 4 月，Google 宣布把 DeepMind 与 Google Brain 团队合并为 Google DeepMind，由 Demis Hassabis 领导。它是 Google 内部的研究组织，不应与独立创业公司等同。",
+      "研究脉络覆盖 AlphaGo、AlphaFold 与通用 AI 系统。2024 年，Hassabis 与 John Jumper 因蛋白质结构预测工作共同获得当年诺贝尔化学奖的一半。",
+    ],
+    founded: "2010 / 2023 合并",
+    location: "英国 · 伦敦等地",
+    coverage: "preview",
+    sourceIds: ["deepmind-about", "deepmind-formation", "nobel-2024"],
+    topics: ["Gemini", "AlphaFold", "强化学习", "AI for Science"],
+  },
+  {
+    id: "meta-ai",
+    name: "Meta AI",
+    initial: "M",
+    category: "科技公司 AI 团队",
+    tagline: "开放模型与大规模消费产品的交汇点",
+    description: [
+      "本条以 Meta 的 AI 研究和产品活动为范围，不把“Meta AI”当作独立公司。FAIR 研究团队创立于 2013 年末；Meta 的 AI 助手、研究团队和 Llama 模型系列分别对应产品、组织与模型。",
+      "2024 年 4 月发布的 Llama 3 展示了 Meta 将模型权重提供给开发者、同时用于消费级助手的路径。开放权重的使用仍应以具体版本的许可证为准。",
+    ],
+    founded: "2013 · FAIR 起点",
+    location: "美国 · 门洛帕克等地",
+    coverage: "preview",
+    sourceIds: ["meta-fair", "meta-llama3", "meta-location"],
+    topics: ["Llama", "开放权重", "FAIR", "AI 助手"],
+  },
+  {
+    id: "xai",
+    name: "xAI",
+    initial: "x",
+    category: "前沿模型实验室",
+    tagline: "Grok、实时信息与组织边界的变化",
+    description: [
+      "xAI 的官网将 2023 年 7 月列为公司公开亮相节点，同年 11 月发布 Grok。早期产品公告强调对话能力及来自 X 平台的实时信息。",
+      "2026 年 2 月 2 日，xAI 官方公告确认被 SpaceX 收购；核验时官网使用 SpaceXAI 品牌。本条保留 xAI 这一常见检索名称，并明确其已发生的组织变化。",
+    ],
+    founded: "2023",
+    location: "美国 · 帕洛阿尔托等地",
+    coverage: "preview",
+    sourceIds: ["xai-about", "xai-grok", "xai-spacex"],
+    topics: ["Grok", "实时信息", "SpaceXAI"],
+  },
+  {
+    id: "deepseek",
+    name: "DeepSeek",
+    cnName: "深度求索",
+    initial: "D",
+    category: "前沿模型实验室",
+    tagline: "以推理模型和开放权重进入全球视野",
+    description: [
+      "DeepSeek 的公开公司档案标注创立于 2023 年、总部位于杭州。这里聚焦其模型与技术发布，不据此推断未公开的内部汇报关系。",
+      "2025 年 1 月发布的 DeepSeek-R1 将强化学习用于提升推理能力，并公开模型与技术报告。官方说明其代码和模型采用 MIT 许可；具体蒸馏模型仍需查看各自上游许可。",
+    ],
+    founded: "2023",
+    location: "中国 · 杭州",
+    coverage: "preview",
+    sourceIds: ["deepseek-about", "deepseek-r1"],
+    topics: ["DeepSeek-R1", "推理模型", "开放权重"],
+  },
+  {
+    id: "microsoft",
+    name: "Microsoft",
+    cnName: "微软",
+    initial: "MS",
+    category: "云与技术合作方",
+    tagline: "连接投资、计算资源与产品分发",
+    description: [
+      "微软创立于 1975 年，公司地址位于华盛顿州雷德蒙德。在本图谱中，它主要作为 OpenAI 的投资与技术合作方出现。",
+      "双方 2019 年公布投资和 Azure 合作。2026 年 4 月更新的协议同时涉及云服务、知识产权许可与收益分享。投资关系不等同于对 OpenAI 的治理控制。",
+    ],
+    founded: "1975",
+    location: "美国 · 雷德蒙德",
+    coverage: "preview",
+    sourceIds: [
+      "microsoft-facts",
+      "openai-microsoft-2019",
+      "openai-microsoft-2026",
+      "openai-structure",
+    ],
+    topics: ["Azure", "云计算", "战略投资"],
+  },
+  {
+    id: "ssi",
+    name: "Safe Superintelligence",
+    cnName: "安全超级智能",
+    initial: "SSI",
+    category: "前沿模型实验室",
+    tagline: "将安全与能力作为同一项技术挑战",
+    description: [
+      "Safe Superintelligence（SSI）成立于 2024 年，将安全超级智能作为核心研究目标。官方介绍列出的办公地点为帕洛阿尔托与特拉维夫。",
+      "2025 年 7 月 3 日的人事公告确认 Ilya Sutskever 正式担任 CEO，Daniel Levy 任总裁。研究目标是公司公开的方向，不代表该目标已经实现。",
+    ],
+    founded: "2024",
+    location: "帕洛阿尔托 / 特拉维夫",
+    coverage: "preview",
+    sourceIds: ["ssi-about", "ssi-updates", "ssi-investor"],
+    topics: ["超级智能", "AI 安全", "Ilya Sutskever"],
+  },
+  {
+    id: "thinking-machines",
+    name: "Thinking Machines Lab",
+    initial: "TM",
+    category: "前沿模型实验室",
+    tagline: "让 AI 更可理解、可定制、可协作",
+    description: [
+      "Thinking Machines Lab 成立于 2025 年，由包括 Mira Murati 在内的团队共同创办。公司强调人机协作、多模态能力，以及让用户按自身需求调整 AI。",
+      "2025 年 10 月发布的 Tinker 提供模型微调 API。2026 年 3 月的 NVIDIA 合作公告确认 Murati 的联合创始人及 CEO 身份，并公布支持模型训练与定制化平台的算力合作计划。",
+    ],
+    founded: "2025",
+    location: "美国 · 旧金山",
+    coverage: "preview",
+    sourceIds: [
+      "tml-about",
+      "tml-tinker",
+      "tml-nvidia",
+      "tml-investor",
+      "tml-location",
+    ],
+    topics: ["Tinker", "人机协作", "模型定制"],
+  },
+];
+
+export const people: Person[] = [
+  {
+    id: "sam-altman",
+    name: "Sam Altman",
+    cnName: "山姆·奥特曼",
+    initial: "SA",
+    role: "联合创始人 · CEO",
+    companyId: "openai",
+    summary: "从创业生态到前沿 AI，连接公司战略、资本与治理。",
+    paragraphs: [
+      "Altman 的公开经历跨越创业支持与 AI 组织建设。2014 年，Y Combinator 宣布由他接任总裁；2015 年 OpenAI 成立公告中，他与 Elon Musk 被列为共同主席。",
+      "2019 年 OpenAI LP 公告将 Altman 列为 CEO。2023 年 11 月，他经历离任与回任；2024 年 3 月，公司宣布他重新加入董事会。这些节点同时涉及管理职务与治理席位，二者需要分开阅读。",
+      "截至本次核验，OpenAI 的组织架构页将他列为 CEO 及 Foundation 董事。图谱保留与 Brockman、Sutskever、Murati 的共同工作背景，但不把公开合作经历画成未经证实的私人关系或直接汇报线。",
+    ],
+    milestones: [
+      {
+        date: "2014-02-21",
+        text: "Y Combinator 宣布他将接任总裁",
+        sourceIds: ["yc-sam"],
+      },
+      {
+        date: "2015-12-11",
+        text: "OpenAI 成立公告列为共同主席",
+        sourceIds: ["openai-founding"],
+      },
+      {
+        date: "2023-11-29",
+        text: "OpenAI 公告确认回任 CEO",
+        sourceIds: ["openai-return"],
+      },
+      {
+        date: "2024-03-08",
+        text: "宣布重新加入 OpenAI 董事会",
+        sourceIds: ["openai-review"],
+      },
+    ],
+    sourceIds: [
+      "yc-sam",
+      "openai-founding",
+      "openai-lp",
+      "openai-return",
+      "openai-review",
+      "openai-structure",
+    ],
+  },
+  {
+    id: "greg-brockman",
+    name: "Greg Brockman",
+    cnName: "格雷格·布罗克曼",
+    initial: "GB",
+    role: "联合创始人 · 总裁",
+    companyId: "openai",
+    summary: "以工程为起点，参与模型研发、组织建设与公司战略。",
+    paragraphs: [
+      "OpenAI 的 2015 年成立公告把 Brockman 列为 CTO，并注明他此前担任 Stripe CTO。2019 年的 OpenAI LP 公告同时记录了他的董事会主席与 CTO 身份。",
+      "2022 年，公司将他的职务调整为总裁，解释这一岗位结合了关键工程贡献与公司战略，当时的重点包括旗舰 AI 系统训练。2023 年 11 月 29 日，公司公告确认他回任总裁。",
+      "2026 年 6 月的 OpenAI 官方文章仍使用“总裁与联合创始人”这一称谓。本档案按已公开记录描述其角色，不据职位高低臆测具体团队的汇报结构。",
+    ],
+    milestones: [
+      {
+        date: "2015-12-11",
+        text: "作为 CTO 出现在 OpenAI 成立公告中",
+        sourceIds: ["openai-founding"],
+      },
+      {
+        date: "2019-03-11",
+        text: "OpenAI LP 公告记录其主席与 CTO 身份",
+        sourceIds: ["openai-lp"],
+      },
+      {
+        date: "2022-05-05",
+        text: "OpenAI 宣布其担任总裁",
+        sourceIds: ["openai-roles-2022"],
+      },
+      {
+        date: "2023-11-29",
+        text: "公司公告确认回任总裁",
+        sourceIds: ["openai-return"],
+      },
+    ],
+    sourceIds: [
+      "openai-founding",
+      "openai-lp",
+      "openai-roles-2022",
+      "openai-return",
+      "openai-greg-2026",
+    ],
+  },
+  {
+    id: "ilya-sutskever",
+    name: "Ilya Sutskever",
+    cnName: "伊利亚·苏茨克维",
+    initial: "IS",
+    role: "SSI 联合创始人 · CEO",
+    companyId: "ssi",
+    summary: "从序列学习与 OpenAI 研究，到安全超级智能的新方向。",
+    paragraphs: [
+      "Sutskever 是 2014 年序列到序列学习论文的作者之一，该研究以神经网络处理输入与输出序列。2015 年 OpenAI 成立时，他担任研究负责人；2019 年官方记录将其列为首席科学家。",
+      "2024 年 5 月 14 日，OpenAI 宣布他离开公司，并由 Jakub Pachocki 接任首席科学家。离职后的去向与其在 OpenAI 的历史任职应分开呈现。",
+      "他随后参与创办 Safe Superintelligence。SSI 在 2025 年 7 月 3 日发布的署名公告确认他正式任 CEO；公司把安全与能力视为需要共同推进的技术问题。这里记录的是公开研究目标，不是对技术成果的预先判断。",
+    ],
+    milestones: [
+      {
+        date: "2014-09-10",
+        text: "共同发表序列到序列学习论文",
+        sourceIds: ["seq2seq"],
+      },
+      {
+        date: "2015-12-11",
+        text: "OpenAI 成立公告列为研究负责人",
+        sourceIds: ["openai-founding"],
+      },
+      {
+        date: "2024-05-14",
+        text: "OpenAI 宣布其离职及首席科学家继任安排",
+        sourceIds: ["openai-ilya-departure"],
+      },
+      {
+        date: "2025-07-03",
+        text: "SSI 公告确认其正式担任 CEO",
+        sourceIds: ["ssi-updates"],
+      },
+    ],
+    sourceIds: [
+      "seq2seq",
+      "openai-founding",
+      "openai-lp",
+      "openai-ilya-departure",
+      "ssi-investor",
+      "ssi-founder",
+      "ssi-updates",
+      "ssi-about",
+    ],
+  },
+  {
+    id: "mira-murati",
+    name: "Mira Murati",
+    cnName: "米拉·穆拉蒂",
+    initial: "MM",
+    role: "Thinking Machines 联合创始人 · CEO",
+    companyId: "thinking-machines",
+    summary: "连接研究与产品，将关注点延伸到可定制的人机协作。",
+    paragraphs: [
+      "2022 年 5 月，OpenAI 宣布 Murati 出任 CTO，职责涉及研究、产品与合作伙伴等关键方向。2023 年 11 月 17 日的领导层变动中，她被任命为临时 CEO；同月 29 日的公告则确认她回到 CTO 岗位。",
+      "这些职位是有明确日期的历史记录。她后续参与创办 Thinking Machines Lab；该公司 2026 年 3 月 10 日的官方合作公告将其列为联合创始人及 CEO。",
+      "Thinking Machines 的公开方向强调人机协作与模型定制，Tinker 则把微调能力以 API 形式交给研究者和开发者。本档案用公开产品与岗位信息描述她的工作重心，不推断未公开的离职动机。",
+    ],
+    milestones: [
+      {
+        date: "2022-05-05",
+        text: "OpenAI 宣布其出任 CTO",
+        sourceIds: ["openai-roles-2022"],
+      },
+      {
+        date: "2023-11-17",
+        text: "被任命为 OpenAI 临时 CEO",
+        sourceIds: ["openai-transition"],
+      },
+      {
+        date: "2023-11-29",
+        text: "OpenAI 公告确认回任 CTO",
+        sourceIds: ["openai-return"],
+      },
+      {
+        date: "2026-03-10",
+        text: "Thinking Machines 公告确认联合创始人及 CEO 身份",
+        sourceIds: ["tml-nvidia"],
+      },
+    ],
+    sourceIds: [
+      "openai-roles-2022",
+      "openai-transition",
+      "openai-return",
+      "tml-nvidia",
+      "tml-about",
+      "tml-tinker",
+    ],
+  },
+  {
+    id: "dario-amodei",
+    name: "Dario Amodei",
+    cnName: "达里奥·阿莫代伊",
+    initial: "DA",
+    role: "联合创始人 · CEO",
+    companyId: "anthropic",
+    summary: "以模型研究为背景，将可靠性与安全纳入公司路线。",
+    paragraphs: [
+      "根据本人官网，Amodei 曾任 OpenAI 研究副总裁，参与领导 GPT-2 与 GPT-3 开发；更早曾在 Google Brain 从事研究。这段经历提供了理解前沿实验室人才流动的一个入口。",
+      "Anthropic 于 2021 年初创立。公司官方领导页将他列为联合创始人及 CEO，负责研究方向和战略愿景，重点是可解释、可引导且可靠的 AI 系统。",
+      "Claude 的 2023 年发布把这些研究方向转化为对话与 API 产品。这里把他与 OpenAI 的关系标为历史任职，而不是仍然存在的雇佣关系，也不根据共同背景推断两家公司的股权关联。",
+    ],
+    milestones: [
+      {
+        date: "2021",
+        text: "参与创办 Anthropic，担任 CEO",
+        sourceIds: ["anthropic-founding", "anthropic-leadership"],
+      },
+      {
+        date: "2023-03-14",
+        text: "Anthropic 发布 Claude，扩展研究的产品应用",
+        sourceIds: ["anthropic-claude"],
+      },
+    ],
+    sourceIds: [
+      "dario-bio",
+      "anthropic-founding",
+      "anthropic-leadership",
+      "anthropic-claude",
+    ],
+  },
+  {
+    id: "demis-hassabis",
+    name: "Demis Hassabis",
+    cnName: "德米斯·哈萨比斯",
+    initial: "DH",
+    role: "联合创始人 · CEO",
+    companyId: "google-deepmind",
+    summary: "从通用学习系统，到用 AI 推动科学发现。",
+    paragraphs: [
+      "DeepMind 的官方回顾将其起点放在 2010 年，强调机器学习、神经科学与工程的跨学科结合。Hassabis 作为联合创始人与领导者，参与建立了以研究突破为核心的组织路径。",
+      "2023 年 4 月，Google 宣布组建 Google DeepMind，由他出任 CEO，整合 DeepMind 与 Google Brain 的研究力量。团队合并与职位变化是公开组织事件，不等同于研究成果归属发生简单转移。",
+      "2024 年，他与 John Jumper 因蛋白质结构预测工作共同获得诺贝尔化学奖的一半，另一半授予 David Baker。这个节点体现了 AI 研究与生命科学的交叉，也提醒读者区分个人荣誉、团队成果和公司产品。",
+    ],
+    milestones: [
+      {
+        date: "2010",
+        text: "DeepMind 创立，开启通用 AI 研究路线",
+        sourceIds: ["deepmind-about"],
+      },
+      {
+        date: "2023-04-20",
+        text: "Google 宣布其领导合并后的 Google DeepMind",
+        sourceIds: ["deepmind-formation"],
+      },
+      {
+        date: "2024-10-09",
+        text: "诺贝尔化学奖公告表彰其蛋白质结构预测工作",
+        sourceIds: ["nobel-2024"],
+      },
+    ],
+    sourceIds: ["deepmind-about", "deepmind-formation", "nobel-2024"],
+  },
+];
+
+export const additionalEntities: AdditionalEntity[] = [
+  {
+    id: "openai-foundation",
+    name: "OpenAI Foundation",
+    cnName: "OpenAI 基金会",
+    initial: "OF",
+    type: "organization",
+    summary:
+      "OpenAI 的非营利组织。2025 年 10 月公布的结构中，通过专属治理权控制 OpenAI Group PBC，并可任免其董事。",
+    sourceIds: ["openai-structure"],
+  },
+  {
+    id: "openai-group-pbc",
+    name: "OpenAI Group PBC",
+    cnName: "OpenAI 公益公司",
+    initial: "OG",
+    type: "organization",
+    summary:
+      "2025 年重组后的营利实体，以公益公司形式运作，由 OpenAI Foundation 控制。其使命与 Foundation 一致。",
+    sourceIds: ["openai-structure"],
+  },
+  {
+    id: "chatgpt",
+    name: "ChatGPT",
+    initial: "C",
+    type: "product",
+    summary:
+      "OpenAI 于 2022 年 11 月 30 日推出的对话式 AI 产品，最初以研究预览形式收集用户反馈。",
+    sourceIds: ["openai-chatgpt"],
+  },
+  {
+    id: "gpt4",
+    name: "GPT-4",
+    initial: "4",
+    type: "product",
+    summary:
+      "OpenAI 于 2023 年 3 月 14 日发布的模型。本节点记录该代模型的发布，不表示它是当前最新版本。",
+    sourceIds: ["openai-gpt4"],
+  },
+  {
+    id: "openai-api",
+    name: "OpenAI API",
+    initial: "API",
+    type: "product",
+    summary:
+      "OpenAI 于 2020 年 6 月 11 日公布的开发者接口，将通用模型能力提供给外部应用与产品。",
+    sourceIds: ["openai-api"],
+  },
+];
+
+export const relationships: Relationship[] = [
+  {
+    id: "sam-openai-role",
+    from: "sam-altman",
+    to: "openai",
+    type: "employment",
+    label: "CEO",
+    detail:
+      "2019 年官方公告已列为 CEO，2023 年经历离任与回任；核验时组织架构页仍列此职。",
+    period: "2019 记录 / 2023 回任 / 2026 核验",
+    sourceIds: ["openai-lp", "openai-return", "openai-structure"],
+  },
+  {
+    id: "sam-openai-board",
+    from: "sam-altman",
+    to: "openai",
+    type: "governance",
+    label: "董事会成员",
+    detail:
+      "2024 年公告确认重新加入董事会；核验时为 OpenAI Foundation 董事。管理职务与治理席位分别记录。",
+    period: "2024-03 回归；2026-10 核验",
+    sourceIds: ["openai-review", "openai-structure"],
+  },
+  {
+    id: "greg-openai-role",
+    from: "greg-brockman",
+    to: "openai",
+    type: "employment",
+    label: "总裁 · 联合创始人",
+    detail: "2022 年任职更新将其岗位列为总裁；2026 年官方文章继续使用该称谓。",
+    period: "2022 任命 / 2026-06 记录",
+    sourceIds: ["openai-roles-2022", "openai-greg-2026"],
+  },
+  {
+    id: "greg-openai-board",
+    from: "greg-brockman",
+    to: "openai",
+    type: "governance",
+    label: "前董事会主席",
+    detail:
+      "2019 年任职记录列为主席；2023 年 11 月 17 日公告说明其不再担任主席。此边仅表示历史治理关系。",
+    period: "2019 记录 → 2023-11",
+    sourceIds: ["openai-lp", "openai-transition"],
+  },
+  {
+    id: "ilya-openai-role",
+    from: "ilya-sutskever",
+    to: "openai",
+    type: "employment",
+    label: "前首席科学家",
+    detail:
+      "2019 年记录列为首席科学家；2024 年 5 月公司公告确认其离开，岗位由 Jakub Pachocki 接任。",
+    period: "2019 记录 → 2024-05",
+    sourceIds: ["openai-lp", "openai-ilya-departure"],
+  },
+  {
+    id: "ilya-openai-board",
+    from: "ilya-sutskever",
+    to: "openai",
+    type: "governance",
+    label: "前董事",
+    detail:
+      "2019 年公告列为董事；2023 年 11 月 29 日回任公告明确其不再进入董事会。",
+    period: "2019 记录 → 2023-11",
+    sourceIds: ["openai-lp", "openai-return"],
+  },
+  {
+    id: "mira-openai-role",
+    from: "mira-murati",
+    to: "openai",
+    type: "employment",
+    label: "历史 CTO / 临时 CEO",
+    detail:
+      "2022 年 CTO 任命、2023 年临时 CEO 及回任 CTO 均有官方记录。这些日期是任职快照，不表示今天仍在 OpenAI 任职。",
+    period: "2022—2023 任职快照",
+    sourceIds: [
+      "openai-roles-2022",
+      "openai-transition",
+      "openai-return",
+      "tml-nvidia",
+    ],
+  },
+  {
+    id: "dario-openai-role",
+    from: "dario-amodei",
+    to: "openai",
+    type: "employment",
+    label: "历史研究副总裁",
+    detail:
+      "本人官网将 OpenAI 研究副总裁列为过往经历，并提及 GPT-2、GPT-3 研发。所选来源未提供精确任职起止日。",
+    period: "创办 Anthropic 前；起止日未列",
+    sourceIds: ["dario-bio"],
+  },
+  {
+    id: "ilya-ssi-role",
+    from: "ilya-sutskever",
+    to: "ssi",
+    type: "employment",
+    label: "联合创始人 / CEO",
+    detail:
+      "投资方档案确认其创始团队身份；SSI 的 2025 年 7 月署名公告确认正式担任 CEO。",
+    period: "2024 创立 / 2025-07 CEO 公告",
+    sourceIds: ["ssi-investor", "ssi-founder", "ssi-updates"],
+  },
+  {
+    id: "mira-tml-role",
+    from: "mira-murati",
+    to: "thinking-machines",
+    type: "employment",
+    label: "联合创始人 / CEO",
+    detail: "Thinking Machines 与 NVIDIA 的官方合作公告明确列出这两个身份。",
+    period: "2026-03 官方记录",
+    sourceIds: ["tml-nvidia"],
+  },
+  {
+    id: "dario-anthropic-role",
+    from: "dario-amodei",
+    to: "anthropic",
+    type: "employment",
+    label: "联合创始人 / CEO",
+    detail:
+      "Anthropic 的创立回顾及领导页面确认其角色；不推断具体研究人员向其直接汇报。",
+    period: "2021 创立 / 2026-10 核验",
+    sourceIds: ["anthropic-founding", "anthropic-leadership"],
+  },
+  {
+    id: "demis-deepmind-role",
+    from: "demis-hassabis",
+    to: "google-deepmind",
+    type: "employment",
+    label: "CEO",
+    detail:
+      "2023 年 Google 公告任命其领导合并后的团队，现有公司介绍页亦确认该身份。",
+    period: "2023-04 任命 / 2026-10 核验",
+    sourceIds: ["deepmind-formation", "deepmind-about"],
+  },
+  {
+    id: "microsoft-openai-investment",
+    from: "microsoft",
+    to: "openai",
+    type: "investment",
+    label: "投资与股权",
+    detail:
+      "2019 年公开投资公告与 2025 年重组说明确认股权关联。2026 年协议仍称微软为重要股东；股权关系不等同于治理控制。",
+    period: "2019 投资 / 2025 重组 / 2026 协议",
+    sourceIds: [
+      "openai-microsoft-2019",
+      "openai-structure",
+      "openai-microsoft-2026",
+    ],
+  },
+  {
+    id: "microsoft-openai-product",
+    from: "openai",
+    to: "microsoft",
+    type: "product",
+    label: "Azure 与模型许可",
+    detail:
+      "2026 年协议保留微软为主要云合作方；模型和产品知识产权许可延续至 2032 年，并改为非独家。",
+    period: "2026-04-27 协议快照",
+    sourceIds: ["openai-microsoft-2026"],
+  },
+  {
+    id: "openai-foundation-navigation",
+    from: "openai",
+    to: "openai-foundation",
+    type: "governance",
+    label: "组织总览 → 基金会",
+    detail:
+      "这是从 OpenAI 总览到其非营利组织实体的导航连接，不是法律控制边。“OpenAI”在本图谱是总览入口；实际控制关系请查看 Foundation → Group PBC。",
+    period: "2025-10-28 结构说明 / 导航连接",
+    sourceIds: ["openai-structure"],
+    navigationOnly: true,
+  },
+  {
+    id: "foundation-controls-group",
+    from: "openai-foundation",
+    to: "openai-group-pbc",
+    type: "governance",
+    label: "控制 · 任免董事",
+    detail:
+      "2025 年重组说明明确：Foundation 凭专属投票及治理权任命 Group PBC 的全部董事，并可随时更换董事。此边表示治理控制，不等同于全资持有。",
+    period: "2025-10-28 公布；2026-10-03 核验",
+    sourceIds: ["openai-structure"],
+  },
+  {
+    id: "openai-developed-chatgpt",
+    from: "openai",
+    to: "chatgpt",
+    type: "product",
+    label: "开发与发布",
+    detail:
+      "OpenAI 发布 ChatGPT 研究预览，以对话形式向用户开放体验并收集反馈。这里记录首发事件，不表示当前产品功能仍与当时相同。",
+    period: "2022-11-30 首次公开发布",
+    sourceIds: ["openai-chatgpt"],
+  },
+  {
+    id: "openai-developed-gpt4",
+    from: "openai",
+    to: "gpt4",
+    type: "product",
+    label: "模型研发与发布",
+    detail:
+      "OpenAI 于 2023 年 3 月 14 日公布 GPT-4，延续 GPT 系列扩大深度学习系统规模的研究路径。",
+    period: "2023-03-14 发布",
+    sourceIds: ["openai-gpt4"],
+  },
+  {
+    id: "openai-developed-api",
+    from: "openai",
+    to: "openai-api",
+    type: "product",
+    label: "开发者接口",
+    detail:
+      "OpenAI 于 2020 年公布通用模型 API，允许开发者把模型能力集成到应用中；该日期对应最初发布记录。",
+    period: "2020-06-11 公布",
+    sourceIds: ["openai-api"],
+  },
+];
+
+export const events: AtlasEvent[] = [
+  {
+    id: "openai-start",
+    date: "2015-12-11",
+    title: "OpenAI 公开成立",
+    description:
+      "非营利 AI 研究组织亮相，成立公告列出早期研究、工程与治理团队。",
+    entityIds: ["openai", "sam-altman", "greg-brockman", "ilya-sutskever"],
+    sourceIds: ["openai-founding"],
+  },
+  {
+    id: "openai-lp-created",
+    date: "2019-03-11",
+    title: "OpenAI LP：融资与使命的新结构",
+    description:
+      "公司公布当时的收益上限结构，由非营利组织治理，以支持更大规模的研究投入。",
+    entityIds: ["openai"],
+    sourceIds: ["openai-lp"],
+  },
+  {
+    id: "chatgpt-preview",
+    date: "2022-11-30",
+    title: "ChatGPT 研究预览上线",
+    description:
+      "OpenAI 以对话界面向用户开放体验，并通过反馈探索模型能力与局限。",
+    entityIds: ["openai"],
+    sourceIds: ["openai-chatgpt"],
+  },
+  {
+    id: "gpt4-release",
+    date: "2023-03-14",
+    title: "GPT-4 发布",
+    description: "OpenAI 公布 GPT-4，延续 GPT 系列的规模化深度学习研究路线。",
+    entityIds: ["openai"],
+    sourceIds: ["openai-gpt4"],
+  },
+  {
+    id: "deepmind-merge",
+    date: "2023-04-20",
+    title: "Google DeepMind 组建",
+    description:
+      "DeepMind 与 Google Brain 团队合并，由 Demis Hassabis 领导新的研究组织。",
+    entityIds: ["google-deepmind", "demis-hassabis"],
+    sourceIds: ["deepmind-formation"],
+  },
+  {
+    id: "openai-leadership-return",
+    date: "2023-11-29",
+    title: "Altman 回任，初始新董事会亮相",
+    description:
+      "公司确认 Sam Altman 回任 CEO、Greg Brockman 回任总裁、Mira Murati 回任 CTO。此前 11 月 17 日曾公布领导层变动。",
+    entityIds: ["openai", "sam-altman", "greg-brockman", "mira-murati"],
+    sourceIds: ["openai-return", "openai-transition"],
+  },
+  {
+    id: "ilya-leaves",
+    date: "2024-05-14",
+    title: "OpenAI 首席科学家交接",
+    description: "Ilya Sutskever 离职，Jakub Pachocki 被宣布为新的首席科学家。",
+    entityIds: ["openai", "ilya-sutskever"],
+    sourceIds: ["openai-ilya-departure"],
+  },
+  {
+    id: "r1-release",
+    date: "2025-01-20",
+    title: "DeepSeek-R1 发布",
+    description:
+      "DeepSeek 公布推理模型、技术报告与开放模型材料，为研究者提供新的探索入口。",
+    entityIds: ["deepseek"],
+    sourceIds: ["deepseek-r1"],
+  },
+  {
+    id: "openai-pbc",
+    date: "2025-10-28",
+    title: "OpenAI 公布重组后的治理结构",
+    description:
+      "非营利组织更名为 OpenAI Foundation，继续控制转型为公益公司的 OpenAI Group PBC。",
+    entityIds: ["openai", "microsoft"],
+    sourceIds: ["openai-structure"],
+  },
+  {
+    id: "microsoft-partnership-update",
+    date: "2026-04-27",
+    title: "OpenAI 与微软更新合作边界",
+    description:
+      "新协议允许 OpenAI 跨云提供产品，并将微软对模型与产品知识产权的许可改为非独家。",
+    entityIds: ["openai", "microsoft"],
+    sourceIds: ["openai-microsoft-2026"],
+  },
+];

@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-03T09:12:19.257Z",
+  "browser": "140.0.7339.186",
+  "passed": [
+    "Company-first home and loaded assets",
+    "Skip-to-content keeps the current route",
+    "OpenAI dossier primary navigation",
+    "Relationship filtering, repeated selection, historical identity",
+    "Evidence drawer close, Escape and focus restore",
+    "Person journey, browser Back/Forward",
+    "Governance and product facts have differentiated evidence",
+    "Search across people, companies and products, no-results and escaping",
+    "Keyboard focus trap, repeated open and close",
+    "Company index filters and preview disclosure",
+    "Topics URL state survives Back/Forward",
+    "All routes render without crashes and external links are safe",
+    "Mobile layouts at 390px and 320px do not overflow",
+    "Desktop graph, person, and evidence visual captures",
+    "Unknown routes recover and no runtime errors"
+  ],
+  "errors": []
+}
