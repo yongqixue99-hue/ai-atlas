@@ -19,7 +19,7 @@
 
 ## Image and asset notes
 
-Sam Altman 与 Greg Brockman 使用已核验出处和 Creative Commons 许可的真实照片，其他人物使用字母排版。具体出处、许可与显示裁切记录在 assets.md 及站内「关于」页。OpenAI 使用 Simple Icons 的识别用品牌图形，其余公司字母缩写是排版标签，不是官方 Logo。
+Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使用已核验出处和 Creative Commons 许可的真实照片，Ilya 使用字母排版。具体出处、许可与显示裁切记录在 assets.md 及站内「关于」页。OpenAI 使用 Simple Icons 的识别用品牌图形，其余公司字母缩写是排版标签，不是官方 Logo。
 
 ## Claim-to-source map
 

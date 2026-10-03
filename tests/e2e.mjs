@@ -206,45 +206,50 @@ try {
       }
     },
   );
-  await check("Mobile layouts at 390px and 320px do not overflow", async () => {
-    for (const width of [390, 320]) {
-      await page.setViewportSize({ width, height: 844 });
-      for (const path of [
-        "",
-        "#/companies",
-        "#/people",
-        "#/company/openai",
-        "#/company/openai?tab=relationships",
-        "#/company/openai?tab=governance",
-        "#/person/sam-altman",
-        "#/topics",
-        "#/timeline",
-        "#/sources",
-      ]) {
-        await goto(path);
-        const size = await page.evaluate(() => ({
-          scroll: document.documentElement.scrollWidth,
-          width: innerWidth,
-        }));
-        assert.ok(
-          size.scroll <= size.width + 1,
-          `${width} ${path}: ${JSON.stringify(size)}`,
-        );
+  await check(
+    "Desktop, tablet and mobile layouts at 1440/1024/768/390/320px do not overflow",
+    async () => {
+      for (const width of [1440, 1024, 768, 390, 320]) {
+        await page.setViewportSize({ width, height: 844 });
+        for (const path of [
+          "",
+          "#/companies",
+          "#/people",
+          "#/company/openai",
+          "#/company/openai?tab=relationships",
+          "#/company/openai?tab=governance",
+          "#/person/sam-altman",
+          "#/topics",
+          "#/timeline",
+          "#/sources",
+        ]) {
+          await goto(path);
+          const size = await page.evaluate(() => ({
+            scroll: document.documentElement.scrollWidth,
+            width: innerWidth,
+          }));
+          assert.ok(
+            size.scroll <= size.width + 1,
+            `${width} ${path}: ${JSON.stringify(size)}`,
+          );
+        }
       }
-    }
-    await page.setViewportSize({ width: 390, height: 844 });
-    await goto();
-    await page.screenshot({
-      path: new URL("home-mobile.png", out).pathname,
-      fullPage: true,
-    });
-    await goto("#/company/openai?tab=relationships");
-    await page.getByRole("button", { name: "人物与任职", exact: true }).click();
-    await page.screenshot({
-      path: new URL("relationships-mobile.png", out).pathname,
-      fullPage: true,
-    });
-  });
+      await page.setViewportSize({ width: 390, height: 844 });
+      await goto();
+      await page.screenshot({
+        path: new URL("home-mobile.png", out).pathname,
+        fullPage: true,
+      });
+      await goto("#/company/openai?tab=relationships");
+      await page
+        .getByRole("button", { name: "人物与任职", exact: true })
+        .click();
+      await page.screenshot({
+        path: new URL("relationships-mobile.png", out).pathname,
+        fullPage: true,
+      });
+    },
+  );
   await check(
     "Desktop graph, person, and evidence visual captures",
     async () => {
@@ -268,6 +273,43 @@ try {
         path: new URL("person-desktop.png", out).pathname,
         fullPage: true,
       });
+    },
+  );
+  await check(
+    "All relation types preserve selected state and scroll position",
+    async () => {
+      await goto("#/company/openai?tab=relationships");
+      await page.locator('[data-relation-filter="all"]').click();
+      assert.ok((await page.locator(".graph-node").count()) > 10);
+      const last = page.locator(".graph-node").last();
+      const id = await last.getAttribute("data-relation");
+      await last.click();
+      await expect(page.locator(`[data-relation="${id}"]`)).toHaveAttribute(
+        "aria-pressed",
+        "true",
+      );
+      assert.ok(
+        (await page.locator(".graph-scroll").evaluate((el) => el.scrollTop)) >
+          0,
+      );
+      for (const kind of [
+        "governance",
+        "investment",
+        "product",
+        "employment",
+      ]) {
+        await page.locator(`[data-relation-filter="${kind}"]`).click();
+        assert.ok(await page.locator(".graph-node").count());
+        assert.equal(await page.locator(".graph-node.selected").count(), 1);
+      }
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.locator('[data-relation="greg-openai-role"]').click();
+      await page.locator("[data-back-to-graph]").click();
+      await expect(page.locator(".graph-node.selected")).toHaveAttribute(
+        "data-relation",
+        "greg-openai-role",
+      );
+      await page.setViewportSize({ width: 1440, height: 1000 });
     },
   );
   await check("Unknown routes recover and no runtime errors", async () => {
