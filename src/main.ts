@@ -1,4 +1,8 @@
 import "./style.css";
+import "./graph.css";
+import { graphState, canonicalGraphParams, renderGraph, graphHref } from "./graph";
+import type { GraphState } from "./graph";
+import "./home.css";
 import openaiLogo from "./assets/openai.svg?raw";
 import anthropicLogo from "./assets/anthropic.svg?raw";
 import deepmindLogo from "./assets/deepmind.svg?raw";
@@ -46,14 +50,6 @@ const scopedRelations = (companyId: string) => {
   );
   return relationships.filter((r) => scope.has(r.from) || scope.has(r.to));
 };
-const relationTarget = (r: Relationship, companyId: string) =>
-  personById(r.from)
-    ? r.from
-    : personById(r.to)
-      ? r.to
-      : r.to === companyId
-        ? r.from
-        : r.to;
 const sourceById = (id: string) => sources.find((s) => s.id === id);
 const labels: Record<string, string> = {
   all: "全部关系",
@@ -63,48 +59,14 @@ const labels: Record<string, string> = {
   product: "产品与技术",
 };
 let companyTab = "overview";
-let relationFilter = "employment";
-let selectedRelation = "";
+let activeGraph: GraphState | null = null;
 let selectedCompanyFilter = "all";
 let topicFilter = "all";
 let searchKind = "all";
 let lastFocused: HTMLElement | null = null;
 
-function relationState(companyId: string, params: URLSearchParams) {
-  const all = scopedRelations(companyId);
-  const requested = all.find((r) => r.id === params.get("relation"));
-  const filterParam = params.get("filter") || "";
-  const filter = Object.hasOwn(labels, filterParam)
-    ? filterParam
-    : requested?.type || "employment";
-  const visible = all.filter((r) => filter === "all" || r.type === filter);
-  return {
-    filter,
-    relation: visible.find((r) => r.id === requested?.id)?.id || visible[0]?.id || "",
-  };
-}
-
 function personContextHref(p: Person) {
-  const dossiers = companies.filter((c) => c.coverage === "dossier");
-  const ordered = [
-    ...dossiers.filter((c) => c.id === p.companyId),
-    ...dossiers.filter((c) => c.id !== p.companyId),
-  ];
-  for (const c of ordered) {
-    const matches = scopedRelations(c.id).filter(
-      (r) => r.from === p.id || r.to === p.id,
-    );
-    const relation = matches[0];
-    if (relation) {
-      const params = new URLSearchParams({
-        tab: "relationships",
-        filter: relation.type,
-        relation: relation.id,
-      });
-      return `#/company/${c.id}?${params}`;
-    }
-  }
-  return `#/company/${p.companyId}`;
+  return graphHref(p.id);
 }
 
 function portrait(p: Person, cls = "") {
@@ -146,10 +108,26 @@ function personCard(p: Person) {
 }
 function heroCollage() {
   const sam = personById("sam-altman") || people[0];
-  return `<div class="hero-collage" aria-label="由 OpenAI 出发，探索人物、产品与组织关系"><svg class="collage-lines" viewBox="0 0 700 600" aria-hidden="true"><path d="M143 145C340 120 275 485 568 457M109 425C186 349 360 370 460 148M330 290Q565 235 606 387"/></svg><a href="#/company/openai?tab=products" class="collage-note note-product"><span>产品与技术 ${arrow}</span><div class="editorial-art art-dunes"></div><h3>ChatGPT</h3><p>从一次对话，<br>走向日常生活。</p></a><a href="#/person/${sam.id}" class="collage-person">${portrait(sam)}<div class="collage-person-label"><span>人物入口 ${arrow}</span><h3>Sam<br>Altman</h3><i></i><p>连接人物、组织<br>与关键时刻。</p></div></a><a class="collage-center" href="#/company/openai"><span class="orbit-mark">${openaiLogo}</span><h2>OpenAI</h2><p>研究、产品与组织<br>一家公司的多面图景</p><span class="mini-label">COMPANY / 001</span></a><a href="#/company/openai?tab=relationships" class="collage-note note-research"><span>研究与连接 ${arrow}</span><div class="editorial-art art-folds"></div><p>沿着公开证据，<br>认识 AI 背后的人。</p></a><a href="#/company/openai?tab=governance" class="collage-note note-governance"><span>组织与治理 ${arrow}</span><div class="editorial-art art-space"></div><p>辨别控制、任职与投资，<br>从关系中理解组织。</p></a></div>`;
+  return `<div class="hero-collage atlas-collage" aria-label="OpenAI 公司、人物、产品与治理的阅读入口">
+    <svg class="atlas-collage-lines" viewBox="0 0 700 520" aria-hidden="true"><path d="M190 110 C350 20 560 80 566 220 S565 462 360 452 S85 397 135 225 S130 130 190 110"/><circle cx="190" cy="110" r="4"/><circle cx="566" cy="220" r="4"/><circle cx="360" cy="452" r="4"/><circle cx="135" cy="225" r="4"/></svg>
+    <a href="#/company/openai?tab=products" class="atlas-collage-item atlas-collage-product"><div><span class="collage-kicker">产品与技术</span><h3>ChatGPT</h3><p>从一次对话，<br>走向日常生活。</p></div><div class="editorial-art art-dunes"></div>${arrow}</a>
+    <a href="#/person/${sam.id}" class="atlas-collage-item atlas-collage-person"><div><span class="collage-kicker">人物入口</span><h3>Sam<br>Altman</h3><p>人物与公司的故事。</p></div>${portrait(sam)}${arrow}</a>
+    <a href="#/company/openai" class="atlas-collage-core"><span class="orbit-mark">${openaiLogo}</span><h2>OpenAI</h2><p>研究、产品与组织<br>一家公司的多面图景</p><span class="mini-label">COMPANY / 001</span></a>
+    <a href="#/company/openai?tab=relationships" class="atlas-collage-item atlas-collage-research"><div><span class="collage-kicker">研究与连接</span><h3>关系探索</h3><p>认识人物，<br>也读懂彼此的连接。</p></div><div class="editorial-art art-folds"></div>${arrow}</a>
+    <a href="#/company/openai?tab=governance" class="atlas-collage-item atlas-collage-governance"><div><span class="collage-kicker">组织与治理</span><h3>组织结构</h3><p>区分控制权、<br>任职与投资。</p></div><div class="editorial-art art-space"></div>${arrow}</a>
+  </div>`;
 }
 function home() {
-  return `${header()}<main id="main" class="home-page"><section class="hero"><div class="hero-copy"><div class="eyebrow">人工智能公司与人物</div><h1>看见公司，<br>理解 AI 的未来<span class="heading-dot">。</span></h1><p>从公司出发，连接人物、产品与关键脉络。<br>一本有来源，也有时间坐标的 AI 百科。</p><a class="button dark" href="#/company/openai">探索 OpenAI <span>→</span></a><div class="hero-footnote"><span>本期聚焦</span><span>OPENAI / 公司、人物与转折</span></div></div>${heroCollage()}</section><section class="home-companies">${sectionHeading("01", "公司索引", "认识塑造人工智能的组织。", "#/companies")}<div class="company-grid home-company-grid">${companies.slice(0, 3).map(companyCard).join("")}</div></section><section class="home-people">${sectionHeading("02", "从人物开始", "技术的演进，也是人的故事。", "#/people")}<div class="people-grid home-people-grid">${people.slice(0, 2).map(personCard).join("")}</div></section><section class="topics-section">${sectionHeading("03", "换个角度，继续探索", "一条线索，通往更完整的理解。")}<div class="topic-grid"><a href="#/company/openai?tab=products"><span class="topic-num">LENS 01</span><h3>产品与技术 ${arrow}</h3><p>从 ChatGPT 出发，<br>理解研究如何走向日常。</p><span class="topic-line"></span></a><a href="#/company/openai?tab=governance"><span class="topic-num">LENS 02</span><h3>组织与治理 ${arrow}</h3><p>读懂机构之间的关系，<br>辨别控制、任职与投资。</p><span class="topic-line"></span></a><a href="#/timeline"><span class="topic-num">LENS 03</span><h3>关键时刻 ${arrow}</h3><p>沿时间线回看，<br>找到重要的变化与转折。</p><span class="topic-line"></span></a></div></section><div class="editor-note"><span>编者注</span><p>关系图是理解线索的入口，并非实时组织架构。每条关联都标注时间与来源。</p><a href="#/about" aria-label="阅读编辑原则">${arrow}</a></div></main>${footer()}`;
+  const featuredPeople = [personById("sam-altman")!, personById("thibault-sottiaux")!];
+  return `${header()}<main id="main" class="home-page">
+    <section class="hero"><div class="hero-copy"><div class="eyebrow">人工智能公司与人物</div><h1>看见公司，<br>理解 AI 的未来<span class="heading-dot">。</span></h1><p>从公司出发，连接人物、产品与关键脉络。<br>一本有来源，也有时间坐标的 AI 百科。</p><div class="hero-actions"><a class="button dark" href="#/company/openai">探索 OpenAI <span>→</span></a><a class="text-link" href="#/company/openai?tab=relationships">打开关系图谱 ${arrow}</a></div></div>${heroCollage()}</section>
+    <div class="atlas-edition"><strong>一本可探索的 AI 百科</strong><span>从公司到人物，从关系到证据。</span><span class="edition-date">版本更新 ${esc(datasetDate)}</span></div>
+    <section class="home-companies">${sectionHeading("01", "公司索引", "认识塑造人工智能的组织。", "#/companies", "查看全部公司")}<div class="company-grid home-company-grid">${companies.slice(0, 3).map(companyCard).join("")}</div></section>
+    <section class="home-people">${sectionHeading("02", "从人物开始", "从公开经历，理解具体贡献。", "#/people", "查看全部人物")}<div class="people-grid home-people-grid">${featuredPeople.map(personCard).join("")}</div></section>
+    <section class="topics-section">${sectionHeading("03", "换个角度，继续探索", "一条线索，通往更完整的理解。")}
+      <div class="atlas-lenses"><a href="#/company/openai?tab=products"><div class="editorial-art art-folds"></div><div><span class="eyebrow">LENS 01</span><h3>产品与技术</h3><p>研究如何变成<br>可以使用的产品。</p><span class="lens-link">浏览相关内容 →</span></div></a><a href="#/company/openai?tab=governance"><div class="editorial-art art-space"></div><div><span class="eyebrow">LENS 02</span><h3>组织与治理</h3><p>区分机构控制、<br>任职与商业合作。</p><span class="lens-link">浏览相关内容 →</span></div></a><a href="#/timeline"><div class="editorial-art art-dunes"></div><div><span class="eyebrow">LENS 03</span><h3>关键时刻</h3><p>沿着时间回看，<br>理解变化与转折。</p><span class="lens-link">沿时间阅读 →</span></div></a></div>
+    </section><div class="editor-note"><span>有据可循</span><p>每条关系都保留时间与来源。资料快照不等同于实时组织架构。</p><a class="text-link" href="#/about">了解编辑原则 ${arrow}</a></div>
+  </main>${footer()}`;
 }
 function breadcrumb(parts: { text: string; href?: string }[]) {
   return `<div class="breadcrumb"><a href="#/">首页</a>${parts.map((p) => `<span>/</span>${p.href ? `<a href="${p.href}">${esc(p.text)}</a>` : `<span>${esc(p.text)}</span>`}`).join("")}</div>`;
@@ -209,43 +187,23 @@ function entityConnections(entityId: string) {
   if (!relations.length) return "";
   return `<div class="content-heading"><h2>沿着关联，继续阅读。</h2><p>每条关系保留对应的时间、方向与资料。</p></div><div class="fact-list">${relations.map((r) => `<article data-entity-relation="${esc(r.id)}"><span class="date-label">${esc(r.period)} · ${labels[r.type]}</span><h3>${esc(relationshipName(r.from))} → ${esc(relationshipName(r.to))}</h3><span class="role-label">${esc(r.label)}</span><p>${esc(r.detail)}</p><div class="fact-actions">${relatedEntity(r.from === entityId ? r.to : r.from)}${sourceButton(r.sourceIds, "核对关联证据")}</div></article>`).join("")}</div>`;
 }
-function relationExplorer(companyId = "openai") {
-  const all = scopedRelations(companyId),
-    visible = all.filter(
-      (r) => relationFilter === "all" || r.type === relationFilter,
-    );
-  const selected = visible.find((r) => r.id === selectedRelation) || visible[0];
-  const target = selected ? relationTarget(selected, companyId) : "";
-  const p = personById(target);
-  const spacing = visible.length > 6 ? 90 : 108;
-  const height = Math.max(540, visible.length * spacing + 36);
-  const hubY = Math.min(height / 2, 300);
-  const nodeY = (i: number) =>
-    (height - (visible.length - 1) * spacing) / 2 + i * spacing;
-  const paths = visible
-    .map(
-      (r, i) =>
-        `<path class="${r.id === selected?.id ? "is-selected" : ""} ${r.navigationOnly ? "is-navigation" : ""}" d="M156 ${hubY} C260 ${hubY}, 275 ${nodeY(i)}, 400 ${nodeY(i)}"/>`,
-    )
-    .join("");
-  return `<div class="relationship-heading"><div><div class="eyebrow">EXPLORE THE CONNECTIONS</div><h2>${relationFilter === "employment" ? "公司与人物" : "公司与世界"} <span>/ 关联浏览</span></h2></div><span class="relation-count">${visible.length} 条公开关联</span></div><div class="relationship-toolbar"><div class="pills relationship-filters" aria-label="关系类型筛选">${Object.entries(
-    labels,
-  )
-    .map(
-      ([id, label]) =>
-        `<button data-relation-filter="${id}" aria-pressed="${relationFilter === id}">${label}</button>`,
-    )
-    .join(
-      "",
-    )}</div><span class="graph-instruction">选择一个节点，继续阅读</span></div><div class="explorer" data-company="${esc(companyId)}"><div class="graph"><div class="graph-scroll"><div class="graph-scene" style="--graph-height:${height}px"><svg class="graph-connections" viewBox="0 0 740 ${height}" preserveAspectRatio="none" aria-hidden="true">${paths}</svg><div class="graph-hub" style="top:${hubY}px">${brand(companyById(companyId) || companies[0])}<h3>${esc(relationshipName(companyId))}</h3><span>公司档案</span></div><div class="graph-nodes">${
-    visible
-      .map((r, i) => {
-        const id = relationTarget(r, companyId);
-        const person = personById(id);
-        return `<button class="graph-node ${r.id === selected?.id ? "selected" : ""} ${r.navigationOnly ? "navigation-node" : ""}" style="top:${nodeY(i)}px" data-relation="${esc(r.id)}" aria-pressed="${r.id === selected?.id}"><span class="node-body">${person ? portrait(person, "node-portrait") : `<span class="node-organization">${companyById(id) ? brand(companyById(id)!) : globe}</span>`}<span class="node-text"><strong>${esc(relationshipName(id))}</strong><small>${esc(r.label)}</small><span class="node-date">${esc(r.period.split(" / ")[0])}</span></span><span class="node-arrow">${arrow}</span></span></button>`;
-      })
-      .join("") || '<p class="empty-state">此类别暂无已收录关系</p>'
-  }</div></div></div>${visible.length > 7 ? `<div class="graph-scroll-hint">在图内向下滚动，浏览全部 ${visible.length} 条关联 ↓</div>` : ""}<div class="graph-disclaimer"><span>i</span>中心公司是浏览起点；确切方向见关联详情，不代表当前汇报关系。虚线仅表示导航。</div></div><aside class="relation-detail" aria-live="polite">${selected ? `<div class="detail-kicker"><span>当前${p ? "人物" : "条目"}</span><span>${labels[selected.type]}</span></div>${p ? portrait(p, "detail-portrait") : `<div class="relation-symbol">${companyById(target) ? brand(companyById(target)!) : globe}</div>`}<h3>${esc(relationshipName(target))}</h3><p class="selected-role">${esc(selected.label)}</p><span class="date-label">${esc(selected.period)}</span><p>${esc(selected.detail)}</p><p class="relation-direction">${esc(relationshipName(selected.from))} → ${esc(relationshipName(selected.to))}</p><div class="relation-actions">${relatedEntity(target)}${sourceButton(selected.sourceIds, "核对关联证据")}<button class="back-to-graph" data-back-to-graph>返回关系图 ↑</button></div>` : "<p>选择其他关系类别继续探索。</p>"}</aside></div><div class="explorer-footer"><div><h3>把人物放回公司的脉络</h3><p>从公司概览，继续阅读研究、产品与发展时间线。</p></div><a class="text-link" href="#/company/${companyId}">公司概览 ${arrow}</a><a class="text-link" href="#/company/${companyId}?tab=sources">资料来源 ${arrow}</a></div>`;
+function graphVisual(id: string) {
+  const person = personById(id);
+  if (person) return portrait(person, "atlas-avatar");
+  const company = companyById(id);
+  if (company) return `<span class="atlas-entity-symbol">${brand(company)}</span>`;
+  const entity = extraById(id);
+  return `<span class="atlas-entity-symbol ${entity?.type === "product" ? "is-product" : ""}" aria-hidden="true">${id === "codex" ? "›_" : id === "openai-foundation" || id === "openai-group-pbc" ? openaiLogo : esc(entity?.initial || id.slice(0, 2).toUpperCase())}</span>`;
+}
+function relationExplorer(_companyId = "openai") {
+  if (!activeGraph) return "";
+  return renderGraph(activeGraph, {
+    esc, name: relationshipName, visual: graphVisual, profile: relatedEntity, sourceButton,
+    sourceCards: (ids) => ids.map(id => {
+      const source = sourceById(id);
+      return source ? `<button class="atlas-source-card" data-sources="${esc(id)}"><span class="atlas-document-icon" aria-hidden="true">↗</span><span><strong>${esc(source.title)}</strong><small>${source.published ? `发布 ${esc(source.published)} · ` : ""}核验 ${esc(source.verified)}</small></span></button>` : "";
+    }).join(""),
+  });
 }
 const tabs = [
   ["overview", "概览"],
@@ -257,7 +215,7 @@ const tabs = [
 ];
 
 function companyPage(c: Company) {
-  return `${header("companies")}<main id="main">${breadcrumb([{ text: "公司", href: "#/companies" }, { text: c.name }])}<section class="company-hero"><div><div class="eyebrow">COMPANY DOSSIER / ${c.coverage === "dossier" ? "深度档案" : "精选概览"}</div><h1>${esc(c.name)}</h1><p>${esc(c.tagline)}</p><div class="company-meta"><span>${esc(c.founded)} · 成立</span><span>${esc(c.location)}</span><span>版本更新 ${esc(datasetDate)}</span></div></div><div class="company-hero-art"><div class="editorial-art art-space"></div><span>概念空间 · 非公司实景</span></div></section>${c.coverage === "dossier" ? `<nav class="tabs" aria-label="公司档案栏目">${tabs.map(([id, label]) => `<a href="#/company/${c.id}?tab=${id}" ${companyTab === id ? 'aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="tab-content">${companyContent(c)}</div>` : `<div class="preview-content"><div class="eyebrow">A CONCISE INTRODUCTION</div><h2>从这里开始认识 ${esc(c.name)}</h2>${c.description.map((p) => `<p>${esc(p)}</p>`).join("")}<div class="tag-row">${c.topics.map((t) => `<a href="#/topics?topic=${encodeURIComponent(t)}">${esc(t)}</a>`).join("")}</div>${sourceButton(c.sourceIds)}<div class="quiet-note">这是精选概览，暂不提供完整人物图谱或实时组织架构。深度专题将从可核验的公开资料逐步扩展。</div></div>`}</main>${footer()}`;
+  return `${header("companies")}<main id="main" class="${companyTab === "relationships" ? "relationship-page" : ""}">${breadcrumb([{ text: "公司", href: "#/companies" }, { text: c.name }])}<section class="company-hero"><div><div class="eyebrow">COMPANY DOSSIER / ${c.coverage === "dossier" ? "深度档案" : "精选概览"}</div><h1>${esc(c.name)}</h1><p>${esc(c.tagline)}</p><div class="company-meta"><span>${esc(c.founded)} · 成立</span><span>${esc(c.location)}</span><span>版本更新 ${esc(datasetDate)}</span></div></div><div class="company-hero-art"><div class="editorial-art art-space"></div><span>概念空间 · 非公司实景</span></div></section>${c.coverage === "dossier" ? `<nav class="tabs" aria-label="公司档案栏目">${tabs.map(([id, label]) => `<a href="#/company/${c.id}?tab=${id}" ${companyTab === id ? 'aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="tab-content">${companyContent(c)}</div>` : `<div class="preview-content"><div class="eyebrow">A CONCISE INTRODUCTION</div><h2>从这里开始认识 ${esc(c.name)}</h2>${c.description.map((p) => `<p>${esc(p)}</p>`).join("")}<div class="tag-row">${c.topics.map((t) => `<a href="#/topics?topic=${encodeURIComponent(t)}">${esc(t)}</a>`).join("")}</div>${sourceButton(c.sourceIds)}<div class="quiet-note">这是精选概览，暂不提供完整人物图谱或实时组织架构。深度专题将从可核验的公开资料逐步扩展。</div></div>`}</main>${footer()}`;
 }
 function foundationBoardRoster() {
   return `<article data-board-roster><span class="date-label">核验 ${esc(foundationBoard.verified)}</span><h3>Foundation 董事名单</h3><ul>${foundationBoard.members.map((member) => `<li>${member.personId && personById(member.personId) ? `<a href="#/person/${esc(member.personId)}">${esc(member.name)}</a>` : esc(member.name)} · ${esc(member.role)}</li>`).join("")}</ul><p>此处记录 OpenAI Foundation 董事名单；OpenAI Group 董事与观察员身份需分别查证。</p>${sourceButton(foundationBoard.sourceIds, "核对董事名单")}</article>`;
@@ -353,13 +311,12 @@ function notFound() {
 }
 function render() {
   const [path, query = ""] = (location.hash.slice(1) || "/").split("?");
-  const params = new URLSearchParams(query);
+  let params = new URLSearchParams(query);
   const parts = path.split("/").filter(Boolean);
   companyTab = params.get("tab") || "overview";
   if (!tabs.some((t) => t[0] === companyTab)) companyTab = "overview";
   // Read every route afresh so a selection never leaks across pages or companies.
-  relationFilter = "employment";
-  selectedRelation = "";
+  activeGraph = null;
   selectedCompanyFilter = "all";
   const graphCompany =
     parts[0] === "explore"
@@ -370,12 +327,8 @@ function render() {
         ? parts[1]
         : "";
   if (graphCompany) {
-    const state = relationState(graphCompany, params);
-    relationFilter = state.filter;
-    selectedRelation = state.relation;
-    params.set("filter", relationFilter);
-    if (selectedRelation) params.set("relation", selectedRelation);
-    else params.delete("relation");
+    activeGraph = graphState(graphCompany, params, matchMedia("(max-width:600px)").matches ? 4 : 6);
+    params = canonicalGraphParams(params, activeGraph);
   } else if (parts[0] === "companies" || parts[0] === "people") {
     const choices = parts[0] === "companies"
       ? ["all", "dossier", "preview"]
@@ -386,7 +339,7 @@ function render() {
     params.delete("relation");
   } else {
     params.delete("filter");
-    params.delete("relation");
+    for (const key of ["relation", "root", "status", "page", "view", "from"]) params.delete(key);
   }
   const normalizedHash = `#${path}${params.size ? `?${params}` : ""}`;
   if (location.hash && location.hash !== normalizedHash) {
@@ -410,7 +363,8 @@ function render() {
     app.innerHTML = indexPage(parts[0]);
     document.title = `${parts[0] === "companies" ? "公司索引" : "人物索引"} · AI Atlas`;
   } else if (parts[0] === "explore") {
-    app.innerHTML = `${header("explore")}<main id="main">${breadcrumb([{ text: "关系图谱" }])}<section class="page-intro"><div class="eyebrow">THE RELATIONSHIP ATLAS</div><h1>每一条连接，都是线索。</h1><p>从 OpenAI 出发，探索不同类型的关系与它们的公开证据。</p></section>${relationExplorer()}</main>${footer()}`;
+    const rootName = relationshipName(activeGraph!.root);
+    app.innerHTML = `${header("explore")}<main id="main">${breadcrumb([{ text: "关系图谱", href: "#/explore" }, { text: rootName }])}<section class="page-intro atlas-intro"><div class="eyebrow">THE RELATIONSHIP ATLAS</div><h1>${personById(activeGraph!.root) ? `围绕 ${esc(personById(activeGraph!.root)?.aliases?.[0] || rootName)}，继续探索` : `从 ${esc(rootName)} 出发`}</h1><p>${personById(activeGraph!.root) ? `${esc(rootName)} · ${esc(personById(activeGraph!.root)!.role)}` : "沿着公开资料，连接人物、组织与产品。"}</p></section>${relationExplorer()}</main>${footer()}`;
     document.title = "关系图谱 · AI Atlas";
   } else if (parts[0] === "topics") {
     topicFilter = params.get("topic") || "all";
@@ -432,37 +386,34 @@ function render() {
       : "AI Atlas · 看见公司，理解 AI 的未来";
   }
   bindEvents();
-  // A pasted URL or history entry should reveal its selected graph node.
-  const graph = app.querySelector<HTMLElement>(".graph-scroll");
-  const selected = app.querySelector<HTMLElement>(".graph-node.selected");
-  if (graph && selected) {
-    graph.scrollTop = Math.max(0, selected.offsetTop - graph.clientHeight / 2);
-  }
+
 }
 function updateQuery(
   values: Record<string, string>,
   focusSelector: string,
   showDetail = false,
+  route = "",
 ) {
   const [path, query = ""] = (location.hash.slice(1) || "/").split("?");
-  const params = new URLSearchParams(query);
+  let params = new URLSearchParams(query);
   for (const [key, value] of Object.entries(values)) {
     if (value) params.set(key, value);
     else params.delete(key);
   }
-  const hash = `#${path}${params.size ? `?${params}` : ""}`;
+  if (activeGraph) params = canonicalGraphParams(params, graphState(activeGraph.root, params, activeGraph.pageSize));
+  if (route === "/explore") params.delete("tab");
+  const hash = `#${route || path}${params.size ? `?${params}` : ""}`;
   if (location.hash !== hash) {
     const scroll = { left: window.scrollX, top: window.scrollY };
-    const graph = app.querySelector(".graph-scroll");
-    const graphScroll = { left: graph?.scrollLeft || 0, top: graph?.scrollTop || 0 };
+    closeModal(false);
     history.pushState(null, "", hash);
     render();
-    app.querySelector(".graph-scroll")?.scrollTo(graphScroll);
     window.scrollTo({ ...scroll, behavior: "instant" });
   }
   app.querySelector<HTMLElement>(focusSelector)?.focus({ preventScroll: true });
   if (showDetail && matchMedia("(max-width:600px)").matches) {
-    app.querySelector(".relation-detail")?.scrollIntoView({
+    app.querySelector<HTMLElement>(".atlas-detail")?.focus({ preventScroll: true });
+    app.querySelector(".atlas-detail")?.scrollIntoView({
       block: "start",
       behavior: matchMedia("(prefers-reduced-motion:reduce)").matches
         ? "instant"
@@ -473,7 +424,7 @@ function updateQuery(
 function bindEvents() {
   app.querySelector("[data-back-to-graph]")?.addEventListener("click", () => {
     app.querySelector<HTMLElement>(".graph-node.selected")?.focus({ preventScroll: true });
-    document.querySelector(".graph")?.scrollIntoView({
+    document.querySelector(".atlas-stage")?.scrollIntoView({
       block: "start",
       behavior: matchMedia("(prefers-reduced-motion:reduce)").matches
         ? "instant"
@@ -507,31 +458,41 @@ function bindEvents() {
       );
     }),
   );
-  app
-    .querySelectorAll<HTMLButtonElement>("[data-relation-filter]")
-    .forEach((b) =>
-      b.addEventListener("click", () => {
-        const filter = b.dataset.relationFilter!;
-        const companyId = app.querySelector<HTMLElement>(".explorer")!.dataset.company!;
-        const state = relationState(companyId, new URLSearchParams({
-          filter,
-          relation: selectedRelation,
-        }));
-        updateQuery(
-          { filter, relation: state.relation },
-          `[data-relation-filter="${CSS.escape(filter)}"]`,
-        );
-      }),
-    );
-  app.querySelectorAll<HTMLButtonElement>("[data-relation]").forEach((b) =>
-    b.addEventListener("click", () => {
-      updateQuery(
-        { relation: b.dataset.relation! },
-        `[data-relation="${CSS.escape(b.dataset.relation!)}"]`,
-        true,
-      );
-    }),
-  );
+  app.querySelectorAll<HTMLButtonElement>("[data-relation-filter]").forEach(b => b.addEventListener("click", () => {
+    const filter = b.dataset.relationFilter!;
+    updateQuery({ filter, status: activeGraph?.status === "recent" && ["product", "all"].includes(filter) ? "all" : activeGraph?.status || "all", relation: activeGraph?.relation || "", page: "1" }, `[data-relation-filter="${CSS.escape(filter)}"]`);
+  }));
+  app.querySelectorAll<HTMLButtonElement>("[data-relation-status]").forEach(b => b.addEventListener("click", () => {
+    updateQuery({ status: b.dataset.relationStatus!, relation: activeGraph?.relation || "", page: "1" }, `[data-relation-status="${CSS.escape(b.dataset.relationStatus!)}"]`);
+  }));
+  app.querySelectorAll<HTMLButtonElement>("[data-relation]").forEach(b => b.addEventListener("click", () => {
+    updateQuery({ relation: b.dataset.relation! }, `[data-relation="${CSS.escape(b.dataset.relation!)}"]`, true);
+  }));
+  app.querySelector<HTMLSelectElement>("[data-relation-record]")?.addEventListener("change", e => {
+    updateQuery({ relation: (e.target as HTMLSelectElement).value }, "[data-relation-record]");
+  });
+  app.querySelectorAll<HTMLButtonElement>("[data-graph-root], [data-graph-back]").forEach(b => b.addEventListener("click", () => {
+    const root = b.dataset.graphRoot || b.dataset.graphBack!;
+    if (root === activeGraph?.root) { b.focus(); return; }
+    updateQuery({ root, from: b.dataset.graphBack ? "" : activeGraph?.root || "", filter: "all", status: "all", relation: "", page: "1" }, `.atlas-hub`, false, b.matches(".atlas-recenter") ? "/explore" : "");
+    const hub = app.querySelector<HTMLElement>(".atlas-hub");
+    hub?.setAttribute("tabindex", "-1"); hub?.focus({ preventScroll: true });
+  }));
+  app.querySelectorAll<HTMLButtonElement>("[data-graph-view]").forEach(b => b.addEventListener("click", () => {
+    updateQuery({ view: b.dataset.graphView! }, `[data-graph-view="${b.dataset.graphView}"]`);
+  }));
+  app.querySelectorAll<HTMLButtonElement>("[data-graph-page]").forEach(b => b.addEventListener("click", () => {
+    updateQuery({ page: b.dataset.graphPage!, relation: "" }, ".graph-node.selected");
+  }));
+  app.querySelector("[data-graph-reset]")?.addEventListener("click", () => {
+    updateQuery({ filter: activeGraph?.root === "openai" ? "employment" : "all", status: activeGraph?.root === "openai" ? "recent" : "all", relation: "", page: "1", view: "graph" }, "[data-graph-reset]");
+  });
+  app.querySelector("[data-graph-clear]")?.addEventListener("click", () => {
+    updateQuery({ filter: "all", status: "all", relation: "", page: "1" }, '[data-relation-filter="all"]');
+  });
+  app.querySelector("[data-all-records]")?.addEventListener("click", () => {
+    updateQuery({ filter: "all", status: "all" }, "[data-relation-record]");
+  });
   app.querySelectorAll<HTMLButtonElement>("[data-topic]").forEach((b) =>
     b.addEventListener("click", () => {
       location.hash = `/topics?topic=${encodeURIComponent(b.dataset.topic!)}`;
@@ -656,6 +617,13 @@ window.addEventListener("hashchange", () => {
   window.scrollTo({ top: 0, behavior: "instant" });
   document.querySelector<HTMLElement>("main")?.setAttribute("tabindex", "-1");
   document.querySelector<HTMLElement>("main")?.focus({ preventScroll: true });
+});
+matchMedia("(max-width:600px)").addEventListener("change", () => {
+  if (activeGraph) {
+    const focused = (document.activeElement as HTMLElement)?.dataset.relation;
+    render();
+    if (focused) app.querySelector<HTMLElement>(`[data-relation="${CSS.escape(focused)}"]`)?.focus({ preventScroll: true });
+  }
 });
 document.addEventListener("keydown", (e) => {
   const modal = document.querySelector<HTMLElement>(".modal");

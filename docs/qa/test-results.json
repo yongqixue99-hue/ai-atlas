@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-07T08:02:01.993Z",
+  "date": "2026-10-07T09:22:29.082Z",
   "browser": "140.0.7339.186",
   "passed": [
     "Company-first home and loaded assets",
@@ -9,8 +9,13 @@
     "Evidence drawer close, Escape and focus restore",
     "Person journey, browser Back/Forward",
     "Graph deep links, reload and Back/Forward restore exact state",
-    "Invalid and out-of-scope graph state recovers without leaking",
-    "Person context links select that person and governance facts link profiles",
+    "Invalid graph state normalizes and legacy institution links retain actual endpoints",
+    "Person context links center actual people and retain governance profile links",
+    "Fidji deduplication, all-record selection and accurate founder identity",
+    "Paul board roles, institutional control and strict endpoint geometry",
+    "Tibo to Codex and Ilya to SSI recenter journeys preserve browser history",
+    "OpenAI governance empty state directs readers to the actual institutions",
+    "Historical empty state and all release events remain readable",
     "Governance and product facts have differentiated evidence",
     "Search across people, companies and products, no-results and escaping",
     "Keyboard focus trap, repeated open and close",
@@ -23,7 +28,9 @@
     "All routes render without crashes and external links are safe",
     "Desktop, tablet and mobile layouts at 1440/1024/768/390/320px do not overflow",
     "Desktop graph, person, and evidence visual captures",
-    "All relation types preserve selected state and scroll position",
+    "Bounded pagination, list state, repeated focus and mobile adjacent detail",
+    "Evidence profile action stays legible on the dark button",
+    "Source drawer closes on Back and root transitions",
     "Unknown routes recover and no runtime errors"
   ],
   "errors": []

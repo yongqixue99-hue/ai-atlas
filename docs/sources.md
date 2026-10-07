@@ -52,6 +52,12 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - Bret Taylor：sierra-bret-bio、openai-return、sierra-launch、openai-paul-board-2026、openai-structure
 - Paul Christiano：rlhf-human-preferences、openai-paul-board-2026、openai-structure
 
+## 图谱表达与资料状态
+
+本轮视觉重构保留 32 条事实记录、全部证据与来源核验日。新加入的 `status` 是人工审阅后的表达元数据：明确的过去关系用 historical，日期限定记录用 snapshot，核验时仍成立用 current，发布用 event，纯条目连接用 navigation。不会从缺少结束日期推定现任。
+
+图谱只对当前中心实体的直接端点绘边；公司专题仍可汇总 Foundation / Group 相关内容，但汇总范围不充当图的法律方向。一个视觉节点可包含多条事实，选择后分别展示；人物创始身份须指明其组织归属。
+
 ## Public sources
 
 ### openai-tibo-forum

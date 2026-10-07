@@ -14,9 +14,12 @@ page.on("response", (response) => {
 });
 const out = new URL("../docs/qa/", import.meta.url);
 const routes = [
+  ["home-desktop", "/"],
   ["people-desktop", "/people"],
   ["governance-desktop", "/company/openai?tab=governance"],
   ["tibo-desktop", "/person/thibault-sottiaux"],
+  ["relationships-desktop", "/company/openai?tab=relationships&root=openai&filter=employment&status=recent&relation=tibo-openai-role"],
+  ["person-state-desktop", "/explore?root=thibault-sottiaux&filter=all&status=all&relation=tibo-codex-role&from=openai"],
   ["timeline-desktop", "/timeline"],
 ];
 try {
@@ -34,12 +37,18 @@ try {
   await page.keyboard.press("Escape");
   for (const width of [390, 320]) {
     await page.setViewportSize({ width, height: 844 });
-    for (const path of ["/person/thibault-sottiaux", "/company/openai?tab=governance"]) {
+    for (const [name, path] of [
+      ["home", "/"],
+      ["tibo", "/person/thibault-sottiaux"],
+      ["governance", "/company/openai?tab=governance"],
+      ["relationships", "/company/openai?tab=relationships&root=openai&filter=employment&status=recent&relation=tibo-openai-role"],
+      ["person-state", "/explore?root=thibault-sottiaux&filter=all&status=all&relation=tibo-codex-role&from=openai"],
+    ]) {
       await page.goto(`http://127.0.0.1:5182/#${path}`);
       await page.evaluate(() => document.fonts.ready);
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), path);
       if (width === 390) await page.screenshot({
-        path: new URL(`${path.includes("person") ? "tibo" : "governance"}-mobile.png`, out).pathname,
+        path: new URL(`${name}-mobile.png`, out).pathname,
         fullPage: true,
       });
     }

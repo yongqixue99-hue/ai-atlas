@@ -1,11 +1,14 @@
 {
-  "date": "2026-10-07T08:02:04.118Z",
+  "date": "2026-10-07T09:22:32.111Z",
   "browser": "140.0.7339.186",
   "mode": "production dist",
   "routes": [
+    "/",
     "/people",
     "/company/openai?tab=governance",
     "/person/thibault-sottiaux",
+    "/company/openai?tab=relationships&root=openai&filter=employment&status=recent&relation=tibo-openai-role",
+    "/explore?root=thibault-sottiaux&filter=all&status=all&relation=tibo-codex-role&from=openai",
     "/timeline"
   ],
   "mobileWidths": [

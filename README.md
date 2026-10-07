@@ -2,6 +2,17 @@
 
 一个以公司为起点的中文 AI 百科。连接人物、产品、组织治理与公开证据，采用象牙白、炭黑与低饱和绿色的编辑式布局。
 
+## 2026-10-07 按设计图重构关系体验
+
+先生成首页、公司关系页与人物展开状态三张概念图，再落实到可点击的页面。参考图与组件映射见 [设计实施说明](docs/design/implementation-guide.md)。
+
+- 首页保持公司优先，强化阅读入口、栏目层次与图文主题卡
+- 图谱按真实端点展示一跳关系，同一人物的多条事实集中在一个节点的证据栏
+- Foundation、Group PBC 与人物均可成为探索中心；保留原始关系方向
+- 画布和手机节点数量有明确边界，通过分页继续查看
+- 关系有明确的资料状态；“资料快照”不意味着职务已经结束
+- 选中、高亮、逐条证据、重定中心、重置与网址状态形成完整阅读流程
+
 ## 2026-10-07 OpenAI 人物与治理补充
 
 - 补充 Tibo（Thibault Sottiaux）及研究、经营、治理相关人物的经历和日期明确的角色
@@ -44,7 +55,7 @@ npm run dev
 打开终端显示的本地地址。
 
 ```sh
-npm run check       # 类型检查、9 项数据测试、生产构建
+npm run check       # 类型检查、22 项数据与图谱测试、生产构建
 npm run preview     # 预览 dist
 ```
 
@@ -80,10 +91,12 @@ node tests/production.mjs
 
 - `src/data.ts`：单一 typed 数据模型，实体、日期、来源 ID 与关系类型
 - `src/main.ts`：视图、哈希路由、检索、筛选与模态层交互
+- `src/graph.ts`：一跳图谱状态、节点归并、分页与证据渲染
+- `src/graph.css`、`src/home.css`：依据概念图实现的关系页与首页样式
 - `src/style.css`：响应式编辑设计、可访问状态、动效
 - `src/assets/openai.svg`：品牌识别图形
 - `public/assets/`：照片与本地中文衬线字体子集
-- `tests/data.test.ts`：数据引用与覆盖边界验证
+- `tests/data.test.ts`、`tests/graph.test.ts`：数据引用、状态边界、一跳端点、分页与路由验证
 - `tests/e2e.mjs`：Chromium 端到端及截图验证
 
 所有事实描述经转义后插入页面；搜索不执行用户输入。外链使用 `noopener noreferrer`。哈希路由允许静态服务器直接刷新深链，不需要后端 rewrite。

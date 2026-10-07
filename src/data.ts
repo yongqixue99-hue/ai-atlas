@@ -48,11 +48,22 @@ export type RelationshipType =
   | "employment"
   | "investment"
   | "product";
+/**
+ * Curated evidence status, independent of relationship type and period wording.
+ * A snapshot records dated evidence; it does not imply that a relationship ended.
+ */
+export type RelationshipStatus =
+  | "current"
+  | "historical"
+  | "snapshot"
+  | "event"
+  | "navigation";
 export interface Relationship {
   id: string;
   from: string;
   to: string;
   type: RelationshipType;
+  status: RelationshipStatus;
   label: string;
   detail: string;
   period: string;
@@ -1335,6 +1346,7 @@ export const additionalEntities: AdditionalEntity[] = [
 export const relationships: Relationship[] = [
   {
     id: "openai-developed-codex",
+    status: "event",
     from: "openai",
     to: "codex",
     type: "product",
@@ -1345,6 +1357,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "sam-openai-role",
+    status: "current",
     from: "sam-altman",
     to: "openai",
     type: "employment",
@@ -1356,6 +1369,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "sam-openai-board",
+    status: "current",
     from: "sam-altman",
     to: "openai-foundation",
     type: "governance",
@@ -1367,6 +1381,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "greg-openai-role",
+    status: "snapshot",
     from: "greg-brockman",
     to: "openai",
     type: "employment",
@@ -1377,6 +1392,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "greg-openai-board",
+    status: "historical",
     from: "greg-brockman",
     to: "openai",
     type: "governance",
@@ -1388,6 +1404,7 @@ export const relationships: Relationship[] = [
   },
 {
   "id": "tibo-openai-role",
+  "status": "current",
   "from": "thibault-sottiaux",
   "to": "openai",
   "type": "employment",
@@ -1401,6 +1418,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "tibo-codex-role",
+  "status": "snapshot",
   "from": "thibault-sottiaux",
   "to": "codex",
   "type": "product",
@@ -1414,6 +1432,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "jakub-openai-role",
+  "status": "snapshot",
   "from": "jakub-pachocki",
   "to": "openai",
   "type": "employment",
@@ -1427,6 +1446,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "fidji-openai-adviser",
+  "status": "snapshot",
   "from": "fidji-simo",
   "to": "openai",
   "type": "employment",
@@ -1440,6 +1460,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "fidji-openai-applications-history",
+  "status": "historical",
   "from": "fidji-simo",
   "to": "openai",
   "type": "employment",
@@ -1453,6 +1474,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "fidji-openai-board-history",
+  "status": "historical",
   "from": "fidji-simo",
   "to": "openai",
   "type": "governance",
@@ -1466,6 +1488,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "brad-openai-role-history",
+  "status": "historical",
   "from": "brad-lightcap",
   "to": "openai",
   "type": "employment",
@@ -1480,6 +1503,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "bret-foundation-chair",
+  "status": "snapshot",
   "from": "bret-taylor",
   "to": "openai-foundation",
   "type": "governance",
@@ -1493,6 +1517,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "bret-group-chair",
+  "status": "snapshot",
   "from": "bret-taylor",
   "to": "openai-group-pbc",
   "type": "governance",
@@ -1505,6 +1530,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "paul-foundation-board",
+  "status": "snapshot",
   "from": "paul-christiano",
   "to": "openai-foundation",
   "type": "governance",
@@ -1517,6 +1543,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "paul-group-observer",
+  "status": "snapshot",
   "from": "paul-christiano",
   "to": "openai-group-pbc",
   "type": "governance",
@@ -1529,6 +1556,7 @@ export const relationships: Relationship[] = [
 },
 {
   "id": "paul-openai-research-history",
+  "status": "historical",
   "from": "paul-christiano",
   "to": "openai",
   "type": "employment",
@@ -1541,6 +1569,7 @@ export const relationships: Relationship[] = [
 },
   {
     id: "ilya-openai-role",
+    status: "historical",
     from: "ilya-sutskever",
     to: "openai",
     type: "employment",
@@ -1552,6 +1581,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "ilya-openai-board",
+    status: "historical",
     from: "ilya-sutskever",
     to: "openai",
     type: "governance",
@@ -1563,6 +1593,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "mira-openai-role",
+    status: "historical",
     from: "mira-murati",
     to: "openai",
     type: "employment",
@@ -1579,6 +1610,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "dario-openai-role",
+    status: "historical",
     from: "dario-amodei",
     to: "openai",
     type: "employment",
@@ -1590,6 +1622,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "ilya-ssi-role",
+    status: "snapshot",
     from: "ilya-sutskever",
     to: "ssi",
     type: "employment",
@@ -1601,6 +1634,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "mira-tml-role",
+    status: "snapshot",
     from: "mira-murati",
     to: "thinking-machines",
     type: "employment",
@@ -1611,6 +1645,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "dario-anthropic-role",
+    status: "current",
     from: "dario-amodei",
     to: "anthropic",
     type: "employment",
@@ -1622,6 +1657,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "demis-deepmind-role",
+    status: "current",
     from: "demis-hassabis",
     to: "google-deepmind",
     type: "employment",
@@ -1633,6 +1669,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "microsoft-openai-investment",
+    status: "snapshot",
     from: "microsoft",
     to: "openai",
     type: "investment",
@@ -1648,6 +1685,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "microsoft-openai-product",
+    status: "snapshot",
     from: "openai",
     to: "microsoft",
     type: "product",
@@ -1659,6 +1697,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "openai-foundation-navigation",
+    status: "navigation",
     from: "openai",
     to: "openai-foundation",
     type: "governance",
@@ -1671,6 +1710,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "foundation-controls-group",
+    status: "snapshot",
     from: "openai-foundation",
     to: "openai-group-pbc",
     type: "governance",
@@ -1682,6 +1722,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "openai-developed-chatgpt",
+    status: "event",
     from: "openai",
     to: "chatgpt",
     type: "product",
@@ -1693,6 +1734,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "openai-developed-gpt4",
+    status: "event",
     from: "openai",
     to: "gpt4",
     type: "product",
@@ -1704,6 +1746,7 @@ export const relationships: Relationship[] = [
   },
   {
     id: "openai-developed-api",
+    status: "event",
     from: "openai",
     to: "openai-api",
     type: "product",
