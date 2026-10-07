@@ -8,6 +8,7 @@ import {
   events,
   sources,
   datasetDate,
+  foundationBoard,
 } from "../src/data.ts";
 const known = new Set(
   [...companies, ...people, ...additionalEntities].map((x) => x.id),
@@ -32,6 +33,8 @@ test("every factual record and milestone has resolvable sources", () => {
   }
 });
 test("all relationship and event endpoints resolve", () => {
+  assert.equal(new Set(relationships.map((r) => r.id)).size, relationships.length);
+  assert.equal(new Set(events.map((e) => e.id)).size, events.length);
   relationships.forEach((r) => {
     assert.ok(known.has(r.from), r.from);
     assert.ok(known.has(r.to), r.to);
@@ -40,6 +43,27 @@ test("all relationship and event endpoints resolve", () => {
   events.forEach((e) =>
     e.entityIds.forEach((id) => assert.ok(known.has(id), id)),
   );
+});
+test("person search aliases do not resolve to different people", () => {
+  const aliases = new Map<string, string>();
+  for (const person of people) {
+    for (const name of [person.name, ...(person.aliases || [])]) {
+      const key = name.trim().toLocaleLowerCase();
+      assert.ok(key);
+      assert.ok(!aliases.has(key) || aliases.get(key) === person.id, name);
+      aliases.set(key, person.id);
+    }
+  }
+});
+test("governance roster links resolve and retain a separate verification date", () => {
+  assert.ok(foundationBoard.verified <= datasetDate);
+  assert.ok(foundationBoard.sourceIds.length);
+  foundationBoard.sourceIds.forEach((id) => assert.ok(sourceIds.has(id), id));
+  assert.equal(new Set(foundationBoard.members.map((m) => m.name)).size, foundationBoard.members.length);
+  foundationBoard.members.forEach((member) => {
+    if (member.personId) assert.ok(people.some((p) => p.id === member.personId), member.name);
+    assert.ok(member.role);
+  });
 });
 test("sources are HTTPS, unique, and date bounded", () => {
   assert.equal(sourceIds.size, sources.length);
@@ -59,6 +83,13 @@ test("profiles contain readable narratives and dated milestones", () => {
   people.forEach((p) => {
     assert.ok(p.paragraphs.length >= 2, p.name);
     assert.ok(p.milestones.length >= 2, p.name);
+    if (p.paragraphSourceIds) {
+      assert.equal(p.paragraphSourceIds.length, p.paragraphs.length, p.name);
+      p.paragraphSourceIds.forEach((ids) => {
+        assert.ok(ids.length, p.name);
+        ids.forEach((id) => assert.ok(sourceIds.has(id), id));
+      });
+    }
     assert.ok(
       companies.some((c) => c.id === p.companyId),
       p.name,

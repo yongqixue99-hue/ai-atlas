@@ -32,12 +32,14 @@ export interface Milestone {
 export interface Person {
   id: string;
   name: string;
+  aliases?: string[];
   cnName: string;
   initial: string;
   role: string;
   companyId: string;
   summary: string;
   paragraphs: string[];
+  paragraphSourceIds?: string[][];
   milestones: Milestone[];
   sourceIds: string[];
 }
@@ -75,9 +77,140 @@ export interface AtlasEvent {
   sourceIds: string[];
 }
 
-export const datasetDate = "2026-10-03";
+export const datasetDate = "2026-10-07";
+
+/** Foundation membership is separate from the Group board and management. */
+export const foundationBoard: {
+  verified: string;
+  sourceIds: string[];
+  members: { name: string; role: string; personId?: string }[];
+} = {
+  verified: "2026-10-07",
+  sourceIds: ["openai-structure"],
+  members: [
+    { name: "Bret Taylor", role: "主席 · 独立董事", personId: "bret-taylor" },
+    { name: "Adam D’Angelo", role: "独立董事" },
+    { name: "Paul Christiano", role: "独立董事", personId: "paul-christiano" },
+    { name: "Sue Desmond-Hellmann", role: "独立董事" },
+    { name: "Zico Kolter", role: "独立董事" },
+    { name: "Paul M. Nakasone", role: "独立董事" },
+    { name: "Adebayo Ogunlesi", role: "独立董事" },
+    { name: "Nicole Seligman", role: "独立董事" },
+    { name: "David Vélez", role: "独立董事" },
+    { name: "Robin Vince", role: "独立董事" },
+    { name: "Sam Altman", role: "董事 · CEO", personId: "sam-altman" },
+  ],
+};
 
 export const sources: Source[] = [
+{
+  "id": "openai-tibo-forum",
+  "title": "OpenAI Forum · Codex is for Everyone（2026-05-13 活动与讲者简介）",
+  "url": "https://forum.openai.com/public/events/codex-is-for-everyone-why-codex-matters-beyond-code-fa40puy7wi",
+  "verified": "2026-10-07"
+},
+{
+  "id": "openai-tibo-astral",
+  "title": "OpenAI · OpenAI to acquire Astral（Tibo 职称与 Codex 方向）",
+  "url": "https://openai.com/index/openai-to-acquire-astral/",
+  "published": "2026-03-19",
+  "verified": "2026-10-07"
+},
+{
+  "id": "vivatech-tibo-2026",
+  "title": "VivaTech · Thibault Sottiaux 与 Peter Steinberger 讲者公告",
+  "url": "https://vivatech.com/media/press-releases/breaking-news-peter-steinberger-creator-of-openclaw-and-thibault-sottiaux-openai-two-ai-experts-for-an-exceptional-session-at-vivatech",
+  "published": "2026-05-28",
+  "verified": "2026-10-07"
+},
+{
+  "id": "openai-tibo-ona",
+  "title": "OpenAI · OpenAI to acquire Ona（Core Products Lead）",
+  "url": "https://openai.com/index/openai-to-acquire-ona/",
+  "published": "2026-06-11",
+  "verified": "2026-10-07"
+},
+{
+  "id": "openai-tibo-platform",
+  "title": "OpenAI · Defense Factory（Head of Core Products & Platform）",
+  "url": "https://openai.com/the-defense-factory/",
+  "verified": "2026-10-07"
+},
+{
+  "id": "openai-jakub-2026",
+  "title": "Jakub Pachocki / OpenAI · An Alien Mind",
+  "url": "https://openai.com/index/an-alien-mind/",
+  "published": "2026-09-06",
+  "verified": "2026-10-07"
+},
+{
+  "id": "openai-fidji-appointment",
+  "title": "OpenAI · Leadership expansion with Fidji Simo",
+  "url": "https://openai.com/index/leadership-expansion-with-fidji-simo/",
+  "published": "2025-05-07",
+  "verified": "2026-10-07"
+},
+{
+  "id": "fidji-adviser-statement",
+  "title": "Fidji Simo · 本人公开说明转任兼职顾问",
+  "url": "https://www.linkedin.com/posts/fidjisimo_today-i-shared-with-the-openai-team-that-activity-7481120077711425536-e03r",
+  "verified": "2026-10-07"
+},
+{
+  "id": "nscale-fidji-board",
+  "title": "Nscale · Fidji Simo joins Board（并确认 OpenAI 顾问身份）",
+  "url": "https://www.nscale.com/press-releases/fidji-simo-joins-nscale-board-of-directors",
+  "published": "2026-09-11",
+  "verified": "2026-10-07"
+},
+{
+  "id": "openai-leadership-2025",
+  "title": "OpenAI · Leadership updates（Brad Lightcap 的历史职责）",
+  "url": "https://openai.com/index/leadership-updates-march-2025/",
+  "published": "2025-03-24",
+  "verified": "2026-10-07"
+},
+{
+  "id": "brad-departure-reuters",
+  "title": "Reuters / Investing.com · Brad Lightcap announces departure（媒体交叉核验）",
+  "url": "https://www.investing.com/news/stock-market-news/senior-openai-executive-brad-lightcap-to-leave-for-new-venture-4852370",
+  "published": "2026-08-11",
+  "verified": "2026-10-07"
+},
+{
+  "id": "sierra-bret-bio",
+  "title": "Sierra · Bret Taylor 官方简介",
+  "url": "https://sierra.ai/author/bret-taylor",
+  "verified": "2026-10-07"
+},
+{
+  "id": "sierra-launch",
+  "title": "Bret Taylor、Clay Bavor / Sierra · Introducing Sierra",
+  "url": "https://sierra.ai/blog/introducing-sierra",
+  "published": "2024-02-13",
+  "verified": "2026-10-07"
+},
+{
+  "id": "openai-paul-board-2026",
+  "title": "OpenAI · Paul Christiano joins OpenAI Foundation Board",
+  "url": "https://openai.com/index/paul-christiano-joins-openai-foundation-board/",
+  "published": "2026-09-09",
+  "verified": "2026-10-07"
+},
+{
+  "id": "rlhf-human-preferences",
+  "title": "Christiano 等 · Deep reinforcement learning from human preferences",
+  "url": "https://arxiv.org/abs/1706.03741",
+  "published": "2017-06-12",
+  "verified": "2026-10-07"
+},
+  {
+    id: "openai-codex-agent",
+    title: "OpenAI · Introducing Codex（2025 年研究预览）",
+    url: "https://openai.com/index/introducing-codex/",
+    published: "2025-05-16",
+    verified: "2026-10-07",
+  },
   {
     id: "openai-founding",
     title: "OpenAI · Introducing OpenAI",
@@ -117,7 +250,7 @@ export const sources: Source[] = [
     id: "openai-roles-2022",
     title: "OpenAI · Leadership team update",
     url: "https://openai.com/index/leadership-team-update/",
-    verified: "2026-10-03",
+    verified: "2026-10-07",
     published: "2022-05-05",
   },
   {
@@ -131,14 +264,14 @@ export const sources: Source[] = [
     id: "openai-return",
     title: "OpenAI · Sam Altman returns as CEO",
     url: "https://openai.com/index/sam-altman-returns-as-ceo-openai-has-a-new-initial-board/",
-    verified: "2026-10-03",
+    verified: "2026-10-07",
     published: "2023-11-29",
   },
   {
     id: "openai-review",
     title: "OpenAI · Board review and governance update",
     url: "https://openai.com/index/review-completed-altman-brockman-to-continue-to-lead-openai/",
-    verified: "2026-10-03",
+    verified: "2026-10-07",
     published: "2024-03-08",
   },
   {
@@ -146,14 +279,14 @@ export const sources: Source[] = [
     title:
       "OpenAI · Ilya Sutskever leaves; Jakub Pachocki named Chief Scientist",
     url: "https://openai.com/index/jakub-pachocki-announced-as-chief-scientist/",
-    verified: "2026-10-03",
+    verified: "2026-10-07",
     published: "2024-05-14",
   },
   {
     id: "openai-structure",
     title: "OpenAI · Our structure（含 2025-10-28 重组说明）",
     url: "https://openai.com/our-structure/",
-    verified: "2026-10-03",
+    verified: "2026-10-07",
   },
   {
     id: "openai-microsoft-2019",
@@ -641,6 +774,350 @@ export const people: Person[] = [
       "openai-greg-2026",
     ],
   },
+{
+  "id": "thibault-sottiaux",
+  "name": "Thibault Sottiaux",
+  "aliases": [
+    "Tibo",
+    "Tibo Sottiaux",
+    "Thibault “Tibo” Sottiaux",
+    "thsottiaux",
+    "蒂博",
+    "Tibo 索蒂奥"
+  ],
+  "cnName": "蒂博·索蒂奥",
+  "initial": "TS",
+  "role": "OpenAI 核心产品与平台负责人",
+  "companyId": "openai",
+  "summary": "从研究工作流基础设施走向 Codex，再到覆盖 ChatGPT、Codex 与 API 的产品及平台工作；Tibo 是他的常用称呼。",
+  "paragraphs": [
+    "Thibault Sottiaux 通常被称为 Tibo。OpenAI Forum 的官方简介记载，他在加入 OpenAI 前曾在 Google DeepMind 负责 Gemini 的人类数据工作，并构建支持 DeepMind 研究的 AI 与机器学习工作流基础设施；更早曾在 Google 任软件工程师，也从事决策、预测建模和数据库系统的应用研究。他在 Université catholique de Louvain 接受计算机科学、计算数学及应用数学教育。",
+    "他在 OpenAI 的公开工作重点曾是 Codex：帮助开发者理解代码库、完成工程任务，并把 AI 融入软件开发的多个环节。2026 年 3 月的 Astral 拟收购公告将他列为 Codex Lead；同年 5 月的官方活动称他为 Head of Codex。相关公告描述了从生成代码走向规划修改、运行工具、验证结果和长期维护软件的方向，这属于团队目标，不能写成他个人已完成的成果。",
+    "到 2026 年 5 月，VivaTech 的讲者公告已将其职责写为 Product & Platform，范围包括 ChatGPT、Codex 和 API。6 月 OpenAI 的 Ona 拟收购公告使用 Core Products Lead；本次核验的官方 Defense Factory 页面则使用 Head of Core Products & Platform。本条据此采用“核心产品与平台负责人”，保留各来源的历史职称，不推断晋升生效日、具体组织层级或直属上级。"
+  ],
+  "milestones": [
+    {
+      "date": "2026-03-19",
+      "text": "OpenAI 的 Astral 拟收购公告称其为 Codex Lead，并说明扩展软件开发全流程能力的方向。",
+      "sourceIds": [
+        "openai-tibo-astral"
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "text": "OpenAI Forum 举办 Codex 主题对谈；活动与讲者简介称其为 Head of Codex，并确认 Tibo 别名。",
+      "sourceIds": [
+        "openai-tibo-forum"
+      ]
+    },
+    {
+      "date": "2026-05-28",
+      "text": "VivaTech 官方讲者公告称其领导 Product & Platform，覆盖 ChatGPT、Codex 与 API。",
+      "sourceIds": [
+        "vivatech-tibo-2026"
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "text": "OpenAI 的 Ona 拟收购公告称其为 Core Products Lead。",
+      "sourceIds": [
+        "openai-tibo-ona"
+      ]
+    }
+  ],
+  "sourceIds": [
+    "openai-tibo-forum",
+    "openai-tibo-astral",
+    "vivatech-tibo-2026",
+    "openai-tibo-ona",
+    "openai-tibo-platform"
+  ],
+  "paragraphSourceIds": [
+    [
+      "openai-tibo-forum"
+    ],
+    [
+      "openai-tibo-forum",
+      "openai-tibo-astral"
+    ],
+    [
+      "vivatech-tibo-2026",
+      "openai-tibo-ona",
+      "openai-tibo-platform"
+    ]
+  ]
+},
+{
+  "id": "jakub-pachocki",
+  "name": "Jakub Pachocki",
+  "cnName": "雅库布·帕乔茨基",
+  "initial": "JP",
+  "role": "OpenAI 首席科学家",
+  "companyId": "openai",
+  "summary": "长期参与大型强化学习与深度学习系统研究，曾任研究总监，并于 2024 年接任首席科学家。",
+  "paragraphs": [
+    "Jakub Pachocki 的研究背景横跨理论计算机科学与大规模深度学习。OpenAI 的任命简介确认，他拥有卡内基梅隆大学理论计算机科学博士学位，自 2017 年起在 OpenAI 领导研究项目。",
+    "在接任首席科学家之前，他曾任研究总监。OpenAI 将 GPT-4、OpenAI Five 的开发，以及大型强化学习和深度学习优化研究列为他曾领导的重要工作，并指出他参与推动公司围绕可扩展深度学习系统组织研究。这些是团队研究中的领导贡献，不意味着相关系统由他独立发明。",
+    "2024 年 5 月 14 日，OpenAI 在宣布 Ilya Sutskever 离开时任命 Pachocki 为首席科学家。2026 年 9 月，他以该职称发表《An Alien Mind》，讨论对齐、监测和模型能力增长之间的关系，并主张让扩展速度受到安全信心的约束；这些表述是他的公开研究判断，而非已解决对齐问题的声明。"
+  ],
+  "milestones": [
+    {
+      "date": "2017",
+      "text": "据 OpenAI 任命简介，自这一年起在公司领导研究项目。",
+      "sourceIds": [
+        "openai-ilya-departure"
+      ]
+    },
+    {
+      "date": "2024-05-14",
+      "text": "OpenAI 宣布其接任首席科学家。",
+      "sourceIds": [
+        "openai-ilya-departure"
+      ]
+    },
+    {
+      "date": "2026-09-06",
+      "text": "以 OpenAI 首席科学家身份发表《An Alien Mind》，讨论对齐、监测与安全扩展。",
+      "sourceIds": [
+        "openai-jakub-2026"
+      ]
+    }
+  ],
+  "sourceIds": [
+    "openai-ilya-departure",
+    "openai-jakub-2026"
+  ],
+  "paragraphSourceIds": [
+    [
+      "openai-ilya-departure"
+    ],
+    [
+      "openai-ilya-departure"
+    ],
+    [
+      "openai-ilya-departure",
+      "openai-jakub-2026"
+    ]
+  ]
+},
+{
+  "id": "fidji-simo",
+  "name": "Fidji Simo",
+  "cnName": "菲吉·西莫",
+  "initial": "FS",
+  "role": "OpenAI 顾问；前应用业务负责人",
+  "companyId": "openai",
+  "summary": "把大型消费产品与商业运营经验带到 OpenAI，曾任 CEO of Applications，后转任顾问；2026 年 9 月加入 Nscale 董事会。",
+  "paragraphs": [
+    "Fidji Simo 的职业经历贯穿电商、社交平台与 AI 产品。Nscale 的官方履历记载，她从 eBay 起步，之后在 Meta 工作约十年，曾领导 Facebook App；在 Instacart 担任 CEO 与董事长期间，她带领公司完成 2023 年上市。",
+    "2024 年 3 月，Simo 当选 OpenAI 董事。2025 年 5 月 7 日，OpenAI 宣布她将担任新设的 CEO of Applications，负责把研究交付给用户的业务与运营团队。公告明确 Sam Altman 继续担任 OpenAI CEO，因此这一职称不能简化成“OpenAI 首席执行官”，也不意味着 OpenAI 另有一家独立的 Applications 公司。",
+    "她后来公开说明将离开全职岗位、转任兼职顾问。2026 年 9 月 11 日，Nscale 在宣布她出任独立董事时，使用“前 OpenAI CEO of AGI Deployment”的称呼，并确认她继续担任 OpenAI 顾问。本条以这一较新的状态为准；应用业务负责人和 OpenAI 董事经历均作为历史记录。"
+  ],
+  "milestones": [
+    {
+      "date": "2024-03-08",
+      "text": "OpenAI 公布其当选董事会成员。",
+      "sourceIds": [
+        "openai-review"
+      ]
+    },
+    {
+      "date": "2025-05-07",
+      "text": "OpenAI 宣布她将担任 CEO of Applications；公告为任命计划，不将当天当作实际入职日。",
+      "sourceIds": [
+        "openai-fidji-appointment"
+      ]
+    },
+    {
+      "date": "2026-09-11",
+      "text": "Nscale 宣布其加入董事会，并确认她已转任 OpenAI 顾问。",
+      "sourceIds": [
+        "nscale-fidji-board"
+      ]
+    }
+  ],
+  "sourceIds": [
+    "openai-review",
+    "openai-fidji-appointment",
+    "fidji-adviser-statement",
+    "nscale-fidji-board"
+  ],
+  "paragraphSourceIds": [
+    [
+      "nscale-fidji-board"
+    ],
+    [
+      "openai-review",
+      "openai-fidji-appointment"
+    ],
+    [
+      "fidji-adviser-statement",
+      "nscale-fidji-board"
+    ]
+  ]
+},
+{
+  "id": "brad-lightcap",
+  "name": "Brad Lightcap",
+  "cnName": "布拉德·莱特卡普",
+  "initial": "BL",
+  "role": "前 OpenAI 首席运营官",
+  "companyId": "openai",
+  "summary": "参与搭建 OpenAI 的商业与运营体系，2022 年获任首席运营官；离任后的计划尚未在本条纳入。",
+  "paragraphs": [
+    "Brad Lightcap 的公开经历主要体现 OpenAI 从研究机构扩大为产品和商业组织的过程。2022 年的官方任命公告记载，他曾负责财务、法务、人事与运营工作，并继续管理 OpenAI Startup Fund；同次公告宣布他成为首席运营官，扩大与应用 AI 团队在商业策略上的合作。",
+    "2025 年 3 月，OpenAI 再次宣布扩展他的职责，涵盖业务与日常运营，重点包括商业战略、重要合作关系、基础设施和全球部署。Sam Altman 在这份公告中提到，两人此前已先后在 Y Combinator 和 OpenAI 合作。以上是带日期的历史职责快照，不能直接用于还原核验时的组织图。",
+    "据 Reuters 于 2026 年 8 月 11 日的报道，Lightcap 此前已由首席运营官转向特别项目，并在当天通过本人的 X 账号宣布将离开 OpenAI、开展新的事业。报道同时援引 OpenAI 的回应，称其职责此前已逐渐离开大型团队的日常管理。本条因此使用“前首席运营官”，将早期运营职责保留为历史，不推断其新事业的具体内容或离职生效日。"
+  ],
+  "milestones": [
+    {
+      "date": "2022-05-05",
+      "text": "OpenAI 宣布其成为首席运营官。",
+      "sourceIds": [
+        "openai-roles-2022"
+      ]
+    },
+    {
+      "date": "2025-03-24",
+      "text": "OpenAI 宣布扩展其业务与日常运营职责。",
+      "sourceIds": [
+        "openai-leadership-2025"
+      ]
+    },
+    {
+      "date": "2026-08-11",
+      "text": "Reuters 报道其本人宣布将离开 OpenAI；此日期是公开离任公告日期，不代表最后工作日。",
+      "sourceIds": [
+        "brad-departure-reuters"
+      ]
+    }
+  ],
+  "sourceIds": [
+    "openai-roles-2022",
+    "openai-leadership-2025",
+    "brad-departure-reuters"
+  ],
+  "paragraphSourceIds": [
+    [
+      "openai-roles-2022"
+    ],
+    [
+      "openai-leadership-2025"
+    ],
+    [
+      "brad-departure-reuters"
+    ]
+  ]
+},
+{
+  "id": "bret-taylor",
+  "name": "Bret Taylor",
+  "cnName": "布雷特·泰勒",
+  "initial": "BT",
+  "role": "OpenAI Foundation 与 Group PBC 董事长",
+  "companyId": "openai",
+  "summary": "Sierra 联合创始人，长期从事软件产品与企业经营；在 OpenAI 负责董事会层面的治理。",
+  "paragraphs": [
+    "Bret Taylor 兼有产品工程和企业管理经历。Sierra 的官方简介记载，他在 Google 参与共同创建 Google Maps，之后曾任 Facebook 首席技术官、创办 Quip，并担任 Salesforce 联合首席执行官。这些经历构成他的企业软件与大规模产品背景。",
+    "在 OpenAI 2023 年的领导层事件之后，11 月 29 日的公司公告确认由 Taylor 担任新初始董事会主席，与 Adam D’Angelo、Larry Summers 一起推进治理重建与事件审查。董事会角色与公司日常管理不同，不应把他画成产品或研究团队的直接负责人。",
+    "他也是 Sierra 联合创始人，与 Clay Bavor 于 2024 年 2 月公开发布面向企业的对话式 AI 平台。OpenAI 在 2026 年 9 月的公告明确列他为 Foundation 和 Group PBC 两个董事会的主席；Sierra 创业身份和 OpenAI 治理身份应分别记录，不能据此推断两家公司的控制或投资关系。"
+  ],
+  "milestones": [
+    {
+      "date": "2023-11-29",
+      "text": "OpenAI 的 CEO 回归公告确认其担任新初始董事会主席。",
+      "sourceIds": [
+        "openai-return"
+      ]
+    },
+    {
+      "date": "2024-02-13",
+      "text": "与 Clay Bavor 联合发布 Sierra 的企业对话式 AI 平台介绍。",
+      "sourceIds": [
+        "sierra-launch"
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "text": "OpenAI 的治理公告确认其为 Foundation 与 Group PBC 两个董事会的主席。",
+      "sourceIds": [
+        "openai-paul-board-2026"
+      ]
+    }
+  ],
+  "sourceIds": [
+    "sierra-bret-bio",
+    "openai-return",
+    "sierra-launch",
+    "openai-paul-board-2026",
+    "openai-structure"
+  ],
+  "paragraphSourceIds": [
+    [
+      "sierra-bret-bio"
+    ],
+    [
+      "openai-return"
+    ],
+    [
+      "sierra-launch",
+      "openai-paul-board-2026"
+    ]
+  ]
+},
+{
+  "id": "paul-christiano",
+  "name": "Paul Christiano",
+  "cnName": "保罗·克里斯蒂亚诺",
+  "initial": "PC",
+  "role": "OpenAI Foundation 董事；安全与安保委员会成员",
+  "companyId": "openai",
+  "summary": "AI 对齐研究者，参与人类反馈强化学习的早期研究；2026 年进入 Foundation 董事会，在 Group PBC 仅任无投票权观察员。",
+  "paragraphs": [
+    "Paul Christiano 是 AI 对齐研究者。他与 Jan Leike、Tom Brown 等人共同撰写的《Deep reinforcement learning from human preferences》于 2017 年提交，研究如何从人对行为片段的偏好中学习奖励，使强化学习系统能够接受较少量的人类反馈。",
+    "OpenAI 的官方履历记载，他在 2017 至 2021 年间领导公司的对齐研究，之后创立 Alignment Research Center，并在美国 NIST 下属的 AI 安全与标准机构参与前沿模型评估及风险缓解工作。这些经历连接了技术研究、独立研究组织和公共机构。",
+    "2026 年 9 月 9 日，他获任 OpenAI Foundation 董事并加入安全与安保委员会。公告同时明确，他在 OpenAI Group PBC 董事会的身份是无投票权观察员。两种角色的权限不同，关系图必须分开表示；这次治理任命也不等于他重新担任 OpenAI 的日常研究管理者。"
+  ],
+  "milestones": [
+    {
+      "date": "2017-06-12",
+      "text": "共同署名的人类偏好强化学习论文首次提交 arXiv。",
+      "sourceIds": [
+        "rlhf-human-preferences"
+      ]
+    },
+    {
+      "date": "2017—2021",
+      "text": "据 OpenAI 官方履历，在公司领导对齐研究。",
+      "sourceIds": [
+        "openai-paul-board-2026"
+      ]
+    },
+    {
+      "date": "2026-09-09",
+      "text": "加入 Foundation 董事会及安全与安保委员会；在 Group PBC 董事会为无投票权观察员。",
+      "sourceIds": [
+        "openai-paul-board-2026"
+      ]
+    }
+  ],
+  "sourceIds": [
+    "rlhf-human-preferences",
+    "openai-paul-board-2026",
+    "openai-structure"
+  ],
+  "paragraphSourceIds": [
+    [
+      "rlhf-human-preferences"
+    ],
+    [
+      "openai-paul-board-2026"
+    ],
+    [
+      "openai-paul-board-2026"
+    ]
+  ]
+},
   {
     id: "ilya-sutskever",
     name: "Ilya Sutskever",
@@ -799,6 +1276,14 @@ export const people: Person[] = [
 
 export const additionalEntities: AdditionalEntity[] = [
   {
+    id: "codex",
+    name: "Codex",
+    initial: "CX",
+    type: "product",
+    summary: "本条记录 2025 年 5 月 16 日发布的 Codex 云端软件工程代理研究预览：在独立环境中阅读代码、修改文件、运行测试并提出代码变更。它不是对当前功能、价格或使用限制的说明，也不把同名早期模型与这一产品发布混为一谈。",
+    sourceIds: ["openai-codex-agent"],
+  },
+  {
     id: "openai-foundation",
     name: "OpenAI Foundation",
     cnName: "OpenAI 基金会",
@@ -849,6 +1334,16 @@ export const additionalEntities: AdditionalEntity[] = [
 
 export const relationships: Relationship[] = [
   {
+    id: "openai-developed-codex",
+    from: "openai",
+    to: "codex",
+    type: "product",
+    label: "云端工程代理 · 研究预览",
+    detail: "2025 年 5 月发布的 Codex 研究预览把代码理解、编辑和测试放入可并行执行的云端任务。此边记录团队的产品发布，不将集体成果归于单一负责人；原公告已提示读者查看最新产品资料。",
+    period: "2025-05-16 发布快照",
+    sourceIds: ["openai-codex-agent"],
+  },
+  {
     id: "sam-openai-role",
     from: "sam-altman",
     to: "openai",
@@ -862,9 +1357,9 @@ export const relationships: Relationship[] = [
   {
     id: "sam-openai-board",
     from: "sam-altman",
-    to: "openai",
+    to: "openai-foundation",
     type: "governance",
-    label: "董事会成员",
+    label: "Foundation 董事",
     detail:
       "2024 年公告确认重新加入董事会；核验时为 OpenAI Foundation 董事。管理职务与治理席位分别记录。",
     period: "2024-03 回归；2026-10 核验",
@@ -891,6 +1386,159 @@ export const relationships: Relationship[] = [
     period: "2019 记录 → 2023-11",
     sourceIds: ["openai-lp", "openai-transition"],
   },
+{
+  "id": "tibo-openai-role",
+  "from": "thibault-sottiaux",
+  "to": "openai",
+  "type": "employment",
+  "label": "核心产品与平台负责人",
+  "detail": "当前官方页面使用 Head of Core Products & Platform；6 月公告使用 Core Products Lead。不据此推断任命生效日或汇报关系。",
+  "period": "2026-06 公告 / 2026-10 核验快照",
+  "sourceIds": [
+    "openai-tibo-ona",
+    "openai-tibo-platform"
+  ]
+},
+{
+  "id": "tibo-codex-role",
+  "from": "thibault-sottiaux",
+  "to": "codex",
+  "type": "product",
+  "label": "Codex 负责人（任职快照）",
+  "detail": "3 月官方公告与 5 月活动称其为 Codex Lead / Head of Codex；不是独立发明关系。",
+  "period": "2026-03—05 公开资料",
+  "sourceIds": [
+    "openai-tibo-astral",
+    "openai-tibo-forum"
+  ]
+},
+{
+  "id": "jakub-openai-role",
+  "from": "jakub-pachocki",
+  "to": "openai",
+  "type": "employment",
+  "label": "首席科学家",
+  "detail": "2024 年正式任命；2026 年 9 月本人官方署名文章再次确认该职称。",
+  "period": "2024-05 任命 / 2026-09 确认",
+  "sourceIds": [
+    "openai-ilya-departure",
+    "openai-jakub-2026"
+  ]
+},
+{
+  "id": "fidji-openai-adviser",
+  "from": "fidji-simo",
+  "to": "openai",
+  "type": "employment",
+  "label": "顾问",
+  "detail": "本人说明转为兼职顾问，Nscale 9 月公告再次确认；不推断劳动合同形式。",
+  "period": "2026-09 公开确认",
+  "sourceIds": [
+    "fidji-adviser-statement",
+    "nscale-fidji-board"
+  ]
+},
+{
+  "id": "fidji-openai-applications-history",
+  "from": "fidji-simo",
+  "to": "openai",
+  "type": "employment",
+  "label": "应用业务负责人（历史）",
+  "detail": "2025 年宣布将出任 CEO of Applications，较新来源已确认转任顾问。",
+  "period": "2025 任命公告；后已转任顾问",
+  "sourceIds": [
+    "openai-fidji-appointment",
+    "nscale-fidji-board"
+  ]
+},
+{
+  "id": "fidji-openai-board-history",
+  "from": "fidji-simo",
+  "to": "openai",
+  "type": "governance",
+  "label": "董事（历史）",
+  "detail": "2024 年 3 月确认当选；该边不表示其仍在当前 Foundation 董事名册。",
+  "period": "2024-03 任命记录",
+  "sourceIds": [
+    "openai-review",
+    "openai-structure"
+  ]
+},
+{
+  "id": "brad-openai-role-history",
+  "from": "brad-lightcap",
+  "to": "openai",
+  "type": "employment",
+  "label": "首席运营官（历史）",
+  "detail": "2022 任命与 2025 职责扩展有官方公告；离任采用 Reuters 对本人声明的交叉核验。",
+  "period": "2022 / 2025 快照；2026-08 公告离任",
+  "sourceIds": [
+    "openai-roles-2022",
+    "openai-leadership-2025",
+    "brad-departure-reuters"
+  ]
+},
+{
+  "id": "bret-foundation-chair",
+  "from": "bret-taylor",
+  "to": "openai-foundation",
+  "type": "governance",
+  "label": "董事长",
+  "detail": "2026 年 9 月官方公告明确确认 Foundation 董事会职务。",
+  "period": "2026-09 公开确认",
+  "sourceIds": [
+    "openai-paul-board-2026",
+    "openai-structure"
+  ]
+},
+{
+  "id": "bret-group-chair",
+  "from": "bret-taylor",
+  "to": "openai-group-pbc",
+  "type": "governance",
+  "label": "董事长",
+  "detail": "与 Foundation 董事长身份分开记录；官方公告确认两个董事会的职务。",
+  "period": "2026-09 公开确认",
+  "sourceIds": [
+    "openai-paul-board-2026"
+  ]
+},
+{
+  "id": "paul-foundation-board",
+  "from": "paul-christiano",
+  "to": "openai-foundation",
+  "type": "governance",
+  "label": "董事；安全与安保委员会成员",
+  "detail": "2026-09-09 获任，加入由 Zico Kolter 担任主席的委员会。",
+  "period": "2026-09-09 任命",
+  "sourceIds": [
+    "openai-paul-board-2026"
+  ]
+},
+{
+  "id": "paul-group-observer",
+  "from": "paul-christiano",
+  "to": "openai-group-pbc",
+  "type": "governance",
+  "label": "无投票权董事会观察员",
+  "detail": "具体任命公告明确为 non-voting observer，不是有表决权的 Group PBC 董事。",
+  "period": "2026-09-09 公告",
+  "sourceIds": [
+    "openai-paul-board-2026"
+  ]
+},
+{
+  "id": "paul-openai-research-history",
+  "from": "paul-christiano",
+  "to": "openai",
+  "type": "employment",
+  "label": "领导对齐研究（历史）",
+  "detail": "2017—2021 年的研究工作与 2026 年董事会任命是不同关系。",
+  "period": "2017—2021",
+  "sourceIds": [
+    "openai-paul-board-2026"
+  ]
+},
   {
     id: "ilya-openai-role",
     from: "ilya-sutskever",
@@ -1068,6 +1716,43 @@ export const relationships: Relationship[] = [
 ];
 
 export const events: AtlasEvent[] = [
+{
+  "id": "fidji-applications-announced",
+  "date": "2025-05-07",
+  "title": "OpenAI 公布应用业务领导安排",
+  "description": "Fidji Simo 将任 CEO of Applications，Sam Altman 继续任公司 CEO；这是公告日期，并非推定入职日。",
+  "entityIds": [
+    "openai",
+    "fidji-simo",
+    "sam-altman"
+  ],
+  "sourceIds": [
+    "openai-fidji-appointment"
+  ]
+},
+{
+  "id": "paul-foundation-appointed",
+  "date": "2026-09-09",
+  "title": "Paul Christiano 加入 Foundation 董事会",
+  "description": "同时加入安全与安保委员会；在 Group PBC 董事会担任无投票权观察员。",
+  "entityIds": [
+    "openai",
+    "paul-christiano",
+    "openai-foundation",
+    "openai-group-pbc"
+  ],
+  "sourceIds": [
+    "openai-paul-board-2026"
+  ]
+},
+  {
+    id: "codex-agent-preview",
+    date: "2025-05-16",
+    title: "Codex 云端工程代理研究预览",
+    description: "OpenAI 发布可在隔离云端环境中处理代码任务的 Codex 研究预览。这里记录产品当时的发布形态，而非当前功能清单。",
+    entityIds: ["openai", "codex"],
+    sourceIds: ["openai-codex-agent"],
+  },
   {
     id: "openai-start",
     date: "2015-12-11",
@@ -1126,7 +1811,7 @@ export const events: AtlasEvent[] = [
     date: "2024-05-14",
     title: "OpenAI 首席科学家交接",
     description: "Ilya Sutskever 离职，Jakub Pachocki 被宣布为新的首席科学家。",
-    entityIds: ["openai", "ilya-sutskever"],
+    entityIds: ["openai", "ilya-sutskever", "jakub-pachocki"],
     sourceIds: ["openai-ilya-departure"],
   },
   {

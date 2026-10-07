@@ -1,11 +1,11 @@
 # AI Atlas source register
 
-核验日期：2026-10-03（UTC）
+版本更新：2026-10-07（UTC）。各来源保留各自实际核验日；旧来源没有统一改成新版日期。
 
 ## Coverage and interpretation
 
 - 本版是人工筛选的中文研究型种子数据：OpenAI 为专题档案，其余组织为明确标记的有限预览；不是实时新闻流，也不是全行业的完整数据库。
-- 已核验 9 个组织条目、6 位人物、19 条关系和 10 个精选事件。发布日期与访问核验日分开记录。
+- 已核验 9 个组织条目、12 位人物、32 条关系和 13 个精选事件。发布日期与访问核验日分开记录。
 - 优先使用公司公告、本人简介、论文作者原文与诺贝尔奖官方公告。SSI 和 Thinking Machines 的创立年份由投资方自己的投资组合档案支持；DeepSeek 与 Thinking Machines 的地点等基本资料另参考公开公司社交档案。
 - `sourceIds` 连接到本文件列出的公开来源，页面应提供可打开的来源列表。对外显示“已核验”仅表示本次阅读过所引来源，不代表所有资料都独立审计过。
 - 公司自述的使命是其公开目标，不能改写为已实现成果。研究者贡献不等于个人独占成果。没有使用员工总数、实时估值、模型榜单或无来源的影响力评分。
@@ -19,7 +19,7 @@
 
 ## Image and asset notes
 
-Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使用已核验出处和 Creative Commons 许可的真实照片，Ilya 使用字母排版。具体出处、许可与显示裁切记录在 assets.md 及站内「关于」页。OpenAI 使用 Simple Icons 的识别用品牌图形，其余公司字母缩写是排版标签，不是官方 Logo。
+Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使用已核验出处和 Creative Commons 许可的真实照片，其余人物使用字母排版。具体出处、许可与显示裁切记录在 assets.md 及站内「关于」页。公司品牌图形来自 Simple Icons 与 Lobe Icons，使用范围与许可见 assets.md；仍无图形的组织以文字标签表示。
 
 ## Claim-to-source map
 
@@ -37,7 +37,130 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - xAI：xai-about、xai-grok、xai-spacex
 - DeepSeek：deepseek-about、deepseek-r1；微软基本信息：microsoft-facts
 
+
+## 2026-10-07 补充范围与证据边界
+
+- Tibo 的旧 Codex Lead 与较新 Core Products & Platform 职称按来源日期分别保留；没有推定晋升日、入职日、国籍或汇报关系。Astral、Ona 资料均是拟收购公告，不宣称交易已完成。
+- Fidji Simo 按本人公开说明及 Nscale 2026-09-11 公告列为顾问；CEO of Applications 与董事经历标作历史。任命公告日不当作实际入职日。
+- Brad Lightcap 的 2022、2025 职责有 OpenAI 公告。2026-08-11 离任公告采用 Reuters 报道（经 Investing.com 发布），正文明确归因。原始 X 帖子未能直接读取，因此不把其列作已核验来源；公告日也不是推定最后工作日。
+- Foundation 董事名单是 2026-10-07 官方页面快照，不是完整经营管理层名单。Paul Christiano 的 Group PBC 身份按更具体的 2026-09-09 公告列为无投票权观察员，不能从结构页的通用双董事会过渡段落推断为有表决权董事。
+- 新六位人物的叙事段落通过 paragraphSourceIds 逐段连接证据。Tibo 可通过别名搜索；中文译名仅供检索。
+- Thibault Sottiaux：openai-tibo-forum、openai-tibo-astral、vivatech-tibo-2026、openai-tibo-ona、openai-tibo-platform
+- Jakub Pachocki：openai-ilya-departure、openai-jakub-2026
+- Fidji Simo：openai-review、openai-fidji-appointment、fidji-adviser-statement、nscale-fidji-board
+- Brad Lightcap：openai-roles-2022、openai-leadership-2025、brad-departure-reuters
+- Bret Taylor：sierra-bret-bio、openai-return、sierra-launch、openai-paul-board-2026、openai-structure
+- Paul Christiano：rlhf-human-preferences、openai-paul-board-2026、openai-structure
+
 ## Public sources
+
+### openai-tibo-forum
+
+- 标题：OpenAI Forum · Codex is for Everyone（2026-05-13 活动与讲者简介）
+- 链接：https://forum.openai.com/public/events/codex-is-for-everyone-why-codex-matters-beyond-code-fa40puy7wi
+- 核验日期：2026-10-07
+
+### openai-tibo-astral
+
+- 标题：OpenAI · OpenAI to acquire Astral（Tibo 职称与 Codex 方向）
+- 链接：https://openai.com/index/openai-to-acquire-astral/
+- 发布日期：2026-03-19
+- 核验日期：2026-10-07
+
+### vivatech-tibo-2026
+
+- 标题：VivaTech · Thibault Sottiaux 与 Peter Steinberger 讲者公告
+- 链接：https://vivatech.com/media/press-releases/breaking-news-peter-steinberger-creator-of-openclaw-and-thibault-sottiaux-openai-two-ai-experts-for-an-exceptional-session-at-vivatech
+- 发布日期：2026-05-28
+- 核验日期：2026-10-07
+
+### openai-tibo-ona
+
+- 标题：OpenAI · OpenAI to acquire Ona（Core Products Lead）
+- 链接：https://openai.com/index/openai-to-acquire-ona/
+- 发布日期：2026-06-11
+- 核验日期：2026-10-07
+
+### openai-tibo-platform
+
+- 标题：OpenAI · Defense Factory（Head of Core Products & Platform）
+- 链接：https://openai.com/the-defense-factory/
+- 核验日期：2026-10-07
+
+### openai-jakub-2026
+
+- 标题：Jakub Pachocki / OpenAI · An Alien Mind
+- 链接：https://openai.com/index/an-alien-mind/
+- 发布日期：2026-09-06
+- 核验日期：2026-10-07
+
+### openai-fidji-appointment
+
+- 标题：OpenAI · Leadership expansion with Fidji Simo
+- 链接：https://openai.com/index/leadership-expansion-with-fidji-simo/
+- 发布日期：2025-05-07
+- 核验日期：2026-10-07
+
+### fidji-adviser-statement
+
+- 标题：Fidji Simo · 本人公开说明转任兼职顾问
+- 链接：https://www.linkedin.com/posts/fidjisimo_today-i-shared-with-the-openai-team-that-activity-7481120077711425536-e03r
+- 核验日期：2026-10-07
+
+### nscale-fidji-board
+
+- 标题：Nscale · Fidji Simo joins Board（并确认 OpenAI 顾问身份）
+- 链接：https://www.nscale.com/press-releases/fidji-simo-joins-nscale-board-of-directors
+- 发布日期：2026-09-11
+- 核验日期：2026-10-07
+
+### openai-leadership-2025
+
+- 标题：OpenAI · Leadership updates（Brad Lightcap 的历史职责）
+- 链接：https://openai.com/index/leadership-updates-march-2025/
+- 发布日期：2025-03-24
+- 核验日期：2026-10-07
+
+### brad-departure-reuters
+
+- 标题：Reuters / Investing.com · Brad Lightcap announces departure（媒体交叉核验）
+- 链接：https://www.investing.com/news/stock-market-news/senior-openai-executive-brad-lightcap-to-leave-for-new-venture-4852370
+- 发布日期：2026-08-11
+- 核验日期：2026-10-07
+
+### sierra-bret-bio
+
+- 标题：Sierra · Bret Taylor 官方简介
+- 链接：https://sierra.ai/author/bret-taylor
+- 核验日期：2026-10-07
+
+### sierra-launch
+
+- 标题：Bret Taylor、Clay Bavor / Sierra · Introducing Sierra
+- 链接：https://sierra.ai/blog/introducing-sierra
+- 发布日期：2024-02-13
+- 核验日期：2026-10-07
+
+### openai-paul-board-2026
+
+- 标题：OpenAI · Paul Christiano joins OpenAI Foundation Board
+- 链接：https://openai.com/index/paul-christiano-joins-openai-foundation-board/
+- 发布日期：2026-09-09
+- 核验日期：2026-10-07
+
+### rlhf-human-preferences
+
+- 标题：Christiano 等 · Deep reinforcement learning from human preferences
+- 链接：https://arxiv.org/abs/1706.03741
+- 发布日期：2017-06-12
+- 核验日期：2026-10-07
+
+### openai-codex-agent
+
+- 标题：OpenAI · Introducing Codex（2025 年研究预览）
+- 链接：https://openai.com/index/introducing-codex/
+- 发布日期：2025-05-16
+- 核验日期：2026-10-07
 
 ### openai-founding
 
@@ -79,7 +202,7 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：OpenAI · Leadership team update
 - 链接：https://openai.com/index/leadership-team-update/
 - 发布日期：2022-05-05
-- 核验日期：2026-10-03
+- 核验日期：2026-10-07
 
 ### openai-transition
 
@@ -93,28 +216,27 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：OpenAI · Sam Altman returns as CEO
 - 链接：https://openai.com/index/sam-altman-returns-as-ceo-openai-has-a-new-initial-board/
 - 发布日期：2023-11-29
-- 核验日期：2026-10-03
+- 核验日期：2026-10-07
 
 ### openai-review
 
 - 标题：OpenAI · Board review and governance update
 - 链接：https://openai.com/index/review-completed-altman-brockman-to-continue-to-lead-openai/
 - 发布日期：2024-03-08
-- 核验日期：2026-10-03
+- 核验日期：2026-10-07
 
 ### openai-ilya-departure
 
 - 标题：OpenAI · Ilya Sutskever leaves; Jakub Pachocki named Chief Scientist
 - 链接：https://openai.com/index/jakub-pachocki-announced-as-chief-scientist/
 - 发布日期：2024-05-14
-- 核验日期：2026-10-03
+- 核验日期：2026-10-07
 
 ### openai-structure
 
 - 标题：OpenAI · Our structure（含 2025-10-28 重组说明）
 - 链接：https://openai.com/our-structure/
-- 发布日期：页面未列固定发布日期 / 动态更新页
-- 核验日期：2026-10-03
+- 核验日期：2026-10-07
 
 ### openai-microsoft-2019
 
@@ -141,7 +263,6 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：OpenAI · 官方招聘页面（旧金山总部信息）
 - 链接：https://openai.com/careers/technical-threat-investigator-threat-intel-engineering-san-francisco/
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### yc-sam
@@ -162,28 +283,30 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Safe Superintelligence · 公司使命与办公地点
 - 链接：https://ssi.inc/
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### ssi-updates
 
 - 标题：Safe Superintelligence · Updates（含 2025-07-03 人事公告）
 - 链接：https://ssi.inc/updates
-- 发布日期：页面未列固定发布日期 / 动态更新页
+- 核验日期：2026-10-03
+
+### ssi-founder
+
+- 标题：Sequoia Capital · Ilya Sutskever 创始人档案
+- 链接：https://sequoiacap.com/founder/ilya-sutskever
 - 核验日期：2026-10-03
 
 ### ssi-investor
 
 - 标题：Sequoia Capital · Safe Superintelligence 投资组合档案
 - 链接：https://sequoiacap.com/companies/safe-superintelligence
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### tml-about
 
 - 标题：Thinking Machines Lab · 公司介绍
 - 链接：https://thinkingmachines.ai/
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### tml-nvidia
@@ -204,21 +327,18 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Lightspeed · Thinking Machines 投资组合档案
 - 链接：https://lsvp.com/company/thinking-machines/
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### tml-location
 
 - 标题：Thinking Machines Lab · LinkedIn 公司页
 - 链接：https://www.linkedin.com/company/thinkingmachinesai
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### anthropic-about
 
 - 标题：Anthropic · Company
 - 链接：https://www.anthropic.com/company
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### anthropic-founding
@@ -232,7 +352,6 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Anthropic · Leadership
 - 链接：https://www.anthropic.com/company/leadership
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### anthropic-claude
@@ -246,14 +365,12 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Dario Amodei · 本人官网简介
 - 链接：https://darioamodei.com/
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### deepmind-about
 
 - 标题：Google DeepMind · About
 - 链接：https://deepmind.google/about/
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### deepmind-formation
@@ -295,7 +412,6 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：xAI / SpaceXAI · Company and historical milestones
 - 链接：https://x.ai/company
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### xai-grok
@@ -316,7 +432,6 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：DeepSeek AI · LinkedIn 公司页
 - 链接：https://www.linkedin.com/company/deepseek-ai
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
 
 ### deepseek-r1
@@ -330,13 +445,4 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Microsoft · Facts about Microsoft
 - 链接：https://news.microsoft.com/facts-about-microsoft/
-- 发布日期：页面未列固定发布日期 / 动态更新页
 - 核验日期：2026-10-03
-
-### ssi-founder
-
-- 标题：Sequoia Capital · Ilya Sutskever 创始人档案
-- 链接：https://sequoiacap.com/founder/ilya-sutskever
-- 发布日期：动态人物档案
-- 核验日期：2026-10-03
-

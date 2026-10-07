@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-07T08:02:04.118Z",
+  "browser": "140.0.7339.186",
+  "mode": "production dist",
+  "routes": [
+    "/people",
+    "/company/openai?tab=governance",
+    "/person/thibault-sottiaux",
+    "/timeline"
+  ],
+  "mobileWidths": [
+    390,
+    320
+  ],
+  "aliasSearch": "Tibo",
+  "errors": []
+}

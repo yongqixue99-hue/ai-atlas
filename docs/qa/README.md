@@ -1,32 +1,28 @@
-# Editorial redesign QA — 2026-10-03
+# OpenAI content and navigation QA — 2026-10-07
 
-## Visual review
+## Delivered scope
 
-Actual screenshots were compared against the prior delivered implementation and the approved company-first editorial and relationship-explorer references. Review was performed on rendered pixels, not just source or successful compilation.
+The selected ivory editorial design is preserved. Six sourced people dossiers, a separately dated Foundation board roster, Codex context, per-paragraph evidence, and exact institutional governance endpoints extend the OpenAI dossier. Search supports Tibo aliases. Person and entity links connect the new material.
 
-Changes include:
-- Stronger Chinese editorial serif headline, neutral readable body text and restrained green accents
-- Photographic conceptual collage with a clear OpenAI focal card and contextual person entry
-- Recognizable company marks, denser identity-first company entries
-- Composed head-and-shoulders portraits, accompanying readable profile descriptions
-- True curved relationship topology, only selected nodes outlined, duplicate floating edge labels removed
-- Shorter company masthead, larger selected-person image and clear evidence access
-- Mobile layout rebuilt for the collage, portrait cards and graph; return-to-graph affordance
-- Improved real photos with license attribution; fictional office concept explicitly identified
+Graph filters, selections and index filters are URL-backed. Direct links, reload, Back/Forward, invalid parameters and repeated controls were tested. Historical OpenAI associations remain discoverable even when a person's displayed company is elsewhere.
 
-Prior screenshots are in `docs/qa-before/`. Current screenshots are in this directory.
+## Final checks passed
 
-## Checks passed
+- Strict TypeScript and production Vite build
+- 9 data-integrity tests, including paragraph evidence and roster links
+- 23 Chromium end-to-end checks; see `test-results.json`
+- 1440, 1024, 768, 390 and 320px layouts without unintended horizontal overflow
+- Source drawer dismissal, keyboard focus, repeated clicks, scroll restoration, alias search and deep-link history
+- Independent production `dist` smoke check: people, governance, Tibo, timeline, Tibo search, and 390/320px profile and governance layouts; see `production-results.json`
+- No browser runtime errors or failed production asset responses in the tested journeys
+- `git diff --check`
 
-- Strict TypeScript
-- 7 data-integrity tests (unchanged factual dataset)
-- Production Vite build
-- 16 Chromium end-to-end checks; see `test-results.json`
-- 1440, 1024, 768, 390 and 320px layouts, no unintended horizontal overflow
-- Search, source drawers, repeated selections, keyboard focus, modal dismissal, Back/Forward, topic URL state
-- Every relationship type, long-graph scroll preservation and mobile return to graph
-- No page-level runtime errors in tested journeys
+## Actual visual inspection
+
+Reviewed final desktop and phone homepage screenshots, relationship explorer, Tibo dossier and governance page. The long graph has a visible desktop scroll cue. Governance facts expose their exact role labels, including historical roles and non-voting observer status. Narrative source buttons have distinct reading space. Names, timelines and source lists remain within phone widths.
+
+The existing 2026-10-03 redesign comparison is retained in `docs/qa-before/`. Core and new screenshots are in this directory. The unchanged companies screenshot remains from that earlier pass; current tests verify the page functionality and layout.
 
 ## Boundaries
 
-Chromium verification is not an exhaustive browser matrix or a formal accessibility audit. No public deployment or remote CI run is claimed. The dataset remains a dated editorial selection; most non-OpenAI organizations are concise previews. Ilya has typographic identification because suitable freely licensed portrait quality was insufficient. Mira's image is a real side-profile event photo.
+Chromium coverage is not a complete browser matrix or formal accessibility audit. No remote CI is configured and no public deployment is claimed. Other organizations remain limited previews. This is a static editorial dataset: version date and individual source verification dates differ. Brad's departure is attributed to Reuters because the original X post was inaccessible. Five portraits are licensed photographs; other records use clear typographic identification.
