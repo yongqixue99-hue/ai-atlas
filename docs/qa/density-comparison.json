@@ -1,0 +1,175 @@
+{
+  "date": "2026-10-07T10:48:53.813Z",
+  "method": "Same main.innerText excluding whitespace, same URLs and 1000px viewport height. Header/footer excluded. Closed details descendants explicitly excluded from viewport/control counts (the baseline had no disclosures). Counts diagnose content density, not aesthetics.",
+  "before": [
+    {
+      "name": "home",
+      "width": 1440,
+      "defaultPageCharacters": 779,
+      "firstViewportCharacters": 367,
+      "firstViewportTypeSizes": [
+        "15px",
+        "70.56px",
+        "42.336px",
+        "17px",
+        "16px",
+        "23px",
+        "12px",
+        "22px",
+        "11px",
+        "100px",
+        "43px",
+        "13px",
+        "7px",
+        "14px",
+        "32px",
+        "31px",
+        "30px"
+      ],
+      "visibleMainControls": 18
+    },
+    {
+      "name": "home",
+      "width": 390,
+      "defaultPageCharacters": 716,
+      "firstViewportCharacters": 265,
+      "firstViewportTypeSizes": [
+        "11px",
+        "34.71px",
+        "20.826px",
+        "13px",
+        "23px",
+        "10px",
+        "9px",
+        "15px",
+        "8px",
+        "100px",
+        "29px",
+        "5px",
+        "12px",
+        "25px",
+        "24px",
+        "16px",
+        "28px"
+      ],
+      "visibleMainControls": 18
+    },
+    {
+      "name": "relationships",
+      "width": 1440,
+      "defaultPageCharacters": 762,
+      "firstViewportCharacters": 619,
+      "firstViewportTypeSizes": [
+        "12px",
+        "52px",
+        "15px",
+        "10px",
+        "31px",
+        "13px",
+        "14px",
+        "22px",
+        "19px",
+        "17px",
+        "9px",
+        "11px",
+        "23px",
+        "18px"
+      ],
+      "visibleMainControls": 36
+    },
+    {
+      "name": "relationships",
+      "width": 390,
+      "defaultPageCharacters": 723,
+      "firstViewportCharacters": 284,
+      "firstViewportTypeSizes": [
+        "11px",
+        "44px",
+        "13px",
+        "9px",
+        "25px",
+        "21px",
+        "12px",
+        "10px",
+        "19px",
+        "16px"
+      ],
+      "visibleMainControls": 35
+    }
+  ],
+  "after": [
+    {
+      "name": "home",
+      "width": 1440,
+      "defaultPageCharacters": 168,
+      "firstViewportCharacters": 125,
+      "firstViewportTypeSizes": [
+        "80px",
+        "18px",
+        "15px",
+        "50px",
+        "19px",
+        "16px",
+        "12px",
+        "27px",
+        "14px",
+        "10px"
+      ],
+      "visibleMainControls": 14
+    },
+    {
+      "name": "home",
+      "width": 390,
+      "defaultPageCharacters": 168,
+      "firstViewportCharacters": 94,
+      "firstViewportTypeSizes": [
+        "46.8px",
+        "14px",
+        "34px",
+        "11px",
+        "25px",
+        "13px",
+        "10px"
+      ],
+      "visibleMainControls": 14
+    },
+    {
+      "name": "relationships",
+      "width": 1440,
+      "defaultPageCharacters": 217,
+      "firstViewportCharacters": 217,
+      "firstViewportTypeSizes": [
+        "10px",
+        "45px",
+        "12px",
+        "13px",
+        "27px",
+        "25px",
+        "19px",
+        "11px",
+        "28px",
+        "14px"
+      ],
+      "visibleMainControls": 18
+    },
+    {
+      "name": "relationships",
+      "width": 390,
+      "defaultPageCharacters": 215,
+      "firstViewportCharacters": 215,
+      "firstViewportTypeSizes": [
+        "10px",
+        "36px",
+        "11px",
+        "17px",
+        "22px",
+        "16px",
+        "25px",
+        "24px",
+        "12px",
+        "13px"
+      ],
+      "visibleMainControls": 20
+    }
+  ]
+}

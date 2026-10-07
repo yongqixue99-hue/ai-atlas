@@ -83,10 +83,10 @@ function brand(c: Company, cls = "") {
   return `<span class="brand brand-${esc(c.id)} ${cls}" aria-hidden="true">${({ openai: openaiLogo, anthropic: anthropicLogo, "google-deepmind": deepmindLogo, deepseek: deepseekLogo, "meta-ai": metaLogo, microsoft: microsoftLogo, xai: xaiLogo } as Record<string, string>)[c.id] || esc(c.initial)}</span>`;
 }
 function header(active = "") {
-  return `<a class="skip-link" href="#main">跳至正文</a><header class="header"><a class="wordmark" href="#/" aria-label="AI Atlas 首页">${globe}<span>AI Atlas</span><small>人工智能公司与人物</small></a><nav aria-label="主导航"><a href="#/companies" ${active === "companies" ? 'aria-current="page"' : ""}>公司</a><a href="#/people" ${active === "people" ? 'aria-current="page"' : ""}>人物</a><a href="#/explore" ${active === "explore" ? 'aria-current="page"' : ""}>图谱</a><a href="#/topics" ${active === "topics" ? 'aria-current="page"' : ""}>专题</a></nav><button class="search-trigger" data-action="search" aria-label="搜索公司、人物和关键词">${searchIcon}<span>搜索 Atlas</span><kbd>/</kbd></button></header>`;
+  return `<a class="skip-link" href="#main">跳至正文</a><header class="header"><a class="wordmark" href="#/" aria-label="AI Atlas 首页">AI Atlas</a><nav aria-label="主导航"><a href="#/companies" ${active === "companies" ? 'aria-current="page"' : ""}>公司</a><a href="#/people" ${active === "people" ? 'aria-current="page"' : ""}>人物</a><a href="#/explore" ${active === "explore" ? 'aria-current="page"' : ""}>图谱</a></nav><button class="search-trigger" data-action="search" aria-label="搜索公司、人物和关键词">${searchIcon}</button></header>`;
 }
 function footer() {
-  return `<footer class="footer"><a href="#/" class="footer-logo">AI Atlas<span>从公司出发，看见更大的图景。</span></a><div><a href="#/about">关于与编辑原则</a><a href="#/sources">来源索引 ${arrow}</a><p>首版精选档案 · 版本更新 ${esc(datasetDate)}<br>独立编辑项目，与所收录组织无隶属关系</p></div><span class="footer-end">A LIVING INDEX<br>OF ARTIFICIAL INTELLIGENCE</span></footer>`;
+  return `<footer class="footer quiet-footer"><a href="#/" class="footer-logo">AI Atlas</a><p>独立百科 · 更新 ${esc(datasetDate)}</p><div><a href="#/about">关于</a><a href="#/sources">来源</a><a href="#/topics">专题</a></div></footer>`;
 }
 function sourceButton(ids: readonly string[], text = "查看来源") {
   return `<button class="text-link source-link" data-sources="${esc(ids.join(","))}">${text} ${arrow}</button>`;
@@ -107,26 +107,16 @@ function personCard(p: Person) {
   return `<a class="person-card" href="#/person/${esc(p.id)}">${portrait(p)}<div class="person-copy"><span class="person-role">${esc(p.role)}</span><div class="person-card-title"><h3>${esc(p.name)}</h3>${arrow}</div><p>${esc(p.summary)}</p><span class="person-read">阅读人物档案 <span>→</span></span></div></a>`;
 }
 function heroCollage() {
-  const sam = personById("sam-altman") || people[0];
-  return `<div class="hero-collage atlas-collage" aria-label="OpenAI 公司、人物、产品与治理的阅读入口">
-    <svg class="atlas-collage-lines" viewBox="0 0 700 520" aria-hidden="true"><path d="M190 110 C350 20 560 80 566 220 S565 462 360 452 S85 397 135 225 S130 130 190 110"/><circle cx="190" cy="110" r="4"/><circle cx="566" cy="220" r="4"/><circle cx="360" cy="452" r="4"/><circle cx="135" cy="225" r="4"/></svg>
-    <a href="#/company/openai?tab=products" class="atlas-collage-item atlas-collage-product"><div><span class="collage-kicker">产品与技术</span><h3>ChatGPT</h3><p>从一次对话，<br>走向日常生活。</p></div><div class="editorial-art art-dunes"></div>${arrow}</a>
-    <a href="#/person/${sam.id}" class="atlas-collage-item atlas-collage-person"><div><span class="collage-kicker">人物入口</span><h3>Sam<br>Altman</h3><p>人物与公司的故事。</p></div>${portrait(sam)}${arrow}</a>
-    <a href="#/company/openai" class="atlas-collage-core"><span class="orbit-mark">${openaiLogo}</span><h2>OpenAI</h2><p>研究、产品与组织<br>一家公司的多面图景</p><span class="mini-label">COMPANY / 001</span></a>
-    <a href="#/company/openai?tab=relationships" class="atlas-collage-item atlas-collage-research"><div><span class="collage-kicker">研究与连接</span><h3>关系探索</h3><p>认识人物，<br>也读懂彼此的连接。</p></div><div class="editorial-art art-folds"></div>${arrow}</a>
-    <a href="#/company/openai?tab=governance" class="atlas-collage-item atlas-collage-governance"><div><span class="collage-kicker">组织与治理</span><h3>组织结构</h3><p>区分控制权、<br>任职与投资。</p></div><div class="editorial-art art-space"></div>${arrow}</a>
-  </div>`;
+  return `<div class="hero-collage quiet-orbit" aria-label="OpenAI 与产品阅读入口"><div class="quiet-orbit-ring" aria-hidden="true"></div><a class="quiet-orbit-core" href="#/company/openai"><span>${openaiLogo}</span><h2>OpenAI</h2></a><a class="quiet-orbit-product quiet-orbit-chatgpt" href="#/entity/chatgpt">ChatGPT</a><a class="quiet-orbit-product quiet-orbit-codex" href="#/entity/codex">Codex</a></div>`;
 }
 function home() {
   const featuredPeople = [personById("sam-altman")!, personById("thibault-sottiaux")!];
-  return `${header()}<main id="main" class="home-page">
-    <section class="hero"><div class="hero-copy"><div class="eyebrow">人工智能公司与人物</div><h1>看见公司，<br>理解 AI 的未来<span class="heading-dot">。</span></h1><p>从公司出发，连接人物、产品与关键脉络。<br>一本有来源，也有时间坐标的 AI 百科。</p><div class="hero-actions"><a class="button dark" href="#/company/openai">探索 OpenAI <span>→</span></a><a class="text-link" href="#/company/openai?tab=relationships">打开关系图谱 ${arrow}</a></div></div>${heroCollage()}</section>
-    <div class="atlas-edition"><strong>一本可探索的 AI 百科</strong><span>从公司到人物，从关系到证据。</span><span class="edition-date">版本更新 ${esc(datasetDate)}</span></div>
-    <section class="home-companies">${sectionHeading("01", "公司索引", "认识塑造人工智能的组织。", "#/companies", "查看全部公司")}<div class="company-grid home-company-grid">${companies.slice(0, 3).map(companyCard).join("")}</div></section>
-    <section class="home-people">${sectionHeading("02", "从人物开始", "从公开经历，理解具体贡献。", "#/people", "查看全部人物")}<div class="people-grid home-people-grid">${featuredPeople.map(personCard).join("")}</div></section>
-    <section class="topics-section">${sectionHeading("03", "换个角度，继续探索", "一条线索，通往更完整的理解。")}
-      <div class="atlas-lenses"><a href="#/company/openai?tab=products"><div class="editorial-art art-folds"></div><div><span class="eyebrow">LENS 01</span><h3>产品与技术</h3><p>研究如何变成<br>可以使用的产品。</p><span class="lens-link">浏览相关内容 →</span></div></a><a href="#/company/openai?tab=governance"><div class="editorial-art art-space"></div><div><span class="eyebrow">LENS 02</span><h3>组织与治理</h3><p>区分机构控制、<br>任职与商业合作。</p><span class="lens-link">浏览相关内容 →</span></div></a><a href="#/timeline"><div class="editorial-art art-dunes"></div><div><span class="eyebrow">LENS 03</span><h3>关键时刻</h3><p>沿着时间回看，<br>理解变化与转折。</p><span class="lens-link">沿时间阅读 →</span></div></a></div>
-    </section><div class="editor-note"><span>有据可循</span><p>每条关系都保留时间与来源。资料快照不等同于实时组织架构。</p><a class="text-link" href="#/about">了解编辑原则 ${arrow}</a></div>
+  const companyLines: Record<string, string> = {openai:"研究与产品",anthropic:"安全与可解释性","google-deepmind":"科学与智能"};
+  return `${header()}<main id="main" class="home-page calm-home">
+    <section class="hero"><div class="hero-copy"><h1>看见公司，<br>读懂 AI<span class="heading-dot">。</span></h1><p>从公司出发，认识塑造 AI 的人。</p><a class="button dark" href="#/company/openai">探索 OpenAI ${arrow}</a></div>${heroCollage()}</section>
+    <section class="home-companies"><div class="quiet-section-heading"><h2>公司索引</h2><a href="#/companies">查看全部 ${arrow}</a></div><div class="company-grid home-company-grid">${companies.slice(0,3).map(c=>`<a class="company-card quiet-company" href="#/company/${c.id}">${brand(c)}<div><h3>${esc(c.name)}</h3><p>${companyLines[c.id]}</p><span class="quiet-coverage">${c.coverage === "dossier" ? "深度专题" : "精选概览"}</span></div>${arrow}</a>`).join("")}</div></section>
+    <section class="quiet-people"><div class="quiet-section-heading"><h2>关键人物</h2><a href="#/people">查看全部 ${arrow}</a></div><div class="quiet-people-row">${featuredPeople.map(p=>`<a class="quiet-person" href="#/person/${p.id}">${portrait(p)}<div><h3>${p.id === "thibault-sottiaux" ? "Tibo" : esc(p.name)}</h3><p>${p.id === "thibault-sottiaux" ? "核心产品与平台负责人" : "OpenAI CEO"}</p></div>${arrow}</a>`).join("")}</div></section>
+    <nav class="quiet-topics" aria-label="继续探索"><a href="#/company/openai?tab=products"><span>产品</span>${arrow}</a><a href="#/company/openai?tab=governance"><span>治理</span>${arrow}</a><a href="#/timeline"><span>时间线</span>${arrow}</a></nav>
   </main>${footer()}`;
 }
 function breadcrumb(parts: { text: string; href?: string }[]) {
@@ -215,7 +205,7 @@ const tabs = [
 ];
 
 function companyPage(c: Company) {
-  return `${header("companies")}<main id="main" class="${companyTab === "relationships" ? "relationship-page" : ""}">${breadcrumb([{ text: "公司", href: "#/companies" }, { text: c.name }])}<section class="company-hero"><div><div class="eyebrow">COMPANY DOSSIER / ${c.coverage === "dossier" ? "深度档案" : "精选概览"}</div><h1>${esc(c.name)}</h1><p>${esc(c.tagline)}</p><div class="company-meta"><span>${esc(c.founded)} · 成立</span><span>${esc(c.location)}</span><span>版本更新 ${esc(datasetDate)}</span></div></div><div class="company-hero-art"><div class="editorial-art art-space"></div><span>概念空间 · 非公司实景</span></div></section>${c.coverage === "dossier" ? `<nav class="tabs" aria-label="公司档案栏目">${tabs.map(([id, label]) => `<a href="#/company/${c.id}?tab=${id}" ${companyTab === id ? 'aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="tab-content">${companyContent(c)}</div>` : `<div class="preview-content"><div class="eyebrow">A CONCISE INTRODUCTION</div><h2>从这里开始认识 ${esc(c.name)}</h2>${c.description.map((p) => `<p>${esc(p)}</p>`).join("")}<div class="tag-row">${c.topics.map((t) => `<a href="#/topics?topic=${encodeURIComponent(t)}">${esc(t)}</a>`).join("")}</div>${sourceButton(c.sourceIds)}<div class="quiet-note">这是精选概览，暂不提供完整人物图谱或实时组织架构。深度专题将从可核验的公开资料逐步扩展。</div></div>`}</main>${footer()}`;
+  return `${header("companies")}<main id="main" class="${companyTab === "relationships" ? "relationship-page" : ""}">${breadcrumb([{ text: "公司", href: "#/companies" }, { text: c.name }])}${companyTab === "relationships" ? `<section class="company-hero">${brand(c)}<h1>${esc(c.name)}</h1></section>` : `<section class="company-hero"><div><div class="eyebrow">COMPANY DOSSIER / ${c.coverage === "dossier" ? "深度档案" : "精选概览"}</div><h1>${esc(c.name)}</h1><p>${esc(c.tagline)}</p><div class="company-meta"><span>${esc(c.founded)} · 成立</span><span>${esc(c.location)}</span><span>版本更新 ${esc(datasetDate)}</span></div></div><div class="company-hero-art"><div class="editorial-art art-space"></div><span>概念空间 · 非公司实景</span></div></section>`}${c.coverage === "dossier" ? `<nav class="tabs" aria-label="公司档案栏目">${tabs.map(([id, label]) => `<a href="#/company/${c.id}?tab=${id}" ${companyTab === id ? 'aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="tab-content">${companyContent(c)}</div>` : `<div class="preview-content"><div class="eyebrow">A CONCISE INTRODUCTION</div><h2>从这里开始认识 ${esc(c.name)}</h2>${c.description.map((p) => `<p>${esc(p)}</p>`).join("")}<div class="tag-row">${c.topics.map((t) => `<a href="#/topics?topic=${encodeURIComponent(t)}">${esc(t)}</a>`).join("")}</div>${sourceButton(c.sourceIds)}<div class="quiet-note">这是精选概览，暂不提供完整人物图谱或实时组织架构。深度专题将从可核验的公开资料逐步扩展。</div></div>`}</main>${footer()}`;
 }
 function foundationBoardRoster() {
   return `<article data-board-roster><span class="date-label">核验 ${esc(foundationBoard.verified)}</span><h3>Foundation 董事名单</h3><ul>${foundationBoard.members.map((member) => `<li>${member.personId && personById(member.personId) ? `<a href="#/person/${esc(member.personId)}">${esc(member.name)}</a>` : esc(member.name)} · ${esc(member.role)}</li>`).join("")}</ul><p>此处记录 OpenAI Foundation 董事名单；OpenAI Group 董事与观察员身份需分别查证。</p>${sourceButton(foundationBoard.sourceIds, "核对董事名单")}</article>`;
@@ -364,7 +354,7 @@ function render() {
     document.title = `${parts[0] === "companies" ? "公司索引" : "人物索引"} · AI Atlas`;
   } else if (parts[0] === "explore") {
     const rootName = relationshipName(activeGraph!.root);
-    app.innerHTML = `${header("explore")}<main id="main">${breadcrumb([{ text: "关系图谱", href: "#/explore" }, { text: rootName }])}<section class="page-intro atlas-intro"><div class="eyebrow">THE RELATIONSHIP ATLAS</div><h1>${personById(activeGraph!.root) ? `围绕 ${esc(personById(activeGraph!.root)?.aliases?.[0] || rootName)}，继续探索` : `从 ${esc(rootName)} 出发`}</h1><p>${personById(activeGraph!.root) ? `${esc(rootName)} · ${esc(personById(activeGraph!.root)!.role)}` : "沿着公开资料，连接人物、组织与产品。"}</p></section>${relationExplorer()}</main>${footer()}`;
+    app.innerHTML = `${header("explore")}<main id="main" class="graph-page">${breadcrumb([{ text: "关系图谱", href: "#/explore" }, { text: rootName }])}<section class="page-intro atlas-intro">${graphVisual(activeGraph!.root)}<h1>${esc(rootName)}</h1></section>${relationExplorer()}</main>${footer()}`;
     document.title = "关系图谱 · AI Atlas";
   } else if (parts[0] === "topics") {
     topicFilter = params.get("topic") || "all";
@@ -410,7 +400,13 @@ function updateQuery(
     render();
     window.scrollTo({ ...scroll, behavior: "instant" });
   }
-  app.querySelector<HTMLElement>(focusSelector)?.focus({ preventScroll: true });
+  const focusTarget = app.querySelector<HTMLElement>(focusSelector);
+  const activeDisclosure = focusTarget?.closest<HTMLDetailsElement>("details");
+  app.querySelectorAll<HTMLDetailsElement>(".atlas-disclosure[open]").forEach(detail => {
+    if (detail !== activeDisclosure) detail.open = false;
+  });
+  if (activeDisclosure) activeDisclosure.open = focusTarget?.tagName !== "SUMMARY";
+  focusTarget?.focus({ preventScroll: true });
   if (showDetail && matchMedia("(max-width:600px)").matches) {
     app.querySelector<HTMLElement>(".atlas-detail")?.focus({ preventScroll: true });
     app.querySelector(".atlas-detail")?.scrollIntoView({
@@ -422,6 +418,23 @@ function updateQuery(
   }
 }
 function bindEvents() {
+  app.querySelectorAll<HTMLButtonElement>("[data-close-disclosure]").forEach(button => button.addEventListener("click", () => {
+    const disclosure = button.closest<HTMLDetailsElement>("details");
+    if (disclosure) {
+      disclosure.open = false;
+      disclosure.querySelector<HTMLElement>("summary")?.focus({ preventScroll: true });
+    }
+  }));
+  app.querySelectorAll<HTMLDetailsElement>(".atlas-disclosure").forEach(disclosure => {
+    disclosure.addEventListener("keydown", event => {
+      if (event.key === "Escape" && disclosure.open && !document.querySelector(".modal")) {
+        event.preventDefault();
+        event.stopPropagation();
+        disclosure.open = false;
+        disclosure.querySelector<HTMLElement>("summary")?.focus({ preventScroll: true });
+      }
+    });
+  });
   app.querySelector("[data-back-to-graph]")?.addEventListener("click", () => {
     app.querySelector<HTMLElement>(".graph-node.selected")?.focus({ preventScroll: true });
     document.querySelector(".atlas-stage")?.scrollIntoView({
@@ -485,10 +498,10 @@ function bindEvents() {
     updateQuery({ page: b.dataset.graphPage!, relation: "" }, ".graph-node.selected");
   }));
   app.querySelector("[data-graph-reset]")?.addEventListener("click", () => {
-    updateQuery({ filter: activeGraph?.root === "openai" ? "employment" : "all", status: activeGraph?.root === "openai" ? "recent" : "all", relation: "", page: "1", view: "graph" }, "[data-graph-reset]");
+    updateQuery({ filter: activeGraph?.root === "openai" ? "employment" : "all", status: activeGraph?.root === "openai" ? "recent" : "all", relation: "", page: "1", view: "graph" }, ".atlas-controls > summary");
   });
   app.querySelector("[data-graph-clear]")?.addEventListener("click", () => {
-    updateQuery({ filter: "all", status: "all", relation: "", page: "1" }, '[data-relation-filter="all"]');
+    updateQuery({ filter: "all", status: "all", relation: "", page: "1" }, ".graph-node.selected");
   });
   app.querySelector("[data-all-records]")?.addEventListener("click", () => {
     updateQuery({ filter: "all", status: "all" }, "[data-relation-record]");

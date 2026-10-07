@@ -31,6 +31,20 @@ async function goto(path = "") {
   await page.goto(base + path);
   await page.evaluate(() => document.fonts.ready);
 }
+async function openSettings() {
+  const disclosure = page.locator(".atlas-controls");
+  if (!(await disclosure.getAttribute("open"))) {
+    if (!(await disclosure.evaluate(el => el.open))) await disclosure.locator("summary").click();
+  }
+}
+async function graphControl(selector) {
+  await openSettings();
+  await page.locator(selector).click();
+}
+async function openEvidence() {
+  const disclosure = page.locator(".atlas-evidence-disclosure");
+  if (await disclosure.count() && !(await disclosure.evaluate(el => el.open))) await disclosure.locator("summary").click();
+}
 try {
   await check("Company-first home and loaded assets", async () => {
     await goto();
@@ -62,9 +76,9 @@ try {
     await expect(page.locator(".graph-node")).toHaveCount(employmentCount);
   });
   await check("Relationship filtering, repeated selection, historical identity", async () => {
-    await page.getByRole("button", { name: "人物与任职", exact: true }).click();
+    await graphControl('[data-relation-filter="employment"]');
     await expect(page.locator(".graph-node")).toHaveCount(5);
-    await page.locator('[data-relation-status="historical"]').click();
+    await graphControl('[data-relation-status="historical"]');
     await page.locator('[data-relation="ilya-openai-role"]').click();
     const count = await page.evaluate(() => history.length);
     await page.locator('[data-relation="ilya-openai-role"]').click();
@@ -73,6 +87,7 @@ try {
     await expect(page.locator(".relation-detail .atlas-status")).toHaveText("历史记录");
   });
   await check("Evidence drawer close, Escape and focus restore", async () => {
+    await openEvidence();
     await page.getByRole("button", { name: "核对关联证据" }).click();
     assert.equal(await page.getByRole("dialog").count(), 1);
     assert.ok(
@@ -84,6 +99,7 @@ try {
       await page.evaluate(() => document.activeElement?.textContent?.trim()),
       "核对关联证据",
     );
+    await openEvidence();
     await page.getByRole("button", { name: "核对关联证据" }).click();
     await page.getByRole("button", { name: "关闭", exact: true }).click();
     assert.equal(await page.getByRole("dialog").count(), 0);
@@ -104,10 +120,10 @@ try {
       await page.reload();
       await expect(page.locator(".relation-detail h3")).toHaveText("Ilya Sutskever");
       const original = page.url();
-      await page.locator('[data-relation-status="recent"]').click();
+      await graphControl('[data-relation-status="recent"]');
       await page.locator('[data-relation="greg-openai-role"]').click();
       const greg = page.url();
-      await page.locator('[data-relation-filter="product"]').click();
+      await graphControl('[data-relation-filter="product"]');
       const product = page.url();
       await page.goBack(); await expect(page).toHaveURL(greg);
       await expect(page.locator(".graph-node.selected")).toHaveAttribute("data-relation", "greg-openai-role");
@@ -166,6 +182,7 @@ try {
     await goto("#/explore?root=openai&filter=all&status=all&relation=fidji-openai-adviser");
     await expect(page.locator('[data-node="fidji-simo"]')).toHaveCount(1);
     await expect(page.locator('[data-relation-record] option')).toHaveCount(3);
+    await openEvidence();
     for (const id of ["fidji-openai-applications-history", "fidji-openai-board-history", "fidji-openai-adviser"]) {
       await page.locator("[data-relation-record]").selectOption(id);
       const record = relationships.find(r => r.id === id);
@@ -186,7 +203,7 @@ try {
       const ids = await page.locator("[data-node]").evaluateAll(els => els.map(el => el.dataset.node));
       assert.ok(ids.every(id => relationships.some(r => (r.from === root && r.to === id) || (r.to === root && r.from === id))));
     }
-    await page.locator('.atlas-root-switch [data-graph-root="openai-foundation"]').click();
+    await graphControl('.atlas-root-switch [data-graph-root="openai-foundation"]');
     await page.locator('[data-node="openai-group-pbc"]').click();
     await expect(page.locator(".relation-direction")).toHaveText("OpenAI Foundation → OpenAI Group PBC");
   });
@@ -211,7 +228,7 @@ try {
   });
   await check("OpenAI governance empty state directs readers to the actual institutions", async () => {
     await goto("#/company/openai?tab=relationships");
-    await page.locator('[data-relation-filter="governance"]').click();
+    await graphControl('[data-relation-filter="governance"]');
     await expect(page.locator(".graph-node")).toHaveCount(0);
     await expect(page.locator(".atlas-layout")).toHaveAttribute("data-root", "openai");
     await page.getByRole("link", {name:"查看 Foundation 的治理关系"}).click();
@@ -222,13 +239,13 @@ try {
     await goto("#/explore?root=openai&filter=product&status=historical");
     await expect(page.locator(".graph-node")).toHaveCount(0);
     await expect(page.locator(".atlas-empty")).toContainText("暂无已收录关系");
-    await page.locator('[data-relation-status="all"]').click();
+    await graphControl('[data-relation-status="all"]');
     for (const record of relationships.filter(r => r.status === "event")) {
       await page.locator(`[data-relation="${record.id}"]`).click();
       await expect(page.locator(".atlas-status")).toHaveText("发布事件");
       await expect(page.locator(".atlas-facts .date-label")).toHaveText(record.period);
     }
-    await page.locator('[data-graph-reset]').click();
+    await graphControl('[data-graph-reset]');
     await expect(page.locator(".graph-node")).toHaveCount(5);
     await expect(page.locator('[data-relation-status="recent"]')).toHaveAttribute("aria-pressed", "true");
   });
@@ -450,9 +467,8 @@ try {
         fullPage: true,
       });
       await goto("#/company/openai?tab=relationships");
-      await page
-        .getByRole("button", { name: "人物与任职", exact: true })
-        .click();
+      await graphControl('[data-relation-filter="employment"]');
+      await page.locator(".atlas-controls > summary").click();
       await page.screenshot({
         path: new URL("relationships-mobile.png", out).pathname,
         fullPage: true,
@@ -464,14 +480,14 @@ try {
     async () => {
       await page.setViewportSize({ width: 1440, height: 1000 });
       await goto("#/company/openai?tab=relationships");
-      await page
-        .getByRole("button", { name: "人物与任职", exact: true })
-        .click();
+      await graphControl('[data-relation-filter="employment"]');
+      await page.locator(".atlas-controls > summary").click();
       await page.screenshot({
         path: new URL("relationships-desktop.png", out).pathname,
         fullPage: true,
       });
-      await page.getByRole("button", { name: "核对关联证据" }).click();
+      await openEvidence();
+    await page.getByRole("button", { name: "核对关联证据" }).click();
       await page.screenshot({
         path: new URL("evidence-desktop.png", out).pathname,
         fullPage: true,
@@ -497,14 +513,15 @@ try {
     await page.locator(`[data-relation="${id}"]`).click(); await page.keyboard.press("Enter");
     assert.deepEqual(await page.evaluate(() => ({history:history.length,y:scrollY})), before);
     assert.equal(await page.evaluate(() => document.activeElement?.dataset.relation), id);
-    await page.locator('[data-graph-view="list"]').click();
+    await graphControl('[data-graph-view="list"]');
     await expect(page.locator(".atlas-stage")).toHaveAttribute("data-view", "list");
     const listUrl = page.url(); await page.reload(); await expect(page).toHaveURL(listUrl);
-    await page.locator('[data-graph-view="graph"]').click(); await page.goBack();
+    await graphControl('[data-graph-view="graph"]'); await page.goBack();
     await expect(page.locator(".atlas-stage")).toHaveAttribute("data-view", "list");
+    await openSettings();
     await page.locator('[data-relation-filter="all"]').scrollIntoViewIfNeeded();
     const count = await page.evaluate(() => history.length);
-    await page.locator('[data-relation-filter="all"]').click(); await page.keyboard.press("Enter");
+    await graphControl('[data-relation-filter="all"]'); await page.keyboard.press("Enter");
     assert.equal(await page.evaluate(() => history.length), count);
     assert.equal(await page.evaluate(() => document.activeElement?.dataset.relationFilter), "all");
     await page.emulateMedia({ reducedMotion:"reduce" });
@@ -513,33 +530,100 @@ try {
     await expect(page.locator(".graph-node")).toHaveCount(4);
     await page.locator('[data-relation="greg-openai-role"]').click();
     const detailTop = await page.locator(".atlas-detail").evaluate(el => el.getBoundingClientRect().top);
-    assert.ok(detailTop >= 0 && detailTop < 150, `Mobile selected detail top ${detailTop}`);
+    assert.ok(detailTop >= 0 && detailTop < 650, `Mobile selected detail top ${detailTop}`);
     assert.equal(await page.evaluate(() => document.activeElement?.id), "atlas-relation-detail");
     const gap = await page.evaluate(() => document.querySelector('.atlas-detail').getBoundingClientRect().top - document.querySelector('.atlas-graph-panel').getBoundingClientRect().bottom);
     assert.ok(gap >= 0 && gap <= 20);
     await page.locator('[data-back-to-graph]').click();
     assert.equal(await page.evaluate(() => document.activeElement?.dataset.relation), "greg-openai-role");
     await page.locator('[data-relation="greg-openai-role"]').click();
-    assert.ok(await page.locator(".atlas-detail").evaluate(el => el.getBoundingClientRect().top < 150));
+    assert.ok(await page.locator(".atlas-detail").evaluate(el => el.getBoundingClientRect().top < 650));
     await page.setViewportSize({width:1440,height:1000});
   });
-  await check("Evidence profile action stays legible on the dark button", async () => {
+  await check("Evidence action leads the quieter profile and recenter links", async () => {
     await goto("#/explore?root=thibault-sottiaux&filter=all&relation=tibo-codex-role");
-    const style = await page.locator(".atlas-detail-actions > a").evaluate(el => ({color:getComputedStyle(el).color,background:getComputedStyle(el).backgroundColor}));
-    assert.equal(style.color, "rgb(255, 255, 255)");
-    assert.equal(style.background, "rgb(35, 86, 71)");
+    const primary = await page.locator(".atlas-evidence-disclosure > summary").evaluate(el => ({color:getComputedStyle(el).color,size:parseFloat(getComputedStyle(el).fontSize),weight:Number(getComputedStyle(el).fontWeight)}));
+    const secondary = await page.locator(".atlas-detail-actions > a").evaluate(el => ({size:parseFloat(getComputedStyle(el).fontSize),background:getComputedStyle(el).backgroundColor}));
+    assert.equal(primary.color, "rgb(35, 86, 71)");
+    assert.ok(primary.size > secondary.size && primary.weight >= 600);
+    assert.equal(secondary.background, "rgba(0, 0, 0, 0)");
   });
   await check("Source drawer closes on Back and root transitions", async () => {
     await goto("#/explore?root=thibault-sottiaux&filter=all&relation=tibo-codex-role");
     const before = page.url();
     await page.locator('.atlas-recenter[data-graph-root="codex"]').click();
+    await openEvidence();
     await page.locator(".atlas-source-card").first().click();
     await expect(page.getByRole("dialog")).toHaveCount(1);
     await page.goBack(); await expect(page).toHaveURL(before);
     await expect(page.getByRole("dialog")).toHaveCount(0);
+    await openEvidence();
     await page.locator(".atlas-source-card").first().click();
     await page.keyboard.press("Escape");
     assert.equal(await page.evaluate(() => document.activeElement?.classList.contains("atlas-source-card")), true);
+  });
+  await check("Quiet graph defaults keep settings, evidence and explanatory copy closed", async () => {
+    await goto("#/company/openai?tab=relationships");
+    await expect(page.locator(".graph-node")).toHaveCount(5);
+    for (const selector of [".atlas-controls-content", ".atlas-evidence-content", ".atlas-info-content"]) await expect(page.locator(selector)).toBeHidden();
+    assert.equal(await page.locator(".atlas-node-meta, .atlas-node .atlas-founder, .atlas-disclaimer, .atlas-footnote").count(), 0);
+    const metrics = await page.locator("main").evaluate(el => ({characters:el.innerText.replace(/\s/g, "").length,controls:[...el.querySelectorAll("a,button,input,select,summary")].filter(control => control.checkVisibility()).length,graphTop:el.querySelector(".atlas-stage").getBoundingClientRect().top}));
+    assert.ok(metrics.characters < 420, JSON.stringify(metrics));
+    assert.ok(metrics.controls <= 19, JSON.stringify(metrics));
+    assert.ok(metrics.graphTop < 350, JSON.stringify(metrics));
+    await page.locator(".atlas-info > summary").click();
+    await expect(page.locator(".atlas-info-content")).toBeVisible();
+    await expect(page.locator(".atlas-info-content")).toContainText("不是实时组织架构");
+    await goto("#/explore?root=thibault-sottiaux&filter=all");
+    await expect(page.locator(".atlas-timeline-content")).toBeHidden();
+    await page.locator(".atlas-person-timeline > summary").click();
+    await expect(page.locator(".atlas-timeline-content")).toBeVisible();
+    await expect(page.locator(".atlas-person-timeline article")).toHaveCount(4);
+  });
+  await check("All 32 factual records expose dates, statuses and working source access on demand", async () => {
+    const statusLabels = {current:"近期核验", historical:"历史记录", snapshot:"资料快照", event:"发布事件", navigation:"导航连接"};
+    for (const record of relationships) {
+      await goto(`#/explore?root=${record.from}&filter=all&status=all&relation=${record.id}`);
+      await expect(page.locator(".atlas-evidence-content")).toBeHidden();
+      await openEvidence();
+      await expect(page.locator(".atlas-status")).toHaveText(statusLabels[record.status]);
+      await expect(page.locator(".atlas-facts .date-label")).toHaveText(record.period);
+      await expect(page.locator(".atlas-evidence-summary")).toHaveText(record.detail);
+      await expect(page.locator(".atlas-source-card")).toHaveCount(record.sourceIds.length);
+      await page.locator(".atlas-source-card").first().click();
+      await expect(page.getByRole("dialog").locator('a[target="_blank"]')).toHaveCount(1);
+      await page.keyboard.press("Escape");
+      assert.equal(await page.evaluate(() => document.activeElement?.classList.contains("atlas-source-card")), true);
+    }
+  });
+  await check("Disclosure closing, filtering, reset and history keep visible keyboard focus", async () => {
+    await goto("#/company/openai?tab=relationships");
+    await openSettings();
+    await page.locator('[data-relation-status="historical"]').click();
+    await expect(page.locator(".atlas-controls-content")).toBeVisible();
+    assert.equal(await page.evaluate(() => document.activeElement?.dataset.relationStatus), "historical");
+    await page.keyboard.press("Escape");
+    await expect(page.locator(".atlas-controls-content")).toBeHidden();
+    assert.equal(await page.evaluate(() => document.activeElement?.textContent?.trim().startsWith("浏览设置")), true);
+    await openEvidence();
+    await page.locator("[data-close-disclosure]").last().click();
+    await expect(page.locator(".atlas-evidence-content")).toBeHidden();
+    assert.equal(await page.evaluate(() => document.activeElement?.textContent?.trim().startsWith("查看依据")), true);
+    await openEvidence();
+    await page.locator(".graph-node.selected").click();
+    await expect(page.locator(".atlas-evidence-content")).toBeHidden();
+    await openEvidence();
+    await graphControl("[data-graph-reset]");
+    await expect(page.locator(".atlas-controls-content")).toBeHidden();
+    await expect(page.locator(".atlas-evidence-content")).toBeHidden();
+    assert.equal(await page.evaluate(() => document.activeElement?.textContent?.trim().startsWith("浏览设置")), true);
+    await graphControl("[data-graph-reset]");
+    await expect(page.locator(".atlas-controls-content")).toBeHidden();
+    assert.equal(await page.evaluate(() => document.activeElement?.textContent?.trim().startsWith("浏览设置")), true);
+    await openEvidence();
+    await page.goBack();
+    await expect(page.locator(".atlas-evidence-content")).toBeHidden();
+    await expect(page.locator(".atlas-controls-content")).toBeHidden();
   });
   await check("Unknown routes recover and no runtime errors", async () => {
     await goto("#/company/not-in-atlas");

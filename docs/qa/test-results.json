@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-07T09:22:29.082Z",
+  "date": "2026-10-07T10:46:46.148Z",
   "browser": "140.0.7339.186",
   "passed": [
     "Company-first home and loaded assets",
@@ -29,8 +29,11 @@
     "Desktop, tablet and mobile layouts at 1440/1024/768/390/320px do not overflow",
     "Desktop graph, person, and evidence visual captures",
     "Bounded pagination, list state, repeated focus and mobile adjacent detail",
-    "Evidence profile action stays legible on the dark button",
+    "Evidence action leads the quieter profile and recenter links",
     "Source drawer closes on Back and root transitions",
+    "Quiet graph defaults keep settings, evidence and explanatory copy closed",
+    "All 32 factual records expose dates, statuses and working source access on demand",
+    "Disclosure closing, filtering, reset and history keep visible keyboard focus",
     "Unknown routes recover and no runtime errors"
   ],
   "errors": []
