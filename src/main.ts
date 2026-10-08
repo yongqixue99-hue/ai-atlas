@@ -3,6 +3,12 @@ import "./graph.css";
 import { graphState, canonicalGraphParams, renderGraph, graphHref } from "./graph";
 import type { GraphState } from "./graph";
 import "./home.css";
+import "./polish.css";
+import "./map.css";
+import "./front.css";
+import "./refine.css";
+import { renderMap, bindMap } from "./map";
+import { profiles } from "./profiles";
 import openaiLogo from "./assets/openai.svg?raw";
 import anthropicLogo from "./assets/anthropic.svg?raw";
 import deepmindLogo from "./assets/deepmind.svg?raw";
@@ -29,6 +35,8 @@ const arrow =
   '<span class="arrow-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 18 18 6M6 6h12v12"/></svg></span>';
 const searchIcon =
   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>';
+const themeIcon =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17Z" fill="currentColor"/></svg>';
 const globe =
   '<svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><circle cx="22" cy="22" r="19"/><ellipse cx="22" cy="22" rx="9" ry="19"/><path d="M4 15h36M4 29h36M22 3v38"/></svg>';
 const esc = (s: unknown) =>
@@ -64,29 +72,41 @@ let selectedCompanyFilter = "all";
 let topicFilter = "all";
 let searchKind = "all";
 let lastFocused: HTMLElement | null = null;
+let chapterSpy: IntersectionObserver | null = null;
 
 function personContextHref(p: Person) {
   return graphHref(p.id);
 }
 
+const available = [
+  "sam-altman",
+  "greg-brockman",
+  "mira-murati",
+  "dario-amodei",
+  "demis-hassabis",
+];
+function face(p: Person) {
+  return `<span class="face portrait-${esc(p.id)}">${available.includes(p.id) ? `<img src="${import.meta.env.BASE_URL}assets/${esc(p.id)}.jpg" alt="">` : esc(p.initial)}</span>`;
+}
+const companyPeople = (companyId: string) => people.filter((p) => p.companyId === companyId);
+function faceStack(companyId: string) {
+  const list = companyPeople(companyId);
+  return list.length
+    ? `<span class="face-stack">${list.slice(0, 4).map(face).join("")}<span class="face-stack-note">${list.length === 1 ? esc(list[0].name) : `${esc(list[0].name)} 等 ${list.length} 位`}</span></span>`
+    : "";
+}
 function portrait(p: Person, cls = "") {
-  const available = [
-    "sam-altman",
-    "greg-brockman",
-    "mira-murati",
-    "dario-amodei",
-    "demis-hassabis",
-  ];
   return `<div class="portrait ${cls} portrait-${esc(p.id)} ${available.includes(p.id) ? "" : "portrait-fallback"}">${available.includes(p.id) ? `<img src="${import.meta.env.BASE_URL}assets/${esc(p.id)}.jpg" alt="${esc(p.name)}" loading="lazy" onerror="this.style.display='none'">` : ""}<span class="portrait-initial" aria-hidden="true">${esc(p.initial)}</span><span class="portrait-caption">${esc(p.name.toUpperCase())} / PROFILE</span></div>`;
 }
 function brand(c: Company, cls = "") {
   return `<span class="brand brand-${esc(c.id)} ${cls}" aria-hidden="true">${({ openai: openaiLogo, anthropic: anthropicLogo, "google-deepmind": deepmindLogo, deepseek: deepseekLogo, "meta-ai": metaLogo, microsoft: microsoftLogo, xai: xaiLogo } as Record<string, string>)[c.id] || esc(c.initial)}</span>`;
 }
 function header(active = "") {
-  return `<a class="skip-link" href="#main">跳至正文</a><header class="header"><a class="wordmark" href="#/" aria-label="AI Atlas 首页">AI Atlas</a><nav aria-label="主导航"><a href="#/companies" ${active === "companies" ? 'aria-current="page"' : ""}>公司</a><a href="#/people" ${active === "people" ? 'aria-current="page"' : ""}>人物</a><a href="#/explore" ${active === "explore" ? 'aria-current="page"' : ""}>图谱</a></nav><button class="search-trigger" data-action="search" aria-label="搜索公司、人物和关键词">${searchIcon}</button></header>`;
+  return `<a class="skip-link" href="#main">跳至正文</a><header class="header"><a class="wordmark" href="#/" aria-label="AI Atlas 首页">AI Atlas</a><nav aria-label="主导航"><a href="#/companies" ${active === "companies" ? 'aria-current="page"' : ""}>公司</a><a href="#/people" ${active === "people" ? 'aria-current="page"' : ""}>人物</a><a href="#/explore" ${active === "explore" ? 'aria-current="page"' : ""}>图谱</a></nav><button class="search-trigger" data-action="search" aria-label="搜索公司、人物和关键词">${searchIcon}</button><button class="theme-toggle" data-action="theme" aria-label="切换浅色或深色外观">${themeIcon}</button></header>`;
 }
 function footer() {
-  return `<footer class="footer quiet-footer"><a href="#/" class="footer-logo">AI Atlas</a><p>独立百科 · 更新 ${esc(datasetDate)}</p><div><a href="#/about">关于</a><a href="#/sources">来源</a><a href="#/topics">专题</a></div></footer>`;
+  const column = (title: string, links: [string, string][]) => `<div><span>${title}</span>${links.map(([href, text]) => `<a href="${href}">${text}</a>`).join("")}</div>`;
+  return `<footer class="footer site-footer"><div class="footer-lead"><a href="#/" class="footer-logo">AI Atlas</a><p>以公司为起点的中文 AI 百科。<br>连接人物、产品、治理与公开证据。</p></div><nav aria-label="页脚导航">${column("探索", [["#/companies", "公司"], ["#/people", "人物"], ["#/explore", "关系图谱"], ["#/timeline", "时间线"], ["#/topics", "专题"]])}${column("关于", [["#/about", "编辑原则"], ["#/sources", "来源索引"]])}</nav><p class="footer-meta"><span>独立百科 · 更新 ${esc(datasetDate)}</span><span>品牌图形仅作百科识别，不代表隶属或合作关系。</span></p></footer>`;
 }
 function sourceButton(ids: readonly string[], text = "查看来源") {
   return `<button class="text-link source-link" data-sources="${esc(ids.join(","))}">${text} ${arrow}</button>`;
@@ -101,22 +121,29 @@ function sectionHeading(
   return `<div class="section-heading"><div><span class="section-no">${n}</span><h2>${title}</h2></div>${subtitle ? `<p>${subtitle}</p>` : ""}${href ? `<a class="text-link" href="${href}">${link} <span>→</span></a>` : ""}</div>`;
 }
 function companyCard(c: Company) {
-  return `<a class="company-card" href="#/company/${esc(c.id)}"><div class="company-card-top">${brand(c)}<div><h3>${esc(c.name)}</h3><span class="company-category">${esc(c.category)}</span></div>${arrow}</div><p>${esc(c.tagline)}</p><div class="card-bottom"><span class="coverage ${c.coverage === "dossier" ? "complete" : ""}">${c.coverage === "dossier" ? "深度专题" : "精选概览"}</span><span>${esc(c.topics.slice(0, 2).join(" / "))}</span></div></a>`;
+  return `<a class="company-card" href="#/company/${esc(c.id)}"><div class="company-card-top">${brand(c)}<div><h3>${esc(c.name)}</h3><span class="company-category">${esc(c.category)}</span></div>${arrow}</div><p>${esc(c.tagline)}</p>${faceStack(c.id)}<div class="card-bottom"><span class="coverage ${c.coverage === "dossier" ? "complete" : ""}">${c.coverage === "dossier" ? "深度专题" : "精选概览"}</span><span>${esc(c.topics.slice(0, 2).join(" / "))}</span></div></a>`;
 }
 function personCard(p: Person) {
   return `<a class="person-card" href="#/person/${esc(p.id)}">${portrait(p)}<div class="person-copy"><span class="person-role">${esc(p.role)}</span><div class="person-card-title"><h3>${esc(p.name)}</h3>${arrow}</div><p>${esc(p.summary)}</p><span class="person-read">阅读人物档案 <span>→</span></span></div></a>`;
 }
 function heroCollage() {
-  return `<div class="hero-collage quiet-orbit" aria-label="OpenAI 与产品阅读入口"><div class="quiet-orbit-ring" aria-hidden="true"></div><a class="quiet-orbit-core" href="#/company/openai"><span>${openaiLogo}</span><h2>OpenAI</h2></a><a class="quiet-orbit-product quiet-orbit-chatgpt" href="#/entity/chatgpt">ChatGPT</a><a class="quiet-orbit-product quiet-orbit-codex" href="#/entity/codex">Codex</a></div>`;
+  return renderMap({
+    esc,
+    brand: (id) => brand(companyById(id)!),
+    face: (id) => face(personById(id)!),
+  });
+}
+function frontHeading(title: string, note: string, href: string, link: string) {
+  return `<div class="front-heading"><h2>${title}</h2><p>${note}</p><a href="${href}">${link} ${arrow}</a></div>`;
 }
 function home() {
-  const featuredPeople = [personById("sam-altman")!, personById("thibault-sottiaux")!];
-  const companyLines: Record<string, string> = {openai:"研究与产品",anthropic:"安全与可解释性","google-deepmind":"科学与智能"};
+  const moments = events.slice().sort((a, b) => a.date.localeCompare(b.date));
   return `${header()}<main id="main" class="home-page calm-home">
-    <section class="hero"><div class="hero-copy"><h1>看见公司，<br>读懂 AI<span class="heading-dot">。</span></h1><p>从公司出发，认识塑造 AI 的人。</p><a class="button dark" href="#/company/openai">探索 OpenAI ${arrow}</a></div>${heroCollage()}</section>
-    <section class="home-companies"><div class="quiet-section-heading"><h2>公司索引</h2><a href="#/companies">查看全部 ${arrow}</a></div><div class="company-grid home-company-grid">${companies.slice(0,3).map(c=>`<a class="company-card quiet-company" href="#/company/${c.id}">${brand(c)}<div><h3>${esc(c.name)}</h3><p>${companyLines[c.id]}</p><span class="quiet-coverage">${c.coverage === "dossier" ? "深度专题" : "精选概览"}</span></div>${arrow}</a>`).join("")}</div></section>
-    <section class="quiet-people"><div class="quiet-section-heading"><h2>关键人物</h2><a href="#/people">查看全部 ${arrow}</a></div><div class="quiet-people-row">${featuredPeople.map(p=>`<a class="quiet-person" href="#/person/${p.id}">${portrait(p)}<div><h3>${p.id === "thibault-sottiaux" ? "Tibo" : esc(p.name)}</h3><p>${p.id === "thibault-sottiaux" ? "核心产品与平台负责人" : "OpenAI CEO"}</p></div>${arrow}</a>`).join("")}</div></section>
-    <nav class="quiet-topics" aria-label="继续探索"><a href="#/company/openai?tab=products"><span>产品</span>${arrow}</a><a href="#/company/openai?tab=governance"><span>治理</span>${arrow}</a><a href="#/timeline"><span>时间线</span>${arrow}</a></nav>
+    <section class="hero"><div class="hero-copy"><h1>看见公司，<br>读懂 AI<span class="heading-dot">。</span></h1><p>从公司出发，认识塑造 AI 的人，<br>沿着有来源的连线继续读。</p><a class="button dark" href="#/company/openai">探索 OpenAI ${arrow}</a></div>${heroCollage()}</section>
+    <section class="home-companies front-section">${frontHeading("公司", `${companies.length} 家机构。${companies.filter((c) => c.coverage === "dossier").length} 份深度档案，其余为精选概览。`, "#/companies", "公司索引")}<div class="home-company-grid ledger">${companies.map((c, i) => `<a class="company-card ledger-row" href="#/company/${esc(c.id)}"><span class="ledger-no">${String(i + 1).padStart(2, "0")}</span>${brand(c)}<div class="ledger-name"><h3>${esc(c.name)}</h3><small>${esc(c.category)} · ${c.coverage === "dossier" ? "深度档案" : "精选概览"}</small></div><p class="ledger-line">${esc(c.tagline)}</p><span class="ledger-meta">${esc(c.founded)}<br>${esc(c.location)}</span>${faceStack(c.id) || '<span class="face-stack is-empty">暂未收录人物</span>'}${arrow}</a>`).join("")}</div></section>
+    <section class="front-section front-people">${frontHeading("人物", `${people.length} 位人物。角色依据标注日期的资料，不默认代表今天的任职。`, "#/people", "人物索引")}<div class="people-wall">${people.map((p) => `<a class="wall-person" href="#/person/${esc(p.id)}"><span class="wall-face">${face(p)}</span><span class="wall-copy"><strong>${esc(p.name)}</strong><small>${esc(p.role)}</small></span></a>`).join("")}</div></section>
+    <section class="front-band">${frontHeading("关键时刻", `${moments.length} 个可追溯的节点，从 ${esc(moments[0].date.slice(0, 4))} 到 ${esc(moments[moments.length - 1].date.slice(0, 4))}。`, "#/timeline", "完整时间线")}<ol class="ribbon" tabindex="0" aria-label="按时间排列的关键时刻">${moments.map((e) => `<li><a href="#/timeline"><time datetime="${esc(e.date)}"><b>${esc(e.date.slice(0, 4))}</b>${esc(e.date.slice(5))}</time><strong>${esc(e.title)}</strong><span>${e.entityIds.slice(0, 2).map((id) => esc(relationshipName(id))).join(" / ")}</span></a></li>`).join("")}</ol></section>
+    <section class="front-creed"><p>没有来源的关系，不画。<br>没有核验的现状，不猜。<br>未被覆盖的内容，留白。</p><a class="text-link" href="#/about">编辑原则 ${arrow}</a></section>
   </main>${footer()}`;
 }
 function breadcrumb(parts: { text: string; href?: string }[]) {
@@ -205,7 +232,18 @@ const tabs = [
 ];
 
 function companyPage(c: Company) {
-  return `${header("companies")}<main id="main" class="${companyTab === "relationships" ? "relationship-page" : ""}">${breadcrumb([{ text: "公司", href: "#/companies" }, { text: c.name }])}${companyTab === "relationships" ? `<section class="company-hero">${brand(c)}<h1>${esc(c.name)}</h1></section>` : `<section class="company-hero"><div><div class="eyebrow">COMPANY DOSSIER / ${c.coverage === "dossier" ? "深度档案" : "精选概览"}</div><h1>${esc(c.name)}</h1><p>${esc(c.tagline)}</p><div class="company-meta"><span>${esc(c.founded)} · 成立</span><span>${esc(c.location)}</span><span>版本更新 ${esc(datasetDate)}</span></div></div><div class="company-hero-art"><div class="editorial-art art-space"></div><span>概念空间 · 非公司实景</span></div></section>`}${c.coverage === "dossier" ? `<nav class="tabs" aria-label="公司档案栏目">${tabs.map(([id, label]) => `<a href="#/company/${c.id}?tab=${id}" ${companyTab === id ? 'aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="tab-content">${companyContent(c)}</div>` : `<div class="preview-content"><div class="eyebrow">A CONCISE INTRODUCTION</div><h2>从这里开始认识 ${esc(c.name)}</h2>${c.description.map((p) => `<p>${esc(p)}</p>`).join("")}<div class="tag-row">${c.topics.map((t) => `<a href="#/topics?topic=${encodeURIComponent(t)}">${esc(t)}</a>`).join("")}</div>${sourceButton(c.sourceIds)}<div class="quiet-note">这是精选概览，暂不提供完整人物图谱或实时组织架构。深度专题将从可核验的公开资料逐步扩展。</div></div>`}</main>${footer()}`;
+  return `${header("companies")}<main id="main" class="${companyTab === "relationships" ? "relationship-page" : ""}">${breadcrumb([{ text: "公司", href: "#/companies" }, { text: c.name }])}${companyTab === "relationships" ? `<section class="company-hero">${brand(c)}<h1>${esc(c.name)}</h1></section>` : `<section class="company-hero dossier-hero"><div><div class="eyebrow">COMPANY DOSSIER / ${c.coverage === "dossier" ? "深度档案" : "精选概览"}</div><h1>${esc(c.name)}</h1><p>${esc(c.tagline)}</p></div><div class="hero-plate" aria-hidden="true">${brand(c)}</div></section>${factStrip(c)}`}${c.coverage === "dossier" ? `<nav class="tabs" aria-label="公司档案栏目">${tabs.map(([id, label]) => `<a href="#/company/${c.id}?tab=${id}" ${companyTab === id ? 'aria-current="page"' : ""}>${label}</a>`).join("")}</nav><div class="tab-content">${companyContent(c)}</div>` : `<div class="preview-content"><div class="eyebrow">A CONCISE INTRODUCTION</div><h2>从这里开始认识 ${esc(c.name)}</h2>${c.description.map((p) => `<p>${esc(p)}</p>`).join("")}<div class="tag-row">${c.topics.map((t) => `<a href="#/topics?topic=${encodeURIComponent(t)}">${esc(t)}</a>`).join("")}</div>${sourceButton(c.sourceIds)}${companyPeople(c.id).length ? `<section class="preview-people"><h3>已收录人物</h3><div class="people-grid compact-people">${companyPeople(c.id).map(personCard).join("")}</div></section>` : ""}<div class="quiet-note">这是精选概览，暂不提供完整人物图谱或实时组织架构。深度专题将从可核验的公开资料逐步扩展。</div></div>`}</main>${footer()}`;
+}
+function factStrip(c: Company) {
+  const facts = [
+    ["成立", esc(c.founded), ""],
+    ["地点", esc(c.location), ""],
+    ["收录人物", String(companyPeople(c.id).length), "is-figure"],
+    ["关系记录", String(scopedRelations(c.id).filter((r) => !r.navigationOnly).length), "is-figure"],
+    ["关键时刻", String(events.filter((e) => e.entityIds.includes(c.id)).length), "is-figure"],
+    ["版本更新", esc(datasetDate), ""],
+  ];
+  return `<dl class="fact-strip">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl>`;
 }
 function foundationBoardRoster() {
   return `<article data-board-roster><span class="date-label">核验 ${esc(foundationBoard.verified)}</span><h3>Foundation 董事名单</h3><ul>${foundationBoard.members.map((member) => `<li>${member.personId && personById(member.personId) ? `<a href="#/person/${esc(member.personId)}">${esc(member.name)}</a>` : esc(member.name)} · ${esc(member.role)}</li>`).join("")}</ul><p>此处记录 OpenAI Foundation 董事名单；OpenAI Group 董事与观察员身份需分别查证。</p>${sourceButton(foundationBoard.sourceIds, "核对董事名单")}</article>`;
@@ -257,8 +295,73 @@ function companyContent(c: Company) {
       "",
     )}</div></section><div class="editor-note"><span>阅读边界</span><p>档案中的历史事件按日期排列。人员身份只在对应资料的时间范围内成立，未经核实的现状不会被补全。</p><a href="#/about">${arrow}</a></div>`;
 }
+function entityHref(id: string) {
+  return `#/${personById(id) ? "person" : companyById(id) ? "company" : "entity"}/${id}`;
+}
+function entityMark(id: string) {
+  const company = companyById(id) || companyById(id.startsWith("openai-") ? "openai" : "");
+  return company ? brand(company) : `<span class="brand">${esc(extraById(id)?.initial || "")}</span>`;
+}
+// A person's own records, grouped by the organisation or product at the other end.
+function personTies(p: Person) {
+  const ties = new Map<string, Relationship[]>();
+  for (const r of relationships) {
+    if (r.from !== p.id && r.to !== p.id) continue;
+    const other = r.from === p.id ? r.to : r.from;
+    ties.set(other, [...(ties.get(other) || []), r]);
+  }
+  return [...ties].map(([id, records]) => ({ id, records, past: records.every((r) => r.status === "historical") }));
+}
+function egoMap(p: Person) {
+  const ties = personTies(p);
+  const points = ties.map((_, i) => {
+    const angle = ((-35 + (i * 360) / ties.length) * Math.PI) / 180;
+    return [50 + 40 * Math.cos(angle), 50 + 40 * Math.sin(angle)];
+  });
+  return `<div class="ego-map"><svg viewBox="0 0 100 100" aria-hidden="true">${ties.map((t, i) => `<line class="${t.past ? "is-past" : ""}" x1="50" y1="50" x2="${points[i][0].toFixed(1)}" y2="${points[i][1].toFixed(1)}"/>`).join("")}</svg><div class="ego-self">${face(p)}</div>${ties
+    .map((t, i) => {
+      const lead = t.records.find((r) => r.status !== "historical") || t.records[0];
+      return `<a class="ego-node ${t.past ? "is-past" : ""} ${points[i][1] < 50 ? "is-up" : ""}" href="${esc(entityHref(t.id))}" style="--x:${points[i][0].toFixed(1)}%;--y:${points[i][1].toFixed(1)}%"><span class="ego-mark">${entityMark(t.id)}</span><span class="ego-label"><strong>${esc(relationshipName(t.id))}</strong><small>${esc(lead.label)}</small></span></a>`;
+    })
+    .join("")}</div>`;
+}
+function personLinks(p: Person) {
+  const list = relationships.filter((r) => r.from === p.id || r.to === p.id);
+  if (!list.length) return "";
+  return `<div class="person-links"><span>公开资料中的关联</span><ul>${list
+    .map((r) => {
+      const other = r.from === p.id ? r.to : r.from;
+      return `<li class="${r.status === "historical" ? "is-past" : ""}"><a href="${esc(entityHref(other))}">${entityMark(other)}<span><strong>${esc(relationshipName(other))}</strong><small>${esc(r.label)}</small><small>${esc(r.period)}</small></span></a></li>`;
+    })
+    .join("")}</ul><a href="${esc(personContextHref(p))}" class="text-link">在图谱中展开 ${arrow}</a></div>`;
+}
+function personNext(p: Person) {
+  const family = (id: string) => (id.startsWith("openai-") ? "openai" : id);
+  const mine = new Set(personTies(p).map((t) => family(t.id)));
+  const near = people.filter((other) => other.id !== p.id && personTies(other).some((t) => mine.has(family(t.id))));
+  const index = people.indexOf(p);
+  const step = (to: Person, label: string, cls: string) => `<a class="${cls}" href="#/person/${esc(to.id)}"><small>${label}</small><strong>${esc(to.name)}</strong></a>`;
+  return `${near.length ? `<section class="front-section person-next">${frontHeading("继续阅读", `与 ${esc(p.name)} 出现在同一机构记录里的人物。`, "#/people", "人物索引")}<div class="people-wall">${near.slice(0, 8).map((o) => `<a class="wall-person" href="#/person/${esc(o.id)}"><span class="wall-face">${face(o)}</span><span class="wall-copy"><strong>${esc(o.name)}</strong><small>${esc(o.role)}</small></span></a>`).join("")}</div></section>` : ""}<nav class="pager" aria-label="相邻人物">${step(people[(index + people.length - 1) % people.length], "上一位", "pager-prev")}${step(people[(index + 1) % people.length], "下一位", "pager-next")}</nav>`;
+}
 function personPage(p: Person) {
-  return `${header("people")}<main id="main">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}</p><span class="role-label">${esc(p.role)}</span><p class="person-deck">${esc(p.summary)}</p><a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a></div>${portrait(p, "profile-portrait")}</section><div class="reading-layout person-reading"><article><div class="eyebrow">THE STORY</div><h2>经历与贡献</h2>${p.paragraphs.map((text, index) => `<p>${esc(text)}</p>${p.paragraphSourceIds?.[index]?.length ? sourceButton(p.paragraphSourceIds[index], "本段依据") : ""}`).join("")}<h2 class="milestone-heading">沿着时间阅读</h2><div class="milestones">${p.milestones.map((m) => `<article><time>${esc(m.date)}</time><div><p>${esc(m.text)}</p>${sourceButton(m.sourceIds)}</div></article>`).join("")}</div><h2 class="milestone-heading">人物资料来源</h2>${sourceList(p.sourceIds)}</article><aside class="reading-aside"><span>人物档案 / 阅读须知</span><h3>贡献需要语境。</h3><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p><a href="#/company/${esc(p.companyId)}" class="text-link">${esc(relationshipName(p.companyId))} 公司档案 ${arrow}</a></aside></div></main>${footer()}`;
+  const ties = personTies(p);
+  const profile = profiles[p.id];
+  const allSources = [...new Set([...p.sourceIds, ...(profile?.chapters.flatMap((c) => c.sourceIds) || [])])];
+  const facts = [
+    ["所属机构", `<a href="#/company/${esc(p.companyId)}">${esc(relationshipName(p.companyId))}</a>`, ""],
+    ["关联记录", String(ties.reduce((n, t) => n + t.records.length, 0)), "is-figure"],
+    ["时间节点", String(p.milestones.length), "is-figure"],
+    ["资料来源", String(allSources.length), "is-figure"],
+    ["版本更新", esc(datasetDate), ""],
+  ];
+  const chapters = [
+    ...(profile?.chapters || []).map((c) => ({ title: c.title, body: `${c.text.map((text) => `<p>${esc(text)}</p>`).join("")}${sourceButton(c.sourceIds, "本章依据")}` })),
+    { title: profile ? "公开记录中的角色" : "经历与贡献", body: p.paragraphs.map((text, index) => `<p>${esc(text)}</p>${p.paragraphSourceIds?.[index]?.length ? sourceButton(p.paragraphSourceIds[index], "本段依据") : ""}`).join("") },
+    { title: "沿着时间阅读", body: `<div class="milestones">${p.milestones.map((m) => `<article><time>${esc(m.date)}</time><div><p>${esc(m.text)}</p>${sourceButton(m.sourceIds)}</div></article>`).join("")}</div>` },
+    { title: "人物资料来源", body: sourceList(allSources) },
+  ];
+  const no = (i: number) => String(i + 1).padStart(2, "0");
+  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span><p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}</dd></div>`).join("")}</dl>` : ""}<a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="chapter-${i + 1}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${chapters.map((c, i) => `<section class="chapter" id="chapter-${i + 1}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
 }
 function timeline(entityId?: string) {
   const list = events.filter(
@@ -268,8 +371,8 @@ function timeline(entityId?: string) {
     .slice()
     .sort((a, b) => a.date.localeCompare(b.date))
     .map(
-      (e) =>
-        `<article><time>${esc(e.date)}</time><div class="timeline-dot"></div><div><h3>${esc(e.title)}</h3><p>${esc(e.description)}</p><div class="timeline-foot"><span>${e.entityIds.map((id) => esc(relationshipName(id))).join(" / ")}</span>${sourceButton(e.sourceIds, "事件来源")}</div></div></article>`,
+      (e, i, sorted) =>
+        `${e.date.slice(0, 4) !== sorted[i - 1]?.date.slice(0, 4) ? `<div class="timeline-year" aria-hidden="true">${esc(e.date.slice(0, 4))}</div>` : ""}<article><time>${esc(e.date)}</time><div class="timeline-dot"></div><div><h3>${esc(e.title)}</h3><p>${esc(e.description)}</p><div class="timeline-foot"><span>${e.entityIds.map((id) => esc(relationshipName(id))).join(" / ")}</span>${sourceButton(e.sourceIds, "事件来源")}</div></div></article>`,
     )
     .join("")}</div>`;
 }
@@ -282,6 +385,30 @@ function sourceList(ids: readonly string[]) {
         : "";
     })
     .join("")}</div>`;
+}
+function sourcesPage() {
+  const cited = new Map<string, number>();
+  const cite = (ids: readonly string[]) => new Set(ids).forEach((id) => cited.set(id, (cited.get(id) || 0) + 1));
+  for (const c of companies) cite(c.sourceIds);
+  for (const p of people) cite([...p.sourceIds, ...p.milestones.flatMap((m) => m.sourceIds), ...(p.paragraphSourceIds || []).flat()]);
+  for (const r of relationships) cite(r.sourceIds);
+  for (const e of events) cite(e.sourceIds);
+  for (const e of additionalEntities) cite(e.sourceIds);
+  const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
+  const groups = new Map<string, typeof sources>();
+  for (const source of sources) groups.set(host(source.url), [...(groups.get(host(source.url)) || []), source]);
+  const ordered = [...groups].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]));
+  return `${header()}<main id="main" class="sources-page">${breadcrumb([{ text: "来源索引" }])}<section class="page-intro"><div class="eyebrow">THE EVIDENCE INDEX</div><h1>回到资料，继续阅读。</h1><p>${sources.length} 份公开资料，来自 ${groups.size} 个发布方 · 各条来源分别标注核验日期 · 外链将在新标签页打开</p></section><div class="source-tools"><label class="search-input">${searchIcon}<input type="search" data-source-filter placeholder="按标题或发布方筛选…" autocomplete="off" aria-label="筛选来源"></label><span data-source-count aria-live="polite">${sources.length} 份资料</span></div><div class="source-ledger">${ordered
+    .map(
+      ([name, list]) =>
+        `<section class="source-group"><header><h2>${esc(name)}</h2><span>${list.length} 份</span></header><ul>${list
+          .map(
+            (item) =>
+              `<li data-source-row="${esc(`${item.title} ${name}`.toLocaleLowerCase())}"><a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.title)} ${arrow}</a><span class="source-dates">${item.published ? `<span>发布 ${esc(item.published)}</span>` : ""}<span>核验 ${esc(item.verified)}</span><span>被引用 ${cited.get(item.id) || 0} 处</span></span></li>`,
+          )
+          .join("")}</ul></section>`,
+    )
+    .join("")}</div><p class="empty-state source-empty" hidden>没有匹配的来源，换一个关键词试试。</p></main>${footer()}`;
 }
 function topicsPage() {
   const topics = [...new Set(companies.flatMap((c) => c.topics))];
@@ -364,7 +491,7 @@ function render() {
     app.innerHTML = `${header("topics")}<main id="main">${breadcrumb([{ text: "关键时刻" }])}${timeline()}</main>${footer()}`;
     document.title = "关键时刻 · AI Atlas";
   } else if (parts[0] === "sources") {
-    app.innerHTML = `${header()}<main id="main">${breadcrumb([{ text: "来源索引" }])}<section class="page-intro"><div class="eyebrow">THE EVIDENCE INDEX</div><h1>回到资料，继续阅读。</h1><p>${sources.length} 份公开资料 · 各条来源分别标注核验日期 · 外链将在新标签页打开</p></section>${sourceList(sources.map((s) => s.id))}</main>${footer()}`;
+    app.innerHTML = sourcesPage();
     document.title = "来源索引 · AI Atlas";
   } else if (parts[0] === "about") {
     app.innerHTML = aboutPage();
@@ -376,7 +503,8 @@ function render() {
       : "AI Atlas · 看见公司，理解 AI 的未来";
   }
   bindEvents();
-
+  // Marks which route is on screen; the end-to-end suite waits on it after navigating.
+  document.documentElement.dataset.route = location.hash;
 }
 function updateQuery(
   values: Record<string, string>,
@@ -418,6 +546,49 @@ function updateQuery(
   }
 }
 function bindEvents() {
+  bindMap(app);
+  // Highlight the chapter being read in the page contents.
+  chapterSpy?.disconnect();
+  const jumps = [...app.querySelectorAll<HTMLButtonElement>("[data-jump]")];
+  if (jumps.length && "IntersectionObserver" in window) {
+    chapterSpy = new IntersectionObserver(
+      (entries) => {
+        const current = entries.filter((entry) => entry.isIntersecting).pop()?.target.id;
+        if (current) jumps.forEach((b) => (b.dataset.jump === current ? b.setAttribute("aria-current", "true") : b.removeAttribute("aria-current")));
+      },
+      { rootMargin: "-18% 0px -72% 0px" },
+    );
+    app.querySelectorAll(".chapter").forEach((chapter) => chapterSpy!.observe(chapter));
+    jumps[0].setAttribute("aria-current", "true");
+  }
+  app.querySelectorAll<HTMLButtonElement>("[data-jump]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const target = document.getElementById(b.dataset.jump!);
+      target?.setAttribute("tabindex", "-1");
+      target?.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "instant" : "smooth" });
+      target?.focus({ preventScroll: true });
+    }),
+  );
+  app.querySelector<HTMLInputElement>("[data-source-filter]")?.addEventListener("input", (e) => {
+    const q = (e.target as HTMLInputElement).value.trim().toLocaleLowerCase();
+    let shown = 0;
+    app.querySelectorAll<HTMLElement>(".source-group").forEach((group) => {
+      let any = false;
+      group.querySelectorAll<HTMLElement>("[data-source-row]").forEach((row) => {
+        row.hidden = !!q && !row.dataset.sourceRow!.includes(q);
+        if (!row.hidden) { any = true; shown++; }
+      });
+      group.hidden = !any;
+    });
+    app.querySelector("[data-source-count]")!.textContent = `${shown} 份资料`;
+    app.querySelector<HTMLElement>(".source-empty")!.hidden = shown > 0;
+  });
+  app.querySelector('[data-action="theme"]')?.addEventListener("click", () => {
+    const root = document.documentElement;
+    const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme:dark)").matches;
+    root.dataset.theme = dark ? "light" : "dark";
+    try { localStorage.setItem("atlas-theme", root.dataset.theme); } catch { /* private mode: the choice lasts for this visit */ }
+  });
   app.querySelectorAll<HTMLButtonElement>("[data-close-disclosure]").forEach(button => button.addEventListener("click", () => {
     const disclosure = button.closest<HTMLDetailsElement>("details");
     if (disclosure) {
@@ -553,12 +724,21 @@ function openSearch() {
         ([v, n]) =>
           `<button data-search-kind="${v}" aria-pressed="${v === "all"}">${n}</button>`,
       )
-      .join("")}</div><div id="search-results" aria-live="polite"></div>`,
+      .join("")}</div><div id="search-results" aria-live="polite"></div><p class="search-keys" aria-hidden="true"><kbd>↑</kbd><kbd>↓</kbd> 选择<kbd>Enter</kbd> 打开<kbd>Esc</kbd> 关闭</p>`,
     "search-modal",
   );
   const input = document.querySelector<HTMLInputElement>("#atlas-search")!;
   input.focus();
   input.addEventListener("input", () => search(input.value));
+  document.querySelector<HTMLElement>(".search-modal .modal")?.addEventListener("keydown", (e) => {
+    const results = [...document.querySelectorAll<HTMLElement>("#search-results .search-result")];
+    if (e.key === "Enter" && e.target === input) results[0]?.click();
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+    e.preventDefault();
+    const stops = [input, ...results];
+    const next = stops.indexOf(document.activeElement as HTMLElement) + (e.key === "ArrowDown" ? 1 : -1);
+    stops[Math.min(stops.length - 1, Math.max(0, next))].focus();
+  });
   document
     .querySelectorAll<HTMLButtonElement>("[data-search-kind]")
     .forEach((b) =>
@@ -584,6 +764,7 @@ function search(query: string) {
       kind: "company",
       name: c.name,
       sub: c.tagline,
+      mark: brand(c),
       text: [c.name, c.cnName, c.tagline, ...c.description, ...c.topics].join(
         " ",
       ),
@@ -593,6 +774,7 @@ function search(query: string) {
       kind: "person",
       name: p.name,
       sub: p.role,
+      mark: face(p),
       text: [p.name, p.cnName, ...(p.aliases || []), p.summary, p.role, ...p.paragraphs].join(" "),
       href: `#/person/${p.id}`,
     })),
@@ -600,6 +782,7 @@ function search(query: string) {
       kind: e.type === "product" ? "product" : "organization",
       name: e.name,
       sub: e.summary,
+      mark: `<span class="brand">${esc(e.initial)}</span>`,
       text: e.name + " " + e.cnName + " " + e.summary,
       href: `#/entity/${e.id}`,
     })),
@@ -607,6 +790,7 @@ function search(query: string) {
       kind: "event",
       name: e.title,
       sub: e.date,
+      mark: `<span class="brand">${esc(e.date.slice(2, 4))}</span>`,
       text: e.title + " " + e.description,
       href: "#/timeline",
     })),
@@ -619,14 +803,25 @@ function search(query: string) {
       (!q || e.text.toLocaleLowerCase().includes(q)),
   );
   const box = document.querySelector("#search-results")!;
-  box.innerHTML = `<p class="search-count">${q ? `找到 ${hits.length} 条线索` : "探索索引中的精选条目"}</p>${hits.length ? hits.map((e) => `<a class="search-result" href="${e.href}"><span class="result-kind">${({ company: "公司", organization: "组织", person: "人物", product: "产品", event: "事件" } as Record<string, string>)[e.kind]}</span><span><strong>${esc(e.name)}</strong><small>${esc(e.sub)}</small></span>${arrow}</a>`).join("") : `<div class="empty-state"><h3>还没有找到这条线索</h3><p>试试「OpenAI」「治理」「ChatGPT」或人物的英文名。</p></div>`}`;
+  const lit = (text: string) => {
+    const at = q ? text.toLocaleLowerCase().indexOf(q) : -1;
+    return at < 0 ? esc(text) : `${esc(text.slice(0, at))}<mark>${esc(text.slice(at, at + q.length))}</mark>${esc(text.slice(at + q.length))}`;
+  };
+  const kinds: Record<string, string> = { company: "公司", organization: "组织", person: "人物", product: "产品", event: "事件" };
+  box.innerHTML = `<p class="search-count">${q ? `找到 ${hits.length} 条线索` : "探索索引中的精选条目"}</p>${hits.length ? hits.map((e) => `<a class="search-result" href="${e.href}"><span class="result-mark">${e.mark}</span><span><strong>${lit(e.name)}</strong><small><span class="result-kind">${kinds[e.kind]}</span> · ${lit(e.sub)}</small></span>${arrow}</a>`).join("") : `<div class="empty-state"><h3>还没有找到这条线索</h3><p>试试「OpenAI」「治理」「ChatGPT」或人物的英文名。</p></div>`}`;
   box
     .querySelectorAll("a")
     .forEach((a) => a.addEventListener("click", () => closeModal(false)));
 }
+// Opacity only, so measured geometry never shifts while a page arrives.
+function fadeIn() {
+  if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+  app.querySelector("main")?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, easing: "ease" });
+}
 window.addEventListener("hashchange", () => {
   closeModal(false);
   render();
+  fadeIn();
   window.scrollTo({ top: 0, behavior: "instant" });
   document.querySelector<HTMLElement>("main")?.setAttribute("tabindex", "-1");
   document.querySelector<HTMLElement>("main")?.focus({ preventScroll: true });
@@ -645,9 +840,9 @@ document.addEventListener("keydown", (e) => {
     closeModal();
   }
   if (
-    e.key === "/" &&
     !modal &&
-    !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)
+    ((e.key === "/" && !["INPUT", "TEXTAREA"].includes((e.target as HTMLElement).tagName)) ||
+      (e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey)))
   ) {
     e.preventDefault();
     openSearch();
@@ -670,3 +865,4 @@ document.addEventListener("keydown", (e) => {
   }
 });
 render();
+fadeIn();

@@ -88,7 +88,7 @@ export interface AtlasEvent {
   sourceIds: string[];
 }
 
-export const datasetDate = "2026-10-07";
+export const datasetDate = "2026-10-08";
 
 /** Foundation membership is separate from the Group board and management. */
 export const foundationBoard: {
@@ -508,6 +508,66 @@ export const sources: Source[] = [
     title: "Microsoft · Facts about Microsoft",
     url: "https://news.microsoft.com/facts-about-microsoft/",
     verified: "2026-10-03",
+  },
+  {
+    id: "wiki-sam-altman",
+    title: "Wikipedia · Sam Altman（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Sam_Altman",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-greg-brockman",
+    title: "Wikipedia · Greg Brockman（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Greg_Brockman",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-ilya-sutskever",
+    title: "Wikipedia · Ilya Sutskever（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Ilya_Sutskever",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-mira-murati",
+    title: "Wikipedia · Mira Murati（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Mira_Murati",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-dario-amodei",
+    title: "Wikipedia · Dario Amodei（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Dario_Amodei",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-demis-hassabis",
+    title: "Wikipedia · Demis Hassabis（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Demis_Hassabis",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-bret-taylor",
+    title: "Wikipedia · Bret Taylor（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Bret_Taylor",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-fidji-simo",
+    title: "Wikipedia · Fidji Simo（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Fidji_Simo",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-paul-christiano",
+    title: "Wikipedia · Paul Christiano（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Paul_Christiano_(researcher)",
+    verified: "2026-10-08",
+  },
+  {
+    id: "wiki-jakub-pachocki",
+    title: "Wikipedia · Jakub Pachocki（生平背景；二手汇编，非原始资料）",
+    url: "https://en.wikipedia.org/wiki/Jakub_Pachocki",
+    verified: "2026-10-08",
   },
 ];
 

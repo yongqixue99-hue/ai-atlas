@@ -1,0 +1,62 @@
+/* Legibility and density pass. Loaded last; the id scope outranks the earlier
+   layers so each rule holds at every breakpoint. */
+:root { --fs-meta:13px; --fs-label:12px; }
+
+/* Secondary text never drops below 13px; Chinese glyphs blur under that. */
+:is(#app, .modal-overlay) :is(
+  .breadcrumb a, .breadcrumb span,
+  .company-meta span, .company-category, .card-bottom span, .quiet-coverage,
+  .person-role, .person-read, .role-label, .date-label,
+  .text-link, .quiet-section-heading > a, .tag-row a, .wide-link small,
+  .timeline-foot span, .sources-list p, .asset-credits span, .asset-credits a,
+  .quiet-note, .editor-note p, .editor-note span, .dossier-card > p, .dossier-card small,
+  .reading-aside > span, .reading-aside p, .content-heading p,
+  .index-toolbar .muted, .pills button, .search-result small, .search-count,
+  .company-hero-art span, .quiet-person p,
+  .atlas-count, .atlas-selected-role, .atlas-selected-summary, .atlas-detail-actions > *,
+  .atlas-disclosure > summary, .atlas-controls-content legend, .atlas-controls-content button,
+  .atlas-current-root, .atlas-evidence-summary, .atlas-status-note, .atlas-facts dt, .atlas-facts dd,
+  .atlas-record-context span, .atlas-evidence h4 span, .atlas-source-card strong, .atlas-source-card small,
+  .atlas-close-evidence, .atlas-info-content p, .atlas-info-content a,
+  .atlas-timeline-content > a, .atlas-timeline-items p, .atlas-timeline-note, .atlas-pagination span
+) { font-size:var(--fs-meta); }
+:is(#app, .modal-overlay) :is(.sources-list p, .reading-aside p, .atlas-info-content p, .atlas-evidence-summary, .quiet-note, .editor-note p) { line-height:1.75; }
+/* Letterspaced Latin labels and the tight graph captions can sit one step lower. */
+:is(#app, .modal-overlay) :is(.eyebrow, .product-visual span, .atlas-node-copy small) { font-size:var(--fs-label); }
+#app .header nav a { font-size:15px; }
+#app .breadcrumb { color:#5d665e; }
+
+/* The header stays reachable on long dossiers and indexes. */
+@media (min-width:601px) {
+  #app .header { position:sticky; top:0; z-index:20; background:var(--paper); box-shadow:0 0 0 100vmax var(--paper); clip-path:inset(0 -100vmax); }
+  #app :is(main, .atlas-stage, .atlas-detail, .tabs) { scroll-margin-top:104px; }
+}
+
+/* People: portrait beside the copy, so a missing photograph is a small
+   monogram instead of a blank poster. */
+#app :is(.index-people-grid, .compact-people) { grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 64px; margin-bottom:40px; }
+#app :is(.index-people-grid, .compact-people) .person-card { display:grid; grid-template-columns:96px minmax(0,1fr); gap:22px; align-items:start; padding:26px 0; border-top:1px solid var(--line); }
+#app :is(.index-people-grid, .compact-people) .portrait { width:96px; height:116px; }
+#app :is(.index-people-grid, .compact-people) .portrait-initial { font-size:34px; letter-spacing:-1px; }
+#app :is(.index-people-grid, .compact-people) .portrait-caption { display:none; }
+#app :is(.index-people-grid, .compact-people) .person-copy { padding:0; }
+#app :is(.index-people-grid, .compact-people) .person-card-title { margin:4px 0 8px; }
+#app :is(.index-people-grid, .compact-people) h3 { font-size:25px; line-height:1.25; }
+#app :is(.index-people-grid, .compact-people) .person-copy > p { font:14px/1.75 var(--sans); color:#5f675f; max-width:none; margin:0; }
+#app :is(.index-people-grid, .compact-people) .person-read { margin-top:12px; color:var(--green); }
+#app .index-toolbar + .index-people-grid { margin-top:8px; }
+#app .index-toolbar + .index-people-grid .person-card:nth-child(-n+2) { border-top:0; }
+@media (min-width:1101px) {
+  #app .compact-people { grid-template-columns:repeat(3,minmax(0,1fr)); gap:0 40px; }
+  #app .compact-people .person-card { border-top:0; padding:8px 0 0; }
+}
+@media (max-width:760px) {
+  #app :is(.index-people-grid, .compact-people) { grid-template-columns:1fr; }
+  #app :is(.index-people-grid, .compact-people) .person-card { grid-template-columns:72px minmax(0,1fr); gap:18px; padding:20px 0; }
+  #app :is(.index-people-grid, .compact-people) .portrait { width:72px; height:88px; }
+  #app :is(.index-people-grid, .compact-people) .portrait-initial { font-size:26px; }
+  #app :is(.index-people-grid, .compact-people) h3 { font-size:22px; }
+  #app .index-toolbar + .index-people-grid .person-card:nth-child(2) { border-top:1px solid var(--line); }
+}
+/* The evidence action stays the visibly primary step in the detail panel. */
+#app .atlas-detail .atlas-evidence-disclosure > summary { font-size:15px; }

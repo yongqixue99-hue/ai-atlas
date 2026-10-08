@@ -29,6 +29,10 @@ async function check(name, fn) {
 }
 async function goto(path = "") {
   await page.goto(base + path);
+  // A hash-only navigation resolves before the hashchange handler renders, and a viewport change
+  // re-renders on the next frame. Wait for both so checks never hold elements of a replaced page.
+  await page.waitForFunction(() => document.documentElement.dataset.route === location.hash);
+  await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await page.evaluate(() => document.fonts.ready);
 }
 async function openSettings() {
@@ -51,7 +55,7 @@ try {
     assert.match(await page.locator("h1").innerText(), /看见公司/);
     assert.equal(
       await page.locator(".home-company-grid .company-card").count(),
-      3,
+      companyCount,
     );
     const images = await page
       .locator("img")
