@@ -146,7 +146,7 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 ### sierra-launch
 
-- 标题：Bret Taylor、Clay Bavor / Sierra · Introducing Sierra
+- 标题：Bret Taylor、Clay Bavor / Sierra · Meet Sierra, the conversational AI platform for businesses
 - 链接：https://sierra.ai/blog/introducing-sierra
 - 发布日期：2024-02-13
 - 核验日期：2026-10-08
@@ -726,6 +726,7 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Ermira Murati / Daedalus · Language & Coding Creativity
 - 链接：https://www.amacad.org/publication/daedalus/language-coding-creativity
+- 发布日期：2022
 - 核验日期：2026-10-08
 
 ### ap-murati-departure
@@ -887,12 +888,14 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Dario Amodei · Machines of Loving Grace
 - 链接：https://darioamodei.com/essay/machines-of-loving-grace
+- 发布日期：2024-10
 - 核验日期：2026-10-08
 
 ### dario-adolescence
 
 - 标题：Dario Amodei · The Adolescence of Technology
 - 链接：https://darioamodei.com/essay/the-adolescence-of-technology
+- 发布日期：2026-01
 - 核验日期：2026-10-08
 
 ### time-dario-2025
@@ -1081,4 +1084,25 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Google · Demis Hassabis 作者资料
 - 链接：https://blog.google/authors/demis-hassabis/
+- 核验日期：2026-10-08
+
+### sam-intelligence-age
+
+- 标题：Sam Altman · The Intelligence Age
+- 链接：https://ia.samaltman.com/
+- 发布日期：2024-09-23
+- 核验日期：2026-10-08
+
+### sam-moores-law
+
+- 标题：Sam Altman · Moore's Law for Everything
+- 链接：https://moores.samaltman.com/
+- 发布日期：2021-03-16
+- 核验日期：2026-10-08
+
+### sam-reflections
+
+- 标题：Sam Altman · Reflections
+- 链接：https://blog.samaltman.com/reflections
+- 发布日期：2025-01
 - 核验日期：2026-10-08

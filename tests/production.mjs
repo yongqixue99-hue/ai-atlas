@@ -21,6 +21,8 @@ const routes = [
   ["relationships-desktop", "/company/openai?tab=relationships&root=openai&filter=employment&status=recent&relation=tibo-openai-role"],
   ["person-state-desktop", "/explore?root=thibault-sottiaux&filter=all&status=all&relation=tibo-codex-role&from=openai"],
   ["timeline-desktop", "/timeline"],
+  ["writings-person-desktop", "/person/sam-altman"],
+  ["writings-inline-person-desktop", "/person/dario-amodei"],
 ];
 try {
   for (const [name, path] of routes) {
@@ -30,6 +32,11 @@ try {
     await page.locator("main").evaluate(el => Promise.all(el.getAnimations({ subtree: true }).map(a => a.finished.catch(() => {}))));
     assert.ok(await page.locator("main").innerText());
     assert.equal(await page.locator(".not-found").count(), 0, path);
+    if (path === "/person/sam-altman") {
+      assert.equal(await page.locator(".writing-list > li").count(), 3);
+      assert.equal(await page.locator(".writing-list h3 a").first().getAttribute("href"), "https://ia.samaltman.com/");
+    }
+    if (path === "/person/dario-amodei") assert.equal(await page.locator(".writing-inline").count(), 3);
     await page.screenshot({ path: new URL(`${name}.png`, out).pathname, fullPage: true });
   }
   await page.locator(".search-trigger").click();
@@ -42,6 +49,7 @@ try {
     for (const [name, path] of [
       ["home", "/"],
       ["tibo", "/person/thibault-sottiaux"],
+      ["writings-person", "/person/sam-altman"],
       ["governance", "/company/openai?tab=governance"],
       ["relationships", "/company/openai?tab=relationships&root=openai&filter=employment&status=recent&relation=tibo-openai-role"],
       ["person-state", "/explore?root=thibault-sottiaux&filter=all&status=all&relation=tibo-codex-role&from=openai"],

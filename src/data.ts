@@ -196,7 +196,7 @@ export const sources: Source[] = [
   },
   {
     "id": "sierra-launch",
-    "title": "Bret Taylor、Clay Bavor / Sierra · Introducing Sierra",
+    "title": "Bret Taylor、Clay Bavor / Sierra · Meet Sierra, the conversational AI platform for businesses",
     "url": "https://sierra.ai/blog/introducing-sierra",
     "published": "2024-02-13",
     "verified": "2026-10-08"
@@ -776,7 +776,8 @@ export const sources: Source[] = [
     "id": "murati-language-creativity",
     "title": "Ermira Murati / Daedalus · Language & Coding Creativity",
     "url": "https://www.amacad.org/publication/daedalus/language-coding-creativity",
-    "verified": "2026-10-08"
+    "verified": "2026-10-08",
+    "published": "2022"
   },
   {
     "id": "ap-murati-departure",
@@ -937,13 +938,15 @@ export const sources: Source[] = [
     "id": "dario-loving-grace",
     "title": "Dario Amodei · Machines of Loving Grace",
     "url": "https://darioamodei.com/essay/machines-of-loving-grace",
-    "verified": "2026-10-08"
+    "verified": "2026-10-08",
+    "published": "2024-10"
   },
   {
     "id": "dario-adolescence",
     "title": "Dario Amodei · The Adolescence of Technology",
     "url": "https://darioamodei.com/essay/the-adolescence-of-technology",
-    "verified": "2026-10-08"
+    "verified": "2026-10-08",
+    "published": "2026-01"
   },
   {
     "id": "time-dario-2025",
@@ -1131,6 +1134,27 @@ export const sources: Source[] = [
     "id": "google-demis-author",
     "title": "Google · Demis Hassabis 作者资料",
     "url": "https://blog.google/authors/demis-hassabis/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "sam-intelligence-age",
+    "title": "Sam Altman · The Intelligence Age",
+    "url": "https://ia.samaltman.com/",
+    "published": "2024-09-23",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "sam-moores-law",
+    "title": "Sam Altman · Moore's Law for Everything",
+    "url": "https://moores.samaltman.com/",
+    "published": "2021-03-16",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "sam-reflections",
+    "title": "Sam Altman · Reflections",
+    "url": "https://blog.samaltman.com/reflections",
+    "published": "2025-01",
     "verified": "2026-10-08"
   }
 ];

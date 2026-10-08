@@ -8,11 +8,12 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test tests/data.test.ts tests/graph.test.ts tests/map.test.ts tests/profiles.test.ts",
+    "test": "node --experimental-strip-types --test tests/data.test.ts tests/graph.test.ts tests/map.test.ts tests/profiles.test.ts tests/writings.test.ts",
     "test:e2e": "node tests/e2e.mjs",
     "test:visual": "node tests/visual.mjs",
     "check": "npm run typecheck && npm test && npm run build",
-    "test:profiles": "node tests/profiles-e2e.mjs"
+    "test:profiles": "node tests/profiles-e2e.mjs",
+    "test:writings": "node tests/writings-e2e.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.55.1",

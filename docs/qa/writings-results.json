@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-08T07:36:06.142Z",
+  "browser": "140.0.7339.186",
+  "passed": [
+    "sam-altman: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "greg-brockman: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "thibault-sottiaux: no empty authored-writing section",
+    "jakub-pachocki: no empty authored-writing section",
+    "fidji-simo: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "brad-lightcap: no empty authored-writing section",
+    "bret-taylor: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "paul-christiano: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "ilya-sutskever: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "mira-murati: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "dario-amodei: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "demis-hassabis: verified catalogue, safe inline links, repeated jump and keyboard focus",
+    "existing named essays and research papers link directly from biography prose",
+    "repeated keyboard opening preserves Atlas and produces an isolated new tab",
+    "Back, Forward and reload retain correct person and reading entries",
+    "article title search finds its author; new original appears in the source index",
+    "light 1440px: all authored-reading sections, focus, no overflow",
+    "light 390px: all authored-reading sections, focus, no overflow",
+    "light 320px: all authored-reading sections, focus, no overflow",
+    "dark 1440px: all authored-reading sections, focus, no overflow",
+    "dark 390px: all authored-reading sections, focus, no overflow",
+    "dark 320px: all authored-reading sections, focus, no overflow"
+  ],
+  "errors": []
+}

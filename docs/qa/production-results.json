@@ -1,5 +1,5 @@
 {
-  "date": "2026-10-08T07:10:56.112Z",
+  "date": "2026-10-08T07:36:42.252Z",
   "browser": "140.0.7339.186",
   "mode": "production dist",
   "routes": [
@@ -9,7 +9,9 @@
     "/person/thibault-sottiaux",
     "/company/openai?tab=relationships&root=openai&filter=employment&status=recent&relation=tibo-openai-role",
     "/explore?root=thibault-sottiaux&filter=all&status=all&relation=tibo-codex-role&from=openai",
-    "/timeline"
+    "/timeline",
+    "/person/sam-altman",
+    "/person/dario-amodei"
   ],
   "mobileWidths": [
     390,
