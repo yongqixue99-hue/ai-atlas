@@ -14,7 +14,8 @@
     "check": "npm run typecheck && npm test && npm run build",
     "test:profiles": "node tests/profiles-e2e.mjs",
     "test:writings": "node tests/writings-e2e.mjs",
-    "test:illustrations": "node tests/illustrations-e2e.mjs"
+    "test:illustrations": "node tests/illustrations-e2e.mjs",
+    "test:reading": "node tests/reading-e2e.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.55.1",

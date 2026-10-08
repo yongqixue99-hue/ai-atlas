@@ -49,11 +49,24 @@ try {
         await expect(target.getByRole("img")).toHaveCount(1);
         await expect(target.getByRole("img")).toHaveAccessibleName(figure.alt);
       }
-      const evidence = target.locator(".source-link");
+      const evidence = target.locator(".figure-source");
+      await expect(evidence).toHaveAttribute("aria-haspopup", "dialog");
+      await expect(target.locator(".figure-print-credit")).toBeHidden();
       await evidence.click();
+      const attribution = page.getByRole("dialog").locator(".figure-attribution");
+      await expect(attribution).toContainText(figure.title);
+      if (figure.kind === "photo") {
+        await expect(attribution).toContainText(figure.credit);
+        await expect(attribution.locator(`a[href="${figure.licenseUrl}"]`)).toHaveText(figure.license);
+        await expect(attribution.locator(`a[href="${figure.sourceUrl}"]`)).toHaveCount(1);
+      } else await expect(attribution).toContainText("AI Atlas 原创图解");
       const actual = await page.getByRole("dialog").locator(".sources-list a").evaluateAll(links=>links.map(link=>link.href).sort());
       assert.deepEqual(actual,figure.sourceIds.map(id=>sources.find(s=>s.id===id).url).sort());
       await page.keyboard.press("Escape");
+      await expect(evidence).toBeFocused();
+      await expect(target).toBeVisible();
+      await evidence.click();
+      await page.getByRole("button", {name:"关闭", exact:true}).click();
       await expect(evidence).toBeFocused();
       await expect(target).toBeVisible();
     }

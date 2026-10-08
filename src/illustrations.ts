@@ -470,12 +470,15 @@ function diagram(figure: DiagramFigure, narrow: boolean) {
   }).join("");
   return `<svg class="biography-svg ${narrow ? "figure-narrow" : "figure-wide"}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${esc(figure.alt)}" focusable="false">${boxes}</svg>`;
 }
-export function renderBiographyFigure(figure: BiographyFigure, baseUrl: string, sourceButton: (ids: readonly string[], label: string) => string) {
+export function renderFigureCredit(figure: BiographyFigure) {
+  return figure.kind === "photo"
+    ? `摄影：${esc(figure.credit)} · ${external(figure.sourceUrl,"照片来源")} · ${external(figure.licenseUrl,figure.license)}。沿用来源预览文件，画面未修改。`
+    : "AI Atlas 原创图解 · 依据公开资料简化绘制";
+}
+export function renderBiographyFigure(figure: BiographyFigure, baseUrl: string) {
   const art = figure.kind === "photo"
     ? `<img src="${esc(baseUrl + figure.file)}" alt="${esc(figure.alt)}" width="${figure.width}" height="${figure.height}" loading="lazy" decoding="async">`
     : `${diagram(figure, false)}${diagram(figure, true)}`;
-  const credit = figure.kind === "photo"
-    ? `摄影：${esc(figure.credit)} · ${external(figure.sourceUrl,"照片来源")} · ${external(figure.licenseUrl,figure.license)}。沿用来源预览文件，画面未修改。`
-    : "AI Atlas 原创图解 · 依据公开资料简化绘制";
-  return `<figure class="biography-figure biography-figure-${figure.kind}" data-figure="${esc(figure.id)}"><div class="figure-heading"><span>${figure.kind === "photo" ? "影像记录" : figure.kind === "timeline" ? "时间脉络" : "研究图解"}</span><h3>${esc(figure.title)}</h3></div>${art}<figcaption><p>${esc(figure.caption)}</p><div class="figure-credit">${credit}</div>${sourceButton(figure.sourceIds,"图示依据")}</figcaption></figure>`;
+  const label = `${figure.title}：${figure.kind === "photo" ? "图片来源与许可" : "图解来源"}`;
+  return `<figure class="biography-figure biography-figure-${figure.kind}" data-figure="${esc(figure.id)}"><div class="figure-heading"><span>${figure.kind === "photo" ? "影像记录" : figure.kind === "timeline" ? "时间脉络" : "研究图解"}</span><h3>${esc(figure.title)}</h3></div>${art}<figcaption><p>${esc(figure.caption)} <button class="figure-source" data-sources="${esc(figure.sourceIds.join(","))}" data-figure-source="${esc(figure.id)}" aria-label="${esc(label)}" aria-haspopup="dialog">来源</button></p><div class="figure-credit figure-print-credit">${renderFigureCredit(figure)}</div></figcaption></figure>`;
 }

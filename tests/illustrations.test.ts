@@ -24,7 +24,7 @@ test("all ten biographies have purposefully placed, sourced illustrations", () =
         assert.ok(step.sourceIds.length);
         step.sourceIds.forEach(id => assert.ok(figure.sourceIds.includes(id), id));
       }
-      const svg = renderBiographyFigure(figure, "/", () => "");
+      const svg = renderBiographyFigure(figure, "/");
       assert.match(svg, /role="img" aria-label="/);
       assert.match(svg, /AI Atlas 原创图解/);
     }
@@ -41,7 +41,7 @@ test("new photographs retain local source bytes and explicit licenses", () => {
     assert.equal(bytes[0], 0xff);
     assert.equal(bytes[1], 0xd8);
     assert.ok(bytes.length <= 300 * 1024);
-    const markup = renderBiographyFigure(photo, "/", () => "");
+    const markup = renderBiographyFigure(photo, "/");
     assert.match(markup, /loading="lazy" decoding="async"/);
     assert.match(markup, /width="\d+" height="\d+"/);
     assert.match(markup, /rel="noopener noreferrer"/);
@@ -50,9 +50,24 @@ test("new photographs retain local source bytes and explicit licenses", () => {
 
 test("diagram text and accessible descriptions are safely escaped", () => {
   const diagram = biographyFigures.find(f => f.kind !== "photo")!;
-  const markup = renderBiographyFigure({...diagram, title:'<script>x</script>', alt:'" onload="bad', caption:'<img onerror="bad">'}, "/", () => "");
+  const markup = renderBiographyFigure({...diagram, title:'<script>x</script>', alt:'" onload="bad', caption:'<img onerror="bad">'}, "/");
   assert.ok(!markup.includes("<script>"));
   assert.ok(!markup.includes('<img onerror='));
   assert.match(markup, /&lt;script&gt;/);
   assert.match(markup, /&quot; onload=&quot;bad/);
+});
+
+
+test("figure evidence is a single inline trigger with printable attribution", () => {
+  for (const figure of biographyFigures) {
+    const markup = renderBiographyFigure(figure, "/");
+    assert.match(markup, /<p>.*<button class="figure-source"/);
+    assert.equal((markup.match(/data-figure-source=/g) || []).length, 1);
+    assert.ok(markup.includes(`data-figure-source="${figure.id}"`));
+    assert.ok(markup.includes(`data-sources="${figure.sourceIds.join(",")}"`));
+    assert.match(markup, /aria-haspopup="dialog"/);
+    assert.match(markup, /figure-print-credit/);
+    assert.ok(!markup.includes("图示依据"));
+    assert.ok(!markup.includes('class="text-link source-link"'));
+  }
 });

@@ -8,7 +8,7 @@ import "./map.css";
 import "./front.css";
 import "./refine.css";
 import "./biographies.css";
-import { biographyFigures, personFigures, renderBiographyFigure } from "./illustrations";
+import { biographyFigures, personFigures, renderBiographyFigure, renderFigureCredit } from "./illustrations";
 import { renderMap, bindMap } from "./map";
 import { profiles } from "./profiles";
 import { personWritings, featuredWritings, writingSource, writingSegments, writingKindLabels } from "./writings";
@@ -383,7 +383,7 @@ function personPage(p: Person) {
       const figures = personFigures(p.id).filter(figure => figure.chapterTitle === c.title);
       const key = `${p.id}:${c.title}`;
       const open = biographyOpenState.get(key) ?? chapterIndex === 0;
-      return { title: c.title, body: `${paragraphs[0]}<details class="biography-disclosure" data-biography-key="${esc(key)}" ${open ? "open" : ""}><summary><span class="when-closed">继续阅读 · ${paragraphs.length - 1} 段${figures.length ? " · 含配图" : ""}</span><span class="when-open">收起本章</span></summary><div class="biography-more">${paragraphs.slice(1).join("")}${figures.map(figure => renderBiographyFigure(figure, import.meta.env.BASE_URL, sourceButton)).join("")}</div></details>` };
+      return { title: c.title, body: `${paragraphs[0]}<details class="biography-disclosure" id="biography-${chapterIndex + 1}" data-biography-key="${esc(key)}" ${open ? "open" : ""}><summary><span class="when-closed">继续阅读 · ${paragraphs.length - 1} 段${figures.length ? " · 含配图" : ""}</span><span class="when-open">收起本章</span></summary><div class="biography-more">${paragraphs.slice(1).join("")}${figures.map(figure => renderBiographyFigure(figure, import.meta.env.BASE_URL)).join("")}</div></details>` };
     }),
     { title: profile ? "公开记录中的角色" : "经历与贡献", body: p.paragraphs.map((text, index) => `<p>${linkedWritingText(text, p.id, p.paragraphSourceIds?.[index] || [])}</p>${p.paragraphSourceIds?.[index]?.length ? sourceButton(p.paragraphSourceIds[index], "本段依据") : ""}`).join("") },
     ...(selectedWritings.length ? [{ title: "文章与观点", id: "person-writings", body: writingsSection(p) }] : []),
@@ -391,7 +391,7 @@ function personPage(p: Person) {
     { title: "人物资料来源", body: sourceList(allSources) },
   ];
   const no = (i: number) => String(i + 1).padStart(2, "0");
-  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span>${profile?.roleNote ? `<p class="profile-role-note">${esc(profile.roleNote.text)} ${profileCitation(profile.roleNote.sourceIds, "查看职务更新依据")}</p>` : ""}<p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value, ids]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}${ids?.length ? ` ${profileCitation(ids, `${term}的资料来源`)}` : ""}</dd></div>`).join("")}</dl>` : ""}<div class="person-reading-links"><a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a>${selectedWritings.length ? `<button class="text-link writings-jump" data-jump="person-writings">阅读本人文章 <span>${selectedWritings.length}</span> ↓</button>` : ""}</div></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="${c.id || `chapter-${i + 1}`}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${profile ? `<div class="biography-controls"><span>${profile.chapters.length} 个背景章节 · ${personFigures(p.id).length} 幅配图</span><button data-biographies="expand">展开全文</button><button data-biographies="collapse">收起章节</button></div>` : ""}${chapters.map((c, i) => `<section class="chapter" id="${c.id || `chapter-${i + 1}`}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile?.reviewNote ? `<p class="profile-review-note">${esc(profile.reviewNote)}</p><p class="profile-reviewed">背景复核 <time datetime="${esc(profile.reviewed || "")}">${esc(profile.reviewed || "")}</time></p>` : profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
+  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span>${profile?.roleNote ? `<p class="profile-role-note">${esc(profile.roleNote.text)} ${profileCitation(profile.roleNote.sourceIds, "查看职务更新依据")}</p>` : ""}<p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value, ids]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}${ids?.length ? ` ${profileCitation(ids, `${term}的资料来源`)}` : ""}</dd></div>`).join("")}</dl>` : ""}<div class="person-reading-links"><a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a>${selectedWritings.length ? `<button class="text-link writings-jump" data-jump="person-writings">阅读本人文章 <span>${selectedWritings.length}</span> ↓</button>` : ""}</div></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="${c.id || `chapter-${i + 1}`}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${profile ? `<div class="biography-controls"><span>${profile.chapters.length} 个背景章节 · ${personFigures(p.id).length} 幅配图</span><button data-biographies="expand" aria-controls="${profile.chapters.map((_, i) => `biography-${i + 1}`).join(" ")}" aria-expanded="false">展开全文</button></div>` : ""}${chapters.map((c, i) => `<section class="chapter" id="${c.id || `chapter-${i + 1}`}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile?.reviewNote ? `<p class="profile-review-note">${esc(profile.reviewNote)}</p><p class="profile-reviewed">背景复核 <time datetime="${esc(profile.reviewed || "")}">${esc(profile.reviewed || "")}</time></p>` : profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
 }
 function timeline(entityId?: string) {
   const list = events.filter(
@@ -579,8 +579,21 @@ function updateQuery(
 }
 function bindEvents() {
   bindMap(app);
-  app.querySelectorAll<HTMLDetailsElement>(".biography-disclosure").forEach(disclosure => {
-    disclosure.addEventListener("toggle", () => biographyOpenState.set(disclosure.dataset.biographyKey!, disclosure.open));
+  const biographyDisclosures = [...app.querySelectorAll<HTMLDetailsElement>(".biography-disclosure")];
+  const biographyToggle = app.querySelector<HTMLButtonElement>("[data-biographies]");
+  const syncBiographyToggle = () => {
+    if (!biographyToggle) return;
+    const allOpen = biographyDisclosures.every(disclosure => disclosure.open);
+    biographyToggle.dataset.biographies = allOpen ? "collapse" : "expand";
+    biographyToggle.textContent = allOpen ? "收起全文" : "展开全文";
+    biographyToggle.setAttribute("aria-expanded", String(allOpen));
+  };
+  syncBiographyToggle();
+  biographyDisclosures.forEach(disclosure => {
+    disclosure.addEventListener("toggle", () => {
+      biographyOpenState.set(disclosure.dataset.biographyKey!, disclosure.open);
+      syncBiographyToggle();
+    });
     disclosure.addEventListener("keydown", event => {
       if (event.key === "Escape" && disclosure.open && !document.querySelector(".modal")) {
         event.preventDefault();
@@ -589,12 +602,14 @@ function bindEvents() {
       }
     });
   });
-  app.querySelectorAll<HTMLButtonElement>("[data-biographies]").forEach(button => button.addEventListener("click", () => {
-    app.querySelectorAll<HTMLDetailsElement>(".biography-disclosure").forEach(disclosure => {
-      disclosure.open = button.dataset.biographies === "expand";
-      biographyOpenState.set(disclosure.dataset.biographyKey!, disclosure.open);
+  biographyToggle?.addEventListener("click", () => {
+    const open = biographyToggle.dataset.biographies === "expand";
+    biographyDisclosures.forEach(disclosure => {
+      disclosure.open = open;
+      biographyOpenState.set(disclosure.dataset.biographyKey!, open);
     });
-  }));
+    syncBiographyToggle();
+  });
   // Highlight the chapter being read in the page contents.
   chapterSpy?.disconnect();
   const jumps = [...app.querySelectorAll<HTMLButtonElement>(".chapter-nav [data-jump]")];
@@ -681,7 +696,7 @@ function bindEvents() {
     .querySelectorAll<HTMLButtonElement>("[data-sources]")
     .forEach((b) =>
       b.addEventListener("click", () =>
-        openSources(b.dataset.sources!.split(",")),
+        openSources(b.dataset.sources!.split(","), b.dataset.figureSource),
       ),
     );
   app.querySelectorAll<HTMLButtonElement>("[data-index-filter]").forEach((b) =>
@@ -754,9 +769,11 @@ function closeModal(restore = true) {
   document.body.classList.remove("modal-open");
   if (restore) lastFocused?.focus({ preventScroll: true });
 }
-function openSources(ids: string[]) {
+function openSources(ids: string[], figureId?: string) {
+  const figure = figureId ? biographyFigures.find(item => item.id === figureId) : undefined;
+  const attribution = figure ? `<div class="figure-attribution"><h3>${esc(figure.title)}</h3><p class="figure-credit">${renderFigureCredit(figure)}</p></div>` : "";
   openModal(
-    `<div class="eyebrow">CHECK THE EVIDENCE</div><h2 id="modal-title">这条线索的来源</h2><p class="modal-intro">保留原始语境，检查发布与核验日期。</p>${sourceList(ids)}<div class="quiet-note">资料可能描述历史状态。核验日期并不表示来源中每个角色都延续至今。</div>`,
+    `<div class="eyebrow">CHECK THE EVIDENCE</div><h2 id="modal-title">${figure ? figure.kind === "photo" ? "图片来源与许可" : "图解来源" : "这条线索的来源"}</h2>${attribution}<p class="modal-intro">保留原始语境，检查发布与核验日期。</p>${sourceList(ids)}<div class="quiet-note">资料可能描述历史状态。核验日期并不表示来源中每个角色都延续至今。</div>`,
     "source-drawer",
   );
 }

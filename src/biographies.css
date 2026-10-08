@@ -22,10 +22,18 @@
 .figure-svg-title { fill:var(--ink); font:500 18px var(--sans); }
 .figure-svg-note { fill:var(--muted); font:15px var(--sans); }
 #app .biography-figure figcaption > p { margin:12px 0 9px; font:14px/1.85 var(--sans); color:var(--ink); }
-.figure-credit { font:12px/1.75 var(--sans); color:var(--muted); }
+.figure-credit { font:13px/1.75 var(--sans); color:var(--muted); overflow-wrap:anywhere; }
 .figure-credit a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
 .figure-credit a:focus-visible { outline:2px solid var(--green); outline-offset:3px; }
-#app .biography-figure .source-link { margin-top:12px; font:13px/1.4 var(--sans); }
+.figure-source { display:inline; margin-left:4px; padding:3px 2px; border:0; background:none; color:var(--green); font:13px/1.7 var(--sans); text-decoration:underline; text-underline-offset:3px; white-space:nowrap; cursor:pointer; }
+.figure-source:hover { color:var(--ink); }
+.figure-source:focus-visible { outline:2px solid var(--green); outline-offset:3px; border-radius:2px; }
+.figure-print-credit { display:none; }
+.figure-attribution { padding:16px 0; margin-bottom:18px; border-block:1px solid var(--line); }
+.figure-attribution h3 { font:500 18px/1.5 var(--serif); margin:0 0 10px; }
+.figure-attribution .figure-credit { margin:0; }
+/* The biography toolbar precedes the first chapter; :first-child does not match it. */
+#app .person-reading > article > .chapter:first-of-type > header { border-top:0; padding-top:0; }
 .biography-figure-photo img { display:block; width:100%; height:auto; margin-top:18px; border-radius:3px; }
 .biography-figure-photo:has(img[src*="fidji-simo"]) img { max-height:520px; object-fit:contain; object-position:center; }
 .portrait-bret-taylor img { object-position:50% 23%; }
@@ -44,6 +52,8 @@
   #app .figure-heading h3 { font-size:21px; }
 }
 @media print {
-  .biography-controls, .biography-disclosure > summary { display:none; }
+  .biography-controls, .biography-disclosure > summary, .figure-source { display:none; }
+  .figure-print-credit { display:block; }
+  .biography-disclosure::details-content { content-visibility:visible!important; }
   .biography-disclosure::details-content, .biography-disclosure .biography-more { display:block!important; }
 }
