@@ -58,3 +58,27 @@ Ilya Sutskever deliberately retains typographic identification because the freel
 - SIL Open Font License 1.1; see `FONT-LICENSE.txt`
 - New characters fall back to system CJK fonts
 - AI Atlas globe/favicon, graph geometry and interface icons are original SVG/CSS
+
+## Bret Taylor (added 2026-10-08)
+- File: `public/assets/bret-taylor.jpg`, 1280×854, 148070 bytes
+- Photographer: Katelyn Tucker / Slava Blazer Photography; published by TechCrunch, 2024-10-29
+- Source: https://commons.wikimedia.org/wiki/File:TechCrunch_Disrupt_2024_D2_Bret_Taylor-3.jpg
+- Original Flickr: https://www.flickr.com/photos/techcrunch/54103926810/
+- License: CC BY 2.0 — https://creativecommons.org/licenses/by/2.0/
+- Source-provided 1280px preview downloaded unchanged. CSS crop/grayscale only for identity portraits; chapter photograph retains the source framing and color.
+
+## Fidji Simo (added 2026-10-08)
+- File: `public/assets/fidji-simo.jpg`, 960×1350, 177257 bytes
+- Photographer: Loïc Le Meur, 2016-02-29; source crop by Nouvelles Odes, 2025-08-17
+- Source: https://commons.wikimedia.org/wiki/File:Fidji_Simo_(cropped).jpg
+- Original Flickr: https://www.flickr.com/photos/loiclemeur/24784222814/
+- License: CC BY 2.0 — https://creativecommons.org/licenses/by/2.0/
+- Source-provided 960px preview downloaded unchanged; the site's CSS is the only additional crop/grayscale treatment.
+
+## Source-backed biography graphics (added 2026-10-08)
+- Eight original SVG explanatory figures are rendered from `src/illustrations.ts`.
+- Sam: selected career chronology; Greg: Gym interaction; Ilya: 2014 Seq2Seq; Jakub: Rapid training; Paul: human-preference learning; Mira: Tinker division of work; Dario: Constitutional AI; Demis: AlphaFold evaluation and open database chronology.
+- Each figure has its own caption, accessible description and source IDs. All diagram layouts are original, not copied paper illustrations or generated historical scenes.
+- Desktop and narrow-column SVG layouts share the same data; only the visible one is exposed to assistive technology. The SVG uses the site's light/dark palette.
+- No new unlicensed company/event image, AI-generated face, or QA screenshot is included in the public assets.
+- Ilya's available TAU photo remains below the portrait specification; no substitute is used. Other missing portraits remain typographic rather than guessing license or identity.

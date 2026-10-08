@@ -1,0 +1,307 @@
+{
+  "baselineCommit": "873b2590f163c55f10ab1afef16f321de86667f9",
+  "reviewed": "2026-10-08",
+  "characterCounting": "Unicode code points in concatenated background paragraphs; includes punctuation/spacing; excludes headings, quick facts, figure captions and generated record sections",
+  "before": {
+    "chapters": 51,
+    "paragraphs": 108,
+    "characters": 10839,
+    "facts": 40
+  },
+  "after": {
+    "chapters": 58,
+    "paragraphs": 170,
+    "characters": 21212,
+    "facts": 40
+  },
+  "perPerson": [
+    {
+      "id": "sam-altman",
+      "name": "Sam Altman",
+      "before": {
+        "chapters": 5,
+        "paragraphs": 11,
+        "characters": 1102,
+        "facts": 4
+      },
+      "after": {
+        "chapters": 6,
+        "paragraphs": 16,
+        "characters": 2288,
+        "facts": 4
+      }
+    },
+    {
+      "id": "greg-brockman",
+      "name": "Greg Brockman",
+      "before": {
+        "chapters": 5,
+        "paragraphs": 11,
+        "characters": 1077,
+        "facts": 3
+      },
+      "after": {
+        "chapters": 6,
+        "paragraphs": 16,
+        "characters": 2103,
+        "facts": 3
+      }
+    },
+    {
+      "id": "ilya-sutskever",
+      "name": "Ilya Sutskever",
+      "before": {
+        "chapters": 6,
+        "paragraphs": 16,
+        "characters": 1473,
+        "facts": 4
+      },
+      "after": {
+        "chapters": 6,
+        "paragraphs": 19,
+        "characters": 2338,
+        "facts": 4
+      }
+    },
+    {
+      "id": "mira-murati",
+      "name": "Mira Murati",
+      "before": {
+        "chapters": 6,
+        "paragraphs": 11,
+        "characters": 1176,
+        "facts": 4
+      },
+      "after": {
+        "chapters": 6,
+        "paragraphs": 18,
+        "characters": 1975,
+        "facts": 4
+      }
+    },
+    {
+      "id": "dario-amodei",
+      "name": "Dario Amodei",
+      "before": {
+        "chapters": 5,
+        "paragraphs": 10,
+        "characters": 1066,
+        "facts": 5
+      },
+      "after": {
+        "chapters": 6,
+        "paragraphs": 17,
+        "characters": 2149,
+        "facts": 5
+      }
+    },
+    {
+      "id": "demis-hassabis",
+      "name": "Demis Hassabis",
+      "before": {
+        "chapters": 6,
+        "paragraphs": 12,
+        "characters": 1057,
+        "facts": 5
+      },
+      "after": {
+        "chapters": 6,
+        "paragraphs": 19,
+        "characters": 2159,
+        "facts": 5
+      }
+    },
+    {
+      "id": "bret-taylor",
+      "name": "Bret Taylor",
+      "before": {
+        "chapters": 5,
+        "paragraphs": 11,
+        "characters": 1090,
+        "facts": 4
+      },
+      "after": {
+        "chapters": 6,
+        "paragraphs": 15,
+        "characters": 2094,
+        "facts": 4
+      }
+    },
+    {
+      "id": "fidji-simo",
+      "name": "Fidji Simo",
+      "before": {
+        "chapters": 5,
+        "paragraphs": 9,
+        "characters": 1072,
+        "facts": 4
+      },
+      "after": {
+        "chapters": 6,
+        "paragraphs": 17,
+        "characters": 2017,
+        "facts": 4
+      }
+    },
+    {
+      "id": "paul-christiano",
+      "name": "Paul Christiano",
+      "before": {
+        "chapters": 4,
+        "paragraphs": 9,
+        "characters": 1014,
+        "facts": 4
+      },
+      "after": {
+        "chapters": 5,
+        "paragraphs": 18,
+        "characters": 2329,
+        "facts": 4
+      }
+    },
+    {
+      "id": "jakub-pachocki",
+      "name": "Jakub Pachocki",
+      "before": {
+        "chapters": 4,
+        "paragraphs": 8,
+        "characters": 712,
+        "facts": 3
+      },
+      "after": {
+        "chapters": 5,
+        "paragraphs": 15,
+        "characters": 1760,
+        "facts": 3
+      }
+    }
+  ],
+  "addedSourceIds": [
+    "senate-altman-testimony-2023",
+    "brockman-leaving-stripe",
+    "quip-launch-2013",
+    "quip-salesforce-2016",
+    "twitter-taylor-board-2016",
+    "twitter-taylor-chair-2021",
+    "twitter-board-end-2022",
+    "marquette-taylor-cto-2010",
+    "ilya-alexnet-2012",
+    "ilya-gpt-pretraining-2018",
+    "openai-language-unsupervised-2018",
+    "jakub-multi-agent-2017",
+    "openai-competitive-self-play-2017",
+    "jakub-openai-five-paper-2019",
+    "paul-electrical-flows-2010",
+    "paul-human-preferences-explainer-2017",
+    "dario-concrete-safety-2016",
+    "dario-scaling-laws-2020",
+    "anthropic-constitutional-ai-2022",
+    "deepmind-atari-2013",
+    "deepmind-alphafold3-2024",
+    "demis-queens-nobel-2024",
+    "simo-facebook-watch-2018",
+    "simo-facebook-app-2019",
+    "instacart-platform-2022",
+    "instacart-simo-transition-2025",
+    "embl-alphafold-launch-2021",
+    "photo-bret-taylor-2024",
+    "photo-fidji-simo-2016"
+  ],
+  "figures": [
+    {
+      "id": "sam-organizations",
+      "personId": "sam-altman",
+      "chapterTitle": "OpenAI 的成立与组织调整",
+      "kind": "timeline",
+      "sourceIds": [
+        "yc-loopt",
+        "yc-sam",
+        "openai-lp"
+      ]
+    },
+    {
+      "id": "greg-gym",
+      "personId": "greg-brockman",
+      "chapterTitle": "Gym 与 OpenAI Five",
+      "kind": "process",
+      "sourceIds": [
+        "openai-gym-paper"
+      ]
+    },
+    {
+      "id": "ilya-seq2seq",
+      "personId": "ilya-sutskever",
+      "chapterTitle": "DNNResearch 与序列到序列学习",
+      "kind": "process",
+      "sourceIds": [
+        "seq2seq"
+      ]
+    },
+    {
+      "id": "jakub-rapid",
+      "personId": "jakub-pachocki",
+      "chapterTitle": "OpenAI Five 的训练系统",
+      "kind": "process",
+      "sourceIds": [
+        "openai-five-2018"
+      ]
+    },
+    {
+      "id": "paul-preferences",
+      "personId": "paul-christiano",
+      "chapterTitle": "从行为比较中学习目标",
+      "kind": "process",
+      "sourceIds": [
+        "rlhf-human-preferences"
+      ]
+    },
+    {
+      "id": "mira-tinker",
+      "personId": "mira-murati",
+      "chapterTitle": "Thinking Machines Lab 与 Tinker",
+      "kind": "process",
+      "sourceIds": [
+        "tml-tinker"
+      ]
+    },
+    {
+      "id": "dario-constitutional",
+      "personId": "dario-amodei",
+      "chapterTitle": "Anthropic 与原则式训练",
+      "kind": "process",
+      "sourceIds": [
+        "anthropic-constitutional-ai-2022"
+      ]
+    },
+    {
+      "id": "demis-alphafold",
+      "personId": "demis-hassabis",
+      "chapterTitle": "Isomorphic Labs 与开放数据库",
+      "kind": "timeline",
+      "sourceIds": [
+        "deepmind-alphafold-casp14",
+        "embl-alphafold-launch-2021",
+        "deepmind-alphafold-database-2022"
+      ]
+    },
+    {
+      "id": "bret-disrupt-2024",
+      "personId": "bret-taylor",
+      "chapterTitle": "与 Clay Bavor 推出 Sierra",
+      "kind": "photo",
+      "sourceIds": [
+        "photo-bret-taylor-2024"
+      ]
+    },
+    {
+      "id": "fidji-portrait-2016",
+      "personId": "fidji-simo",
+      "chapterTitle": "Facebook 的视频与应用管理",
+      "kind": "photo",
+      "sourceIds": [
+        "photo-fidji-simo-2016",
+        "wiki-fidji-simo"
+      ]
+    }
+  ]
+}

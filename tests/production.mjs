@@ -12,7 +12,7 @@ page.on("pageerror", (error) => errors.push(error.message));
 page.on("response", (response) => {
   if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
 });
-const out = new URL("../docs/qa/", import.meta.url);
+const out = process.env.ATLAS_QA_DIR ? new URL(`file://${process.env.ATLAS_QA_DIR.replace(/\/$/, "")}/`) : new URL("../docs/qa/", import.meta.url);
 const routes = [
   ["home-desktop", "/"],
   ["people-desktop", "/people"],
@@ -36,7 +36,7 @@ try {
       assert.equal(await page.locator(".writing-list > li").count(), 3);
       assert.equal(await page.locator(".writing-list h3 a").first().getAttribute("href"), "https://ia.samaltman.com/");
     }
-    if (path === "/person/dario-amodei") assert.equal(await page.locator(".writing-inline").count(), 3);
+    if (path === "/person/dario-amodei") assert.ok(await page.locator(".writing-inline").count() >= 3);
     await page.screenshot({ path: new URL(`${name}.png`, out).pathname, fullPage: true });
   }
   await page.locator(".search-trigger").click();

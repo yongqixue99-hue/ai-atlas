@@ -7,6 +7,8 @@ import "./polish.css";
 import "./map.css";
 import "./front.css";
 import "./refine.css";
+import "./biographies.css";
+import { biographyFigures, personFigures, renderBiographyFigure } from "./illustrations";
 import { renderMap, bindMap } from "./map";
 import { profiles } from "./profiles";
 import { personWritings, featuredWritings, writingSource, writingSegments, writingKindLabels } from "./writings";
@@ -74,6 +76,7 @@ let topicFilter = "all";
 let searchKind = "all";
 let lastFocused: HTMLElement | null = null;
 let chapterSpy: IntersectionObserver | null = null;
+const biographyOpenState = new Map<string, boolean>();
 
 function personContextHref(p: Person) {
   return graphHref(p.id);
@@ -85,6 +88,8 @@ const available = [
   "mira-murati",
   "dario-amodei",
   "demis-hassabis",
+  "bret-taylor",
+  "fidji-simo",
 ];
 function face(p: Person) {
   return `<span class="face portrait-${esc(p.id)}">${available.includes(p.id) ? `<img src="${import.meta.env.BASE_URL}assets/${esc(p.id)}.jpg" alt="">` : esc(p.initial)}</span>`;
@@ -363,7 +368,7 @@ function personPage(p: Person) {
   const ties = personTies(p);
   const profile = profiles[p.id];
   const selectedWritings = featuredWritings(p.id);
-  const allSources = [...new Set([...p.sourceIds, ...personWritings(p.id).map(w => w.sourceId), ...(profile?.chapters.flatMap((c) => c.sourceIds) || []), ...(profile?.facts.flatMap((f) => f[2] || []) || []), ...(profile?.roleNote?.sourceIds || [])])];
+  const allSources = [...new Set([...p.sourceIds, ...personFigures(p.id).flatMap(f => f.sourceIds), ...personWritings(p.id).map(w => w.sourceId), ...(profile?.chapters.flatMap((c) => c.sourceIds) || []), ...(profile?.facts.flatMap((f) => f[2] || []) || []), ...(profile?.roleNote?.sourceIds || [])])];
   const facts = [
     ["所属机构", `<a href="#/company/${esc(p.companyId)}">${esc(relationshipName(p.companyId))}</a>`, ""],
     ["关联记录", String(ties.reduce((n, t) => n + t.records.length, 0)), "is-figure"],
@@ -373,14 +378,20 @@ function personPage(p: Person) {
   ];
   let citationNumber = 0;
   const chapters: { title: string; body: string; id?: string }[] = [
-    ...(profile?.chapters || []).map((c) => ({ title: c.title, body: `${c.text.map((text, index) => `<p>${linkedWritingText(text, p.id, c.paragraphSourceIds?.[index] || [])} ${c.paragraphSourceIds?.[index]?.length ? profileCitation(c.paragraphSourceIds[index], `${c.title}，第 ${index + 1} 段的资料来源`, `[${++citationNumber}]`) : ""}</p>`).join("")}${c.paragraphSourceIds ? "" : sourceButton(c.sourceIds, "本章依据")}` })),
+    ...(profile?.chapters || []).map((c, chapterIndex) => {
+      const paragraphs = c.text.map((text, index) => `<p>${linkedWritingText(text, p.id, c.paragraphSourceIds[index])} ${profileCitation(c.paragraphSourceIds[index], `${c.title}，第 ${index + 1} 段的资料来源`, `[${++citationNumber}]`)}</p>`);
+      const figures = personFigures(p.id).filter(figure => figure.chapterTitle === c.title);
+      const key = `${p.id}:${c.title}`;
+      const open = biographyOpenState.get(key) ?? chapterIndex === 0;
+      return { title: c.title, body: `${paragraphs[0]}<details class="biography-disclosure" data-biography-key="${esc(key)}" ${open ? "open" : ""}><summary><span class="when-closed">继续阅读 · ${paragraphs.length - 1} 段${figures.length ? " · 含配图" : ""}</span><span class="when-open">收起本章</span></summary><div class="biography-more">${paragraphs.slice(1).join("")}${figures.map(figure => renderBiographyFigure(figure, import.meta.env.BASE_URL, sourceButton)).join("")}</div></details>` };
+    }),
     { title: profile ? "公开记录中的角色" : "经历与贡献", body: p.paragraphs.map((text, index) => `<p>${linkedWritingText(text, p.id, p.paragraphSourceIds?.[index] || [])}</p>${p.paragraphSourceIds?.[index]?.length ? sourceButton(p.paragraphSourceIds[index], "本段依据") : ""}`).join("") },
     ...(selectedWritings.length ? [{ title: "文章与观点", id: "person-writings", body: writingsSection(p) }] : []),
     { title: "沿着时间阅读", body: `<div class="milestones">${p.milestones.map((m) => `<article><time>${esc(m.date)}</time><div><p>${esc(m.text)}</p>${sourceButton(m.sourceIds)}</div></article>`).join("")}</div>` },
     { title: "人物资料来源", body: sourceList(allSources) },
   ];
   const no = (i: number) => String(i + 1).padStart(2, "0");
-  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span>${profile?.roleNote ? `<p class="profile-role-note">${esc(profile.roleNote.text)} ${profileCitation(profile.roleNote.sourceIds, "查看职务更新依据")}</p>` : ""}<p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value, ids]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}${ids?.length ? ` ${profileCitation(ids, `${term}的资料来源`)}` : ""}</dd></div>`).join("")}</dl>` : ""}<div class="person-reading-links"><a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a>${selectedWritings.length ? `<button class="text-link writings-jump" data-jump="person-writings">阅读本人文章 <span>${selectedWritings.length}</span> ↓</button>` : ""}</div></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="${c.id || `chapter-${i + 1}`}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${chapters.map((c, i) => `<section class="chapter" id="${c.id || `chapter-${i + 1}`}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile?.reviewNote ? `<p class="profile-review-note">${esc(profile.reviewNote)}</p><p class="profile-reviewed">背景复核 <time datetime="${esc(profile.reviewed || "")}">${esc(profile.reviewed || "")}</time></p>` : profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
+  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span>${profile?.roleNote ? `<p class="profile-role-note">${esc(profile.roleNote.text)} ${profileCitation(profile.roleNote.sourceIds, "查看职务更新依据")}</p>` : ""}<p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value, ids]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}${ids?.length ? ` ${profileCitation(ids, `${term}的资料来源`)}` : ""}</dd></div>`).join("")}</dl>` : ""}<div class="person-reading-links"><a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a>${selectedWritings.length ? `<button class="text-link writings-jump" data-jump="person-writings">阅读本人文章 <span>${selectedWritings.length}</span> ↓</button>` : ""}</div></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="${c.id || `chapter-${i + 1}`}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${profile ? `<div class="biography-controls"><span>${profile.chapters.length} 个背景章节 · ${personFigures(p.id).length} 幅配图</span><button data-biographies="expand">展开全文</button><button data-biographies="collapse">收起章节</button></div>` : ""}${chapters.map((c, i) => `<section class="chapter" id="${c.id || `chapter-${i + 1}`}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile?.reviewNote ? `<p class="profile-review-note">${esc(profile.reviewNote)}</p><p class="profile-reviewed">背景复核 <time datetime="${esc(profile.reviewed || "")}">${esc(profile.reviewed || "")}</time></p>` : profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
 }
 function timeline(entityId?: string) {
   const list = events.filter(
@@ -410,6 +421,7 @@ function sourcesPage() {
   const cite = (ids: readonly string[]) => new Set(ids).forEach((id) => cited.set(id, (cited.get(id) || 0) + 1));
   for (const c of companies) cite(c.sourceIds);
   for (const p of people) cite([...p.sourceIds, ...personWritings(p.id).map(w => w.sourceId), ...p.milestones.flatMap((m) => m.sourceIds), ...(p.paragraphSourceIds || []).flat()]);
+  for (const figure of biographyFigures) cite(figure.sourceIds);
   for (const p of Object.values(profiles)) cite([...p.chapters.flatMap(c => c.sourceIds), ...p.facts.flatMap(f => f[2] || []), ...(p.roleNote?.sourceIds || [])]);
   for (const r of relationships) cite(r.sourceIds);
   for (const e of events) cite(e.sourceIds);
@@ -441,7 +453,7 @@ function topicsPage() {
   }</div><a href="#/timeline" class="wide-link"><span><small>另一种阅读顺序</small><strong>按时间，重新认识 AI</strong></span>${arrow}</a></main>${footer()}`;
 }
 function aboutPage() {
-  return `${header()}<main id="main">${breadcrumb([{ text: "关于与编辑原则" }])}<section class="page-intro"><div class="eyebrow">ABOUT THE ATLAS</div><h1>让好奇，有据可循。</h1><p>AI Atlas 是一本以公司为起点的中文人工智能百科。</p></section><div class="reading-layout"><article class="about-copy"><h2>不是排行榜，而是理解的入口。</h2><p>我们连接公司、人物、产品与关键时刻，希望让复杂的 AI 生态变得可以阅读、可以探索、可以核对。</p><h2>我们如何处理事实</h2><ol><li><strong>优先原始资料。</strong>公司公告、论文和当事人的公开陈述各有局限；来源支持某项陈述，不意味着我们认同来源的一切观点。</li><li><strong>给历史加上日期。</strong>创始身份、过去任职与目前任职不是同一回事。本版以日期明确的资料为基础，不宣称实时完整。</li><li><strong>区分不同的关系。</strong>治理、任职、投资合作与产品各有自己的含义。关系图不推断汇报线，也不是权力排序。</li><li><strong>明确收录边界。</strong>OpenAI 为首版深度专题，其他组织是精选概览。缺失不等于不存在，概览也不等于完整公司数据库。</li></ol><h2>版本与核验</h2><p>本版最近编辑日期：${esc(datasetDate)}，各条来源分别标注核验日期。这是静态编辑版本，没有自动抓取实时新闻或人员变动。事实上的新变化应回到官方原文确认。</p><h2>图像、署名与许可</h2><p>沙丘、纸张与室内空间是 AI 生成的概念插画，不是公司的实景或产品界面。人物肖像均为真实照片，以 CSS 灰度和响应式裁切显示；摄影者及人物不为本站背书。未取得可用照片的人物使用字母识别，不以生成肖像代替本人。</p><ul class="asset-credits"><li><a href="https://commons.wikimedia.org/wiki/File:Sam_Altman_CropEdit_James_Tamim.jpg" target="_blank" rel="noopener noreferrer">Sam Altman · 照片来源</a><span>Steve Jennings / TechCrunch，2019 · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_(48838200316)_(cropped).jpg" target="_blank" rel="noopener noreferrer">Greg Brockman · 照片来源</a><span>Steve Jennings / TechCrunch，2019 · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_01_(cropped).jpg" target="_blank" rel="noopener noreferrer">Dario Amodei · 照片来源</a><span>Kimberly White / TechCrunch，2023 · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Guests_at_the_2026_Met_Gala_274_(Mira_Murati).jpg" target="_blank" rel="noopener noreferrer">Mira Murati · 照片来源</a><span>SWinxy，2026 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Demis_Hassabis_in_2025_by_Christopher_Michel.jpg" target="_blank" rel="noopener noreferrer">Demis Hassabis · 照片来源</a><span>Christopher Michel，2025 · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span></li></ul><p>Demis Hassabis 照片及其显示处理遵循 CC BY-SA 4.0。其余肖像按各自许可署名。品牌图形仅作百科识别，不代表隶属或合作关系。</p><a class="text-link" href="#/sources">浏览所有公开资料 ${arrow}</a></article><aside class="reading-aside"><span>编辑立场</span><h3>克制地连接，<br>清楚地标注。</h3><p>没有来源的关系，不画。<br>没有核验的现状，不猜。<br>未被覆盖的内容，留白。</p></aside></div></main>${footer()}`;
+  return `${header()}<main id="main">${breadcrumb([{ text: "关于与编辑原则" }])}<section class="page-intro"><div class="eyebrow">ABOUT THE ATLAS</div><h1>让好奇，有据可循。</h1><p>AI Atlas 是一本以公司为起点的中文人工智能百科。</p></section><div class="reading-layout"><article class="about-copy"><h2>不是排行榜，而是理解的入口。</h2><p>我们连接公司、人物、产品与关键时刻，希望让复杂的 AI 生态变得可以阅读、可以探索、可以核对。</p><h2>我们如何处理事实</h2><ol><li><strong>优先原始资料。</strong>公司公告、论文和当事人的公开陈述各有局限；来源支持某项陈述，不意味着我们认同来源的一切观点。</li><li><strong>给历史加上日期。</strong>创始身份、过去任职与目前任职不是同一回事。本版以日期明确的资料为基础，不宣称实时完整。</li><li><strong>区分不同的关系。</strong>治理、任职、投资合作与产品各有自己的含义。关系图不推断汇报线，也不是权力排序。</li><li><strong>明确收录边界。</strong>OpenAI 为首版深度专题，其他组织是精选概览。缺失不等于不存在，概览也不等于完整公司数据库。</li></ol><h2>版本与核验</h2><p>本版最近编辑日期：${esc(datasetDate)}，各条来源分别标注核验日期。这是静态编辑版本，没有自动抓取实时新闻或人员变动。事实上的新变化应回到官方原文确认。</p><h2>图像、署名与许可</h2><p>沙丘、纸张与室内空间是 AI 生成的概念插画，不是公司的实景或产品界面。人物肖像均为真实照片，以 CSS 灰度和响应式裁切显示；摄影者及人物不为本站背书。未取得可用照片的人物使用字母识别，不以生成肖像代替本人。</p><ul class="asset-credits"><li><a href="https://commons.wikimedia.org/wiki/File:Sam_Altman_CropEdit_James_Tamim.jpg" target="_blank" rel="noopener noreferrer">Sam Altman · 照片来源</a><span>Steve Jennings / TechCrunch，2019 · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_(48838200316)_(cropped).jpg" target="_blank" rel="noopener noreferrer">Greg Brockman · 照片来源</a><span>Steve Jennings / TechCrunch，2019 · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_01_(cropped).jpg" target="_blank" rel="noopener noreferrer">Dario Amodei · 照片来源</a><span>Kimberly White / TechCrunch，2023 · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Guests_at_the_2026_Met_Gala_274_(Mira_Murati).jpg" target="_blank" rel="noopener noreferrer">Mira Murati · 照片来源</a><span>SWinxy，2026 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Demis_Hassabis_in_2025_by_Christopher_Michel.jpg" target="_blank" rel="noopener noreferrer">Demis Hassabis · 照片来源</a><span>Christopher Michel，2025 · <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA 4.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:TechCrunch_Disrupt_2024_D2_Bret_Taylor-3.jpg" target="_blank" rel="noopener noreferrer">Bret Taylor · 照片来源</a><span>Katelyn Tucker / Slava Blazer Photography，TechCrunch，2024 · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></li><li><a href="https://commons.wikimedia.org/wiki/File:Fidji_Simo_(cropped).jpg" target="_blank" rel="noopener noreferrer">Fidji Simo · 照片来源</a><span>Loïc Le Meur，2016；Nouvelles Odes 来源裁切 · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener noreferrer">CC BY 2.0</a></span></li></ul><p>传记中的研究流程与时间线是本站依据所列资料绘制的原创解释图，不是历史现场照片或原论文插图。</p><p>Demis Hassabis 照片及其显示处理遵循 CC BY-SA 4.0。其余肖像按各自许可署名。品牌图形仅作百科识别，不代表隶属或合作关系。</p><a class="text-link" href="#/sources">浏览所有公开资料 ${arrow}</a></article><aside class="reading-aside"><span>编辑立场</span><h3>克制地连接，<br>清楚地标注。</h3><p>没有来源的关系，不画。<br>没有核验的现状，不猜。<br>未被覆盖的内容，留白。</p></aside></div></main>${footer()}`;
 }
 function notFound() {
   return `${header()}<main id="main" class="not-found"><div class="eyebrow">404 / NOT IN THE ATLAS</div><h1>这条线索还没有被收录。</h1><p>回到索引，换一个起点继续探索。</p><a class="button dark" href="#/companies">浏览公司索引 →</a></main>${footer()}`;
@@ -567,6 +579,22 @@ function updateQuery(
 }
 function bindEvents() {
   bindMap(app);
+  app.querySelectorAll<HTMLDetailsElement>(".biography-disclosure").forEach(disclosure => {
+    disclosure.addEventListener("toggle", () => biographyOpenState.set(disclosure.dataset.biographyKey!, disclosure.open));
+    disclosure.addEventListener("keydown", event => {
+      if (event.key === "Escape" && disclosure.open && !document.querySelector(".modal")) {
+        event.preventDefault();
+        disclosure.open = false;
+        disclosure.querySelector("summary")?.focus();
+      }
+    });
+  });
+  app.querySelectorAll<HTMLButtonElement>("[data-biographies]").forEach(button => button.addEventListener("click", () => {
+    app.querySelectorAll<HTMLDetailsElement>(".biography-disclosure").forEach(disclosure => {
+      disclosure.open = button.dataset.biographies === "expand";
+      biographyOpenState.set(disclosure.dataset.biographyKey!, disclosure.open);
+    });
+  }));
   // Highlight the chapter being read in the page contents.
   chapterSpy?.disconnect();
   const jumps = [...app.querySelectorAll<HTMLButtonElement>(".chapter-nav [data-jump]")];
@@ -584,6 +612,8 @@ function bindEvents() {
   app.querySelectorAll<HTMLButtonElement>("[data-jump]").forEach((b) =>
     b.addEventListener("click", () => {
       const target = document.getElementById(b.dataset.jump!);
+      const disclosure = target?.querySelector<HTMLDetailsElement>(".biography-disclosure");
+      if (disclosure) disclosure.open = true;
       target?.setAttribute("tabindex", "-1");
       target?.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "instant" : "smooth" });
       target?.focus({ preventScroll: true });

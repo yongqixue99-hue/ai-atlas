@@ -1156,6 +1156,209 @@ export const sources: Source[] = [
     "url": "https://blog.samaltman.com/reflections",
     "published": "2025-01",
     "verified": "2026-10-08"
+  },
+  {
+    "id": "senate-altman-testimony-2023",
+    "title": "Sam Altman / 美国参议院司法委员会 · 2023 年 5 月 16 日书面证词",
+    "url": "https://www.judiciary.senate.gov/download/2023-05-16-testimony-altman",
+    "published": "2023-05-16",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "brockman-leaving-stripe",
+    "title": "Greg Brockman · Leaving Stripe",
+    "url": "https://blog.gregbrockman.com/leaving-stripe",
+    "published": "2015-05-06",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "quip-launch-2013",
+    "title": "Bret Taylor、Kevin Gibbs / Quip · Introducing Quip",
+    "url": "https://quip.com/blog/introducing-quip",
+    "published": "2013-07-31",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "quip-salesforce-2016",
+    "title": "Bret Taylor、Kevin Gibbs / Quip · Quip + Salesforce = Big News（含 8 月 26 日交易完成更新）",
+    "url": "https://quip.com/blog/salesforce",
+    "published": "2016-08-01",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "twitter-taylor-board-2016",
+    "title": "Twitter / SEC · 2016 年 7 月董事任命 Form 8-K",
+    "url": "https://www.sec.gov/Archives/edgar/data/1418091/000156459016021048/twtr-8k_20160705.htm",
+    "published": "2016-07-05",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "twitter-taylor-chair-2021",
+    "title": "Twitter / SEC · Jack Dorsey steps down; Bret Taylor to Become Independent Chair",
+    "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312521342255/d401229dex991.htm",
+    "published": "2021-11-29",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "twitter-board-end-2022",
+    "title": "Twitter / SEC · 收购完成及董事任期结束 Form 8-K（10 月 28 日签署）",
+    "url": "https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm",
+    "published": "2022-10",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "marquette-taylor-cto-2010",
+    "title": "Marquette University · Bret Taylor Becomes Facebook’s CTO（2010 年任命邮件的馆藏条目）",
+    "url": "https://epublications.marquette.edu/zuckerberg_files_transcripts/29/",
+    "published": "2010-06-02",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "ilya-alexnet-2012",
+    "title": "Krizhevsky、Sutskever、Hinton · ImageNet Classification with Deep Convolutional Neural Networks",
+    "url": "https://www.cs.toronto.edu/~hinton/absps/imagenet.pdf",
+    "published": "2012",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "ilya-gpt-pretraining-2018",
+    "title": "Radford 等 · Improving Language Understanding by Generative Pre-Training",
+    "url": "https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf",
+    "published": "2018",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "openai-language-unsupervised-2018",
+    "title": "Alec Radford / OpenAI · Improving language understanding with unsupervised learning",
+    "url": "https://openai.com/index/language-unsupervised/",
+    "published": "2018-06-11",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "jakub-multi-agent-2017",
+    "title": "Bansal 等 · Emergent Complexity via Multi-Agent Competition",
+    "url": "https://arxiv.org/abs/1710.03748",
+    "published": "2017-10-10",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "openai-competitive-self-play-2017",
+    "title": "OpenAI · Competitive self-play",
+    "url": "https://openai.com/index/competitive-self-play/",
+    "published": "2017-10-11",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "jakub-openai-five-paper-2019",
+    "title": "OpenAI、Berner 等 · Dota 2 with Large Scale Deep Reinforcement Learning",
+    "url": "https://arxiv.org/abs/1912.06680",
+    "published": "2019-12-13",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "paul-electrical-flows-2010",
+    "title": "Christiano 等 · Electrical Flows, Laplacian Systems, and Faster Approximation of Maximum Flow in Undirected Graphs",
+    "url": "https://arxiv.org/abs/1010.2921",
+    "published": "2010-10-14",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "paul-human-preferences-explainer-2017",
+    "title": "Amodei、Christiano、Ray / OpenAI · Learning from human preferences",
+    "url": "https://openai.com/index/learning-from-human-preferences/",
+    "published": "2017-06-13",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dario-concrete-safety-2016",
+    "title": "Amodei 等 · Concrete Problems in AI Safety",
+    "url": "https://arxiv.org/abs/1606.06565",
+    "published": "2016-06-21",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dario-scaling-laws-2020",
+    "title": "Kaplan 等 · Scaling Laws for Neural Language Models",
+    "url": "https://arxiv.org/abs/2001.08361",
+    "published": "2020-01-23",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "anthropic-constitutional-ai-2022",
+    "title": "Bai 等 · Constitutional AI: Harmlessness from AI Feedback",
+    "url": "https://arxiv.org/abs/2212.08073",
+    "published": "2022-12-15",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "deepmind-atari-2013",
+    "title": "Mnih 等 · Playing Atari with Deep Reinforcement Learning",
+    "url": "https://arxiv.org/abs/1312.5602",
+    "published": "2013-12-19",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "deepmind-alphafold3-2024",
+    "title": "Abramson 等 · Accurate structure prediction of biomolecular interactions with AlphaFold 3",
+    "url": "https://www.nature.com/articles/s41586-024-07487-w",
+    "published": "2024-05-08",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "demis-queens-nobel-2024",
+    "title": "Queens’ College · Sir Demis Hassabis wins Nobel Prize in Chemistry",
+    "url": "https://www.queens.cam.ac.uk/about-us/news-events/sir-demis-hassabis-wins-nobel-prize-in-chemistry/",
+    "published": "2024-10-09",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "simo-facebook-watch-2018",
+    "title": "Fidji Simo · Facebook Watch Is Going Global",
+    "url": "https://about.fb.com/news/2018/08/facebook-watch-global/",
+    "published": "2018-08-29",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "simo-facebook-app-2019",
+    "title": "Mark Zuckerberg · A Note From Mark Zuckerberg",
+    "url": "https://about.fb.com/news/2019/03/a-note-from-mark-zuckerberg/",
+    "published": "2019-03-14",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "instacart-platform-2022",
+    "title": "Instacart · Instacart Launches Instacart Platform with New Advertising, Fulfillment and Insights Solutions for Retailers",
+    "url": "https://company.instacart.com/pressreleases/instacart-launches-instacart-platform-with-new-advertising-fulfillment-and-insights-solutions-for-retailers",
+    "published": "2022-03-23",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "instacart-simo-transition-2025",
+    "title": "Instacart · Instacart Appoints Chris Rogers as Chief Executive Officer",
+    "url": "https://company.instacart.com/pressreleases/instacart-appoints-chris-rogers-as-chief-executive-officer",
+    "published": "2025-05-28",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "embl-alphafold-launch-2021",
+    "title": "EMBL-EBI · DeepMind and EMBL release the most complete database of predicted 3D structures of human proteins",
+    "url": "https://www.ebi.ac.uk/about/news/announcements/alphafold-database-launch/",
+    "published": "2021-07-22",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "photo-bret-taylor-2024",
+    "title": "Wikimedia Commons · Bret Taylor 在 TechCrunch Disrupt 2024（照片及 CC BY 2.0 许可）",
+    "url": "https://commons.wikimedia.org/wiki/File:TechCrunch_Disrupt_2024_D2_Bret_Taylor-3.jpg",
+    "published": "2024-10-29",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "photo-fidji-simo-2016",
+    "title": "Wikimedia Commons · Loïc Le Meur 拍摄 Fidji Simo（照片及 CC BY 2.0 许可）",
+    "url": "https://commons.wikimedia.org/wiki/File:Fidji_Simo_(cropped).jpg",
+    "published": "2016-02-29",
+    "verified": "2026-10-08"
   }
 ];
 

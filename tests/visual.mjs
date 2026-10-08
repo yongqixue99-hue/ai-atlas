@@ -1,7 +1,7 @@
 import { chromium } from "playwright";
 import { createServer } from "vite";
 import fs from "node:fs/promises";
-const out = new URL("../docs/qa/", import.meta.url);
+const out = process.env.ATLAS_QA_DIR ? new URL(`file://${process.env.ATLAS_QA_DIR.replace(/\/$/, "")}/`) : new URL("../docs/qa/", import.meta.url);
 await fs.mkdir(out, { recursive: true });
 const server = await createServer({
   server: { host: "127.0.0.1", port: 5180, strictPort: true },

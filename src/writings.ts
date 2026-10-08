@@ -31,7 +31,9 @@ export const writings: Writing[] = [
     "authorship": "individual",
     "kind": "essay",
     "summary": "从深度学习的规模效应出发，展望个人 AI 团队与科学进步，并强调算力、能源和普惠基础设施的重要性。",
-    "mentions": [],
+    "mentions": [
+      "《The Intelligence Age》"
+    ],
     "featuredFor": [
       "sam-altman"
     ]
@@ -61,7 +63,9 @@ export const writings: Writing[] = [
     "authorship": "individual",
     "kind": "essay",
     "summary": "回顾 ChatGPT 发布、组织高速增长与 2023 年治理危机，并阐述迭代部署和迈向超级智能的个人判断。",
-    "mentions": [],
+    "mentions": [
+      "《Reflections》"
+    ],
     "featuredFor": [
       "sam-altman"
     ]
@@ -93,7 +97,9 @@ export const writings: Writing[] = [
     "authorship": "individual",
     "kind": "essay",
     "summary": "回顾 Stripe 扩张时 CTO 职责的变化，讨论技术领导、招聘和工程管理的分工。",
-    "mentions": [],
+    "mentions": [
+      "《#define CTO》"
+    ],
     "featuredFor": [
       "greg-brockman"
     ]
@@ -192,7 +198,9 @@ export const writings: Writing[] = [
     "authorship": "coauthored",
     "kind": "article",
     "summary": "介绍面向企业的对话式 AI agent，强调与业务系统连接、完成具体任务，以及可靠性和数据治理。",
-    "mentions": [],
+    "mentions": [
+      "《Meet Sierra, the conversational AI platform for businesses》"
+    ],
     "featuredFor": [
       "bret-taylor"
     ]
@@ -207,7 +215,9 @@ export const writings: Writing[] = [
     "authorship": "individual",
     "kind": "article",
     "summary": "以 Google Maps 产品经理身份介绍地图 API，让开发者把地图嵌入自己的网站。",
-    "mentions": [],
+    "mentions": [
+      "《The world is your JavaScript-enabled oyster》"
+    ],
     "featuredFor": [
       "bret-taylor"
     ]
@@ -243,59 +253,127 @@ export const writings: Writing[] = [
     "featuredFor": [
       "demis-hassabis"
     ]
+  },
+  {
+    "sourceId": "openai-gym-paper",
+    "title": "OpenAI Gym",
+    "personIds": [
+      "greg-brockman"
+    ],
+    "authors": "Greg Brockman 等 7 位作者",
+    "authorship": "coauthored",
+    "kind": "technical",
+    "summary": "介绍强化学习工具集的组件与设计取舍。",
+    "mentions": [
+      "《OpenAI Gym》"
+    ],
+    "featuredFor": [],
+    "dateNote": "首次提交"
+  },
+  {
+    "sourceId": "seq2seq",
+    "title": "Sequence to Sequence Learning with Neural Networks",
+    "personIds": [
+      "ilya-sutskever"
+    ],
+    "authors": "Ilya Sutskever、Oriol Vinyals、Quoc V. Le",
+    "authorship": "coauthored",
+    "kind": "technical",
+    "summary": "提出以神经网络完成序列到序列学习的方法，并在机器翻译任务中验证。",
+    "mentions": [
+      "《Sequence to Sequence Learning with Neural Networks》"
+    ],
+    "featuredFor": [
+      "ilya-sutskever"
+    ],
+    "dateNote": "首次提交"
+  },
+  {
+    "sourceId": "rlhf-human-preferences",
+    "title": "Deep reinforcement learning from human preferences",
+    "personIds": [
+      "paul-christiano",
+      "dario-amodei"
+    ],
+    "authors": "Paul Christiano、Jan Leike、Tom B. Brown、Miljan Martic、Shane Legg、Dario Amodei",
+    "authorship": "coauthored",
+    "kind": "technical",
+    "summary": "研究如何用人类对行为片段的比较反馈训练强化学习系统。",
+    "mentions": [
+      "《Deep reinforcement learning from human preferences》"
+    ],
+    "featuredFor": [
+      "paul-christiano"
+    ],
+    "dateNote": "首次提交"
+  },
+  {
+    "sourceId": "ai-safety-debate-2018",
+    "title": "AI safety via debate",
+    "personIds": [
+      "paul-christiano",
+      "dario-amodei"
+    ],
+    "authors": "Geoffrey Irving、Paul Christiano、Dario Amodei",
+    "authorship": "coauthored",
+    "kind": "technical",
+    "summary": "探索让 AI 系统互相辩论、由人类评判的监督方法。",
+    "mentions": [
+      "《AI safety via debate》"
+    ],
+    "featuredFor": [
+      "paul-christiano"
+    ],
+    "dateNote": "首次提交"
+  },
+  {
+    "sourceId": "amplification-2018",
+    "title": "Supervising strong learners by amplifying weak experts",
+    "personIds": [
+      "paul-christiano",
+      "dario-amodei"
+    ],
+    "authors": "Paul Christiano、Buck Shlegeris、Dario Amodei",
+    "authorship": "coauthored",
+    "kind": "technical",
+    "summary": "研究通过分解任务，逐步建立复杂问题的训练信号。",
+    "mentions": [
+      "《Supervising strong learners by amplifying weak experts》"
+    ],
+    "featuredFor": [],
+    "dateNote": "首次提交"
+  },
+  {
+    "sourceId": "book-summarization-2021",
+    "title": "Recursively Summarizing Books with Human Feedback",
+    "personIds": [
+      "paul-christiano"
+    ],
+    "authors": "Jeff Wu、Long Ouyang、Daniel M. Ziegler、Nisan Stiennon、Ryan Lowe、Jan Leike、Paul Christiano",
+    "authorship": "coauthored",
+    "kind": "technical",
+    "summary": "将人类反馈与递归任务分解用于整本书的摘要。",
+    "mentions": [
+      "《Recursively Summarizing Books with Human Feedback》"
+    ],
+    "featuredFor": [],
+    "dateNote": "首次提交"
+  },
+  {
+    "sourceId": "paul-announces-arc",
+    "title": "Announcing the Alignment Research Center",
+    "personIds": [
+      "paul-christiano"
+    ],
+    "authors": "Paul Christiano",
+    "authorship": "individual",
+    "kind": "article",
+    "summary": "说明创立 ARC 的背景，以及最初聚焦意图对齐理论研究的计划。",
+    "mentions": [],
+    "featuredFor": [
+      "paul-christiano"
+    ]
   }
-,
-  {
-    sourceId: "openai-gym-paper", title: "OpenAI Gym",
-    personIds: ["greg-brockman"], authors: "Greg Brockman 等 7 位作者",
-    authorship: "coauthored", kind: "technical",
-    summary: "介绍强化学习工具集的组件与设计取舍。",
-    mentions: ["《OpenAI Gym》"], featuredFor: [], dateNote: "首次提交",
-  },
-  {
-    sourceId: "seq2seq", title: "Sequence to Sequence Learning with Neural Networks",
-    personIds: ["ilya-sutskever"], authors: "Ilya Sutskever、Oriol Vinyals、Quoc V. Le",
-    authorship: "coauthored", kind: "technical",
-    summary: "提出以神经网络完成序列到序列学习的方法，并在机器翻译任务中验证。",
-    mentions: ["《Sequence to Sequence Learning with Neural Networks》"],
-    featuredFor: ["ilya-sutskever"], dateNote: "首次提交",
-  },
-  {
-    sourceId: "rlhf-human-preferences", title: "Deep reinforcement learning from human preferences",
-    personIds: ["paul-christiano", "dario-amodei"], authors: "Paul Christiano、Jan Leike、Tom B. Brown、Miljan Martic、Shane Legg、Dario Amodei",
-    authorship: "coauthored", kind: "technical",
-    summary: "研究如何用人类对行为片段的比较反馈训练强化学习系统。",
-    mentions: ["《Deep reinforcement learning from human preferences》"],
-    featuredFor: ["paul-christiano"], dateNote: "首次提交",
-  },
-  {
-    sourceId: "ai-safety-debate-2018", title: "AI safety via debate",
-    personIds: ["paul-christiano", "dario-amodei"], authors: "Geoffrey Irving、Paul Christiano、Dario Amodei",
-    authorship: "coauthored", kind: "technical",
-    summary: "探索让 AI 系统互相辩论、由人类评判的监督方法。",
-    mentions: ["《AI safety via debate》"], featuredFor: ["paul-christiano"], dateNote: "首次提交",
-  },
-  {
-    sourceId: "amplification-2018", title: "Supervising strong learners by amplifying weak experts",
-    personIds: ["paul-christiano", "dario-amodei"], authors: "Paul Christiano、Buck Shlegeris、Dario Amodei",
-    authorship: "coauthored", kind: "technical",
-    summary: "研究通过分解任务，逐步建立复杂问题的训练信号。",
-    mentions: ["《Supervising strong learners by amplifying weak experts》"], featuredFor: [], dateNote: "首次提交",
-  },
-  {
-    sourceId: "book-summarization-2021", title: "Recursively Summarizing Books with Human Feedback",
-    personIds: ["paul-christiano"], authors: "Jeff Wu、Long Ouyang、Daniel M. Ziegler、Nisan Stiennon、Ryan Lowe、Jan Leike、Paul Christiano",
-    authorship: "coauthored", kind: "technical",
-    summary: "将人类反馈与递归任务分解用于整本书的摘要。",
-    mentions: ["《Recursively Summarizing Books with Human Feedback》"], featuredFor: [], dateNote: "首次提交",
-  },
-  {
-    sourceId: "paul-announces-arc", title: "Announcing the Alignment Research Center",
-    personIds: ["paul-christiano"], authors: "Paul Christiano",
-    authorship: "individual", kind: "article",
-    summary: "说明创立 ARC 的背景，以及最初聚焦意图对齐理论研究的计划。",
-    mentions: [], featuredFor: ["paul-christiano"],
-  },
 ];
 
 export const writingKindLabels: Record<Writing["kind"], string> = {

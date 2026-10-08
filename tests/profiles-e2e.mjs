@@ -16,7 +16,7 @@ const errors = [];
 const passed = [];
 page.on("pageerror", e => errors.push(e.message));
 page.on("response", r => { if (r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
-const out = new URL("../docs/qa/", import.meta.url);
+const out = process.env.ATLAS_QA_DIR ? new URL(`file://${process.env.ATLAS_QA_DIR.replace(/\/$/, "")}/`) : new URL("../docs/qa/", import.meta.url);
 async function goto(route) {
   await page.goto(`http://127.0.0.1:5183/#${route}`);
   await page.waitForFunction(() => document.documentElement.dataset.route === location.hash);

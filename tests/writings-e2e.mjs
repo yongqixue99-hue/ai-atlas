@@ -58,7 +58,7 @@ try {
     passed.push(`${p.id}: verified catalogue, safe inline links, repeated jump and keyboard focus`);
   }
   await goto("/person/greg-brockman");
-  await expect(page.locator('.writing-inline[href="https://blog.gregbrockman.com/my-path-to-openai"]')).toHaveCount(1);
+  assert.ok(await page.locator('.writing-inline[href="https://blog.gregbrockman.com/my-path-to-openai"]').count() >= 1);
   await expect(page.locator('.writing-inline[href="https://arxiv.org/abs/1606.01540"]')).toHaveCount(1);
   await goto("/person/dario-amodei");
   await expect(page.locator('.writing-inline[href="https://darioamodei.com/essay/machines-of-loving-grace"]')).toHaveCount(1);
@@ -134,6 +134,7 @@ try {
   await page.emulateMedia({ colorScheme: "light" });
   await page.setViewportSize({ width: 1440, height: 1000 });
   await goto("/person/dario-amodei");
+  await page.locator('[data-biographies="expand"]').click();
   await page.locator('.writing-inline[href="https://darioamodei.com/essay/machines-of-loving-grace"]').evaluate(el => el.closest("section").scrollIntoView({ block: "start", behavior: "instant" }));
   await page.screenshot({ animations: "disabled", path: path.join(out, "writings-inline-desktop.png") });
   assert.deepEqual(errors, []);

@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08T08:02:10.995Z",
+  "browser": "140.0.7339.186",
+  "passed": [
+    "sam-altman: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "greg-brockman: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "ilya-sutskever: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "mira-murati: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "dario-amodei: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "demis-hassabis: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "bret-taylor: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "fidji-simo: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "paul-christiano: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "jakub-pachocki: chapter disclosures, nav opening, repeated keyboard/Escape, resize, figure evidence and alt text",
+    "light 1440px: all figures readable, one accessible diagram, no overflow",
+    "light 390px: all figures readable, one accessible diagram, no overflow",
+    "light 320px: all figures readable, one accessible diagram, no overflow",
+    "dark 1440px: all figures readable, one accessible diagram, no overflow",
+    "dark 390px: all figures readable, one accessible diagram, no overflow",
+    "dark 320px: all figures readable, one accessible diagram, no overflow",
+    "navigation and Back/Forward retain person-specific reading state"
+  ],
+  "errors": []
+}

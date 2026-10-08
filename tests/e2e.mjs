@@ -20,7 +20,7 @@ const passed = [];
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const base = "http://127.0.0.1:5181/";
-const out = new URL("../docs/qa/", import.meta.url);
+const out = process.env.ATLAS_QA_DIR ? new URL(`file://${process.env.ATLAS_QA_DIR.replace(/\/$/, "")}/`) : new URL("../docs/qa/", import.meta.url);
 await fs.mkdir(out, { recursive: true });
 async function check(name, fn) {
   await fn();

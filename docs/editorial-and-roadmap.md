@@ -1,6 +1,6 @@
 # 编辑标准与后续计划
 
-写于 2026-10-08，同日完成首轮传记复核。进展和保留边界见 [复核说明](editorial-audit-2026-10-08.md)。这份文档交给接手后续工作的执行者（人或 AI 代理），说明三件事：还缺哪些人物图片、人物传记按什么标准写、项目接下来做什么。先读“开工前必读”，再按“任务清单”的顺序做。
+写于 2026-10-08，同日完成首轮传记复核。进展和保留边界见 [复核说明](editorial-audit-2026-10-08.md)及[本轮图文扩写](illustrated-biographies-2026-10-08.md)。这份文档交给接手后续工作的执行者（人或 AI 代理），说明三件事：还缺哪些人物图片、人物传记按什么标准写、项目接下来做什么。先读“开工前必读”，再按“任务清单”的顺序做。
 
 ## 开工前必读
 
@@ -14,7 +14,7 @@ npm run test:e2e     # 33 项端到端检查，改动页面或数据后必须通
 node tests/production.mjs   # 针对 dist 的生产构建检查，需先 npm run build
 ```
 
-端到端测试依赖 Playwright 自带的 Chromium。首次运行前执行 `npx playwright install chromium`。测试会重写 `docs/qa/` 下的截图和结果文件，这是预期行为，随改动一并提交。
+端到端测试依赖 Playwright 自带的 Chromium。首次运行前执行 `npx playwright install chromium`。测试默认会重写 `docs/qa/` 下的截图和结果文件，也可用 `ATLAS_QA_DIR` 指向私有输出目录。本轮及后续 QA 截图私下交付，不再加入公开仓库；仅提交必要的文字检查记录。
 
 ### 不能破坏的原则
 
@@ -43,19 +43,17 @@ node tests/production.mjs   # 针对 dist 的生产构建检查，需先 npm run
 
 ## 一、待补的人物图片
 
-12 位人物中 7 位没有照片，目前显示姓名首字母。
+12 位人物中 5 位没有照片，目前显示姓名首字母。
 
 | 人物 | id | 现状 |
 |---|---|---|
 | Thibault Sottiaux | `thibault-sottiaux` | 无照片 |
 | Jakub Pachocki | `jakub-pachocki` | 无照片 |
-| Fidji Simo | `fidji-simo` | 无照片 |
 | Brad Lightcap | `brad-lightcap` | 无照片 |
-| Bret Taylor | `bret-taylor` | 无照片 |
 | Paul Christiano | `paul-christiano` | 无照片 |
 | Ilya Sutskever | `ilya-sutskever` | 无照片 |
 
-已有照片的 5 位：Sam Altman、Greg Brockman、Mira Murati、Dario Amodei、Demis Hassabis。
+已有照片的 7 位：Sam Altman、Greg Brockman、Mira Murati、Dario Amodei、Demis Hassabis、Bret Taylor、Fidji Simo。后两张于本轮核验许可并加入；照片日期不代表当前任职。
 
 ### 图片必须满足的条件
 
@@ -170,7 +168,7 @@ node tests/production.mjs   # 针对 dist 的生产构建检查，需先 npm run
 
 ### 第二优先：图片
 
-5. 按第一节的标准，为 7 位人物寻找有授权的照片。
+5. 按第一节的标准，为剩余 5 位人物寻找有授权的照片。
 6. 为 SSI 和 Thinking Machines Lab 确认是否有可用的官方标志。
 
 ### 第三优先：技术债

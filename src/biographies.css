@@ -1,0 +1,49 @@
+/* Illustrated long-form biographies keep the first read compact. */
+.biography-controls { display:flex; flex-wrap:wrap; align-items:center; gap:10px 20px; margin:0 0 24px; padding-bottom:16px; border-bottom:1px solid var(--line); font:13px/1.6 var(--sans); color:var(--muted); }
+.biography-controls button { color:var(--green); cursor:pointer; padding:4px 0; text-decoration:underline; text-underline-offset:4px; }
+.biography-disclosure { margin-top:8px; }
+.biography-disclosure > summary { display:flex; align-items:center; gap:10px; width:fit-content; max-width:100%; padding:8px 0 16px; cursor:pointer; list-style:none; font:13px/1.6 var(--sans); color:var(--green); }
+.biography-disclosure > summary::-webkit-details-marker { display:none; }
+.biography-disclosure > summary:before { content:"+"; width:18px; font:20px/1 var(--sans); }
+.biography-disclosure[open] > summary:before { content:"−"; }
+.biography-disclosure > summary .when-open, .biography-disclosure[open] > summary .when-closed { display:none; }
+.biography-disclosure[open] > summary .when-open { display:inline; }
+.biography-disclosure > summary:focus-visible, .biography-controls button:focus-visible { outline:2px solid var(--green); outline-offset:5px; border-radius:2px; }
+#app .biography-more > p { font:17px/2.05 var(--sans); color:var(--ink); margin:0 0 18px; }
+.biography-figure { scroll-margin-top:112px; margin:28px 0 14px; padding:22px 20px 18px; border:1px solid var(--line); border-radius:5px; background:var(--soft); overflow:hidden; }
+.figure-heading > span { display:block; color:var(--green); font:12px/1.4 var(--sans); letter-spacing:1px; margin-bottom:9px; }
+#app .figure-heading h3 { font:500 22px/1.4 var(--serif); color:var(--ink); margin:0; }
+.biography-svg { display:block; width:100%; height:auto; overflow:visible; margin:18px 0 8px; }
+.figure-narrow { display:none; }
+.figure-connector { fill:none; stroke:var(--green); stroke-width:1.5; }
+.figure-dot { fill:var(--green); stroke:var(--soft); stroke-width:3; }
+.figure-card { fill:var(--paper); }
+.figure-svg-label { fill:var(--green); font:500 17px var(--sans); }
+.figure-svg-title { fill:var(--ink); font:500 18px var(--sans); }
+.figure-svg-note { fill:var(--muted); font:15px var(--sans); }
+#app .biography-figure figcaption > p { margin:12px 0 9px; font:14px/1.85 var(--sans); color:var(--ink); }
+.figure-credit { font:12px/1.75 var(--sans); color:var(--muted); }
+.figure-credit a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
+.figure-credit a:focus-visible { outline:2px solid var(--green); outline-offset:3px; }
+#app .biography-figure .source-link { margin-top:12px; font:13px/1.4 var(--sans); }
+.biography-figure-photo img { display:block; width:100%; height:auto; margin-top:18px; border-radius:3px; }
+.biography-figure-photo:has(img[src*="fidji-simo"]) img { max-height:520px; object-fit:contain; object-position:center; }
+.portrait-bret-taylor img { object-position:50% 23%; }
+.portrait-fidji-simo img { object-position:50% 27%; }
+@media (max-width:760px) {
+  #app .biography-more > p { font-size:16px; line-height:2; }
+}
+/* Container query preserves legibility inside the narrow desktop reading column. */
+.person-reading > article { container-type:inline-size; }
+@container (max-width:530px) {
+  .figure-wide { display:none; }
+  .figure-narrow { display:block; }
+}
+@media (max-width:600px) {
+  .biography-figure { scroll-margin-top:24px; padding:18px 12px 16px; }
+  #app .figure-heading h3 { font-size:21px; }
+}
+@media print {
+  .biography-controls, .biography-disclosure > summary { display:none; }
+  .biography-disclosure::details-content, .biography-disclosure .biography-more { display:block!important; }
+}
