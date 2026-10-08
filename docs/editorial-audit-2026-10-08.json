@@ -1,0 +1,1629 @@
+{
+  "baselineCommit": "77ab76bd42e33ce949024a6ca79c64cd2f362e4a",
+  "reviewed": "2026-10-08",
+  "scope": "复核十篇原有传记的45条速览和128个正文段落。逐项记录删改，保留内容见 profiles.ts 的逐行、逐段出处。这是审校覆盖记录，不是所有原有说法均准确的声明。",
+  "baselineCounts": {
+    "sam-altman": {
+      "facts": 5,
+      "chapters": 6,
+      "paragraphsByChapter": [
+        2,
+        2,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "greg-brockman": {
+      "facts": 4,
+      "chapters": 5,
+      "paragraphsByChapter": [
+        2,
+        2,
+        3,
+        2,
+        2
+      ]
+    },
+    "ilya-sutskever": {
+      "facts": 5,
+      "chapters": 6,
+      "paragraphsByChapter": [
+        2,
+        2,
+        2,
+        3,
+        3,
+        3
+      ]
+    },
+    "mira-murati": {
+      "facts": 4,
+      "chapters": 5,
+      "paragraphsByChapter": [
+        2,
+        2,
+        3,
+        2,
+        3
+      ]
+    },
+    "dario-amodei": {
+      "facts": 5,
+      "chapters": 6,
+      "paragraphsByChapter": [
+        2,
+        2,
+        3,
+        2,
+        2,
+        3
+      ]
+    },
+    "demis-hassabis": {
+      "facts": 5,
+      "chapters": 6,
+      "paragraphsByChapter": [
+        3,
+        2,
+        3,
+        3,
+        3,
+        3
+      ]
+    },
+    "bret-taylor": {
+      "facts": 4,
+      "chapters": 5,
+      "paragraphsByChapter": [
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    "fidji-simo": {
+      "facts": 4,
+      "chapters": 5,
+      "paragraphsByChapter": [
+        2,
+        1,
+        3,
+        3,
+        3
+      ]
+    },
+    "paul-christiano": {
+      "facts": 5,
+      "chapters": 5,
+      "paragraphsByChapter": [
+        2,
+        2,
+        2,
+        3,
+        3
+      ]
+    },
+    "jakub-pachocki": {
+      "facts": 4,
+      "chapters": 3,
+      "paragraphsByChapter": [
+        2,
+        3,
+        2
+      ]
+    }
+  },
+  "entries": [
+    {
+      "ref": "sam-altman.facts[0]",
+      "personId": "sam-altman",
+      "kind": "fact",
+      "originalSha256": "0c44b95abc0fab72909f42f8b04a22b7e20307e9a3ba07b9b2700cf0cf0ccb59",
+      "note": "Wikipedia infobox/early-life section matches the birth claim; exact date and city were not independently checked in a primary birth source and are omitted.",
+      "disposition": "removed"
+    },
+    {
+      "ref": "sam-altman.facts[1]",
+      "personId": "sam-altman",
+      "kind": "fact",
+      "originalSha256": "0f37aea5de3759b79e2d438af9ee0989bfb8fae0bd8ad1639c784152175a33dd",
+      "note": "Wikipedia supports Clayton. Stanford transcript supports the broader St. Louis upbringing; use only that broader description.",
+      "disposition": "narrowed",
+      "sourceIds": [
+        "sam-stanford-transcript"
+      ]
+    },
+    {
+      "ref": "sam-altman.facts[2]",
+      "personId": "sam-altman",
+      "kind": "fact",
+      "originalSha256": "13ab574856d21fc6c76f71aac87299153e6471a5fba758f9e3d7d962f06c9ae9",
+      "note": "Two years of Stanford computer-science study and departure directly supported by Stanford transcript. Omit exact 2005 departure rather than derive it from YC batch chronology.",
+      "disposition": "narrowed",
+      "sourceIds": [
+        "sam-stanford-transcript"
+      ]
+    },
+    {
+      "ref": "sam-altman.facts[3]",
+      "personId": "sam-altman",
+      "kind": "fact",
+      "originalSha256": "dd0cec46cd9bd70177035738116cf69e967a0d5f92fa251d8e0a05aec8bc8ef5",
+      "note": "YC company page confirms Loopt founder; YC/Stanford descriptions confirm 2014–2019 presidency.",
+      "disposition": "retained",
+      "sourceIds": [
+        "yc-loopt",
+        "yc-group-2016",
+        "sam-stanford-transcript"
+      ]
+    },
+    {
+      "ref": "sam-altman.facts[4]",
+      "personId": "sam-altman",
+      "kind": "fact",
+      "originalSha256": "147f7add346e9b0e2b3a1b143724c644b0f389b86b4590a763fd159672af7cde",
+      "note": "TIME award issuer’s page title directly identifies him in its 2023 TIME100 list; the Stanford transcript independently mentions the honor.",
+      "disposition": "retained",
+      "sourceIds": [
+        "time-sam-2023",
+        "sam-stanford-transcript"
+      ]
+    },
+    {
+      "ref": "sam-altman.chapters[0].text[0]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "d5bdac3a888b8290b000be6d48f6f20f60d667176b6d40fe37b2c2d13decea8e",
+      "note": "Birth, 1989 move, first Macintosh/age 8 match Wikipedia. Omitted specific early-life detail; retained only Stanford-supported St. Louis upbringing."
+    },
+    {
+      "ref": "sam-altman.chapters[0].text[1]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "e0ffdf7e62e6a227a844fd7bfdefe7663679c7f5c1e7788bfa3eb8a1e9c36954",
+      "note": "John Burroughs and 2005 departure match Wikipedia. School/precise year omitted; CS, two years and departure verified against Stanford transcript."
+    },
+    {
+      "ref": "sam-altman.chapters[1].text[0]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "da816b501fce0921776663374948498f8a588ec36f1cdb0efb0fd4150195aad1",
+      "note": "2005/age 19/cofounder/CEO/geolocation purchasing match Wikipedia. Retain founder and mobile-location service via YC; omit age, CEO tenure and data-purchase mechanism without new primary evidence."
+    },
+    {
+      "ref": "sam-altman.chapters[1].text[1]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "d974815a9ff393f894cf1c7a5197b9f22aa888fa2ec06a47a9618d73c0f7b90e",
+      "note": "Funding totals, investor list, traction claim and $43.4m March acquisition match Wikipedia. Retain verified investor names from YC; replace deal wording with Green Dot’s April 4 completed-acquisition announcement and its approximate $43m cash/retention figure. These are different disclosed measures/date types, not a claim that March signing did not happen."
+    },
+    {
+      "ref": "sam-altman.chapters[2].text[0]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "172ff4428edaa71c24636f84fe64a6ef77cbf87c66c1d0051aef603818e82576",
+      "note": "2011 partner, 2014 succession, 1000-company goal, hard-tech ambition, 2016 YC Group role match Wikipedia. Retain appointment and 2016 role through YC; omit partner start and expansion targets without independent corroboration."
+    },
+    {
+      "ref": "sam-altman.chapters[2].text[1]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "5d04d1c02a1a489a421b8adb14cd4fce40fbf355ad972a41125667294a74363a",
+      "note": "Reddit interim CEO, Huffman appointment, funding rounds, board tenure and ownership match Wikipedia. Entire paragraph removed to narrow independently verified career coverage; ownership percentage also conflicts with the no-personal-shareholdings editorial rule."
+    },
+    {
+      "ref": "sam-altman.chapters[2].text[2]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "b74d33e05d9b464b6245dd1715daba423eb04860cb9866fcb58289b529e6ffd7",
+      "note": "2019 focus shift appears in Wikipedia, but YC’s account and exact departure labels have changed. Retain only verified 2014–2019 presidency and March 2019 OpenAI CEO snapshot, without asserting the precise YC exit event."
+    },
+    {
+      "ref": "sam-altman.chapters[3].text[0]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "d52f855000fb8acce9150ae9c8d56dee9d6c9f22623353adb62cb3b426acf9ed",
+      "note": "Wikipedia conflates founders and funders. Correct using original announcement: Altman and Musk were co-chairs; initial funding commitments $1bn. Do not call Thiel/Livingston founders on the strength of the funder list. Omit $130m collected claim without separately checking original backing."
+    },
+    {
+      "ref": "sam-altman.chapters[3].text[1]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "38a95e7d7628c940c4311732005a3205c99c37497adf884703650c7a20322706",
+      "note": "Safety motivation, open-source rationale, recruitment and decades-long characterization appear in Wikipedia. Removed rather than paraphrasing unreviewed underlying interview accounts."
+    },
+    {
+      "ref": "sam-altman.chapters[3].text[2]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "1ede67cbfe98cf23b81a255276ecf6be2ea691e6f4d93a17a82e9e900f8cd457",
+      "note": "Musk departure/conflict rationale appears in Wikipedia and departure is mentioned in OpenAI LP. Omitted as another person’s detail, not as disputed fact."
+    },
+    {
+      "ref": "sam-altman.chapters[4].text[0]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "d1e20c384e87301538579c91137bb5acd52fe14ea2e3e3abd3e49e5dd448a325",
+      "note": "CEO date and ChatGPT free preview/1m signups match Wikipedia. Keep historical CEO snapshot; omit product and adoption detail as duplicative of product timeline and not independently re-read here."
+    },
+    {
+      "ref": "sam-altman.chapters[4].text[1]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "1a75aa1a1df24acb5b575148f3546db5989c0a109895b173420e4b08a0d02b46",
+      "note": "Senate testimony, tour and TIME100 match Wikipedia. Hearing and award independently confirmed; tour count omitted."
+    },
+    {
+      "ref": "sam-altman.chapters[4].text[2]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "14f52be582b0d475a27b12f9f6f6f512c8e448dbe98b249c66e9d0931fdf0298",
+      "note": "Board firing rationale, Brockman departure, Nadella announcement, signature counts, return and board makeup appear in Wikipedia, whose narrative mixes negotiation dates. Narrow to dated primary November 17 and November 29 announcements. Do not equate November 29 announcement with initial return agreement."
+    },
+    {
+      "ref": "sam-altman.chapters[5].text[0]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "b6f01618b14c6754249e5ac90535efe06d2d416c2c302c2dcea0d11405c219dd",
+      "note": "Hydrazine creation/funding/allocation and portfolio list match Wikipedia. Removed as nonessential financial/investment detail."
+    },
+    {
+      "ref": "sam-altman.chapters[5].text[1]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "e5c506a712b11f372f6c8ab817d9e0da48afc1b3e90cab03d32ccc6ecd6e7e65",
+      "note": "Tools for Humanity, Helion, AltC/Oklo dates appear in Wikipedia. Removed pending independent company-source verification; do not infer ongoing roles."
+    },
+    {
+      "ref": "sam-altman.chapters[5].text[2]",
+      "personId": "sam-altman",
+      "kind": "paragraph",
+      "originalSha256": "ed266de212bcc25992ee8f40644c55c4a748dc4b3947443863178643108cc13b",
+      "note": "UBI article, compute proposal and April 2026 change of view appear in Wikipedia. Removed policy commentary and unverified interview summary; Ric Weiland award omitted without direct award source."
+    },
+    {
+      "ref": "greg-brockman.facts[0]",
+      "personId": "greg-brockman",
+      "kind": "fact",
+      "originalSha256": "f3bf4f588779a41d194a8f567e93337ee9484b5a4deed32f3dd8c99c32ae7dce",
+      "note": "Birth claim appears in Wikipedia infobox; no primary birth record checked.",
+      "disposition": "removed"
+    },
+    {
+      "ref": "greg-brockman.facts[1]",
+      "personId": "greg-brockman",
+      "kind": "fact",
+      "originalSha256": "1f2495842d734aab52fdcccdd43e9ec5e6822b84ab4a8522c31b586f6305e51f",
+      "note": "His own retrospective confirms Harvard, transfer to MIT, and departure for Stripe. Reword as this sequence, without exact attendance years or independently unverified graduation assertions.",
+      "disposition": "narrowed",
+      "sourceIds": [
+        "brockman-path"
+      ]
+    },
+    {
+      "ref": "greg-brockman.facts[2]",
+      "personId": "greg-brockman",
+      "kind": "fact",
+      "originalSha256": "8931af1895da1bae9f6190a4eafb121719e970a70382d681446fcefb021af5ef",
+      "note": "ACS’s contemporary award announcement names Greg Brockman as silver medalist.",
+      "disposition": "retained",
+      "sourceIds": [
+        "acs-brockman-2006"
+      ]
+    },
+    {
+      "ref": "greg-brockman.facts[3]",
+      "personId": "greg-brockman",
+      "kind": "fact",
+      "originalSha256": "c6e494c549cd4f82bb9b075f89731de2155b6dc1ffe65164e671965fd960ae3b",
+      "note": "His October 2014 article confirms joining in 2010 and formal CTO appointment roughly 18 months earlier; retain approximately 2013 and omit first-ever wording.",
+      "disposition": "narrowed",
+      "sourceIds": [
+        "brockman-stripe-cto"
+      ]
+    },
+    {
+      "ref": "greg-brockman.chapters[0].text[0]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "b7d0ed50ebccd07cae2469c10b8bca011173deec3ee742a76f5fa479f0f0d67d",
+      "note": "Birth/school, academic excellence and Mathcamp years match Wikipedia. Keep ACS-confirmed school; omit evaluative excellence, exact birth and camp attendance."
+    },
+    {
+      "ref": "greg-brockman.chapters[0].text[1]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "9391b94ba8bfecc93fa133dae3ac3a67213a93dbb09a762993503eda23286355",
+      "note": "Chemistry silver and STS finalist appear in Wikipedia. ACS and Society for Science independently confirm; official result adds sixth place and Seaborg award. Omit first North Dakota finalist since 1973 without separate proof."
+    },
+    {
+      "ref": "greg-brockman.chapters[1].text[0]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "dd5bc2e0218d2e97be2da80cab89e844b3befe0353ab1d7ec371e5218310a8a4",
+      "note": "2008 Harvard and approximately one year before MIT match Wikipedia. Own account confirms transfer and leaving school but not precise enrollment dates; retain only supported sequence."
+    },
+    {
+      "ref": "greg-brockman.chapters[1].text[1]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "629f4671103a5db64f1d23b309d544287079ef92564e0e98eaedcfa94b81d0b7",
+      "note": "2010 Stripe/2013 CTO/May 2015 departure and 5→205 headcount appear in Wikipedia. His 2014 article dates joining and says CTO appointment was roughly 18 months earlier; use circa 2013. His 2016 account instead gives 4→250; omit headcount and exact departure date. Omit Collison classmate relation."
+    },
+    {
+      "ref": "greg-brockman.chapters[2].text[0]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "3be0c2b1627a8c30aae84e8263d4257153ee939f3d73eec238f2aa44aed1d08d",
+      "note": "Recruiting founders and living-room origin appear in Wikipedia. Own retrospective supports meeting and full-time founding work; remove salary comparisons/living-room detail without primary corroboration."
+    },
+    {
+      "ref": "greg-brockman.chapters[2].text[1]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "dca6e6ae98f35cb0670bd4b2c7f6597aa1d213904051bf9babf027f259385911",
+      "note": "CTO/Gym/Five appear in Wikipedia. The current page does not support the specific 2017–2023 board period. Correct president appointment to 2022, retain 2015 CTO; papers/bylines justify contributor wording rather than blanket individual project leadership."
+    },
+    {
+      "ref": "greg-brockman.chapters[2].text[2]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "739f69ca7d718d3fd431a20e7ab195d0a4dab9135ec4235e98c8c6f90ad9bc9d",
+      "note": "GPT-2 original wording is misleading: OpenAI’s staged-release record says a small model was released February 2019 and medium in May. This tangential detail is omitted. Official GPT-4 YouTube search listing identifies Brockman/date, but opened video body provides no metadata, so that claim is also omitted pending direct accessible evidence. TED actual event was April 18, not April 20 distribution date; retain only the directly read event record."
+    },
+    {
+      "ref": "greg-brockman.chapters[3].text[0]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "501021cca7bae558b59ed6c205de8a466e80e761037983be4384c089fc07f625",
+      "note": "Board removal/reporting arrangement/resignation match Wikipedia. Retain November 17 official initial arrangement; omit separately asserted same-day resignation in primary-only version."
+    },
+    {
+      "ref": "greg-brockman.chapters[3].text[1]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "24feaae563d53f82a0d1fb2b48db4bb92172ee67a7aa536f3a9be78d82770838",
+      "note": "Microsoft proposal and November 21 return appear in Wikipedia. Use November 29 official return confirmation and new board chair, avoiding agreement/effective/announcement-date conflation."
+    },
+    {
+      "ref": "greg-brockman.chapters[4].text[0]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "b1afa35a08c9daf200963feee796a57feb500aff50682867bce489d9d7f3da0d",
+      "note": "2024 sabbatical matches Wikipedia. Removed without independently opening Reuters or his own posts; this omission is not a claim that it did not occur."
+    },
+    {
+      "ref": "greg-brockman.chapters[4].text[1]",
+      "personId": "greg-brockman",
+      "kind": "paragraph",
+      "originalSha256": "4c6fa8d7261fa1a31c3ee537b65bb90d5f3b9e2ac44d02d452ca3ea8219d04b0",
+      "note": "Fortune 2025 article is present among Wikipedia references; builder-in-chief is a media description, not a verified official office. 2017 Forbes claim was not found in current cited page. Both omitted rather than laundering them into primary facts."
+    },
+    {
+      "ref": "ilya-sutskever.facts[0]",
+      "personId": "ilya-sutskever",
+      "kind": "fact",
+      "originalSha256": "5ef5989b50fc881c2690f8cbac3c2d450092ce5dc94c391cc8f295ad71b0222c",
+      "note": "Birth year/place appear in Wikipedia; exact birth details omitted rather than depending on an uncorroborated secondary compilation.",
+      "disposition": "removed"
+    },
+    {
+      "ref": "ilya-sutskever.facts[1]",
+      "personId": "ilya-sutskever",
+      "kind": "fact",
+      "originalSha256": "e7b6107fd8357060483d0bc936d3f384ed56d8a29711ab8cc716509f114f5569",
+      "note": "University supports upbringing in Israel and migration to Canada as a teen; omit Jerusalem/age 16 precision in quick facts.",
+      "disposition": "narrowed",
+      "sourceIds": [
+        "utoronto-ilya-honorary"
+      ]
+    },
+    {
+      "ref": "ilya-sutskever.facts[2]",
+      "personId": "ilya-sutskever",
+      "kind": "fact",
+      "originalSha256": "9d35be6a2f89530a04447a29fe1c7f623aa7491e8959b1a4ddc3ea570f03ac72",
+      "note": "University alumni page specifies all three degree years; honorary-degree page specifies math bachelor’s and CS graduate subjects; thesis verifies PhD 2013.",
+      "disposition": "retained",
+      "sourceIds": [
+        "utoronto-ilya-degrees",
+        "utoronto-ilya-honorary",
+        "ilya-thesis"
+      ]
+    },
+    {
+      "ref": "ilya-sutskever.facts[3]",
+      "personId": "ilya-sutskever",
+      "kind": "fact",
+      "originalSha256": "6ba6accc65161cd80afec257defef255d24cdd6a8cad3111196b011a52eb0982",
+      "note": "Doctoral thesis acknowledgement directly names Hinton as adviser.",
+      "disposition": "retained",
+      "sourceIds": [
+        "ilya-thesis"
+      ]
+    },
+    {
+      "ref": "ilya-sutskever.facts[4]",
+      "personId": "ilya-sutskever",
+      "kind": "fact",
+      "originalSha256": "54c7fc7242c41c077f0ceb5ebf2371eff4d9cd799fe15639d6e9ce33cea13e8c",
+      "note": "Royal Society official fellow page says Elected 2022. Its outdated current-job description is not reused.",
+      "disposition": "retained",
+      "sourceIds": [
+        "royalsociety-ilya"
+      ]
+    },
+    {
+      "ref": "ilya-sutskever.chapters[0].text[0]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "85d6f3d9d9f6777453de3f40bbf72c676e1ae9fc99a99bcfda146062eaadd9f9",
+      "note": "Birth/city, age-five migration, Jerusalem and eighth-grade Open University match Wikipedia. Reduce to university-confirmed Israel upbringing; exact details omitted."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[0].text[1]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "4b9a98c957c0dbb99a42310bd1c4fa79eac6b12e6bbbdf76cca28b6e76759126",
+      "note": "Age-16 move and third-year admission match Wikipedia. University 2025 account specifically says admission out of Grade 11 and upper-year courses, not formal third-year admission; replace with its narrower wording."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[1].text[0]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "2231ec4db5d8a04ccb8342fa33295b069e37ae1f3a87ed42d4b8a695af13fbdc",
+      "note": "Three degrees/years, Hinton and thesis title match Wikipedia and university/thesis primary sources; retained."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[1].text[1]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "58ff25f730a4ab9b0942b9aa6a2a12755444d4c0e80072d226c1992ce7883766",
+      "note": "AlexNet collaboration and 2012/2017 paper publication appear in Wikipedia. Retain university-confirmed 2012 collaboration; omit redundant republication bibliographic detail. NeurIPS page search was available but repeated open timed out, so it is not marked freshly verified or used."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[2].text[0]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "b1cd65822d45e320dda39ec586749dcf8e152daffa8fd48b237bfc6464c5bfcf",
+      "note": "Stanford postdoc about two months in 2012 appears in Wikipedia. Personal homepage confirms postdoc sequence but has no dates; remove timing. Correct DNNResearch framing to co-founded in 2012, which the university’s acquisition announcement confirms."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[2].text[1]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "17ce2298765ddb1ae3dbed80799e00947a22393b117d0a0da32325d584b42d14",
+      "note": "2013 Google, seq2seq, TensorFlow and AlphaGo all appear in Wikipedia. Independently retain acquisition/Google Brain history and seq2seq authorship. Omit broader TensorFlow/AlphaGo attribution without full primary paper recheck."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[3].text[0]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "cbbd08e686e258840d675fc6986957a9bd5bd2e7d01532c51d2f21939660d6b7",
+      "note": "Founding chief-scientist title conflicts with original 2015 announcement, which says research director. Use 2015 research director and 2019 chief-scientist/board snapshot. The 2017 board-start claim is not established by reviewed sources."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[3].text[1]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "49f77f692ecf82fc4f7aa9fa8c70da497f130eccf5f7443d3b429bb3f2c0f01d",
+      "note": "Scaling ethos/ChatGPT/reasoning/CLIP/DALL-E and superalignment appear in Wikipedia. Remove generalized or evaluative individual-credit statements. Retain dated co-led superalignment launch, explicitly a four-year goal rather than achievement."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[3].text[2]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "44c762b1489af7be6736b9c007d1592fe5c82383257ecf2aa8d55cb74eab7602",
+      "note": "Consciousness tweet and this-decade forecast match Wikipedia. Remove unreviewed tweet and evaluative framing. Retain forecast with joint Leike/Sutskever article attribution, not solely Sutskever authorship."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[4].text[0]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "0d0bea0cfb37d0279aea1e4d42877f8a8427dca60c5ecb6d75406494afe90846",
+      "note": "Board firing/vote/all-hands duty statement match Wikipedia. The sensitive episode is retained, but narrowed after source review: primary November 17 announcement proves board action and Sutskever membership; the following paragraph retains TIME’s directly read report of his participation/regret. Exact ballot and all-hands words are not independently established and are omitted explicitly, rather than asserting that the episode has been disproved."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[4].text[1]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "4be91ec0a7baa921603f6efa3f1b2923b4107310226aaee817a193432957f719",
+      "note": "Regret and departure from board match Wikipedia. TIME independently reproduces November 20 statement; primary November 29 return announcement confirms he is no longer on board. Replace vague one-week chronology with dates."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[4].text[2]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "a4e46c586bd8d370070c36dece63e1965a6e5b7fd9bd48e58a7c91507b4b1a9d",
+      "note": "Departure/project rationale and Leike hours-later assertion appear in Wikipedia. Retain May 14 primary departure announcement and attribution of personally meaningful work to Altman’s statement; omit unverified hours-later chronology and unrelated Leike exit."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[5].text[0]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "6447840e1a05a713e381914ee1c3c87649367c4fcd27e68e37d875d7cbc62904",
+      "note": "June founding/cofounders/offices/sole product appear in Wikipedia. Primary investor page confirms 2024 founding and team; official site confirms offices and sole focus. Retain year only because these primary pages do not date the launch to June."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[5].text[1]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "a26c655f1177788d3f3ff392e530e13c9f8b124baeb3de7aced16b4e8a152b38",
+      "note": "2024 funding and 2025 funding/acquisition/CEO narrative appear in Wikipedia. Official SSI updates verify $1bn September 4 financing and July 3 CEO announcement, Gross departure June 29. Remove 2025 $2bn/$32bn March claim; search results point to April reporting, and no primary funding announcement was checked. Do not restate acquisition rumor as confirmed rejected offer."
+    },
+    {
+      "ref": "ilya-sutskever.chapters[5].text[2]",
+      "personId": "ilya-sutskever",
+      "kind": "paragraph",
+      "originalSha256": "c5de5e20ee6480cdd63bd52a4727240ddbe1de7441908280f8541350524bc3db",
+      "note": "All listed honors appear in Wikipedia. Directly retain only Royal Society election and university honorary doctorate; other award lists omitted pending each award organizer’s original record."
+    },
+    {
+      "ref": "mira-murati.facts[0]",
+      "personId": "mira-murati",
+      "kind": "fact",
+      "originalSha256": "6b9fb2e03581d1d6fde578b8ce0317a085fb7b903573c3648893554345b266af",
+      "note": "出生日期与地点与已打开的维基条目一致；尚未找到本次可用的原始资料，不称为一手核验。",
+      "disposition": "retained_secondary",
+      "sourceIds": [
+        "wiki-mira-murati"
+      ]
+    },
+    {
+      "ref": "mira-murati.facts[1]",
+      "personId": "mira-murati",
+      "kind": "fact",
+      "originalSha256": "d56330524f525162cafbc63f6d247b7def634fd2676e8bbcf1493e9afe1e702a",
+      "note": "学校官方履历确认两个学位与 Thayer ’12。去掉只由维基支持的科尔比 2011 年及机械工程专业细节，保留可由校方对应的部分。",
+      "disposition": "narrowed_and_resourced",
+      "sourceIds": [
+        "dartmouth-mira-honorary-bio"
+      ]
+    },
+    {
+      "ref": "mira-murati.facts[2]",
+      "personId": "mira-murati",
+      "kind": "fact",
+      "originalSha256": "ecea44e873cbd81b064d2e5e7ea4bd389e634fcfe7e5ea04bbb8c2e82cc9c90f",
+      "note": "角色与维基及校方履历相符；补上 Tesla、Leap Motion 任职年份，年份仍来自维基。",
+      "disposition": "retained_with_dates",
+      "sourceIds": [
+        "wiki-mira-murati",
+        "dartmouth-mira-honorary-bio"
+      ]
+    },
+    {
+      "ref": "mira-murati.facts[3]",
+      "personId": "mira-murati",
+      "kind": "fact",
+      "originalSha256": "e71e4a5a937f86bf0ad663bfcfd098bebe91d6e6fd67730a2e656f87caba7831",
+      "note": "荣誉理学博士由 2024-06-09 校方授予学位公告确认。",
+      "disposition": "retained_primary",
+      "sourceIds": [
+        "dartmouth-mira-honorary-award"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[0].text[0]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "26377357bcf247b65ac10fa105d2e8ae3736b72f5aad90e101ce7265a3413c1a",
+      "note": "出生日期地点与维基一致，保留；流利英语和意大利语的说法仅见汇编，非必要背景，删除。",
+      "disposition": "narrowed_secondary",
+      "sourceIds": [
+        "wiki-mira-murati"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[0].text[1]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "564dad245a19437adc530951fa99383ef6eac3961a68047d1fe5396347a71e5a",
+      "note": "Pearson 官方名录确认 2007 届。原稿把 Davis UWC Scholars 与赴加读中学相连；Dartmouth 原始履历将该身份用于就读 Colby，因此改正对应阶段。16 岁、温哥华岛和 IB 细节未继续作原始核验，删去，不能写成已由校友名录证实。",
+      "disposition": "corrected_and_narrowed",
+      "sourceIds": [
+        "pearson-mira-alumni",
+        "dartmouth-mira-honorary-bio",
+        "wiki-mira-murati"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[1].text[0]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "4bdd8b82e03e3456f6427cb12d007676b26b2d16c90b5214c623053b32848918",
+      "note": "双学位和 AB/BE 由 Dartmouth 履历确认；2012 为校方 Thayer ’12。Colby 2011 年、机械工程专业与维基一致但校方此页不逐项列明，暂删这两项精度。",
+      "disposition": "narrowed_and_resourced",
+      "sourceIds": [
+        "dartmouth-mira-honorary-bio",
+        "wiki-mira-murati"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[1].text[1]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "7637980d5a06fab72c8cccae751af2eb1a140fd4d98b5a895543873fe4f408e7",
+      "note": "高盛东京与 Zodiac 实习在维基有记载，但本次未找到原始材料，删除。Tesla 2013—2016、Leap Motion 2016—2018 按维基保留；产品和工程职责由校方履历交叉支持。Ultraleap 更名关系与人物脉络无关，删除。",
+      "disposition": "part_retained_part_removed",
+      "sourceIds": [
+        "wiki-mira-murati",
+        "dartmouth-mira-honorary-bio"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[2].text[0]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "b3852e3d3aa5b309df629272582729b94bde2e3177a4328b057c07d6f8686477",
+      "note": "2018 加入及初始 VP 头衔仍用维基；CTO 改用 2022-05-05 公司任命。集体产品贡献改为校方有记载的团队领导表述，正文列 ChatGPT、DALL-E、Codex；Sora 非认定错误，仅未在采用的 2024 学位公告内列出，省略。",
+      "disposition": "retained_and_resourced",
+      "sourceIds": [
+        "wiki-mira-murati",
+        "openai-roles-2022",
+        "dartmouth-mira-honorary-award"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[2].text[1]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "d6b01fb7bccde70ead704705e92d78fe458973b0cd1cd54812573a3a7ae80ebc",
+      "note": "Spring 2022 文章、署名、刊物和标题由论文原站确认。Fortune 2023 第 57 名仅由维基匹配，本次未读到原始榜单，删除该排名。",
+      "disposition": "part_retained_part_removed",
+      "sourceIds": [
+        "murati-language-creativity",
+        "wiki-mira-murati"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[2].text[2]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "6d9e08d4779aa4da5709677d94fa1052d09f22eddec58feed6a2dfab0dc9ffb7",
+      "note": "对谈日期由校方报道与署名评论交叉核验。保留创意工作言论及其质量限定，但将宽泛的作家、艺术家、学生批评缩为 2024-07-12 Will Elliott 的具体评论，不扩大评论代表性。荣誉学位分开写并精确到 2024-06-09。是否纳入争议仍由维护者决定。",
+      "disposition": "retained_sensitive_narrowed",
+      "sourceIds": [
+        "dartmouth-mira-ai-discussion",
+        "dartmouth-elliott-murati",
+        "dartmouth-mira-honorary-award"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[3].text[0]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "ee9aabdff6df3ffd4ff159bf6605522db55689243888277c90f6fac8eb78e845",
+      "note": "11 月 17 日任命由原始公告确认。删去约三天、再约两天等含混日数和 Shear 细节；改用 11 月 29 日正式回任公告，并明确公告日不等于此前达成协议日，避免把两层事件混同。",
+      "disposition": "corrected_dates",
+      "sourceIds": [
+        "openai-transition",
+        "openai-return"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[3].text[1]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "07f96ea797a451234d93a6ac09ed95dbf9d767865fb0b84b401134c41531131a",
+      "note": "9 月 25 日离任声明、个人探索理由、McGrew 与 Zoph 离职均由美联社报道支持。改用具名报道归因及转述，未推断三人离职共同动机。",
+      "disposition": "retained_named_report",
+      "sourceIds": [
+        "ap-murati-departure"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[4].text[0]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "ec73dde21cc7fc95dfe917cdac50c1d799ce9b8040ff84bd9661a4e580565e77",
+      "note": "2025 年 2 月公开亮相与维基一致，仍标二手。使命改为已打开公司主页的简短转述；公益公司法律形式本次未读到公司注册或官方明文，不保留。",
+      "disposition": "narrowed_mixed_sources",
+      "sourceIds": [
+        "wiki-mira-murati",
+        "tml-about"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[4].text[1]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "ec103c9bdb512f6a19bab8a44a788aa082c58f78b47e7a0d11908d0bb093700f",
+      "note": "约 30 人、来自竞争对手、Schulman 及两位顾问在维基中有据，但本次没有打开可确认当时成员名单的原始网页，且不可把历史团队当当前团队，整段删去。",
+      "disposition": "removed_unverified_primary",
+      "sourceIds": [
+        "wiki-mira-murati"
+      ]
+    },
+    {
+      "ref": "mira-murati.chapters[4].text[2]",
+      "personId": "mira-murati",
+      "kind": "paragraph",
+      "originalSha256": "6ba24963a3ea8efd8c22caa88d326b0d6638560a8a9c1054529b18dd027acb44",
+      "note": "120 亿美元融资估值、阿尔巴尼亚政府投资、加权董事会投票权在维基有提及，但未完成原始交易或治理文件核验，删除这些细节。Tinker 原始公告为 2025-10-01，产品描述改为语言模型微调 API，避免笼统写成创建前沿模型；不再断言首个产品。",
+      "disposition": "part_corrected_part_removed",
+      "sourceIds": [
+        "wiki-mira-murati",
+        "tml-tinker"
+      ]
+    },
+    {
+      "ref": "dario-amodei.facts[0]",
+      "personId": "dario-amodei",
+      "kind": "fact",
+      "originalSha256": "e0de29d2d4287970bb69da2afad017e208cd91ea13ffa325d202179e5acc7d91",
+      "note": "删除：仅在原维基中核到出生年、出生地；本轮未取得原始资料支持。"
+    },
+    {
+      "ref": "dario-amodei.facts[1]",
+      "personId": "dario-amodei",
+      "kind": "fact",
+      "originalSha256": "ccbaae24786fbfddd23d16c1eaf2f40cfd3f68d91d49d27c6ee1e96628ca7ca7",
+      "note": "改写：普林斯顿校方称 physics PhD（biophysics focus），2011 年；斯坦福本科属实，但本轮主源未明确本科专业，删去物理学学士的专业限定。"
+    },
+    {
+      "ref": "dario-amodei.facts[2]",
+      "personId": "dario-amodei",
+      "kind": "fact",
+      "originalSha256": "c8f5c5ed17fab7c0e405c72d2f49f4ce5f12640a7c60c36e1653a733189ac8b7",
+      "note": "保留并改为学校原文姓名 Michael Berry / William Bialek，避免从别处补中间首字母。"
+    },
+    {
+      "ref": "dario-amodei.facts[3]",
+      "personId": "dario-amodei",
+      "kind": "fact",
+      "originalSha256": "d8604e0e8bc7d735db77838b65c27495637a52bd7c21e26d90f4d83c5cfbf09a",
+      "note": "缩为正文的有界历史：本人官网确认 Google Brain→OpenAI 研究副总裁；百度的具体年月只在维基及其二手链条见到，删。"
+    },
+    {
+      "ref": "dario-amodei.facts[4]",
+      "personId": "dario-amodei",
+      "kind": "fact",
+      "originalSha256": "971c0f4310ddb55d3fbb09058e1d17ee20346d4203b72423b60020ed4a2ff35e",
+      "note": "保留：直接打开 TIME 2025 和 2026 名单条目，后者是 Dario 与 Daniela 联名入选。"
+    },
+    {
+      "ref": "dario-amodei.chapters[0].text[0]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "cfbfbd797185d1ad0b27f6467a98399d330c90a19391c379875470edb21684ce",
+      "note": "S1: 删除出生细节与家庭年龄差；联合创办事实由公司原始资料另写。；S2: 删除：家庭背景与本轮职业叙事无必要关联，按编辑范围排除。"
+    },
+    {
+      "ref": "dario-amodei.chapters[0].text[1]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "72454af2201f97f5209b5b433dcbf78d723dcb8f263cb0e43bf5d03c1a45d5d7",
+      "note": "S1: 部分保留：AAPT 原始名单确认 2000 年美国物理队成员；Lowell 学校本轮未找到主源，删。；S2: 部分保留：普林斯顿校方确认斯坦福本科；Caltech、Physics 11 与本科专业未独立核到，删。"
+    },
+    {
+      "ref": "dario-amodei.chapters[1].text[0]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "5ee2749626393cb4ffcc1117f8ce3d50495ad6c06ff772c272c062703763bb52",
+      "note": "S1: 改写为物理学博士、生物物理方向；两位导师由普林斯顿确认。；S2: 保留：Hertz 简介明确 2007 Hertz Fellow。"
+    },
+    {
+      "ref": "dario-amodei.chapters[1].text[1]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "14b7bf1c659d50bfb2738d32299afc2f0041632eb0887069ae858939f8c77ef3",
+      "note": "S1: 纠正：博士完成年为 2011；论文奖单独写为 2012，采用 Hertz 历届奖项名单，避免把两个年份连成一事。Hertz 人物页自身同时出现 2011 和 2012，应记录冲突。；S2: 保留：本人简介与 Hertz 简介均确认博士后机构；不补精确任职日。"
+    },
+    {
+      "ref": "dario-amodei.chapters[2].text[0]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "c9d9be6cfe142efa26980cc0557837b2969a4cadef61818b42bed814e80bed2e",
+      "note": "S1: 删除具体百度年月；Google Brain 经历由本人简介有界改写。"
+    },
+    {
+      "ref": "dario-amodei.chapters[2].text[1]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "c460c6b2971451faab6eb16ff06302a99c99297ef16be8ee5cda91bc8d5b387a",
+      "note": "S1: 部分保留：OpenAI 职务及模型研发由本人简介确认；精确 2016 入职本轮无所选原始支持，删。；S2: 保留：原论文列出完整作者及 2017 初始提交日期。"
+    },
+    {
+      "ref": "dario-amodei.chapters[2].text[2]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "5787d0df2ee2ea64f77b569d6228854ebd914c12618e2a16bcc173d69dd76c97",
+      "note": "S1: 删除：原维基转引离职分歧，非所选主源事实；不推断动机。"
+    },
+    {
+      "ref": "dario-amodei.chapters[3].text[0]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "9b263d63e6ef9a74904bee23712e1a8f5ecb91bcaea6c5249550e2ec0d51ee9a",
+      "note": "S1: 保留创立年份、创办人职业身份；不保留家庭称谓及全部创始人均前 OpenAI 的宽泛说法。；S2: 保留：2021 公司公告、2023 Claude 发布公告直接支持。"
+    },
+    {
+      "ref": "dario-amodei.chapters[3].text[1]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "289ee101b64aea2136cdff3f8673cce915d18cdfe0514319b1e1f261c6b320ee",
+      "note": "S1: 删除：原维基有此转述，本轮没有打开路透原文；不把未独立核验的接触与拒绝过程当作确定事实。"
+    },
+    {
+      "ref": "dario-amodei.chapters[4].text[0]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "7008a7afc66a6f19b25dcaca3568bbedc6e2a1972139b0b7b977fdab282faed1",
+      "note": "S1: 删除：编辑概括，非可审计事实。；S2: 保留并降日期精度至本人文章标注的 2024 年 10 月，不从维基补 11 日。；S3: 删除：政治路线与采访内容不在本轮职业背景范围；不替代为本站判断。"
+    },
+    {
+      "ref": "dario-amodei.chapters[4].text[1]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "c4dfa45b469044c45dc3c721bd6d16de709246395824b49c71d9baa7cf7d9d41",
+      "note": "S1: 删除：概括性评价。；S2: 删除：本轮未阅读 Axios 原访谈或报道，数值与引语不保留。；S3: 保留：本人 2026 年 1 月文章逐项列出五类风险，压缩并归因。；S4: 改写：原文是回顾 2025 年已提出的未来 1–5 年预测，不能悄然从 2026 年重启计时；缩为有明确预测属性的表述。"
+    },
+    {
+      "ref": "dario-amodei.chapters[5].text[0]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "20b3088a40774e2f83290a7347f1322200b88987ad18fbc5ed0abcf0c977f1f3",
+      "note": "S1: 删除：军事用途分歧、政治争议不在本輪保留范围。；S2: 删除：同上一句；未将维基叙述独立证明为事实。"
+    },
+    {
+      "ref": "dario-amodei.chapters[5].text[1]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "ec300b185edfeb0ee1fd107563c235f1cc5749f5fa61d6fd3dc829be60a99e7f",
+      "note": "S1: 删除：涉及政府争议且无本轮原始材料核验。；S2: 删除：原文属于诉讼过程，违背当前编辑规则的不写诉讼原则。"
+    },
+    {
+      "ref": "dario-amodei.chapters[5].text[2]",
+      "personId": "dario-amodei",
+      "kind": "paragraph",
+      "originalSha256": "632130bc5fbdc9d79de6d4a542396e2c70bc04cd5bb72692114e08e087209b97",
+      "note": "S1: 部分保留：TIME 2025、2026 入选由名单发布者确认；2025 年度人物集体封面未独立核验，删。"
+    },
+    {
+      "ref": "demis-hassabis.facts[0]",
+      "personId": "demis-hassabis",
+      "kind": "fact",
+      "originalSha256": "5153cb7f773acc3ba9718592f5d81a48d9b46fcec107c7ca516d80a8e80a56a3",
+      "note": "保留：诺贝尔奖官方 Facts 给出完整出生日期和城市。"
+    },
+    {
+      "ref": "demis-hassabis.facts[1]",
+      "personId": "demis-hassabis",
+      "kind": "fact",
+      "originalSha256": "6766a102501a30c0bd0fbe574b8bd0b7d403b5c11c4cbe2c4fac82d51e37f9db",
+      "note": "保留：本人简历确认剑桥年份、专业与成绩；UCL 校方确认博士及年份。"
+    },
+    {
+      "ref": "demis-hassabis.facts[2]",
+      "personId": "demis-hassabis",
+      "kind": "fact",
+      "originalSha256": "0bcac2641e3c255a5fe813ebca8bb5368962bad119ee444e8c0cdb08107c5c68",
+      "note": "保留：UCL 明确 Maguire 是 primary supervisor；不把第二导师擅自加入原事实行。"
+    },
+    {
+      "ref": "demis-hassabis.facts[3]",
+      "personId": "demis-hassabis",
+      "kind": "fact",
+      "originalSha256": "185fd7226d3580460dc6a0ffaeac80ffe96761cb0d05680afbef7b01fe16ee12",
+      "note": "保留：本人公开简历明确 13 岁、2300 及 master standard。"
+    },
+    {
+      "ref": "demis-hassabis.facts[4]",
+      "personId": "demis-hassabis",
+      "kind": "fact",
+      "originalSha256": "c6708eb1d0bf599a3205669ea93eed355d6c60ea28d75debd9d5f6f57f6b74ad",
+      "note": "保留：诺贝尔奖官方公告、UCL 2024 公告确认；不将团队成果全部归于个人。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[0].text[0]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "4da420abb1c75784d6b8e7dbec4e608d9fd082e0ed0bed170a6d8cc8568c782d",
+      "note": "S1: 部分保留出生信息；删家庭族裔、成长细节以遵守无关家庭信息的范围限制。；S2: 部分保留少年队长与 13 岁棋力（本人简历）；4 岁学习情境、Candidate Master 精确称号未独立核验，删。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[0].text[1]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "bb6f0a503d784804e0e6ae4447d4faf9c941926f24f00871824377f694bfb33d",
+      "note": "S1: 删除：原维基有此记载，本轮未打开其书籍或采访原文。；S2: 删除：同上，未补为确定的最早 AI 程序。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[0].text[2]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "d5fe9ee62297dacdd6fa32c40c2d885020aa7debc4e4c582fadda77df3b96249",
+      "note": "S1: 删除：学校时间与家庭教育细节只在所选维基核到，本轮未取得主源。；S2: 删除：仅维基支持，本轮未补原始证据。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[1].text[0]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "35edf8b2612d9467ab6a08f22cf959eb60798c4cf9f672c4f3b8e11f2eea0419",
+      "note": "S1: 删除：招工比赛、Syndicate 测试链条只有原维基支持，本轮未独立核验。；S2: 部分保留：本人简历确认 17 岁 co-created Theme Park；Peter Molyneux 共同设计、1994 发行日不在保留句中。；S3: 删除：销量与开创类型的评价不必保留；简历也是自述，避免沿用宣传语。；S4: 删除：个人收入用途不属本轮范围。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[1].text[1]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "57bef3ad87cc9a37d31dbf309491c56b8e7a7aab51c02650920790fa0876fb6d",
+      "note": "S1: 保留：本人简历明列 1994–1997 Queens’ College BA (Hons), Double 1st。；S2: 删除：原维基有赛事记录链接，本轮不追索三届档案，未保留。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[2].text[0]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "ec87d13604038711dc5b8de8981273ee459ef21646809c94ab2a685d0e5954eb",
+      "note": "S1: 保留核心工作：简历确认毕业后在 Lionhead 做 Black & White 的 AI 主程序员；删游戏发行年，避免误读成其任职年份。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[2].text[1]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "b683e2f92cf26ca60847b8e7185095d847a36b372d1ca0e8c4e7af88f7796902",
+      "note": "S1: 部分保留：1998–2005 创办人兼 CEO、参与两款游戏由简历确认；发行合同与 executive designer 细目删。；S2: 缩为 2005 年卖出知识产权和技术，按本人简历；月份与关闭手续未独立核验，删。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[2].text[2]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "b6f715a2becb7c254fb12bbd4c506d13a063af0f4d1ac409a91413162d751bb8",
+      "note": "S1: 删除：非主线竞技细节，未逐项追索原始成绩单；不宣称其错误。；S2: 删除：非主线竞技与奖金细节；不宣称其错误。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[3].text[0]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "46bc0eaa13258e1d9846c8fa3e1598f80ab8f32e060abfb8378d1d4b44106bc9",
+      "note": "S1: 保留学位、年份、导师；论文题名本轮未打开 UCL 学位馆藏，故删题名，不沿用未核内容。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[3].text[1]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "2fbe41f2f4cc60829573d9c59208dae8b099b28474cf6a727c30d835f3342e20",
+      "note": "S1: 纠正过度概括：原研究显示样本相对对照组显著受损，不写所有这类患者均无法想象；不保留第一篇论文的绝对次序。；S2: 缩为原论文关于空间连贯性的讨论，并用作者复数，避免把合作结论独占归功。；S3: 删荣誉型重复；简历有记载，但不为充实篇幅重复。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[3].text[2]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "3ea2b26d40297c1c99dea9ccbebae69b9915a5652ed84f43fc21dd6dec9f3752",
+      "note": "S1: 删导师姓名和访问次序；本轮以 UCL 校方确认的博士后经历简写。；S2: 部分保留 UCL Gatsby 博士后；具体 2009 到任和 Peter Dayan 合作未在保留主源段落逐项支持，删。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[4].text[0]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "3d4be26890c9fe73b2ef54153ff48e15f2f6f0587291cc2e6e6d0e1a1b6ff1c9",
+      "note": "S1: 保留 2010 共同创办；本轮所用主源未逐一列另外两位，故删同句名单而不另作推断。；S2: 删除口号和概括，减少公司使命与个人传记的重复。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[4].text[1]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "c51bf1f33be04376563b375450b368aa011accf6d022d82deaf7a4d0523a6904",
+      "note": "S1: 删除：原维基过于概括“超出人类”；若日后恢复，应按具体论文、游戏和评测定义写。；S2: 保留 2014 Google 收购；删除价款、独立程度这种未取得公司原始交易材料的细节。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[4].text[2]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "6cb6d6c0c1303b9a1148d233f23ce9d9b26f1315763f6e0698495c1b7c6e599a",
+      "note": "S1: 部分保留：官方 AlphaGo 页面核到 2015、2016 比分；柯洁场次本轮未取得该页面的明确比分支持，删。；S2: 删除非传记核心产品结果；本轮未阅读原始节能公告，不沿用 40%。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[5].text[0]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "7eb995522a913d95a935e8e9042ebf68b9abb3ef61dda8de27366b9b753e70ec",
+      "note": "S1: 缩减：原维基有此结果，DeepMind 2020 原始回顾确认 CASP13 领先，但本轮新正文不保留 25/43。；S2: 纠正：87.0 是 free-modelling 子集；全部目标中位数为 92.4。用公司原始评测公告精确限定。；S3: 保留并精确为超过 2 亿：2022-07-28 本人署名公告。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[5].text[1]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "3fb26d17b981ee9b077b6b6da2616a047fb140e4989c9ca1a18bbe9dd41958ce",
+      "note": "S1: 保留创办年份；CEO 用 2022 年公司公告的 founder and acting CEO，避免推成当前职务。；S2: 删除：本轮未阅读任命原始公告。；S3: 删除：本轮未阅读签署记录和 10 月原访谈；不保留归纳判断。"
+    },
+    {
+      "ref": "demis-hassabis.chapters[5].text[2]",
+      "personId": "demis-hassabis",
+      "kind": "paragraph",
+      "originalSha256": "23f57120def872abd50f48ca170003698c842675103bd92ffaa60061f3792457",
+      "note": "S1: 部分保留 Nobel 2024 和 knighthood；CBE 年份存在宣布与授予口径差异（维基 2017，CV 2018），不擅改为其中一个；其余荣誉为压缩而删，不认为虚假。"
+    },
+    {
+      "ref": "bret-taylor.facts[0]",
+      "personId": "bret-taylor",
+      "kind": "fact",
+      "originalSha256": "65942a24b252ca359c54d4a0c529ad5a90057e27de7c1c6c41c5d3c401c0b950",
+      "note": "1980 年与奥克兰与维基一致；未另作原始出生记录核验。",
+      "disposition": "retained_secondary",
+      "sourceIds": [
+        "wiki-bret-taylor"
+      ]
+    },
+    {
+      "ref": "bret-taylor.facts[1]",
+      "personId": "bret-taylor",
+      "kind": "fact",
+      "originalSha256": "054888311e2ec73c6cc0d0d4f732950d096562857c681921e0a6ddf1922284ac",
+      "note": "两个学位、学科与年份由斯坦福工学院校友报道明确列出。",
+      "disposition": "retained_primary",
+      "sourceIds": [
+        "stanford-taylor-friendfeed"
+      ]
+    },
+    {
+      "ref": "bret-taylor.facts[2]",
+      "personId": "bret-taylor",
+      "kind": "fact",
+      "originalSha256": "ba5fac06d26ca6de4c3c243f6fffbab752f745816ffcfb81d2aa0476db7e8e9b",
+      "note": "Google Maps 共同创造者、Facebook CTO、Salesforce 联席 CEO 均有来源；速览缩为带年份的两项角色，Google Maps 留在章节。",
+      "disposition": "narrowed_and_resourced",
+      "sourceIds": [
+        "sierra-bret-bio",
+        "wiki-bret-taylor",
+        "salesforce-taylor-coceo"
+      ]
+    },
+    {
+      "ref": "bret-taylor.facts[3]",
+      "personId": "bret-taylor",
+      "kind": "fact",
+      "originalSha256": "3286b02c46689f135b0951b649a974f09634a21976e4484228777d717f5e5c0b",
+      "note": "Sierra 官方简介支持联合创始人身份；把无日期的现任行改为 2024-02-13 与 Clay Bavor 公开推出平台这一历史事实。",
+      "disposition": "replaced_with_dated_fact",
+      "sourceIds": [
+        "sierra-bret-bio",
+        "sierra-launch"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[0].text[0]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "65fb8304ed37eec502a424aac08bbd0ad61b0ca28912d7e462eacc440d8399d4",
+      "note": "出生年地点与维基一致，速览保留；东湾成长与 1998 高中毕业细节省略。斯坦福原始校友报道可支持 Acalanes 就读，但不直接给毕业年份，本次不追加推断。",
+      "disposition": "narrowed_secondary",
+      "sourceIds": [
+        "wiki-bret-taylor",
+        "stanford-taylor-friendfeed"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[0].text[1]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "94a8916cef4fd0f72e1d1b8e3de52ae180d9968dc954afbfa6fd12d7f09373ff",
+      "note": "学士 2002、硕士 2003、计算机科学由 Stanford Engineering 明文确认。",
+      "disposition": "retained_primary",
+      "sourceIds": [
+        "stanford-taylor-friendfeed"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[1].text[0]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "7dcfd10bb06cc4cd5a80358946895e572aa8f82df3cfccfdc805636c669a5c3f",
+      "note": "2003 Google 入职、Mayer 招募、APM 与 Search by Location/Google Local 路径见维基，但本次不依赖汇编铺叙；改用 2005-06-29 本人署名 Google Maps API 公告及 Sierra 官方共同创造者简介。",
+      "disposition": "replaced_with_primary_event",
+      "sourceIds": [
+        "wiki-bret-taylor",
+        "google-taylor-maps-api",
+        "sierra-bret-bio"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[1].text[1]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "a73f6b4871c2a0955b2f25432fb515679403b0da7cc9218bf8728a256b62e2f3",
+      "note": "2007 离开 Google、Benchmark 驻场创业者由斯坦福报道确认；去掉该原始页未明确给出的 6 月。",
+      "disposition": "narrowed_primary",
+      "sourceIds": [
+        "stanford-taylor-friendfeed"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[2].text[0]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "ee61dcf913977f0cad972a89a8716f1cf4a6b5771b26ca76d1fc5fd4fbec0995",
+      "note": "2007 创办改精确至 Facebook 公告所载 10 月，2009 收购改为 8 月 10 日公布协议。公司公告明确未披露金额，所以删估计 5000 万美元。原稿称收购后才沿用 Like 按钮，存在时序错误：AP 对历史的报道明确 Facebook 于 2009-02-09 已推出 Like，早于 8 月收购，删除因果句。",
+      "disposition": "corrected_causal_claim",
+      "sourceIds": [
+        "facebook-friendfeed-acquisition",
+        "wiki-bret-taylor"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[2].text[1]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "f04786c44bd1020a35c517980b5a563176b4fab14fc6dcc719498c58f40a9094",
+      "note": "2009 随收购加入有公司原始材料；2010 年 CTO、2012 年离开与维基一致。6 月 CTO 月份不在当前维基正文，仅其引用的同期记录支持，正文保留年级精度。",
+      "disposition": "retained_secondary_dates",
+      "sourceIds": [
+        "facebook-friendfeed-acquisition",
+        "wiki-bret-taylor"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[3].text[0]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "aad85c3b7abb4153dc5624cc2fd5847d2897e5580c31624710601fa514f75442",
+      "note": "2012 创办 Quip 仍来自维基；2016 收购由 Salesforce 2019 官方任命简介交叉确认。去掉与 Google Docs 竞争的非必要定位。",
+      "disposition": "retained_mixed_sources",
+      "sourceIds": [
+        "wiki-bret-taylor",
+        "salesforce-taylor-coo"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[3].text[1]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "747f9e879c56967b9b010f39aa37a0659b4cf5545d20c376ede192e9a10f10c8",
+      "note": "保留并用公告精确到 2019-12-12 COO、2021-11-30 联席 CEO 和副董事长；2017 CPO、个人主导 Slack 收购、Customer 360、APM 项目虽见维基，但没有全部重新核验一手细节，改为 2019 公司公告明确职责列表。",
+      "disposition": "narrowed_and_resourced",
+      "sourceIds": [
+        "salesforce-taylor-coo",
+        "salesforce-taylor-coceo",
+        "wiki-bret-taylor"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[3].text[2]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "cd5d8b889833eef907c15fd23fef92387a418af6723255d71e9e3d47d95a59be",
+      "note": "2022-11-30 公告与 2023-01-31 生效日由 Salesforce 官方离任公告明确区分。",
+      "disposition": "retained_primary",
+      "sourceIds": [
+        "salesforce-taylor-departure"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[4].text[0]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "b23337ba846f4de1ed9a43d816295ff3da7edfa313997e524a08918f2833bded",
+      "note": "Twitter 董事 2016、董事长 2021、2022 年 10 月任期结束与维基一致，未声称全经原始档案复核。Shopify 改用 2023-06-27 官方公告，不作现任推断。",
+      "disposition": "retained_mixed_sources",
+      "sourceIds": [
+        "wiki-bret-taylor",
+        "shopify-taylor-board"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[4].text[1]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "9dd2e065d31a6ac0558d598df16821195e21952b396d6462bb8bee3d25c8771c",
+      "note": "2023 年 2 月创办与接近 10 亿估值融资在原始传记的维基汇编中，但本次采用 2024-02-13 Sierra 官方公开发布事件，明确这是发布日而非成立日。移除未核实融资估值。",
+      "disposition": "replaced_with_primary_event",
+      "sourceIds": [
+        "wiki-bret-taylor",
+        "sierra-launch"
+      ]
+    },
+    {
+      "ref": "bret-taylor.chapters[4].text[2]",
+      "personId": "bret-taylor",
+      "kind": "paragraph",
+      "originalSha256": "e2fea7e44e9cecd6ec38c48e9d1b2d43d966629d6a87173f2ebcec8f008ed67b",
+      "note": "不再依赖笼统的‘11 月复职后接替 Brockman’推断，改为原始 2023-11-29 公告的新初始董事会主席及成员记录。未改变图谱角色。",
+      "disposition": "narrowed_primary",
+      "sourceIds": [
+        "openai-return"
+      ]
+    },
+    {
+      "ref": "fidji-simo.facts[0]",
+      "personId": "fidji-simo",
+      "kind": "fact",
+      "originalSha256": "cc338eb64dc68bde30f1cabe54d638fab450bd7db5a87042dcd90a3ec3f02256",
+      "note": "出生日期及塞特与维基一致；本次未找到原始出生记录。",
+      "disposition": "retained_secondary",
+      "sourceIds": [
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.facts[1]",
+      "personId": "fidji-simo",
+      "kind": "fact",
+      "originalSha256": "b991ffe07b1b3077099e058e140cd5888001d00a40c21b5c65adc6fcbad9d732",
+      "note": "HEC 官方公告确认 2008 届管理学硕士，本人 HEC 回顾确认最后一年在 UCLA；新增 2008 年，不臆推与 eBay 入职顺序。",
+      "disposition": "retained_primary",
+      "sourceIds": [
+        "hec-simo-commencement",
+        "hec-simo-profile"
+      ]
+    },
+    {
+      "ref": "fidji-simo.facts[2]",
+      "personId": "fidji-simo",
+      "kind": "fact",
+      "originalSha256": "13721c19087731c94e38e7296eedf508e6837f8a333944dbd95b8f1439fc63aa",
+      "note": "eBay、Facebook、Instacart 路径有据；改成带日期的速览，Facebook 2011 年仍依赖维基。",
+      "disposition": "retained_with_dates",
+      "sourceIds": [
+        "instacart-simo-ceo",
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.facts[3]",
+      "personId": "fidji-simo",
+      "kind": "fact",
+      "originalSha256": "f5f662949669b2d1c5d05068ed291c52e9f73f7d245916c19f21b4afda572612",
+      "note": "维基列出 TIME100 AI 2025，但实际打开 TIME 对应页面时正文为无关 Ally 赞助内容，不能据页面标题冒充已读到完整榜单记录。原稿其他奖项也未核验原始榜单；暂以带日期的 OpenAI 记录代替，非认定获奖事实为假。",
+      "disposition": "removed_unverified_primary",
+      "sourceIds": [
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[0].text[0]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "0eec133fb14113ff0e1380d957abf1c9bccc1b469f58f7695b9ed79fd7812aaf",
+      "note": "出生日期与塞特成长与维基相符，保留；家中首个高中毕业者属于家庭背景，按任务排除。",
+      "disposition": "part_retained_part_removed",
+      "sourceIds": [
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[0].text[1]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "21726987bb93f9cb462c6f8285b2c721d74f37477c0cace9a40ddc7e69a40589",
+      "note": "管理学硕士由 HEC 官方公告确认并补 2008 年；本人回顾及 Instacart 任命履历均支持 UCLA 最后一年。",
+      "disposition": "retained_primary",
+      "sourceIds": [
+        "hec-simo-commencement",
+        "hec-simo-profile",
+        "instacart-simo-ceo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[1].text[0]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "0930801b624519e254bb4e6e88afda04bc8be65b8cd601288ecb1ed8bbb07324",
+      "note": "2007 eBay 战略团队与本地商业、分类广告职责由 Instacart 原始公告支持；2011 离开/加入 Facebook 仍据维基，保留并标注来源级别。",
+      "disposition": "retained_mixed_sources",
+      "sourceIds": [
+        "instacart-simo-ceo",
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[2].text[0]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "461343c6b5f6bd159339d9646f81725f73a507b757d7983d1028fc1d2fe34036",
+      "note": "2011 开始来自维基；截至 2021 约十年 Facebook 经历以及 VP/Head of Facebook App 由 Instacart 原始公告确认。",
+      "disposition": "retained_mixed_sources",
+      "sourceIds": [
+        "wiki-fidji-simo",
+        "instacart-simo-ceo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[2].text[1]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "cb95e77bf57d8b959649e7f8b28c42328db0a2fd70f889f1ba6a17cd3f78a2f0",
+      "note": "广告与移动商业化、自动视频、Live 和 Watch 由 Instacart 履历支持，改为参与/推动表述，避免把全体 Facebook 团队成果独归个人。",
+      "disposition": "narrowed_primary",
+      "sourceIds": [
+        "instacart-simo-ceo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[2].text[2]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "d4126f6cbcc44c95c8304eeed0abdfd74149600f25d3d17cf90423efc7328a9f",
+      "note": "原完整产品列表确实见公司履历，保留代表性产品而不是逐项照搬；与上一段合并，避免同一职责重复。",
+      "disposition": "narrowed_primary",
+      "sourceIds": [
+        "instacart-simo-ceo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[3].text[0]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "b4555a128f1b0d0eaed922874aac34172ed275e885ace57f1fb4e2b078330386",
+      "note": "CEO 计划日 2021-07-08 与上任日 08-02 精确区分；董事 01 月原公告明确。IPO 改用投资者 FAQ 的 2023-09-19 及 CART；董事长任命是 2022-07-22 宣布待上市生效，2024-03 OpenAI 履历确认其已任职。‘约二十年来最长 IPO 空窗期’评价无具名原始支持，删除。",
+      "disposition": "corrected_and_resourced",
+      "sourceIds": [
+        "instacart-simo-ceo",
+        "instacart-simo-chair",
+        "instacart-ipo-faq",
+        "openai-new-directors-2024"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[3].text[1]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "06b227d5da71d1e19f345d253e425b15cd91117b7ead3cd10373b07cd7d93706",
+      "note": "Shopify 董事用 2021-12-16 原公告；L.A. Dance Project 和 Cirque du Soleil 任期缺少日期且本次未核验机构原档案，删除。",
+      "disposition": "part_retained_part_removed",
+      "sourceIds": [
+        "shopify-simo-board",
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[3].text[2]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "daa150ee31a8e3a1014c8a207f93ae134e195a161c1149cced142c55f629bad7",
+      "note": "Metrodora 成立、开业、停诊、本人健康动因与 CODA 职务在维基有所记载，但同一条目正文出现 Alliance/Association 不一致，且本次未完成机构原始记录核验。避免扩展私人健康和过时机构状态，整段删除，不据此认定原事实皆假。",
+      "disposition": "removed_unverified_scope",
+      "sourceIds": [
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[4].text[0]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "0ce1cc13a702e02cfdeee7df81954b6584e8656cb2b1a5d94309a46272904a3c",
+      "note": "2024-03-08 董事任命、2025-05-07 Applications 任命计划均由 OpenAI 公告支持；避免把计划日当实际入职日。",
+      "disposition": "retained_primary",
+      "sourceIds": [
+        "openai-new-directors-2024",
+        "openai-fidji-appointment"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[4].text[1]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "c60d4aa99a944dddb66153249c52d19ca5b660811e54f0ebbe6b9688fcc1e8c0",
+      "note": "8 月到任在维基有记录，HEC 2025-06 公告仍是未来计划，不能算到任证明；改用她 2025-07-21 的本人公开文章‘数周后加入’。报告范围按 5 月 OpenAI 原始公告收窄；删去依赖章节位置的‘下一章’指引。",
+      "disposition": "replaced_with_dated_primary_statement",
+      "sourceIds": [
+        "simo-empowerment-essay",
+        "openai-fidji-appointment",
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "fidji-simo.chapters[4].text[2]",
+      "personId": "fidji-simo",
+      "kind": "paragraph",
+      "originalSha256": "66286d349df7eb2daa217243ef86295c03c23ec1f76471a365e424a54d064531",
+      "note": "Fortune、CNBC、TIME 榜单与维基相符，但本次没有逐个打开核验原始榜单；尤其 TIME 页面实际返回无关赞助正文，因此不宣称完成原始奖项核验，暂删整段。",
+      "disposition": "removed_unverified_primary",
+      "sourceIds": [
+        "wiki-fidji-simo"
+      ]
+    },
+    {
+      "ref": "paul-christiano.facts[0]",
+      "personId": "paul-christiano",
+      "kind": "fact",
+      "originalSha256": "a567c2c95251c2647647cd1b081fb6f336c9385a7e5a3eafc24624e77531c968",
+      "note": "保留：论文期刊作者自述确认 MIT 2012 学士；Berkeley 正式学位报告确认 2017 PhD。"
+    },
+    {
+      "ref": "paul-christiano.facts[1]",
+      "personId": "paul-christiano",
+      "kind": "fact",
+      "originalSha256": "0419903a1044041b4d8d917f40c1acb449e2e5dbc2dc048000c092b8a2e9622b",
+      "note": "保留：Berkeley 馆藏明确 Advisors: Umesh Vazirani。"
+    },
+    {
+      "ref": "paul-christiano.facts[2]",
+      "personId": "paul-christiano",
+      "kind": "fact",
+      "originalSha256": "5d0b66d959410604ae8ff6fe83e3236fc130c8f186cc0ecd78322d8d5756d521",
+      "note": "保留：IMO 官方美国历届名单确认 2008、美国、银牌；单个选手子页返回不存在，故引用国家成绩总表。"
+    },
+    {
+      "ref": "paul-christiano.facts[3]",
+      "personId": "paul-christiano",
+      "kind": "fact",
+      "originalSha256": "830e4660c1170933afd7749cb98c776bcd0b8e8d803b494fe8d08937100309b2",
+      "note": "加日期并精简为研究负责人与 ARC 创办：OpenAI 官方 2026 回顾确认 2017–2021，本人公告确认 2021 ARC。"
+    },
+    {
+      "ref": "paul-christiano.facts[4]",
+      "personId": "paul-christiano",
+      "kind": "fact",
+      "originalSha256": "5e84dbd32e6583f92e7335a4ae6b622cf6b8b493dfb3971a48bd593946cb8b7f",
+      "note": "删除以缩短资料卡：原维基有此榜单记录，本轮未直接阅读 TIME 的 Paul 条目；不作未支持的荣誉复述。"
+    },
+    {
+      "ref": "paul-christiano.chapters[0].text[0]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "804f2b3974f8ffd40dd68d3d26098ac42208702cdf1a5ec99e6011ae38d8599f",
+      "note": "S1: 删除 Harker 校史细节：原维基有引文，本轮未读取学校或赛事材料确认学校。；S2: 保留：IMO 官方成绩表确认；省略非必需的第49届编号。"
+    },
+    {
+      "ref": "paul-christiano.chapters[0].text[1]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "6bb4607757fca0c904a029118d544f975645fd6e59af88269b1066c325af9eae",
+      "note": "S1: 保留：期刊作者简介确认 2012 数学学士。；S2: 保留：同一作者简介明确三类研究。"
+    },
+    {
+      "ref": "paul-christiano.chapters[1].text[0]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "d765909a824bff6aa3b8f26ba6c592d36fdaa075c00526455866923926b2f174",
+      "note": "S1: 保留：Berkeley 正式博士论文馆藏给出题名、年份与导师。"
+    },
+    {
+      "ref": "paul-christiano.chapters[1].text[1]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "86c78a44c15d44e9fef55bdc129da827ec0be3c845220d749c4d5c155e232c2f",
+      "note": "S1: 删除：原维基引 IEEE 报道，本轮未取得原始研究资料；不保留比较大脑的简化结论。；S2: 删除：非主线慈善筹款细节；未独立核验数字。"
+    },
+    {
+      "ref": "paul-christiano.chapters[2].text[0]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "0bec4396f614cb6f5618a225e1c013d544d06a38b0c1c6e1661657b2cd9f333f",
+      "note": "S1: 保留为官方用语“领导对齐研究”，而非将任期内所有年份都具体归给同一团队名称。；S2: 保留：原论文作者列表与 2017 初次提交日期直接支持。；S3: 删除评价性媒体转述；用论文内容代替排名式称誉。"
+    },
+    {
+      "ref": "paul-christiano.chapters[2].text[1]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "6969d7bfd12ff30dc03c4ea02d287b1badfda055f7aaad198447dfa49404fbd9",
+      "note": "S1: 保留：两篇论文原文摘要和作者记录；明确作为研究方向而非已经证明成功。；S2: 保留：原论文作者列表确认。；S3: 保留，移动到 ARC 章并精确为本人公告说明的 2021 年 1 月底。"
+    },
+    {
+      "ref": "paul-christiano.chapters[3].text[0]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "2532d2249a69484a1c59c01781abeb8c95ed57d1f146c0c4f6d107f74c38c799",
+      "note": "S1: 保留：本人 2021-04-26 公告。；S2: 限定为创立时的意图对齐理论研究，避免将 2026 本人首页的新机构介绍倒置成 2021 使命。"
+    },
+    {
+      "ref": "paul-christiano.chapters[3].text[1]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "93da327d88144bbe773d164ed16bdd0d140f2eb8acab964f628a97a0f4c772a9",
+      "note": "S1: 简化为 ARC 2021 年 12 月发布技术报告；公告署名 Paul 和 Mark，未阅读完整报告确认 Ajeya 共同作者，故不列作者名单。；S2: 删除：评估研究与《经济学人》的行业标准采访未独立核验，避免混淆 ARC 与分拆后的评估组织。"
+    },
+    {
+      "ref": "paul-christiano.chapters[3].text[2]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "b35c9e52c859995081caa098dedbbe8a39c623deef04d7bad9bc9120bd94faa0",
+      "note": "S1: 保留为 2023 年 12 月宣布分拆；原公告用 spinning off，不能声称当日已办妥全部法律设立。"
+    },
+    {
+      "ref": "paul-christiano.chapters[4].text[0]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "c57617d6073d9ecc8d5a1c6cb66b718650ea20689bd85c2174b1aaa7e3e01e0b",
+      "note": "S1: 删除：主观概括。；S2: 删除：未读取 Wired 原文；不将二手解释当作本人直接表达。；S3: 删除：未听播客或读取原始文字稿，概率上下文敏感，不只靠新闻再转引。"
+    },
+    {
+      "ref": "paul-christiano.chapters[4].text[1]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "020bac34bd82e2ea7b394f9163c5185d422dfd33e8563230cc9517763a709f4d",
+      "note": "S1: 保留：英国政府 2023-09-07 首份报告列出初始成员。；S2: 任命由 NIST 原始公告支持。敏感媒体部分保留极短归因版本，不改变既有纳入决定；原报道称匿名消息，正式任命与先前报道分开写。"
+    },
+    {
+      "ref": "paul-christiano.chapters[4].text[2]",
+      "personId": "paul-christiano",
+      "kind": "paragraph",
+      "originalSha256": "64170b9fa7194fc9b457fabed412c01620a67788bf6a36603fb267cb8705bdb6",
+      "note": "S1: 改为有终点的历史受托人记录：Anthropic 后续脚注明确 2024 年 4 月离任；TIME 2023 未独立读取，删。；S2: 删除导航式赘语，不改 data.ts 后续治理事实或关系。"
+    },
+    {
+      "ref": "jakub-pachocki.facts[0]",
+      "personId": "jakub-pachocki",
+      "kind": "fact",
+      "originalSha256": "0cf0a162ae6e6ab9a451d7ece5ed2df8ca22c3171d1e7e3f1b1b70a9f24409a8",
+      "note": "Birth year/place appear in Wikipedia; no primary source independently checked.",
+      "disposition": "removed"
+    },
+    {
+      "ref": "jakub-pachocki.facts[1]",
+      "personId": "jakub-pachocki",
+      "kind": "fact",
+      "originalSha256": "fc72ce94ca220914e6a51d1dd69702d050e498c2a642428337b0d766a6191127",
+      "note": "Simons institutional biography identifies Warsaw bachelor’s; CMU degree record confirms CS doctorate, May 2016.",
+      "disposition": "retained",
+      "sourceIds": [
+        "simons-jakub",
+        "cmu-jakub-phd"
+      ]
+    },
+    {
+      "ref": "jakub-pachocki.facts[2]",
+      "personId": "jakub-pachocki",
+      "kind": "fact",
+      "originalSha256": "6c4af1f5e894a73da69bd62de5ecbfc2a87d04b2cdf0c62830174d405e1feb0f",
+      "note": "CMU degree record explicitly identifies adviser Gary Miller.",
+      "disposition": "retained",
+      "sourceIds": [
+        "cmu-jakub-phd"
+      ]
+    },
+    {
+      "ref": "jakub-pachocki.facts[3]",
+      "personId": "jakub-pachocki",
+      "kind": "fact",
+      "originalSha256": "0b9fd40d14c8e0aa6cb464c2c02e5798db8ea2d0c6fb4f5b7e7bbe0435639d27",
+      "note": "Warsaw faculty’s competition results list first place in Google Code Jam 2012.",
+      "disposition": "retained",
+      "sourceIds": [
+        "uw-jakub-codejam"
+      ]
+    },
+    {
+      "ref": "jakub-pachocki.chapters[0].text[0]",
+      "personId": "jakub-pachocki",
+      "kind": "paragraph",
+      "originalSha256": "4e4cb92f126e65e604ef8a5f253b490be49ef71f59094690e988373601ff6a46",
+      "note": "Birth/place, six national finals, 2009 IOI silver match Wikipedia. IOI database independently verifies silver; birth and six-final claim omitted without independent primary check."
+    },
+    {
+      "ref": "jakub-pachocki.chapters[0].text[1]",
+      "personId": "jakub-pachocki",
+      "kind": "paragraph",
+      "originalSha256": "edd4342ad1ed2c8f215c349f8e325af7eaf6314c971d476314591275675345fb",
+      "note": "2011 Code Jam third, 2012 ICPC second/gold and Code Jam win, Topcoder/Hacker Cup/meret appear in Wikipedia. Retain Code Jam scores and ICPC runner-up independently confirmed by Warsaw university; omit extra competitions and handle pending direct event records."
+    },
+    {
+      "ref": "jakub-pachocki.chapters[1].text[0]",
+      "personId": "jakub-pachocki",
+      "kind": "paragraph",
+      "originalSha256": "12497607c07fd35313ee4c479d9a9079bfbd94a08fffd7963d53b43756612253",
+      "note": "Warsaw undergraduate and 2011–2012 Facebook internship match Wikipedia. Retain university education through Simons bio; internship removed without independent primary corroboration."
+    },
+    {
+      "ref": "jakub-pachocki.chapters[1].text[1]",
+      "personId": "jakub-pachocki",
+      "kind": "paragraph",
+      "originalSha256": "a52be182cb4e74628d6eeaf502fed5b352bffe2f62900297e91b0cad23c7868d",
+      "note": "CMU/Miller/title/year match cited sources and directly verified CMU degree record; strengthen to May 2016."
+    },
+    {
+      "ref": "jakub-pachocki.chapters[1].text[2]",
+      "personId": "jakub-pachocki",
+      "kind": "paragraph",
+      "originalSha256": "85881c027e9a7b0803704abb53b5f3fb95964dd42c4751cca8cf8b48063bb7cf",
+      "note": "Harvard then Simons postdocs appears in Wikipedia but is not supported by the actual Simons page: it identifies fall 2014 visiting graduate student and summer 2019 visiting scientist. Replace with these dated program visits; remove claimed sequential postdocs rather than infer degree-stage chronology."
+    },
+    {
+      "ref": "jakub-pachocki.chapters[2].text[0]",
+      "personId": "jakub-pachocki",
+      "kind": "paragraph",
+      "originalSha256": "ccb30cdf9cb85d5075dc5588ab7f97857743624e5774b70ee49f2dad8ff038eb",
+      "note": "2017 joining, 2021 director and GPT-4/Five appear in Wikipedia. OpenAI primary announcement verifies work since 2017 and former research director/project leadership, but no 2021 promotion date; omit exact promotion year."
+    },
+    {
+      "ref": "jakub-pachocki.chapters[2].text[1]",
+      "personId": "jakub-pachocki",
+      "kind": "paragraph",
+      "originalSha256": "84c40ea82e7a58253b88aeb312bb05761467043f4eb3d8cda37a17a94cc7f386",
+      "note": "2024 chief-scientist succession and Altman quote verified with primary announcement. Ilya mentor relation and Strawberry are media descriptions; remove to avoid confusing academic advisor Gary Miller or an anonymously reported project with official attribution."
+    }
+  ]
+}

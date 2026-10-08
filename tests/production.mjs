@@ -25,7 +25,9 @@ const routes = [
 try {
   for (const [name, path] of routes) {
     await page.goto(`http://127.0.0.1:5182/#${path}`);
+    await page.waitForFunction(() => document.documentElement.dataset.route === location.hash);
     await page.evaluate(() => document.fonts.ready);
+    await page.locator("main").evaluate(el => Promise.all(el.getAnimations({ subtree: true }).map(a => a.finished.catch(() => {}))));
     assert.ok(await page.locator("main").innerText());
     assert.equal(await page.locator(".not-found").count(), 0, path);
     await page.screenshot({ path: new URL(`${name}.png`, out).pathname, fullPage: true });
@@ -45,7 +47,9 @@ try {
       ["person-state", "/explore?root=thibault-sottiaux&filter=all&status=all&relation=tibo-codex-role&from=openai"],
     ]) {
       await page.goto(`http://127.0.0.1:5182/#${path}`);
-      await page.evaluate(() => document.fonts.ready);
+      await page.waitForFunction(() => document.documentElement.dataset.route === location.hash);
+    await page.evaluate(() => document.fonts.ready);
+    await page.locator("main").evaluate(el => Promise.all(el.getAnimations({ subtree: true }).map(a => a.finished.catch(() => {}))));
       assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), path);
       if (width === 390) await page.screenshot({
         path: new URL(`${name}-mobile.png`, out).pathname,

@@ -1,6 +1,6 @@
 # AI Atlas source register
 
-版本更新：2026-10-07（UTC）。各来源保留各自实际核验日；旧来源没有统一改成新版日期。
+版本更新：2026-10-08（UTC）。各来源保留各自实际核验日；旧来源没有统一改成新版日期。
 
 ## Coverage and interpretation
 
@@ -58,6 +58,10 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 图谱只对当前中心实体的直接端点绘边；公司专题仍可汇总 Foundation / Group 相关内容，但汇总范围不充当图的法律方向。一个视觉节点可包含多条事实，选择后分别展示；人物创始身份须指明其组织归属。
 
+## 2026-10-08 背景审校范围
+
+本轮复核 `src/profiles.ts` 十篇背景正文与速览；原有公司、角色、关系和事件不是本轮全面复审对象。新增原始资料及明确归因的媒体来源，保留三篇的部分维基依赖。来源被重新阅读，不意味着所有引用它的现职都仍成立。Demis 的 About 页与新官方职衔冲突已明确提示；详见 [审校说明](editorial-audit-2026-10-08.md)。
+
 ## Public sources
 
 ### openai-tibo-forum
@@ -105,20 +109,20 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：OpenAI · Leadership expansion with Fidji Simo
 - 链接：https://openai.com/index/leadership-expansion-with-fidji-simo/
 - 发布日期：2025-05-07
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### fidji-adviser-statement
 
 - 标题：Fidji Simo · 本人公开说明转任兼职顾问
 - 链接：https://www.linkedin.com/posts/fidjisimo_today-i-shared-with-the-openai-team-that-activity-7481120077711425536-e03r
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### nscale-fidji-board
 
 - 标题：Nscale · Fidji Simo joins Board（并确认 OpenAI 顾问身份）
 - 链接：https://www.nscale.com/press-releases/fidji-simo-joins-nscale-board-of-directors
 - 发布日期：2026-09-11
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### openai-leadership-2025
 
@@ -138,28 +142,28 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 - 标题：Sierra · Bret Taylor 官方简介
 - 链接：https://sierra.ai/author/bret-taylor
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### sierra-launch
 
 - 标题：Bret Taylor、Clay Bavor / Sierra · Introducing Sierra
 - 链接：https://sierra.ai/blog/introducing-sierra
 - 发布日期：2024-02-13
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### openai-paul-board-2026
 
 - 标题：OpenAI · Paul Christiano joins OpenAI Foundation Board
 - 链接：https://openai.com/index/paul-christiano-joins-openai-foundation-board/
 - 发布日期：2026-09-09
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### rlhf-human-preferences
 
 - 标题：Christiano 等 · Deep reinforcement learning from human preferences
 - 链接：https://arxiv.org/abs/1706.03741
 - 发布日期：2017-06-12
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### openai-codex-agent
 
@@ -173,14 +177,14 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：OpenAI · Introducing OpenAI
 - 链接：https://openai.com/index/introducing-openai/
 - 发布日期：2015-12-11
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### openai-lp
 
 - 标题：OpenAI · OpenAI LP
 - 链接：https://openai.com/index/openai-lp/
 - 发布日期：2019-03-11
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### openai-api
 
@@ -208,21 +212,21 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：OpenAI · Leadership team update
 - 链接：https://openai.com/index/leadership-team-update/
 - 发布日期：2022-05-05
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### openai-transition
 
 - 标题：OpenAI · Leadership transition
 - 链接：https://openai.com/index/openai-announces-leadership-transition/
 - 发布日期：2023-11-17
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### openai-return
 
 - 标题：OpenAI · Sam Altman returns as CEO
 - 链接：https://openai.com/index/sam-altman-returns-as-ceo-openai-has-a-new-initial-board/
 - 发布日期：2023-11-29
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### openai-review
 
@@ -236,7 +240,7 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：OpenAI · Ilya Sutskever leaves; Jakub Pachocki named Chief Scientist
 - 链接：https://openai.com/index/jakub-pachocki-announced-as-chief-scientist/
 - 发布日期：2024-05-14
-- 核验日期：2026-10-07
+- 核验日期：2026-10-08
 
 ### openai-structure
 
@@ -276,44 +280,44 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：Y Combinator · Sam Altman for President
 - 链接：https://www.ycombinator.com/blog/sam-altman-for-president
 - 发布日期：2014-02-21
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### seq2seq
 
 - 标题：Sutskever, Vinyals & Le · Sequence to Sequence Learning with Neural Networks
 - 链接：https://arxiv.org/abs/1409.3215
 - 发布日期：2014-09-10
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### ssi-about
 
 - 标题：Safe Superintelligence · 公司使命与办公地点
 - 链接：https://ssi.inc/
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### ssi-updates
 
 - 标题：Safe Superintelligence · Updates（含 2025-07-03 人事公告）
 - 链接：https://ssi.inc/updates
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### ssi-founder
 
 - 标题：Sequoia Capital · Ilya Sutskever 创始人档案
 - 链接：https://sequoiacap.com/founder/ilya-sutskever
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### ssi-investor
 
 - 标题：Sequoia Capital · Safe Superintelligence 投资组合档案
 - 链接：https://sequoiacap.com/companies/safe-superintelligence
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### tml-about
 
 - 标题：Thinking Machines Lab · 公司介绍
 - 链接：https://thinkingmachines.ai/
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### tml-nvidia
 
@@ -327,7 +331,7 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：Thinking Machines Lab · Announcing Tinker
 - 链接：https://thinkingmachines.ai/news/announcing-tinker/
 - 发布日期：2025-10-01
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### tml-investor
 
@@ -352,32 +356,32 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：Anthropic · Series B 公告与创立时间回顾
 - 链接：https://www.anthropic.com/news/anthropic-raises-series-b-to-build-safe-reliable-ai
 - 发布日期：2022-04-29
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### anthropic-leadership
 
 - 标题：Anthropic · Leadership
 - 链接：https://www.anthropic.com/company/leadership
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### anthropic-claude
 
 - 标题：Anthropic · Introducing Claude
 - 链接：https://www.anthropic.com/news/introducing-claude
 - 发布日期：2023-03-14
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### dario-bio
 
 - 标题：Dario Amodei · 本人官网简介
 - 链接：https://darioamodei.com/
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### deepmind-about
 
-- 标题：Google DeepMind · About
+- 标题：Google DeepMind · About（现职措辞与较新公告冲突）
 - 链接：https://deepmind.google/about/
-- 核验日期：2026-10-03
+- 核验日期：2026-10-08
 
 ### deepmind-formation
 
@@ -452,3 +456,629 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：Microsoft · Facts about Microsoft
 - 链接：https://news.microsoft.com/facts-about-microsoft/
 - 核验日期：2026-10-03
+
+### wiki-sam-altman
+
+- 标题：Wikipedia · Sam Altman（生平背景；二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Sam_Altman
+- 核验日期：2026-10-08
+
+### wiki-greg-brockman
+
+- 标题：Wikipedia · Greg Brockman（生平背景；二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Greg_Brockman
+- 核验日期：2026-10-08
+
+### wiki-ilya-sutskever
+
+- 标题：Wikipedia · Ilya Sutskever（生平背景；二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Ilya_Sutskever
+- 核验日期：2026-10-08
+
+### wiki-mira-murati
+
+- 标题：Wikipedia · Mira Murati（生平背景；二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Mira_Murati
+- 核验日期：2026-10-08
+
+### wiki-dario-amodei
+
+- 标题：Wikipedia · Dario Amodei（二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Dario_Amodei
+- 核验日期：2026-10-08
+
+### wiki-demis-hassabis
+
+- 标题：Wikipedia · Demis Hassabis（二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Demis_Hassabis
+- 核验日期：2026-10-08
+
+### wiki-bret-taylor
+
+- 标题：Wikipedia · Bret Taylor（生平背景；二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Bret_Taylor
+- 核验日期：2026-10-08
+
+### wiki-fidji-simo
+
+- 标题：Wikipedia · Fidji Simo（生平背景；二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Fidji_Simo
+- 核验日期：2026-10-08
+
+### wiki-paul-christiano
+
+- 标题：Wikipedia · Paul Christiano（二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Paul_Christiano_(researcher)
+- 核验日期：2026-10-08
+
+### wiki-jakub-pachocki
+
+- 标题：Wikipedia · Jakub Pachocki（生平背景；二手汇编，非原始资料）
+- 链接：https://en.wikipedia.org/wiki/Jakub_Pachocki
+- 核验日期：2026-10-08
+
+### sam-stanford-transcript
+
+- 标题：Stanford STVP · The Possibilities of AI（现场对谈文字稿）
+- 链接：https://stvp.stanford.edu/node/10731/printable/print
+- 发布日期：2024-05-01
+- 核验日期：2026-10-08
+
+### yc-loopt
+
+- 标题：Y Combinator · Loopt 公司与创始人档案
+- 链接：https://www.ycombinator.com/companies/loopt
+- 核验日期：2026-10-08
+
+### greendot-loopt-completed
+
+- 标题：Green Dot · Completes Acquisition of Loopt
+- 链接：https://ir.greendot.com/news-releases/news-release-details/green-dot-completes-acquisition-loopt/
+- 发布日期：2012-04-04
+- 核验日期：2026-10-08
+
+### yc-group-2016
+
+- 标题：Sam Altman / Y Combinator · YC Changes
+- 链接：https://www.ycombinator.com/blog/yc-changes/
+- 发布日期：2016-09-13
+- 核验日期：2026-10-08
+
+### senate-altman-2023
+
+- 标题：美国参议院司法委员会 · Oversight of A.I.: Rules for Artificial Intelligence
+- 链接：https://www.judiciary.senate.gov/committee-activity/hearings/oversight-of-ai-rules-for-artificial-intelligence
+- 发布日期：2023-05-16
+- 核验日期：2026-10-08
+
+### time-sam-2023
+
+- 标题：TIME · Sam Altman: The 100 Most Influential People of 2023
+- 链接：https://time.com/collections/100-most-influential-people-2023/6270015/sam-altman/
+- 核验日期：2026-10-08
+
+### acs-brockman-2006
+
+- 标题：美国化学会 / EurekAlert! · 2006 年国际化学奥林匹克美国队获奖公告
+- 链接：https://www.eurekalert.org/news-releases/557270
+- 发布日期：2006-07-13
+- 核验日期：2026-10-08
+
+### sts-brockman-2007
+
+- 标题：Society for Science · Intel Science Talent Search 2007 官方结果
+- 链接：https://www.societyforscience.org/regeneron-sts/intel-sts-2007/
+- 核验日期：2026-10-08
+
+### brockman-path
+
+- 标题：Greg Brockman · My path to OpenAI
+- 链接：https://blog.gregbrockman.com/my-path-to-openai
+- 发布日期：2016-05-03
+- 核验日期：2026-10-08
+
+### brockman-stripe-cto
+
+- 标题：Greg Brockman · #define CTO
+- 链接：https://blog.gregbrockman.com/figuring-out-the-cto-role-at-stripe
+- 发布日期：2014-10-27
+- 核验日期：2026-10-08
+
+### openai-gym-paper
+
+- 标题：Brockman 等 · OpenAI Gym
+- 链接：https://arxiv.org/abs/1606.01540
+- 发布日期：2016-06-05
+- 核验日期：2026-10-08
+
+### openai-five-2018
+
+- 标题：OpenAI · OpenAI Five（团队署名与技术介绍）
+- 链接：https://openai.com/index/openai-five/
+- 发布日期：2018-06-25
+- 核验日期：2026-10-08
+
+### ted-brockman-2023
+
+- 标题：TED · The astounding new era of AI: Notes on Session 2 of TED2023
+- 链接：https://blog.ted.com/the-astounding-new-era-of-ai-notes-on-session-2-of-ted2023/
+- 发布日期：2023-04-18
+- 核验日期：2026-10-08
+
+### utoronto-ilya-honorary
+
+- 标题：多伦多大学 · Ilya Sutskever receives U of T honorary degree
+- 链接：https://www.utoronto.ca/news/ilya-sutskever-leader-ai-and-its-responsible-development-receives-u-t-honorary-degree
+- 发布日期：2025-06-06
+- 核验日期：2026-10-08
+
+### utoronto-ilya-degrees
+
+- 标题：多伦多大学校友事务 · Hinton honorary degree（列出 Sutskever 三个学位年份）
+- 链接：https://alumni.utoronto.ca/news/u-t-deep-learning-pioneer-geoffrey-hinton-receives-honorary-degree
+- 发布日期：2021-06-11
+- 核验日期：2026-10-08
+
+### ilya-thesis
+
+- 标题：Ilya Sutskever / 多伦多大学 · Training Recurrent Neural Networks（博士论文）
+- 链接：https://www.cs.toronto.edu/~ilya/pubs/ilya_sutskever_phd_thesis.pdf
+- 发布日期：2013
+- 核验日期：2026-10-08
+
+### utoronto-dnnresearch
+
+- 标题：多伦多大学 · Google acquires U of T neural networks company
+- 链接：https://www.utoronto.ca/news/google-acquires-u-t-neural-networks-company
+- 发布日期：2013-03-12
+- 核验日期：2026-10-08
+
+### ilya-homepage
+
+- 标题：Ilya Sutskever / 多伦多大学 · 个人学术主页（历史经历，现职未更新）
+- 链接：https://www.cs.toronto.edu/~ilya/
+- 核验日期：2026-10-08
+
+### openai-superalignment
+
+- 标题：Jan Leike、Ilya Sutskever / OpenAI · Introducing Superalignment
+- 链接：https://openai.com/index/introducing-superalignment/
+- 发布日期：2023-07-05
+- 核验日期：2026-10-08
+
+### time-ilya-regret
+
+- 标题：TIME · Who Is Emmett Shear, OpenAI’s New CEO?（转引 Sutskever 公开声明）
+- 链接：https://time.com/6337608/emmett-shear-openai-ceo/
+- 发布日期：2023-11-20
+- 核验日期：2026-10-08
+
+### royalsociety-ilya
+
+- 标题：Royal Society · Dr Ilya Sutskever FRS（2022 年当选）
+- 链接：https://royalsociety.org/people/ilya-sutskever-35834/
+- 核验日期：2026-10-08
+
+### ioi-jakub
+
+- 标题：国际信息学奥林匹克 · Jakub Pachocki 成绩记录
+- 链接：https://stats.ioinformatics.org/people/1051
+- 核验日期：2026-10-08
+
+### uw-jakub-codejam
+
+- 标题：华沙大学数学、信息学与力学学院 · Google Code Jam 成绩
+- 链接：https://www.mimuw.edu.pl/en/achievements/google-code-jam/
+- 核验日期：2026-10-08
+
+### uw-jakub-icpc
+
+- 标题：华沙大学 · Medal dla programistów z UW（回顾 2012 年亚军队成员）
+- 链接：https://www.uw.edu.pl/medal-dla-programistow-z-uw/
+- 发布日期：2024-04-22
+- 核验日期：2026-10-08
+
+### simons-jakub
+
+- 标题：Simons 计算理论研究所 · Jakub Pachocki 历史简介与访问记录
+- 链接：https://simons.berkeley.edu/people/jakub-pachocki
+- 核验日期：2026-10-08
+
+### cmu-jakub-phd
+
+- 标题：卡内基梅隆大学 · Jakub Pachocki 博士学位与论文记录
+- 链接：https://csd-web-01.andrew.cmu.edu/academics/doctoral/degrees-conferred/jakub-pachocki
+- 核验日期：2026-10-08
+
+### ssi-founder-levy
+
+- 标题：Sequoia Capital · Daniel Levy 创始人档案
+- 链接：https://sequoiacap.com/founder/daniel-levy
+- 核验日期：2026-10-08
+
+### ssi-founder-gross
+
+- 标题：Sequoia Capital · Daniel Gross 创始人档案
+- 链接：https://sequoiacap.com/founder/daniel-gross
+- 核验日期：2026-10-08
+
+### dartmouth-mira-honorary-bio
+
+- 标题：Dartmouth · 2024 honorary degree recipients（Murati 官方履历）
+- 链接：https://home.dartmouth.edu/news/2024/04/announcing-2024-honorary-degree-recipients
+- 发布日期：2024-04-11
+- 核验日期：2026-10-08
+
+### dartmouth-mira-honorary-award
+
+- 标题：Dartmouth · Dartmouth Awards Honorary Degrees
+- 链接：https://home.dartmouth.edu/news/2024/06/dartmouth-commencement-honorands
+- 发布日期：2024-06-09
+- 核验日期：2026-10-08
+
+### pearson-mira-alumni
+
+- 标题：Pearson College UWC · Alumni（Murati 2007 届）
+- 链接：https://www.pearsoncollege.ca/alumni/
+- 核验日期：2026-10-08
+
+### murati-language-creativity
+
+- 标题：Ermira Murati / Daedalus · Language & Coding Creativity
+- 链接：https://www.amacad.org/publication/daedalus/language-coding-creativity
+- 核验日期：2026-10-08
+
+### ap-murati-departure
+
+- 标题：Associated Press · Mira Murati and two other OpenAI executives announce departure（报道）
+- 链接：https://apnews.com/article/openai-mira-murati-quits-df75217584696b442935dbccc9b0347d
+- 发布日期：2024-09-25
+- 核验日期：2026-10-08
+
+### dartmouth-mira-ai-discussion
+
+- 标题：Dartmouth Engineering · Mira Murati Shares Optimism for AI’s Future
+- 链接：https://engineering.dartmouth.edu/news/openai-cto-mira-murati-th12-shares-optimism-for-ais-future
+- 发布日期：2024-06-10
+- 核验日期：2026-10-08
+
+### dartmouth-elliott-murati
+
+- 标题：Will Elliott / The Dartmouth · OpenAI’s Mira Murati has it all wrong（署名评论）
+- 链接：https://www.thedartmouth.com/article/2024/07/elliott-murati-openai
+- 发布日期：2024-07-12
+- 核验日期：2026-10-08
+
+### stanford-taylor-friendfeed
+
+- 标题：Stanford Engineering · Stanford friendships fed success of FriendFeed
+- 链接：https://engineering.stanford.edu/news/stanford-friendships-fed-success-social-networking-innovator-friendfeed
+- 核验日期：2026-10-08
+
+### google-taylor-maps-api
+
+- 标题：Bret Taylor / Google · The world is your JavaScript-enabled oyster
+- 链接：https://googleblog.blogspot.com/2005/06/world-is-your-javascript-enabled_29.html
+- 发布日期：2005-06-29
+- 核验日期：2026-10-08
+
+### facebook-friendfeed-acquisition
+
+- 标题：Facebook · Agreement to acquire FriendFeed
+- 链接：https://about.fb.com/news/2009/08/facebook-agrees-to-acquire-sharing-service-friendfeed/
+- 发布日期：2009-08-10
+- 核验日期：2026-10-08
+
+### salesforce-taylor-coo
+
+- 标题：Salesforce · Bret Taylor named President & COO
+- 链接：https://www.salesforce.com/news/press-releases/2019/12/12/salesforce-names-bret-taylor-president-chief-operating-officer/
+- 发布日期：2019-12-12
+- 核验日期：2026-10-08
+
+### salesforce-taylor-coceo
+
+- 标题：Salesforce · Bret Taylor promoted to Vice Chair and Co-CEO
+- 链接：https://www.salesforce.com/news/press-releases/2021/11/30/bret-taylor-promoted-to-vice-chair-and-co-ceo-of-salesforce/?bc=OTH
+- 发布日期：2021-11-30
+- 核验日期：2026-10-08
+
+### salesforce-taylor-departure
+
+- 标题：Salesforce · Bret Taylor to step down as Vice Chair and Co-CEO
+- 链接：https://www.salesforce.com/au/news/press-releases/2022/11/30/bret-taylor-to-step-down-as-salesforce-vice-chair-and-co-ceo/?bc=OTH
+- 发布日期：2022-11-30
+- 核验日期：2026-10-08
+
+### shopify-taylor-board
+
+- 标题：Shopify · A board member Taylor-made for Shopify
+- 链接：https://www.shopify.com/news/a-board-member-taylor-made-for-shopify
+- 发布日期：2023-06-27
+- 核验日期：2026-10-08
+
+### hec-simo-commencement
+
+- 标题：HEC Paris · Fidji Simo to deliver 2025 commencement address
+- 链接：https://www.hec.edu/en/school/news/fidji-simo-deliver-2025-commencement-address-hec-paris
+- 发布日期：2025-06-05
+- 核验日期：2026-10-08
+
+### hec-simo-profile
+
+- 标题：Fidji Simo / HEC Paris · Fidji H.08（本人求学回顾）
+- 链接：https://www.hec.edu/en/hec-foundation/profiles/fidji-h08
+- 核验日期：2026-10-08
+
+### instacart-simo-ceo
+
+- 标题：Instacart · Fidji Simo appointed CEO
+- 链接：https://company.instacart.com/pressreleases/instacart-appoints-board-member-fidji-simo-to-chief-executive-officer-and-announces-founder-and-current-ceo-apoorva-mehta-will-serve-as-executive-chairman-of-the-board
+- 发布日期：2021-07-08
+- 核验日期：2026-10-08
+
+### shopify-simo-board
+
+- 标题：Shopify · Fidji Simo joins Board of Directors
+- 链接：https://www.shopify.com/news/shopify-s-board-just-got-insta-ntly-better-instacart-ceo-fidji-simo-joins-shopify-s-board-of-directors
+- 发布日期：2021-12-16
+- 核验日期：2026-10-08
+
+### instacart-simo-chair
+
+- 标题：Instacart · Fidji Simo appointed Chair, effective upon public listing
+- 链接：https://company.instacart.com/pressreleases/instacart-appoints-ceo-fidji-simo-to-chair-of-the-board-founder-executive-chairman-apoorva-mehta-to-transition-off-the-board-when-instacart-becomes-a-public-company
+- 发布日期：2022-07-22
+- 核验日期：2026-10-08
+
+### instacart-ipo-faq
+
+- 标题：Instacart · Investor FAQs（上市日期与股票代码）
+- 链接：https://investors.instacart.com/ir-resources/faqs
+- 核验日期：2026-10-08
+
+### openai-new-directors-2024
+
+- 标题：OpenAI · New members of the board of directors
+- 链接：https://openai.com/index/openai-announces-new-members-to-board-of-directors/
+- 发布日期：2024-03-08
+- 核验日期：2026-10-08
+
+### simo-empowerment-essay
+
+- 标题：Fidji Simo / OpenAI · AI as the greatest source of empowerment for all
+- 链接：https://openai.com/index/ai-as-the-greatest-source-of-empowerment-for-all/
+- 发布日期：2025-07-21
+- 核验日期：2026-10-08
+
+### dario-princeton-bio
+
+- 标题：普林斯顿大学 · Dario Amodei 的学位与研究经历
+- 链接：https://www.princeton.edu/news/2023/09/12/time-magazines-time100-artificial-intelligence-list-honors-six-princetonians
+- 发布日期：2023-09-12
+- 核验日期：2026-10-08
+
+### dario-hertz-bio
+
+- 标题：Hertz Foundation · Dario Amodei 简介
+- 链接：https://www.hertzfoundation.org/people/dario-amodei/
+- 核验日期：2026-10-08
+
+### hertz-thesis-awards
+
+- 标题：Hertz Foundation · 历届论文奖名单
+- 链接：https://www.hertzfoundation.org/hertz-community/awards-recognition/hertz-thesis-prize/
+- 核验日期：2026-10-08
+
+### dario-physics-team-2000
+
+- 标题：美国物理教师协会 · 2000 年美国物理队名单
+- 链接：https://www.aapt.org/olympiad2000/team2000.html
+- 核验日期：2026-10-08
+
+### anthropic-series-a-2021
+
+- 标题：Anthropic · 2021 年 Series A 公告
+- 链接：https://www.anthropic.com/news/anthropic-raises-124-million-to-build-more-reliable-general-ai-systems
+- 发布日期：2021-05-28
+- 核验日期：2026-10-08
+
+### dario-loving-grace
+
+- 标题：Dario Amodei · Machines of Loving Grace
+- 链接：https://darioamodei.com/essay/machines-of-loving-grace
+- 核验日期：2026-10-08
+
+### dario-adolescence
+
+- 标题：Dario Amodei · The Adolescence of Technology
+- 链接：https://darioamodei.com/essay/the-adolescence-of-technology
+- 核验日期：2026-10-08
+
+### time-dario-2025
+
+- 标题：TIME · 2025 年百大人物：Dario Amodei
+- 链接：https://time.com/collections/100-most-influential-people-2025/7273747/dario-amodei/
+- 发布日期：2025-04-16
+- 核验日期：2026-10-08
+
+### time-dario-daniela-2026
+
+- 标题：TIME · 2026 年百大人物：Dario Amodei 与 Daniela Amodei
+- 链接：https://time.com/collection/100-most-influential-people/2026/dario-daniela-amodei/
+- 发布日期：2026-04-15
+- 核验日期：2026-10-08
+
+### demis-nobel-facts
+
+- 标题：诺贝尔奖官方 · Demis Hassabis 获奖者资料
+- 链接：https://www.nobelprize.org/prizes/chemistry/2024/hassabis/facts/
+- 核验日期：2026-10-08
+
+### demis-cv-2023
+
+- 标题：宗座科学院收录 · Demis Hassabis 2023 年简历
+- 链接：https://www.pas.va/content/dam/casinapioiv/pas/pdf-vari/cv_accademici/Demis-Hassabis-CV-2023.pdf
+- 核验日期：2026-10-08
+
+### demis-ucl-nobel
+
+- 标题：伦敦大学学院 · 校友 Demis Hassabis 获诺贝尔化学奖
+- 链接：https://www.ucl.ac.uk/news/2024/oct/ucl-alumnus-and-ai-innovator-awarded-nobel-prize-chemistry
+- 发布日期：2024-10-09
+- 核验日期：2026-10-08
+
+### demis-imagination-2007
+
+- 标题：Hassabis 等 · Patients with hippocampal amnesia cannot imagine new experiences
+- 链接：https://pubmed.ncbi.nlm.nih.gov/17229836/
+- 发布日期：2007-01-30
+- 核验日期：2026-10-08
+
+### deepmind-alphago-history
+
+- 标题：Google DeepMind · AlphaGo 比赛记录
+- 链接：https://deepmind.google/research/alphago/
+- 核验日期：2026-10-08
+
+### deepmind-alphafold-casp14
+
+- 标题：Google DeepMind · AlphaFold 的 CASP14 结果
+- 链接：https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/
+- 发布日期：2020-11-30
+- 核验日期：2026-10-08
+
+### deepmind-alphafold-database-2022
+
+- 标题：Demis Hassabis / Google DeepMind · AlphaFold 数据库扩展
+- 链接：https://deepmind.google/blog/alphafold-reveals-the-structure-of-the-protein-universe/
+- 发布日期：2022-07-28
+- 核验日期：2026-10-08
+
+### nobel-chemistry-2024-html
+
+- 标题：诺贝尔奖官方 · 2024 年化学奖新闻稿（网页）
+- 链接：https://www.nobelprize.org/prizes/chemistry/2024/press-release/
+- 发布日期：2024-10-09
+- 核验日期：2026-10-08
+
+### isomorphic-leadership-2022
+
+- 标题：Isomorphic Labs · 首批管理团队公告
+- 链接：https://www.isomorphiclabs.com/articles/isomorphic-labs-announces-first-phase-of-management-team
+- 发布日期：2022-05-01
+- 核验日期：2026-10-08
+
+### paul-mit-author-bio
+
+- 标题：Theory of Computing · Paul Christiano 作者简介
+- 链接：https://theoryofcomputing.org/articles/v009a009/about.html
+- 核验日期：2026-10-08
+
+### paul-berkeley-thesis
+
+- 标题：加州大学伯克利分校 · Manipulation-resistant online learning
+- 链接：https://www2.eecs.berkeley.edu/Pubs/TechRpts/2017/EECS-2017-107.html
+- 发布日期：2017-05-15
+- 核验日期：2026-10-08
+
+### paul-imo-results
+
+- 标题：国际数学奥林匹克官方 · 美国历届选手成绩
+- 链接：https://www.imo-official.org/results/individual/country/USA/
+- 核验日期：2026-10-08
+
+### paul-bio
+
+- 标题：Paul Christiano · 本人官网简介
+- 链接：https://paulfchristiano.com/
+- 核验日期：2026-10-08
+
+### ai-safety-debate-2018
+
+- 标题：Irving、Christiano、Amodei · AI safety via debate
+- 链接：https://arxiv.org/abs/1805.00899
+- 发布日期：2018-05-02
+- 核验日期：2026-10-08
+
+### amplification-2018
+
+- 标题：Christiano、Shlegeris、Amodei · Supervising strong learners by amplifying weak experts
+- 链接：https://arxiv.org/abs/1810.08575
+- 发布日期：2018-10-19
+- 核验日期：2026-10-08
+
+### book-summarization-2021
+
+- 标题：Wu 等 · Recursively Summarizing Books with Human Feedback
+- 链接：https://arxiv.org/abs/2109.10862
+- 发布日期：2021-09-22
+- 核验日期：2026-10-08
+
+### paul-announces-arc
+
+- 标题：Paul Christiano · Announcing the Alignment Research Center
+- 链接：https://www.alignmentforum.org/posts/3ejHFgQihLG4L6WQf/announcing-the-alignment-research-center
+- 发布日期：2021-04-26
+- 核验日期：2026-10-08
+
+### arc-elk-report-2021
+
+- 标题：Alignment Research Center · 首份技术报告 Eliciting Latent Knowledge
+- 链接：https://www.alignment.org/blog/arcs-first-technical-report-eliciting-latent-knowledge/
+- 发布日期：2021-12-14
+- 核验日期：2026-10-08
+
+### metr-spinout-2023
+
+- 标题：METR · ARC Evals is now METR
+- 链接：https://metr.org/blog/2023-12-04-metr-announcement/
+- 发布日期：2023-12-04
+- 核验日期：2026-10-08
+
+### uk-frontier-taskforce-2023
+
+- 标题：英国政府 · Frontier AI Taskforce 首份进展报告
+- 链接：https://www.gov.uk/government/publications/frontier-ai-taskforce-first-progress-report/frontier-ai-taskforce-first-progress-report
+- 发布日期：2023-09-07
+- 核验日期：2026-10-08
+
+### anthropic-ltbt-2023
+
+- 标题：Anthropic · Long-Term Benefit Trust 及后续成员变更脚注
+- 链接：https://www.anthropic.com/news/the-long-term-benefit-trust
+- 发布日期：2023-09-19
+- 核验日期：2026-10-08
+
+### nist-paul-appointment-2024
+
+- 标题：NIST · 美国 AI 安全研究所管理团队任命公告
+- 链接：https://www.nist.gov/news-events/news/2024/04/us-commerce-secretary-gina-raimondo-announces-expansion-us-ai-safety
+- 发布日期：2024-04-16
+- 核验日期：2026-10-08
+
+### venturebeat-nist-appointment-2024
+
+- 标题：VentureBeat · Christiano 拟议任命的内部反对报道（二手，含匿名消息）
+- 链接：https://venturebeat.com/ai/nist-staffers-revolt-against-potential-appointment-of-effective-altruist-ai-researcher-to-us-ai-safety-institute
+- 发布日期：2024-03-07
+- 核验日期：2026-10-08
+
+### google-ai-leadership-2026
+
+- 标题：Google · The next chapter of our AI momentum
+- 链接：https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/
+- 核验日期：2026-10-08
+
+### deepmind-institute-2026
+
+- 标题：DeepMind Institute · 成立公告与创办者职衔
+- 链接：https://institute.deepmind.com/essays/introducing-the-deepmind-institute/
+- 发布日期：2026-09-16
+- 核验日期：2026-10-08
+
+### google-demis-author
+
+- 标题：Google · Demis Hassabis 作者资料
+- 链接：https://blog.google/authors/demis-hassabis/
+- 核验日期：2026-10-08

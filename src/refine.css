@@ -101,3 +101,18 @@
 #app .footer-meta { font-size:13px; }
 #app .footer-lead p { font-size:15px; }
 @media (max-width:600px) { #app .page-intro h1 { font-size:34px; } #app .page-intro > p { font-size:15px; } }
+
+/* Compact, claim-specific evidence keeps the chapter layout quiet. */
+.profile-citation {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:24px; min-height:24px; padding:0 3px; margin-left:2px;
+  border:0; border-radius:3px; background:transparent; color:var(--green);
+  font:13px/1.2 var(--sans); vertical-align:baseline; cursor:pointer;
+}
+.profile-citation:hover { background:var(--soft); }
+.profile-citation:focus-visible { outline:2px solid var(--green); outline-offset:3px; }
+#app .profile-role-note { font:13px/1.7 var(--sans); color:var(--muted); margin:12px 0; max-width:56ch; padding-left:12px; border-left:2px solid var(--green); }
+.profile-reviewed { font-variant-numeric:tabular-nums; }
+@media (max-width:360px) {
+  .ego-label { max-width:42cqw; overflow-wrap:anywhere; }
+}

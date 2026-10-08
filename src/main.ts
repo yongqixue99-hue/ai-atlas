@@ -111,6 +111,9 @@ function footer() {
 function sourceButton(ids: readonly string[], text = "查看来源") {
   return `<button class="text-link source-link" data-sources="${esc(ids.join(","))}">${text} ${arrow}</button>`;
 }
+function profileCitation(ids: readonly string[], label: string, mark = "↗") {
+  return `<button class="profile-citation" data-sources="${esc(ids.join(","))}" aria-label="${esc(label)}" title="${esc(label)}">${esc(mark)}</button>`;
+}
 function sectionHeading(
   n: string,
   title: string,
@@ -346,7 +349,7 @@ function personNext(p: Person) {
 function personPage(p: Person) {
   const ties = personTies(p);
   const profile = profiles[p.id];
-  const allSources = [...new Set([...p.sourceIds, ...(profile?.chapters.flatMap((c) => c.sourceIds) || [])])];
+  const allSources = [...new Set([...p.sourceIds, ...(profile?.chapters.flatMap((c) => c.sourceIds) || []), ...(profile?.facts.flatMap((f) => f[2] || []) || []), ...(profile?.roleNote?.sourceIds || [])])];
   const facts = [
     ["所属机构", `<a href="#/company/${esc(p.companyId)}">${esc(relationshipName(p.companyId))}</a>`, ""],
     ["关联记录", String(ties.reduce((n, t) => n + t.records.length, 0)), "is-figure"],
@@ -354,14 +357,15 @@ function personPage(p: Person) {
     ["资料来源", String(allSources.length), "is-figure"],
     ["版本更新", esc(datasetDate), ""],
   ];
+  let citationNumber = 0;
   const chapters = [
-    ...(profile?.chapters || []).map((c) => ({ title: c.title, body: `${c.text.map((text) => `<p>${esc(text)}</p>`).join("")}${sourceButton(c.sourceIds, "本章依据")}` })),
+    ...(profile?.chapters || []).map((c) => ({ title: c.title, body: `${c.text.map((text, index) => `<p>${esc(text)} ${c.paragraphSourceIds?.[index]?.length ? profileCitation(c.paragraphSourceIds[index], `${c.title}，第 ${index + 1} 段的资料来源`, `[${++citationNumber}]`) : ""}</p>`).join("")}${c.paragraphSourceIds ? "" : sourceButton(c.sourceIds, "本章依据")}` })),
     { title: profile ? "公开记录中的角色" : "经历与贡献", body: p.paragraphs.map((text, index) => `<p>${esc(text)}</p>${p.paragraphSourceIds?.[index]?.length ? sourceButton(p.paragraphSourceIds[index], "本段依据") : ""}`).join("") },
     { title: "沿着时间阅读", body: `<div class="milestones">${p.milestones.map((m) => `<article><time>${esc(m.date)}</time><div><p>${esc(m.text)}</p>${sourceButton(m.sourceIds)}</div></article>`).join("")}</div>` },
     { title: "人物资料来源", body: sourceList(allSources) },
   ];
   const no = (i: number) => String(i + 1).padStart(2, "0");
-  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span><p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}</dd></div>`).join("")}</dl>` : ""}<a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="chapter-${i + 1}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${chapters.map((c, i) => `<section class="chapter" id="chapter-${i + 1}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
+  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span>${profile?.roleNote ? `<p class="profile-role-note">${esc(profile.roleNote.text)} ${profileCitation(profile.roleNote.sourceIds, "查看职务更新依据")}</p>` : ""}<p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value, ids]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}${ids?.length ? ` ${profileCitation(ids, `${term}的资料来源`)}` : ""}</dd></div>`).join("")}</dl>` : ""}<a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="chapter-${i + 1}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${chapters.map((c, i) => `<section class="chapter" id="chapter-${i + 1}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile?.reviewNote ? `<p class="profile-review-note">${esc(profile.reviewNote)}</p><p class="profile-reviewed">背景复核 <time datetime="${esc(profile.reviewed || "")}">${esc(profile.reviewed || "")}</time></p>` : profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
 }
 function timeline(entityId?: string) {
   const list = events.filter(
@@ -391,6 +395,7 @@ function sourcesPage() {
   const cite = (ids: readonly string[]) => new Set(ids).forEach((id) => cited.set(id, (cited.get(id) || 0) + 1));
   for (const c of companies) cite(c.sourceIds);
   for (const p of people) cite([...p.sourceIds, ...p.milestones.flatMap((m) => m.sourceIds), ...(p.paragraphSourceIds || []).flat()]);
+  for (const p of Object.values(profiles)) cite([...p.chapters.flatMap(c => c.sourceIds), ...p.facts.flatMap(f => f[2] || []), ...(p.roleNote?.sourceIds || [])]);
   for (const r of relationships) cite(r.sourceIds);
   for (const e of events) cite(e.sourceIds);
   for (const e of additionalEntities) cite(e.sourceIds);

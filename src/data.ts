@@ -114,461 +114,1025 @@ export const foundationBoard: {
 };
 
 export const sources: Source[] = [
-{
-  "id": "openai-tibo-forum",
-  "title": "OpenAI Forum · Codex is for Everyone（2026-05-13 活动与讲者简介）",
-  "url": "https://forum.openai.com/public/events/codex-is-for-everyone-why-codex-matters-beyond-code-fa40puy7wi",
-  "verified": "2026-10-07"
-},
-{
-  "id": "openai-tibo-astral",
-  "title": "OpenAI · OpenAI to acquire Astral（Tibo 职称与 Codex 方向）",
-  "url": "https://openai.com/index/openai-to-acquire-astral/",
-  "published": "2026-03-19",
-  "verified": "2026-10-07"
-},
-{
-  "id": "vivatech-tibo-2026",
-  "title": "VivaTech · Thibault Sottiaux 与 Peter Steinberger 讲者公告",
-  "url": "https://vivatech.com/media/press-releases/breaking-news-peter-steinberger-creator-of-openclaw-and-thibault-sottiaux-openai-two-ai-experts-for-an-exceptional-session-at-vivatech",
-  "published": "2026-05-28",
-  "verified": "2026-10-07"
-},
-{
-  "id": "openai-tibo-ona",
-  "title": "OpenAI · OpenAI to acquire Ona（Core Products Lead）",
-  "url": "https://openai.com/index/openai-to-acquire-ona/",
-  "published": "2026-06-11",
-  "verified": "2026-10-07"
-},
-{
-  "id": "openai-tibo-platform",
-  "title": "OpenAI · Defense Factory（Head of Core Products & Platform）",
-  "url": "https://openai.com/the-defense-factory/",
-  "verified": "2026-10-07"
-},
-{
-  "id": "openai-jakub-2026",
-  "title": "Jakub Pachocki / OpenAI · An Alien Mind",
-  "url": "https://openai.com/index/an-alien-mind/",
-  "published": "2026-09-06",
-  "verified": "2026-10-07"
-},
-{
-  "id": "openai-fidji-appointment",
-  "title": "OpenAI · Leadership expansion with Fidji Simo",
-  "url": "https://openai.com/index/leadership-expansion-with-fidji-simo/",
-  "published": "2025-05-07",
-  "verified": "2026-10-07"
-},
-{
-  "id": "fidji-adviser-statement",
-  "title": "Fidji Simo · 本人公开说明转任兼职顾问",
-  "url": "https://www.linkedin.com/posts/fidjisimo_today-i-shared-with-the-openai-team-that-activity-7481120077711425536-e03r",
-  "verified": "2026-10-07"
-},
-{
-  "id": "nscale-fidji-board",
-  "title": "Nscale · Fidji Simo joins Board（并确认 OpenAI 顾问身份）",
-  "url": "https://www.nscale.com/press-releases/fidji-simo-joins-nscale-board-of-directors",
-  "published": "2026-09-11",
-  "verified": "2026-10-07"
-},
-{
-  "id": "openai-leadership-2025",
-  "title": "OpenAI · Leadership updates（Brad Lightcap 的历史职责）",
-  "url": "https://openai.com/index/leadership-updates-march-2025/",
-  "published": "2025-03-24",
-  "verified": "2026-10-07"
-},
-{
-  "id": "brad-departure-reuters",
-  "title": "Reuters / Investing.com · Brad Lightcap announces departure（媒体交叉核验）",
-  "url": "https://www.investing.com/news/stock-market-news/senior-openai-executive-brad-lightcap-to-leave-for-new-venture-4852370",
-  "published": "2026-08-11",
-  "verified": "2026-10-07"
-},
-{
-  "id": "sierra-bret-bio",
-  "title": "Sierra · Bret Taylor 官方简介",
-  "url": "https://sierra.ai/author/bret-taylor",
-  "verified": "2026-10-07"
-},
-{
-  "id": "sierra-launch",
-  "title": "Bret Taylor、Clay Bavor / Sierra · Introducing Sierra",
-  "url": "https://sierra.ai/blog/introducing-sierra",
-  "published": "2024-02-13",
-  "verified": "2026-10-07"
-},
-{
-  "id": "openai-paul-board-2026",
-  "title": "OpenAI · Paul Christiano joins OpenAI Foundation Board",
-  "url": "https://openai.com/index/paul-christiano-joins-openai-foundation-board/",
-  "published": "2026-09-09",
-  "verified": "2026-10-07"
-},
-{
-  "id": "rlhf-human-preferences",
-  "title": "Christiano 等 · Deep reinforcement learning from human preferences",
-  "url": "https://arxiv.org/abs/1706.03741",
-  "published": "2017-06-12",
-  "verified": "2026-10-07"
-},
   {
-    id: "openai-codex-agent",
-    title: "OpenAI · Introducing Codex（2025 年研究预览）",
-    url: "https://openai.com/index/introducing-codex/",
-    published: "2025-05-16",
-    verified: "2026-10-07",
+    "id": "openai-tibo-forum",
+    "title": "OpenAI Forum · Codex is for Everyone（2026-05-13 活动与讲者简介）",
+    "url": "https://forum.openai.com/public/events/codex-is-for-everyone-why-codex-matters-beyond-code-fa40puy7wi",
+    "verified": "2026-10-07"
   },
   {
-    id: "openai-founding",
-    title: "OpenAI · Introducing OpenAI",
-    url: "https://openai.com/index/introducing-openai/",
-    verified: "2026-10-03",
-    published: "2015-12-11",
+    "id": "openai-tibo-astral",
+    "title": "OpenAI · OpenAI to acquire Astral（Tibo 职称与 Codex 方向）",
+    "url": "https://openai.com/index/openai-to-acquire-astral/",
+    "published": "2026-03-19",
+    "verified": "2026-10-07"
   },
   {
-    id: "openai-lp",
-    title: "OpenAI · OpenAI LP",
-    url: "https://openai.com/index/openai-lp/",
-    verified: "2026-10-03",
-    published: "2019-03-11",
+    "id": "vivatech-tibo-2026",
+    "title": "VivaTech · Thibault Sottiaux 与 Peter Steinberger 讲者公告",
+    "url": "https://vivatech.com/media/press-releases/breaking-news-peter-steinberger-creator-of-openclaw-and-thibault-sottiaux-openai-two-ai-experts-for-an-exceptional-session-at-vivatech",
+    "published": "2026-05-28",
+    "verified": "2026-10-07"
   },
   {
-    id: "openai-api",
-    title: "OpenAI · OpenAI API",
-    url: "https://openai.com/index/openai-api/",
-    verified: "2026-10-03",
-    published: "2020-06-11",
+    "id": "openai-tibo-ona",
+    "title": "OpenAI · OpenAI to acquire Ona（Core Products Lead）",
+    "url": "https://openai.com/index/openai-to-acquire-ona/",
+    "published": "2026-06-11",
+    "verified": "2026-10-07"
   },
   {
-    id: "openai-chatgpt",
-    title: "OpenAI · Introducing ChatGPT",
-    url: "https://openai.com/index/chatgpt/",
-    verified: "2026-10-03",
-    published: "2022-11-30",
+    "id": "openai-tibo-platform",
+    "title": "OpenAI · Defense Factory（Head of Core Products & Platform）",
+    "url": "https://openai.com/the-defense-factory/",
+    "verified": "2026-10-07"
   },
   {
-    id: "openai-gpt4",
-    title: "OpenAI · GPT-4",
-    url: "https://openai.com/index/gpt-4/",
-    verified: "2026-10-03",
-    published: "2023-03-14",
+    "id": "openai-jakub-2026",
+    "title": "Jakub Pachocki / OpenAI · An Alien Mind",
+    "url": "https://openai.com/index/an-alien-mind/",
+    "published": "2026-09-06",
+    "verified": "2026-10-07"
   },
   {
-    id: "openai-roles-2022",
-    title: "OpenAI · Leadership team update",
-    url: "https://openai.com/index/leadership-team-update/",
-    verified: "2026-10-07",
-    published: "2022-05-05",
+    "id": "openai-fidji-appointment",
+    "title": "OpenAI · Leadership expansion with Fidji Simo",
+    "url": "https://openai.com/index/leadership-expansion-with-fidji-simo/",
+    "published": "2025-05-07",
+    "verified": "2026-10-08"
   },
   {
-    id: "openai-transition",
-    title: "OpenAI · Leadership transition",
-    url: "https://openai.com/index/openai-announces-leadership-transition/",
-    verified: "2026-10-03",
-    published: "2023-11-17",
+    "id": "fidji-adviser-statement",
+    "title": "Fidji Simo · 本人公开说明转任兼职顾问",
+    "url": "https://www.linkedin.com/posts/fidjisimo_today-i-shared-with-the-openai-team-that-activity-7481120077711425536-e03r",
+    "verified": "2026-10-08"
   },
   {
-    id: "openai-return",
-    title: "OpenAI · Sam Altman returns as CEO",
-    url: "https://openai.com/index/sam-altman-returns-as-ceo-openai-has-a-new-initial-board/",
-    verified: "2026-10-07",
-    published: "2023-11-29",
+    "id": "nscale-fidji-board",
+    "title": "Nscale · Fidji Simo joins Board（并确认 OpenAI 顾问身份）",
+    "url": "https://www.nscale.com/press-releases/fidji-simo-joins-nscale-board-of-directors",
+    "published": "2026-09-11",
+    "verified": "2026-10-08"
   },
   {
-    id: "openai-review",
-    title: "OpenAI · Board review and governance update",
-    url: "https://openai.com/index/review-completed-altman-brockman-to-continue-to-lead-openai/",
-    verified: "2026-10-07",
-    published: "2024-03-08",
+    "id": "openai-leadership-2025",
+    "title": "OpenAI · Leadership updates（Brad Lightcap 的历史职责）",
+    "url": "https://openai.com/index/leadership-updates-march-2025/",
+    "published": "2025-03-24",
+    "verified": "2026-10-07"
   },
   {
-    id: "openai-ilya-departure",
-    title:
-      "OpenAI · Ilya Sutskever leaves; Jakub Pachocki named Chief Scientist",
-    url: "https://openai.com/index/jakub-pachocki-announced-as-chief-scientist/",
-    verified: "2026-10-07",
-    published: "2024-05-14",
+    "id": "brad-departure-reuters",
+    "title": "Reuters / Investing.com · Brad Lightcap announces departure（媒体交叉核验）",
+    "url": "https://www.investing.com/news/stock-market-news/senior-openai-executive-brad-lightcap-to-leave-for-new-venture-4852370",
+    "published": "2026-08-11",
+    "verified": "2026-10-07"
   },
   {
-    id: "openai-structure",
-    title: "OpenAI · Our structure（含 2025-10-28 重组说明）",
-    url: "https://openai.com/our-structure/",
-    verified: "2026-10-07",
+    "id": "sierra-bret-bio",
+    "title": "Sierra · Bret Taylor 官方简介",
+    "url": "https://sierra.ai/author/bret-taylor",
+    "verified": "2026-10-08"
   },
   {
-    id: "openai-microsoft-2019",
-    title: "OpenAI · Microsoft investment and partnership",
-    url: "https://openai.com/index/microsoft-invests-in-and-partners-with-openai/",
-    verified: "2026-10-03",
-    published: "2019-07-22",
+    "id": "sierra-launch",
+    "title": "Bret Taylor、Clay Bavor / Sierra · Introducing Sierra",
+    "url": "https://sierra.ai/blog/introducing-sierra",
+    "published": "2024-02-13",
+    "verified": "2026-10-08"
   },
   {
-    id: "openai-microsoft-2026",
-    title: "OpenAI · The next phase of the Microsoft partnership",
-    url: "https://openai.com/index/next-phase-of-microsoft-partnership/",
-    verified: "2026-10-03",
-    published: "2026-04-27",
+    "id": "openai-paul-board-2026",
+    "title": "OpenAI · Paul Christiano joins OpenAI Foundation Board",
+    "url": "https://openai.com/index/paul-christiano-joins-openai-foundation-board/",
+    "published": "2026-09-09",
+    "verified": "2026-10-08"
   },
   {
-    id: "openai-greg-2026",
-    title: "OpenAI · Views on AI policy（文中确认总裁身份）",
-    url: "https://openai.com/index/our-views-on-ai-policy-and-political-advocacy/",
-    verified: "2026-10-03",
-    published: "2026-06-01",
+    "id": "rlhf-human-preferences",
+    "title": "Christiano 等 · Deep reinforcement learning from human preferences",
+    "url": "https://arxiv.org/abs/1706.03741",
+    "published": "2017-06-12",
+    "verified": "2026-10-08"
   },
   {
-    id: "openai-hq",
-    title: "OpenAI · 官方招聘页面（旧金山总部信息）",
-    url: "https://openai.com/careers/technical-threat-investigator-threat-intel-engineering-san-francisco/",
-    verified: "2026-10-03",
+    "id": "openai-codex-agent",
+    "title": "OpenAI · Introducing Codex（2025 年研究预览）",
+    "url": "https://openai.com/index/introducing-codex/",
+    "published": "2025-05-16",
+    "verified": "2026-10-07"
   },
   {
-    id: "yc-sam",
-    title: "Y Combinator · Sam Altman for President",
-    url: "https://www.ycombinator.com/blog/sam-altman-for-president",
-    verified: "2026-10-03",
-    published: "2014-02-21",
+    "id": "openai-founding",
+    "title": "OpenAI · Introducing OpenAI",
+    "url": "https://openai.com/index/introducing-openai/",
+    "verified": "2026-10-08",
+    "published": "2015-12-11"
   },
   {
-    id: "seq2seq",
-    title:
-      "Sutskever, Vinyals & Le · Sequence to Sequence Learning with Neural Networks",
-    url: "https://arxiv.org/abs/1409.3215",
-    verified: "2026-10-03",
-    published: "2014-09-10",
+    "id": "openai-lp",
+    "title": "OpenAI · OpenAI LP",
+    "url": "https://openai.com/index/openai-lp/",
+    "verified": "2026-10-08",
+    "published": "2019-03-11"
   },
   {
-    id: "ssi-about",
-    title: "Safe Superintelligence · 公司使命与办公地点",
-    url: "https://ssi.inc/",
-    verified: "2026-10-03",
+    "id": "openai-api",
+    "title": "OpenAI · OpenAI API",
+    "url": "https://openai.com/index/openai-api/",
+    "verified": "2026-10-03",
+    "published": "2020-06-11"
   },
   {
-    id: "ssi-updates",
-    title: "Safe Superintelligence · Updates（含 2025-07-03 人事公告）",
-    url: "https://ssi.inc/updates",
-    verified: "2026-10-03",
+    "id": "openai-chatgpt",
+    "title": "OpenAI · Introducing ChatGPT",
+    "url": "https://openai.com/index/chatgpt/",
+    "verified": "2026-10-03",
+    "published": "2022-11-30"
   },
   {
-    id: "ssi-founder",
-    title: "Sequoia Capital · Ilya Sutskever 创始人档案",
-    url: "https://sequoiacap.com/founder/ilya-sutskever",
-    verified: "2026-10-03",
+    "id": "openai-gpt4",
+    "title": "OpenAI · GPT-4",
+    "url": "https://openai.com/index/gpt-4/",
+    "verified": "2026-10-03",
+    "published": "2023-03-14"
   },
   {
-    id: "ssi-investor",
-    title: "Sequoia Capital · Safe Superintelligence 投资组合档案",
-    url: "https://sequoiacap.com/companies/safe-superintelligence",
-    verified: "2026-10-03",
+    "id": "openai-roles-2022",
+    "title": "OpenAI · Leadership team update",
+    "url": "https://openai.com/index/leadership-team-update/",
+    "published": "2022-05-05",
+    "verified": "2026-10-08"
   },
   {
-    id: "tml-about",
-    title: "Thinking Machines Lab · 公司介绍",
-    url: "https://thinkingmachines.ai/",
-    verified: "2026-10-03",
+    "id": "openai-transition",
+    "title": "OpenAI · Leadership transition",
+    "url": "https://openai.com/index/openai-announces-leadership-transition/",
+    "published": "2023-11-17",
+    "verified": "2026-10-08"
   },
   {
-    id: "tml-nvidia",
-    title: "Thinking Machines Lab · NVIDIA strategic partnership",
-    url: "https://thinkingmachines.ai/news/nvidia-partnership/",
-    verified: "2026-10-03",
-    published: "2026-03-10",
+    "id": "openai-return",
+    "title": "OpenAI · Sam Altman returns as CEO",
+    "url": "https://openai.com/index/sam-altman-returns-as-ceo-openai-has-a-new-initial-board/",
+    "published": "2023-11-29",
+    "verified": "2026-10-08"
   },
   {
-    id: "tml-tinker",
-    title: "Thinking Machines Lab · Announcing Tinker",
-    url: "https://thinkingmachines.ai/news/announcing-tinker/",
-    verified: "2026-10-03",
-    published: "2025-10-01",
+    "id": "openai-review",
+    "title": "OpenAI · Board review and governance update",
+    "url": "https://openai.com/index/review-completed-altman-brockman-to-continue-to-lead-openai/",
+    "verified": "2026-10-07",
+    "published": "2024-03-08"
   },
   {
-    id: "tml-investor",
-    title: "Lightspeed · Thinking Machines 投资组合档案",
-    url: "https://lsvp.com/company/thinking-machines/",
-    verified: "2026-10-03",
+    "id": "openai-ilya-departure",
+    "title": "OpenAI · Ilya Sutskever leaves; Jakub Pachocki named Chief Scientist",
+    "url": "https://openai.com/index/jakub-pachocki-announced-as-chief-scientist/",
+    "verified": "2026-10-08",
+    "published": "2024-05-14"
   },
   {
-    id: "tml-location",
-    title: "Thinking Machines Lab · LinkedIn 公司页",
-    url: "https://www.linkedin.com/company/thinkingmachinesai",
-    verified: "2026-10-03",
+    "id": "openai-structure",
+    "title": "OpenAI · Our structure（含 2025-10-28 重组说明）",
+    "url": "https://openai.com/our-structure/",
+    "verified": "2026-10-07"
   },
   {
-    id: "anthropic-about",
-    title: "Anthropic · Company",
-    url: "https://www.anthropic.com/company",
-    verified: "2026-10-03",
+    "id": "openai-microsoft-2019",
+    "title": "OpenAI · Microsoft investment and partnership",
+    "url": "https://openai.com/index/microsoft-invests-in-and-partners-with-openai/",
+    "verified": "2026-10-03",
+    "published": "2019-07-22"
   },
   {
-    id: "anthropic-founding",
-    title: "Anthropic · Series B 公告与创立时间回顾",
-    url: "https://www.anthropic.com/news/anthropic-raises-series-b-to-build-safe-reliable-ai",
-    verified: "2026-10-03",
-    published: "2022-04-29",
+    "id": "openai-microsoft-2026",
+    "title": "OpenAI · The next phase of the Microsoft partnership",
+    "url": "https://openai.com/index/next-phase-of-microsoft-partnership/",
+    "verified": "2026-10-03",
+    "published": "2026-04-27"
   },
   {
-    id: "anthropic-leadership",
-    title: "Anthropic · Leadership",
-    url: "https://www.anthropic.com/company/leadership",
-    verified: "2026-10-03",
+    "id": "openai-greg-2026",
+    "title": "OpenAI · Views on AI policy（文中确认总裁身份）",
+    "url": "https://openai.com/index/our-views-on-ai-policy-and-political-advocacy/",
+    "verified": "2026-10-03",
+    "published": "2026-06-01"
   },
   {
-    id: "anthropic-claude",
-    title: "Anthropic · Introducing Claude",
-    url: "https://www.anthropic.com/news/introducing-claude",
-    verified: "2026-10-03",
-    published: "2023-03-14",
+    "id": "openai-hq",
+    "title": "OpenAI · 官方招聘页面（旧金山总部信息）",
+    "url": "https://openai.com/careers/technical-threat-investigator-threat-intel-engineering-san-francisco/",
+    "verified": "2026-10-03"
   },
   {
-    id: "dario-bio",
-    title: "Dario Amodei · 本人官网简介",
-    url: "https://darioamodei.com/",
-    verified: "2026-10-03",
+    "id": "yc-sam",
+    "title": "Y Combinator · Sam Altman for President",
+    "url": "https://www.ycombinator.com/blog/sam-altman-for-president",
+    "verified": "2026-10-08",
+    "published": "2014-02-21"
   },
   {
-    id: "deepmind-about",
-    title: "Google DeepMind · About",
-    url: "https://deepmind.google/about/",
-    verified: "2026-10-03",
+    "id": "seq2seq",
+    "title": "Sutskever, Vinyals & Le · Sequence to Sequence Learning with Neural Networks",
+    "url": "https://arxiv.org/abs/1409.3215",
+    "verified": "2026-10-08",
+    "published": "2014-09-10"
   },
   {
-    id: "deepmind-formation",
-    title: "Google · Bringing together two world-class AI teams",
-    url: "https://blog.google/innovation-and-ai/technology/ai/april-ai-update/",
-    verified: "2026-10-03",
-    published: "2023-04-20",
+    "id": "ssi-about",
+    "title": "Safe Superintelligence · 公司使命与办公地点",
+    "url": "https://ssi.inc/",
+    "verified": "2026-10-08"
   },
   {
-    id: "nobel-2024",
-    title: "诺贝尔奖官方 · 2024 年化学奖新闻稿",
-    url: "https://www.nobelprize.org/uploads/2024/10/press-chemistryprize2024-3.pdf",
-    verified: "2026-10-03",
-    published: "2024-10-09",
+    "id": "ssi-updates",
+    "title": "Safe Superintelligence · Updates（含 2025-07-03 人事公告）",
+    "url": "https://ssi.inc/updates",
+    "verified": "2026-10-08"
   },
   {
-    id: "meta-fair",
-    title: "Meta · Celebrating 10 years of FAIR",
-    url: "https://ai.meta.com/blog/fair-10-year-anniversary-open-science-meta/",
-    verified: "2026-10-03",
-    published: "2023-11-30",
+    "id": "ssi-founder",
+    "title": "Sequoia Capital · Ilya Sutskever 创始人档案",
+    "url": "https://sequoiacap.com/founder/ilya-sutskever",
+    "verified": "2026-10-08"
   },
   {
-    id: "meta-llama3",
-    title: "Meta · Introducing Meta Llama 3",
-    url: "https://ai.meta.com/blog/meta-llama-3",
-    verified: "2026-10-03",
-    published: "2024-04-18",
+    "id": "ssi-investor",
+    "title": "Sequoia Capital · Safe Superintelligence 投资组合档案",
+    "url": "https://sequoiacap.com/companies/safe-superintelligence",
+    "verified": "2026-10-08"
   },
   {
-    id: "meta-location",
-    title: "Meta · Expanding our home in Menlo Park",
-    url: "https://about.fb.com/news/2018/09/expanding-our-home-in-menlo-park/",
-    verified: "2026-10-03",
-    published: "2018-09-04",
+    "id": "tml-about",
+    "title": "Thinking Machines Lab · 公司介绍",
+    "url": "https://thinkingmachines.ai/",
+    "verified": "2026-10-08"
   },
   {
-    id: "xai-about",
-    title: "xAI / SpaceXAI · Company and historical milestones",
-    url: "https://x.ai/company",
-    verified: "2026-10-03",
+    "id": "tml-nvidia",
+    "title": "Thinking Machines Lab · NVIDIA strategic partnership",
+    "url": "https://thinkingmachines.ai/news/nvidia-partnership/",
+    "verified": "2026-10-03",
+    "published": "2026-03-10"
   },
   {
-    id: "xai-grok",
-    title: "xAI · Announcing Grok",
-    url: "https://x.ai/news/grok",
-    verified: "2026-10-03",
-    published: "2023-11-03",
+    "id": "tml-tinker",
+    "title": "Thinking Machines Lab · Announcing Tinker",
+    "url": "https://thinkingmachines.ai/news/announcing-tinker/",
+    "published": "2025-10-01",
+    "verified": "2026-10-08"
   },
   {
-    id: "xai-spacex",
-    title: "xAI · xAI joins SpaceX",
-    url: "https://x.ai/news/xai-joins-spacex",
-    verified: "2026-10-03",
-    published: "2026-02-02",
+    "id": "tml-investor",
+    "title": "Lightspeed · Thinking Machines 投资组合档案",
+    "url": "https://lsvp.com/company/thinking-machines/",
+    "verified": "2026-10-03"
   },
   {
-    id: "deepseek-about",
-    title: "DeepSeek AI · LinkedIn 公司页",
-    url: "https://www.linkedin.com/company/deepseek-ai",
-    verified: "2026-10-03",
+    "id": "tml-location",
+    "title": "Thinking Machines Lab · LinkedIn 公司页",
+    "url": "https://www.linkedin.com/company/thinkingmachinesai",
+    "verified": "2026-10-03"
   },
   {
-    id: "deepseek-r1",
-    title: "DeepSeek · DeepSeek-R1 发布",
-    url: "https://deepseek.com/news/deepseek-r1/",
-    verified: "2026-10-03",
-    published: "2025-01-20",
+    "id": "anthropic-about",
+    "title": "Anthropic · Company",
+    "url": "https://www.anthropic.com/company",
+    "verified": "2026-10-03"
   },
   {
-    id: "microsoft-facts",
-    title: "Microsoft · Facts about Microsoft",
-    url: "https://news.microsoft.com/facts-about-microsoft/",
-    verified: "2026-10-03",
+    "id": "anthropic-founding",
+    "title": "Anthropic · Series B 公告与创立时间回顾",
+    "url": "https://www.anthropic.com/news/anthropic-raises-series-b-to-build-safe-reliable-ai",
+    "published": "2022-04-29",
+    "verified": "2026-10-08"
   },
   {
-    id: "wiki-sam-altman",
-    title: "Wikipedia · Sam Altman（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Sam_Altman",
-    verified: "2026-10-08",
+    "id": "anthropic-leadership",
+    "title": "Anthropic · Leadership",
+    "url": "https://www.anthropic.com/company/leadership",
+    "verified": "2026-10-08"
   },
   {
-    id: "wiki-greg-brockman",
-    title: "Wikipedia · Greg Brockman（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Greg_Brockman",
-    verified: "2026-10-08",
+    "id": "anthropic-claude",
+    "title": "Anthropic · Introducing Claude",
+    "url": "https://www.anthropic.com/news/introducing-claude",
+    "published": "2023-03-14",
+    "verified": "2026-10-08"
   },
   {
-    id: "wiki-ilya-sutskever",
-    title: "Wikipedia · Ilya Sutskever（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Ilya_Sutskever",
-    verified: "2026-10-08",
+    "id": "dario-bio",
+    "title": "Dario Amodei · 本人官网简介",
+    "url": "https://darioamodei.com/",
+    "verified": "2026-10-08"
   },
   {
-    id: "wiki-mira-murati",
-    title: "Wikipedia · Mira Murati（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Mira_Murati",
-    verified: "2026-10-08",
+    "id": "deepmind-about",
+    "title": "Google DeepMind · About（现职措辞与较新公告冲突）",
+    "url": "https://deepmind.google/about/",
+    "verified": "2026-10-08"
   },
   {
-    id: "wiki-dario-amodei",
-    title: "Wikipedia · Dario Amodei（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Dario_Amodei",
-    verified: "2026-10-08",
+    "id": "deepmind-formation",
+    "title": "Google · Bringing together two world-class AI teams",
+    "url": "https://blog.google/innovation-and-ai/technology/ai/april-ai-update/",
+    "verified": "2026-10-03",
+    "published": "2023-04-20"
   },
   {
-    id: "wiki-demis-hassabis",
-    title: "Wikipedia · Demis Hassabis（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Demis_Hassabis",
-    verified: "2026-10-08",
+    "id": "nobel-2024",
+    "title": "诺贝尔奖官方 · 2024 年化学奖新闻稿",
+    "url": "https://www.nobelprize.org/uploads/2024/10/press-chemistryprize2024-3.pdf",
+    "verified": "2026-10-03",
+    "published": "2024-10-09"
   },
   {
-    id: "wiki-bret-taylor",
-    title: "Wikipedia · Bret Taylor（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Bret_Taylor",
-    verified: "2026-10-08",
+    "id": "meta-fair",
+    "title": "Meta · Celebrating 10 years of FAIR",
+    "url": "https://ai.meta.com/blog/fair-10-year-anniversary-open-science-meta/",
+    "verified": "2026-10-03",
+    "published": "2023-11-30"
   },
   {
-    id: "wiki-fidji-simo",
-    title: "Wikipedia · Fidji Simo（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Fidji_Simo",
-    verified: "2026-10-08",
+    "id": "meta-llama3",
+    "title": "Meta · Introducing Meta Llama 3",
+    "url": "https://ai.meta.com/blog/meta-llama-3",
+    "verified": "2026-10-03",
+    "published": "2024-04-18"
   },
   {
-    id: "wiki-paul-christiano",
-    title: "Wikipedia · Paul Christiano（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Paul_Christiano_(researcher)",
-    verified: "2026-10-08",
+    "id": "meta-location",
+    "title": "Meta · Expanding our home in Menlo Park",
+    "url": "https://about.fb.com/news/2018/09/expanding-our-home-in-menlo-park/",
+    "verified": "2026-10-03",
+    "published": "2018-09-04"
   },
   {
-    id: "wiki-jakub-pachocki",
-    title: "Wikipedia · Jakub Pachocki（生平背景；二手汇编，非原始资料）",
-    url: "https://en.wikipedia.org/wiki/Jakub_Pachocki",
-    verified: "2026-10-08",
+    "id": "xai-about",
+    "title": "xAI / SpaceXAI · Company and historical milestones",
+    "url": "https://x.ai/company",
+    "verified": "2026-10-03"
   },
+  {
+    "id": "xai-grok",
+    "title": "xAI · Announcing Grok",
+    "url": "https://x.ai/news/grok",
+    "verified": "2026-10-03",
+    "published": "2023-11-03"
+  },
+  {
+    "id": "xai-spacex",
+    "title": "xAI · xAI joins SpaceX",
+    "url": "https://x.ai/news/xai-joins-spacex",
+    "verified": "2026-10-03",
+    "published": "2026-02-02"
+  },
+  {
+    "id": "deepseek-about",
+    "title": "DeepSeek AI · LinkedIn 公司页",
+    "url": "https://www.linkedin.com/company/deepseek-ai",
+    "verified": "2026-10-03"
+  },
+  {
+    "id": "deepseek-r1",
+    "title": "DeepSeek · DeepSeek-R1 发布",
+    "url": "https://deepseek.com/news/deepseek-r1/",
+    "verified": "2026-10-03",
+    "published": "2025-01-20"
+  },
+  {
+    "id": "microsoft-facts",
+    "title": "Microsoft · Facts about Microsoft",
+    "url": "https://news.microsoft.com/facts-about-microsoft/",
+    "verified": "2026-10-03"
+  },
+  {
+    "id": "wiki-sam-altman",
+    "title": "Wikipedia · Sam Altman（生平背景；二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Sam_Altman",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-greg-brockman",
+    "title": "Wikipedia · Greg Brockman（生平背景；二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Greg_Brockman",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-ilya-sutskever",
+    "title": "Wikipedia · Ilya Sutskever（生平背景；二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Ilya_Sutskever",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-mira-murati",
+    "title": "Wikipedia · Mira Murati（生平背景；二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Mira_Murati",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-dario-amodei",
+    "title": "Wikipedia · Dario Amodei（二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Dario_Amodei",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-demis-hassabis",
+    "title": "Wikipedia · Demis Hassabis（二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Demis_Hassabis",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-bret-taylor",
+    "title": "Wikipedia · Bret Taylor（生平背景；二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Bret_Taylor",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-fidji-simo",
+    "title": "Wikipedia · Fidji Simo（生平背景；二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Fidji_Simo",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-paul-christiano",
+    "title": "Wikipedia · Paul Christiano（二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Paul_Christiano_(researcher)",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "wiki-jakub-pachocki",
+    "title": "Wikipedia · Jakub Pachocki（生平背景；二手汇编，非原始资料）",
+    "url": "https://en.wikipedia.org/wiki/Jakub_Pachocki",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "sam-stanford-transcript",
+    "title": "Stanford STVP · The Possibilities of AI（现场对谈文字稿）",
+    "url": "https://stvp.stanford.edu/node/10731/printable/print",
+    "verified": "2026-10-08",
+    "published": "2024-05-01"
+  },
+  {
+    "id": "yc-loopt",
+    "title": "Y Combinator · Loopt 公司与创始人档案",
+    "url": "https://www.ycombinator.com/companies/loopt",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "greendot-loopt-completed",
+    "title": "Green Dot · Completes Acquisition of Loopt",
+    "url": "https://ir.greendot.com/news-releases/news-release-details/green-dot-completes-acquisition-loopt/",
+    "verified": "2026-10-08",
+    "published": "2012-04-04"
+  },
+  {
+    "id": "yc-group-2016",
+    "title": "Sam Altman / Y Combinator · YC Changes",
+    "url": "https://www.ycombinator.com/blog/yc-changes/",
+    "verified": "2026-10-08",
+    "published": "2016-09-13"
+  },
+  {
+    "id": "senate-altman-2023",
+    "title": "美国参议院司法委员会 · Oversight of A.I.: Rules for Artificial Intelligence",
+    "url": "https://www.judiciary.senate.gov/committee-activity/hearings/oversight-of-ai-rules-for-artificial-intelligence",
+    "verified": "2026-10-08",
+    "published": "2023-05-16"
+  },
+  {
+    "id": "time-sam-2023",
+    "title": "TIME · Sam Altman: The 100 Most Influential People of 2023",
+    "url": "https://time.com/collections/100-most-influential-people-2023/6270015/sam-altman/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "acs-brockman-2006",
+    "title": "美国化学会 / EurekAlert! · 2006 年国际化学奥林匹克美国队获奖公告",
+    "url": "https://www.eurekalert.org/news-releases/557270",
+    "verified": "2026-10-08",
+    "published": "2006-07-13"
+  },
+  {
+    "id": "sts-brockman-2007",
+    "title": "Society for Science · Intel Science Talent Search 2007 官方结果",
+    "url": "https://www.societyforscience.org/regeneron-sts/intel-sts-2007/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "brockman-path",
+    "title": "Greg Brockman · My path to OpenAI",
+    "url": "https://blog.gregbrockman.com/my-path-to-openai",
+    "verified": "2026-10-08",
+    "published": "2016-05-03"
+  },
+  {
+    "id": "brockman-stripe-cto",
+    "title": "Greg Brockman · #define CTO",
+    "url": "https://blog.gregbrockman.com/figuring-out-the-cto-role-at-stripe",
+    "verified": "2026-10-08",
+    "published": "2014-10-27"
+  },
+  {
+    "id": "openai-gym-paper",
+    "title": "Brockman 等 · OpenAI Gym",
+    "url": "https://arxiv.org/abs/1606.01540",
+    "verified": "2026-10-08",
+    "published": "2016-06-05"
+  },
+  {
+    "id": "openai-five-2018",
+    "title": "OpenAI · OpenAI Five（团队署名与技术介绍）",
+    "url": "https://openai.com/index/openai-five/",
+    "verified": "2026-10-08",
+    "published": "2018-06-25"
+  },
+  {
+    "id": "ted-brockman-2023",
+    "title": "TED · The astounding new era of AI: Notes on Session 2 of TED2023",
+    "url": "https://blog.ted.com/the-astounding-new-era-of-ai-notes-on-session-2-of-ted2023/",
+    "verified": "2026-10-08",
+    "published": "2023-04-18"
+  },
+  {
+    "id": "utoronto-ilya-honorary",
+    "title": "多伦多大学 · Ilya Sutskever receives U of T honorary degree",
+    "url": "https://www.utoronto.ca/news/ilya-sutskever-leader-ai-and-its-responsible-development-receives-u-t-honorary-degree",
+    "verified": "2026-10-08",
+    "published": "2025-06-06"
+  },
+  {
+    "id": "utoronto-ilya-degrees",
+    "title": "多伦多大学校友事务 · Hinton honorary degree（列出 Sutskever 三个学位年份）",
+    "url": "https://alumni.utoronto.ca/news/u-t-deep-learning-pioneer-geoffrey-hinton-receives-honorary-degree",
+    "verified": "2026-10-08",
+    "published": "2021-06-11"
+  },
+  {
+    "id": "ilya-thesis",
+    "title": "Ilya Sutskever / 多伦多大学 · Training Recurrent Neural Networks（博士论文）",
+    "url": "https://www.cs.toronto.edu/~ilya/pubs/ilya_sutskever_phd_thesis.pdf",
+    "verified": "2026-10-08",
+    "published": "2013"
+  },
+  {
+    "id": "utoronto-dnnresearch",
+    "title": "多伦多大学 · Google acquires U of T neural networks company",
+    "url": "https://www.utoronto.ca/news/google-acquires-u-t-neural-networks-company",
+    "verified": "2026-10-08",
+    "published": "2013-03-12"
+  },
+  {
+    "id": "ilya-homepage",
+    "title": "Ilya Sutskever / 多伦多大学 · 个人学术主页（历史经历，现职未更新）",
+    "url": "https://www.cs.toronto.edu/~ilya/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "openai-superalignment",
+    "title": "Jan Leike、Ilya Sutskever / OpenAI · Introducing Superalignment",
+    "url": "https://openai.com/index/introducing-superalignment/",
+    "verified": "2026-10-08",
+    "published": "2023-07-05"
+  },
+  {
+    "id": "time-ilya-regret",
+    "title": "TIME · Who Is Emmett Shear, OpenAI’s New CEO?（转引 Sutskever 公开声明）",
+    "url": "https://time.com/6337608/emmett-shear-openai-ceo/",
+    "verified": "2026-10-08",
+    "published": "2023-11-20"
+  },
+  {
+    "id": "royalsociety-ilya",
+    "title": "Royal Society · Dr Ilya Sutskever FRS（2022 年当选）",
+    "url": "https://royalsociety.org/people/ilya-sutskever-35834/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "ioi-jakub",
+    "title": "国际信息学奥林匹克 · Jakub Pachocki 成绩记录",
+    "url": "https://stats.ioinformatics.org/people/1051",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "uw-jakub-codejam",
+    "title": "华沙大学数学、信息学与力学学院 · Google Code Jam 成绩",
+    "url": "https://www.mimuw.edu.pl/en/achievements/google-code-jam/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "uw-jakub-icpc",
+    "title": "华沙大学 · Medal dla programistów z UW（回顾 2012 年亚军队成员）",
+    "url": "https://www.uw.edu.pl/medal-dla-programistow-z-uw/",
+    "verified": "2026-10-08",
+    "published": "2024-04-22"
+  },
+  {
+    "id": "simons-jakub",
+    "title": "Simons 计算理论研究所 · Jakub Pachocki 历史简介与访问记录",
+    "url": "https://simons.berkeley.edu/people/jakub-pachocki",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "cmu-jakub-phd",
+    "title": "卡内基梅隆大学 · Jakub Pachocki 博士学位与论文记录",
+    "url": "https://csd-web-01.andrew.cmu.edu/academics/doctoral/degrees-conferred/jakub-pachocki",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "ssi-founder-levy",
+    "title": "Sequoia Capital · Daniel Levy 创始人档案",
+    "url": "https://sequoiacap.com/founder/daniel-levy",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "ssi-founder-gross",
+    "title": "Sequoia Capital · Daniel Gross 创始人档案",
+    "url": "https://sequoiacap.com/founder/daniel-gross",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dartmouth-mira-honorary-bio",
+    "title": "Dartmouth · 2024 honorary degree recipients（Murati 官方履历）",
+    "url": "https://home.dartmouth.edu/news/2024/04/announcing-2024-honorary-degree-recipients",
+    "published": "2024-04-11",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dartmouth-mira-honorary-award",
+    "title": "Dartmouth · Dartmouth Awards Honorary Degrees",
+    "url": "https://home.dartmouth.edu/news/2024/06/dartmouth-commencement-honorands",
+    "published": "2024-06-09",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "pearson-mira-alumni",
+    "title": "Pearson College UWC · Alumni（Murati 2007 届）",
+    "url": "https://www.pearsoncollege.ca/alumni/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "murati-language-creativity",
+    "title": "Ermira Murati / Daedalus · Language & Coding Creativity",
+    "url": "https://www.amacad.org/publication/daedalus/language-coding-creativity",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "ap-murati-departure",
+    "title": "Associated Press · Mira Murati and two other OpenAI executives announce departure（报道）",
+    "url": "https://apnews.com/article/openai-mira-murati-quits-df75217584696b442935dbccc9b0347d",
+    "published": "2024-09-25",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dartmouth-mira-ai-discussion",
+    "title": "Dartmouth Engineering · Mira Murati Shares Optimism for AI’s Future",
+    "url": "https://engineering.dartmouth.edu/news/openai-cto-mira-murati-th12-shares-optimism-for-ais-future",
+    "published": "2024-06-10",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dartmouth-elliott-murati",
+    "title": "Will Elliott / The Dartmouth · OpenAI’s Mira Murati has it all wrong（署名评论）",
+    "url": "https://www.thedartmouth.com/article/2024/07/elliott-murati-openai",
+    "published": "2024-07-12",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "stanford-taylor-friendfeed",
+    "title": "Stanford Engineering · Stanford friendships fed success of FriendFeed",
+    "url": "https://engineering.stanford.edu/news/stanford-friendships-fed-success-social-networking-innovator-friendfeed",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "google-taylor-maps-api",
+    "title": "Bret Taylor / Google · The world is your JavaScript-enabled oyster",
+    "url": "https://googleblog.blogspot.com/2005/06/world-is-your-javascript-enabled_29.html",
+    "published": "2005-06-29",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "facebook-friendfeed-acquisition",
+    "title": "Facebook · Agreement to acquire FriendFeed",
+    "url": "https://about.fb.com/news/2009/08/facebook-agrees-to-acquire-sharing-service-friendfeed/",
+    "published": "2009-08-10",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "salesforce-taylor-coo",
+    "title": "Salesforce · Bret Taylor named President & COO",
+    "url": "https://www.salesforce.com/news/press-releases/2019/12/12/salesforce-names-bret-taylor-president-chief-operating-officer/",
+    "published": "2019-12-12",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "salesforce-taylor-coceo",
+    "title": "Salesforce · Bret Taylor promoted to Vice Chair and Co-CEO",
+    "url": "https://www.salesforce.com/news/press-releases/2021/11/30/bret-taylor-promoted-to-vice-chair-and-co-ceo-of-salesforce/?bc=OTH",
+    "published": "2021-11-30",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "salesforce-taylor-departure",
+    "title": "Salesforce · Bret Taylor to step down as Vice Chair and Co-CEO",
+    "url": "https://www.salesforce.com/au/news/press-releases/2022/11/30/bret-taylor-to-step-down-as-salesforce-vice-chair-and-co-ceo/?bc=OTH",
+    "published": "2022-11-30",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "shopify-taylor-board",
+    "title": "Shopify · A board member Taylor-made for Shopify",
+    "url": "https://www.shopify.com/news/a-board-member-taylor-made-for-shopify",
+    "published": "2023-06-27",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "hec-simo-commencement",
+    "title": "HEC Paris · Fidji Simo to deliver 2025 commencement address",
+    "url": "https://www.hec.edu/en/school/news/fidji-simo-deliver-2025-commencement-address-hec-paris",
+    "published": "2025-06-05",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "hec-simo-profile",
+    "title": "Fidji Simo / HEC Paris · Fidji H.08（本人求学回顾）",
+    "url": "https://www.hec.edu/en/hec-foundation/profiles/fidji-h08",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "instacart-simo-ceo",
+    "title": "Instacart · Fidji Simo appointed CEO",
+    "url": "https://company.instacart.com/pressreleases/instacart-appoints-board-member-fidji-simo-to-chief-executive-officer-and-announces-founder-and-current-ceo-apoorva-mehta-will-serve-as-executive-chairman-of-the-board",
+    "published": "2021-07-08",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "shopify-simo-board",
+    "title": "Shopify · Fidji Simo joins Board of Directors",
+    "url": "https://www.shopify.com/news/shopify-s-board-just-got-insta-ntly-better-instacart-ceo-fidji-simo-joins-shopify-s-board-of-directors",
+    "published": "2021-12-16",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "instacart-simo-chair",
+    "title": "Instacart · Fidji Simo appointed Chair, effective upon public listing",
+    "url": "https://company.instacart.com/pressreleases/instacart-appoints-ceo-fidji-simo-to-chair-of-the-board-founder-executive-chairman-apoorva-mehta-to-transition-off-the-board-when-instacart-becomes-a-public-company",
+    "published": "2022-07-22",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "instacart-ipo-faq",
+    "title": "Instacart · Investor FAQs（上市日期与股票代码）",
+    "url": "https://investors.instacart.com/ir-resources/faqs",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "openai-new-directors-2024",
+    "title": "OpenAI · New members of the board of directors",
+    "url": "https://openai.com/index/openai-announces-new-members-to-board-of-directors/",
+    "published": "2024-03-08",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "simo-empowerment-essay",
+    "title": "Fidji Simo / OpenAI · AI as the greatest source of empowerment for all",
+    "url": "https://openai.com/index/ai-as-the-greatest-source-of-empowerment-for-all/",
+    "published": "2025-07-21",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dario-princeton-bio",
+    "title": "普林斯顿大学 · Dario Amodei 的学位与研究经历",
+    "url": "https://www.princeton.edu/news/2023/09/12/time-magazines-time100-artificial-intelligence-list-honors-six-princetonians",
+    "published": "2023-09-12",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dario-hertz-bio",
+    "title": "Hertz Foundation · Dario Amodei 简介",
+    "url": "https://www.hertzfoundation.org/people/dario-amodei/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "hertz-thesis-awards",
+    "title": "Hertz Foundation · 历届论文奖名单",
+    "url": "https://www.hertzfoundation.org/hertz-community/awards-recognition/hertz-thesis-prize/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dario-physics-team-2000",
+    "title": "美国物理教师协会 · 2000 年美国物理队名单",
+    "url": "https://www.aapt.org/olympiad2000/team2000.html",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "anthropic-series-a-2021",
+    "title": "Anthropic · 2021 年 Series A 公告",
+    "url": "https://www.anthropic.com/news/anthropic-raises-124-million-to-build-more-reliable-general-ai-systems",
+    "published": "2021-05-28",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dario-loving-grace",
+    "title": "Dario Amodei · Machines of Loving Grace",
+    "url": "https://darioamodei.com/essay/machines-of-loving-grace",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "dario-adolescence",
+    "title": "Dario Amodei · The Adolescence of Technology",
+    "url": "https://darioamodei.com/essay/the-adolescence-of-technology",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "time-dario-2025",
+    "title": "TIME · 2025 年百大人物：Dario Amodei",
+    "url": "https://time.com/collections/100-most-influential-people-2025/7273747/dario-amodei/",
+    "published": "2025-04-16",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "time-dario-daniela-2026",
+    "title": "TIME · 2026 年百大人物：Dario Amodei 与 Daniela Amodei",
+    "url": "https://time.com/collection/100-most-influential-people/2026/dario-daniela-amodei/",
+    "published": "2026-04-15",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "demis-nobel-facts",
+    "title": "诺贝尔奖官方 · Demis Hassabis 获奖者资料",
+    "url": "https://www.nobelprize.org/prizes/chemistry/2024/hassabis/facts/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "demis-cv-2023",
+    "title": "宗座科学院收录 · Demis Hassabis 2023 年简历",
+    "url": "https://www.pas.va/content/dam/casinapioiv/pas/pdf-vari/cv_accademici/Demis-Hassabis-CV-2023.pdf",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "demis-ucl-nobel",
+    "title": "伦敦大学学院 · 校友 Demis Hassabis 获诺贝尔化学奖",
+    "url": "https://www.ucl.ac.uk/news/2024/oct/ucl-alumnus-and-ai-innovator-awarded-nobel-prize-chemistry",
+    "published": "2024-10-09",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "demis-imagination-2007",
+    "title": "Hassabis 等 · Patients with hippocampal amnesia cannot imagine new experiences",
+    "url": "https://pubmed.ncbi.nlm.nih.gov/17229836/",
+    "published": "2007-01-30",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "deepmind-alphago-history",
+    "title": "Google DeepMind · AlphaGo 比赛记录",
+    "url": "https://deepmind.google/research/alphago/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "deepmind-alphafold-casp14",
+    "title": "Google DeepMind · AlphaFold 的 CASP14 结果",
+    "url": "https://deepmind.google/blog/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology/",
+    "published": "2020-11-30",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "deepmind-alphafold-database-2022",
+    "title": "Demis Hassabis / Google DeepMind · AlphaFold 数据库扩展",
+    "url": "https://deepmind.google/blog/alphafold-reveals-the-structure-of-the-protein-universe/",
+    "published": "2022-07-28",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "nobel-chemistry-2024-html",
+    "title": "诺贝尔奖官方 · 2024 年化学奖新闻稿（网页）",
+    "url": "https://www.nobelprize.org/prizes/chemistry/2024/press-release/",
+    "published": "2024-10-09",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "isomorphic-leadership-2022",
+    "title": "Isomorphic Labs · 首批管理团队公告",
+    "url": "https://www.isomorphiclabs.com/articles/isomorphic-labs-announces-first-phase-of-management-team",
+    "published": "2022-05-01",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "paul-mit-author-bio",
+    "title": "Theory of Computing · Paul Christiano 作者简介",
+    "url": "https://theoryofcomputing.org/articles/v009a009/about.html",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "paul-berkeley-thesis",
+    "title": "加州大学伯克利分校 · Manipulation-resistant online learning",
+    "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2017/EECS-2017-107.html",
+    "published": "2017-05-15",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "paul-imo-results",
+    "title": "国际数学奥林匹克官方 · 美国历届选手成绩",
+    "url": "https://www.imo-official.org/results/individual/country/USA/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "paul-bio",
+    "title": "Paul Christiano · 本人官网简介",
+    "url": "https://paulfchristiano.com/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "ai-safety-debate-2018",
+    "title": "Irving、Christiano、Amodei · AI safety via debate",
+    "url": "https://arxiv.org/abs/1805.00899",
+    "published": "2018-05-02",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "amplification-2018",
+    "title": "Christiano、Shlegeris、Amodei · Supervising strong learners by amplifying weak experts",
+    "url": "https://arxiv.org/abs/1810.08575",
+    "published": "2018-10-19",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "book-summarization-2021",
+    "title": "Wu 等 · Recursively Summarizing Books with Human Feedback",
+    "url": "https://arxiv.org/abs/2109.10862",
+    "published": "2021-09-22",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "paul-announces-arc",
+    "title": "Paul Christiano · Announcing the Alignment Research Center",
+    "url": "https://www.alignmentforum.org/posts/3ejHFgQihLG4L6WQf/announcing-the-alignment-research-center",
+    "published": "2021-04-26",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "arc-elk-report-2021",
+    "title": "Alignment Research Center · 首份技术报告 Eliciting Latent Knowledge",
+    "url": "https://www.alignment.org/blog/arcs-first-technical-report-eliciting-latent-knowledge/",
+    "published": "2021-12-14",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "metr-spinout-2023",
+    "title": "METR · ARC Evals is now METR",
+    "url": "https://metr.org/blog/2023-12-04-metr-announcement/",
+    "published": "2023-12-04",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "uk-frontier-taskforce-2023",
+    "title": "英国政府 · Frontier AI Taskforce 首份进展报告",
+    "url": "https://www.gov.uk/government/publications/frontier-ai-taskforce-first-progress-report/frontier-ai-taskforce-first-progress-report",
+    "published": "2023-09-07",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "anthropic-ltbt-2023",
+    "title": "Anthropic · Long-Term Benefit Trust 及后续成员变更脚注",
+    "url": "https://www.anthropic.com/news/the-long-term-benefit-trust",
+    "published": "2023-09-19",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "nist-paul-appointment-2024",
+    "title": "NIST · 美国 AI 安全研究所管理团队任命公告",
+    "url": "https://www.nist.gov/news-events/news/2024/04/us-commerce-secretary-gina-raimondo-announces-expansion-us-ai-safety",
+    "published": "2024-04-16",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "venturebeat-nist-appointment-2024",
+    "title": "VentureBeat · Christiano 拟议任命的内部反对报道（二手，含匿名消息）",
+    "url": "https://venturebeat.com/ai/nist-staffers-revolt-against-potential-appointment-of-effective-altruist-ai-researcher-to-us-ai-safety-institute",
+    "published": "2024-03-07",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "google-ai-leadership-2026",
+    "title": "Google · The next chapter of our AI momentum",
+    "url": "https://blog.google/company-news/inside-google/message-ceo/next-chapter-ai-momentum/",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "deepmind-institute-2026",
+    "title": "DeepMind Institute · 成立公告与创办者职衔",
+    "url": "https://institute.deepmind.com/essays/introducing-the-deepmind-institute/",
+    "published": "2026-09-16",
+    "verified": "2026-10-08"
+  },
+  {
+    "id": "google-demis-author",
+    "title": "Google · Demis Hassabis 作者资料",
+    "url": "https://blog.google/authors/demis-hassabis/",
+    "verified": "2026-10-08"
+  }
 ];
 
 export const companies: Company[] = [

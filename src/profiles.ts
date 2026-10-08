@@ -1,563 +1,1482 @@
-// Background chapters for person dossiers: early life, education, career and public
-// positions beyond the roles the atlas tracks. Compiled on 2026-10-08 from each
-// person's English Wikipedia entry, a secondary source; role and governance facts
-// stay with the primary announcements cited in data.ts. Nothing here is inferred
-// beyond the cited entry. Private life, wealth, political donations, litigation and
-// unverified 2026 changes of office are deliberately left out.
+// Background dossiers reviewed on 2026-10-08. Sources attach to individual
+// fact rows and paragraphs; chapter sources are their exact union. A review
+// date records editorial work, not an assertion that historical roles are current.
+// Remaining secondary-source dependencies and pending role updates stay visible.
 export interface Chapter {
   title: string;
   text: string[];
   sourceIds: string[];
+  paragraphSourceIds: string[][];
 }
 export interface Profile {
-  facts: [string, string][];
+  facts: [string, string, string[]][];
   chapters: Chapter[];
+  reviewed: string;
+  reviewNote: string;
+  roleNote?: { text: string; sourceIds: string[] };
 }
 
 export const profiles: Record<string, Profile> = {
   "sam-altman": {
-    facts: [
-      ["出生", "1985 年 4 月 22 日 · 美国芝加哥"],
-      ["成长", "密苏里州克莱顿"],
-      ["教育", "斯坦福大学计算机科学，2005 年肄业"],
-      ["此前", "Loopt 联合创始人 · Y Combinator 总裁"],
-      ["荣誉", "2023 年《时代》周刊百大人物"],
+    "facts": [
+      [
+        "成长",
+        "美国圣路易斯地区",
+        [
+          "sam-stanford-transcript"
+        ]
+      ],
+      [
+        "教育",
+        "斯坦福大学计算机科学，读完两年后离校",
+        [
+          "sam-stanford-transcript"
+        ]
+      ],
+      [
+        "此前",
+        "Loopt 联合创始人 · Y Combinator 总裁（2014—2019）",
+        [
+          "yc-loopt",
+          "sam-stanford-transcript",
+          "yc-group-2016"
+        ]
+      ],
+      [
+        "荣誉",
+        "2023 年《时代》周刊百大人物",
+        [
+          "time-sam-2023"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "早年与教育",
-        text: [
-          "Altman 1985 年 4 月 22 日生于芝加哥。1989 年，他随家人迁往密苏里州克莱顿。8 岁时他得到了人生第一台电脑，一台苹果 Macintosh，并从那时开始学习编程。",
-          "他中学就读于拉杜的私立学校 John Burroughs School，之后进入斯坦福大学学习计算机科学。读了两年后，他在 2005 年离校，没有取得学士学位。",
+        "title": "斯坦福与 Loopt",
+        "text": [
+          "Altman 在圣路易斯地区长大，随后进入斯坦福大学学习计算机科学。斯坦福大学公布的对谈文字稿记载，他读完两年后离校，将工作重心转向手机社交应用 Loopt。",
+          "他参与创办的 Loopt 是 Y Combinator 2005 年夏季首批资助的公司之一。这款应用利用手机位置帮助用户发现附近的人、地点和活动；Y Combinator 的公司档案列出红杉资本和 New Enterprise Associates 为其投资方。",
+          "2012 年 4 月 4 日，Green Dot 宣布已经完成对 Loopt 的收购。公告披露，交易以现金及与留任挂钩的激励支付，合计约 4300 万美元。"
         ],
-        sourceIds: ["wiki-sam-altman"],
+        "sourceIds": [
+          "sam-stanford-transcript",
+          "yc-loopt",
+          "yc-sam",
+          "greendot-loopt-completed"
+        ],
+        "paragraphSourceIds": [
+          [
+            "sam-stanford-transcript"
+          ],
+          [
+            "yc-loopt",
+            "yc-sam"
+          ],
+          [
+            "greendot-loopt-completed"
+          ]
+        ]
       },
       {
-        title: "Loopt：第一次创业",
-        text: [
-          "离开斯坦福的同一年，19 岁的 Altman 参与创办了 Loopt 并出任 CEO。这是一款基于位置的手机社交应用：公司向移动运营商购买地理位置数据，试图搭建一张能实时看到朋友位置的网络。",
-          "Loopt 先后筹得超过 3000 万美元的风险投资，其中首笔为 500 万美元，后续投资方包括红杉资本和 Y Combinator。但产品始终没有获得足够多的用户。2012 年 3 月，Green Dot 以 4340 万美元收购了 Loopt。",
+        "title": "执掌 Y Combinator",
+        "text": [
+          "2014 年 2 月 21 日，Paul Graham 宣布 Altman 将从下一批创业项目起担任 Y Combinator 总裁，由他领导机构的发展；Graham 则继续参与面向创业公司的咨询时间。",
+          "2016 年 9 月，Altman 在署名公告中将自己的职称改为 YC Group 总裁。该架构包含 YC、YC Continuity、YC Research 和在线课程，他负责推动新部门的建立。Y Combinator 的作者简介将他的总裁任期记为 2014 至 2019 年。"
         ],
-        sourceIds: ["wiki-sam-altman"],
+        "sourceIds": [
+          "yc-sam",
+          "yc-group-2016"
+        ],
+        "paragraphSourceIds": [
+          [
+            "yc-sam"
+          ],
+          [
+            "yc-group-2016"
+          ]
+        ]
       },
       {
-        title: "执掌 Y Combinator",
-        text: [
-          "2011 年，Altman 以兼职合伙人的身份加入 Y Combinator。2014 年 2 月，他接替 Paul Graham 出任总裁，提出的目标是让 YC 每年资助 1000 家新公司，并把投资范围扩展到“硬科技”创业公司。2016 年 9 月，他改任 YC Group 总裁，这一架构包含 Y Combinator 及其他部门。",
-          "这一时期他还短暂执掌过 Reddit：2014 年，时任 CEO Yishan Wong 辞职后，他出任 CEO 八天；2015 年 7 月 10 日，他宣布 Steve Huffman 回归担任 CEO。他参与了 Reddit 在 2014、2015 和 2021 年的多轮融资，留在董事会直到 2022 年；Reddit 2024 年 2 月的上市文件显示，他是第三大股东，持股约 9%。",
-          "2019 年 3 月，他卸任 YC 职务，全职投入 OpenAI。",
+        "title": "创办 OpenAI",
+        "text": [
+          "2015 年 12 月 11 日，OpenAI 以非营利 AI 研究机构的身份公开成立。公告把 Altman 与 Elon Musk 列为共同主席，并披露初始资助者合计承诺提供 10 亿美元。",
+          "2019 年 3 月 11 日，OpenAI 发布 OpenAI LP 的组织调整说明，将 Altman 列为 CEO 及非营利董事会成员。公告区分了负责开展业务的有限合伙实体与继续承担治理职责的非营利组织。"
         ],
-        sourceIds: ["wiki-sam-altman"],
+        "sourceIds": [
+          "openai-founding",
+          "openai-lp"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-founding"
+          ],
+          [
+            "openai-lp"
+          ]
+        ]
       },
       {
-        title: "创办 OpenAI",
-        text: [
-          "2015 年，OpenAI 以非营利组织的形式成立，创办者包括 Altman、Greg Brockman、Elon Musk、Peter Thiel、Jessica Livingston 等人，成立时各方承诺的出资总额为 10 亿美元。OpenAI 在 2019 年表示，承诺的资金中实际到位的是 1.3 亿美元。",
-          "Altman 当时把 AI 安全和通用人工智能可能带来的生存风险列为创办动因，并主张开源的 AI 能让使用者对抗恶意行为者，从而降低风险。他参与招募了 Ilya Sutskever 和 Dario Amodei，并表示这会是一项持续数十年的工作。",
-          "2018 年，Musk 以与特斯拉的 AI 研发存在潜在利益冲突为由，辞去 OpenAI 董事会职务。",
+        "title": "2023 年 11 月的治理变动",
+        "text": [
+          "2023 年 11 月 17 日，OpenAI 董事会宣布 Altman 离开 CEO 与董事会职位，由 Mira Murati 出任临时 CEO。董事会在公告中将决定归因于其与董事会沟通时未能始终保持坦诚。",
+          "11 月 29 日，OpenAI 的正式公告确认 Altman 回任 CEO。新的初始董事会由主席 Bret Taylor、Larry Summers 和 Adam D’Angelo 组成。"
         ],
-        sourceIds: ["wiki-sam-altman"],
+        "sourceIds": [
+          "openai-transition",
+          "openai-return"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-transition"
+          ],
+          [
+            "openai-return"
+          ]
+        ]
       },
       {
-        title: "出任 CEO 与 2023 年 11 月",
-        text: [
-          "2019 年 3 月起，Altman 全职担任 OpenAI CEO。2022 年 11 月底，OpenAI 推出基于 GPT-3.5 的 ChatGPT 免费预览版，五天内注册用户超过一百万。",
-          "2023 年 5 月 16 日，他在美国参议院司法委员会下属的隐私、技术与法律小组委员会就 AI 监管作证；同月他开始一次全球行程，到访 22 个国家，会见了多国政府首脑。当年他入选《时代》周刊百大人物。",
-          "2023 年 11 月 17 日，OpenAI 董事会解除了他的 CEO 职务，理由是他在与董事会的沟通中“并非始终坦诚”；Brockman 同时被移出董事会，并于当天辞去总裁职务。11 月 20 日，微软 CEO Satya Nadella 宣布 Altman 将加入微软，带领新的高级 AI 研究团队。员工发起的公开信最初有 505 人签名，后来在 770 名员工中超过 700 人签署。11 月 21 日，他与 Brockman 回到 OpenAI；Bret Taylor 出任董事会主席，Lawrence Summers 加入董事会，Adam D'Angelo 留任。",
+        "title": "公开作证与年度名单",
+        "text": [
+          "2023 年 5 月 16 日，Altman 以 OpenAI CEO 身份在美国参议院司法委员会下属隐私、技术与法律小组委员会作证。听证会题为《Oversight of A.I.: Rules for Artificial Intelligence》，委员会保留了证词和听证记录。",
+          "同年，Altman 入选《时代》周刊的 2023 年百大人物名单。"
         ],
-        sourceIds: ["wiki-sam-altman"],
-      },
-      {
-        title: "投资、其他公司与公共立场",
-        text: [
-          "2012 年 4 月，Altman 与弟弟 Jack 共同创办 Hydrazine Capital，首期基金 2100 万美元，其中约 75% 投给了 Y Combinator 的公司。他的个人投资包括 Humane、Retro Biosciences、Boom Technology、Cruise 和 Instacart。",
-          "2019 年，他与 Alex Blania 共同创办 Worldcoin 背后的公司 Tools for Humanity。他担任核聚变公司 Helion Energy 的董事会主席。2021 年 3 月，他与 Michael Klein 共同发起 AltC Acquisition Corp 并任 CEO；2024 年 5 月，这家公司与 Oklo 合并使后者上市，他出任董事长，直到 2025 年 4 月卸任。这些职务与他在 OpenAI 的身份相互独立，本图谱没有把它们画成 OpenAI 的关系。",
-          "在公共议题上，他 2021 年发表文章《Moore's Law for Everything》，主张 AI 创造的财富可以在十年内支撑每年 13500 美元的全民基本收入；2024 年他又提出“全民基本算力”的设想。2026 年 4 月，他对《大西洋月刊》表示，自己已不像过去那样相信全民基本收入。2017 年，他获得 Ric Weiland 奖。",
+        "sourceIds": [
+          "senate-altman-2023",
+          "time-sam-2023"
         ],
-        sourceIds: ["wiki-sam-altman"],
-      },
+        "paragraphSourceIds": [
+          [
+            "senate-altman-2023"
+          ],
+          [
+            "time-sam-2023"
+          ]
+        ]
+      }
     ],
+    "reviewed": "2026-10-08",
+    "reviewNote": "已逐段核对旧稿并将保留内容改用公司、大学、听证会及评选机构资料；删去未进一步核实的精确早年细节、投资清单与持股信息。任职按历史公告记录。"
   },
   "greg-brockman": {
-    facts: [
-      ["出生", "1987 年 11 月 29 日 · 美国北达科他州汤普森"],
-      ["教育", "先后就读哈佛大学与麻省理工学院，均未毕业"],
-      ["竞赛", "2006 年国际化学奥林匹克银牌"],
-      ["此前", "Stripe 首任 CTO"],
+    "facts": [
+      [
+        "教育",
+        "先后就读哈佛大学与麻省理工学院，之后离校加入 Stripe",
+        [
+          "brockman-path"
+        ]
+      ],
+      [
+        "竞赛",
+        "2006 年国际化学奥林匹克银牌",
+        [
+          "acs-brockman-2006"
+        ]
+      ],
+      [
+        "此前",
+        "2010 年加入 Stripe；2013 年前后出任 CTO",
+        [
+          "brockman-stripe-cto"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "早年与竞赛",
-        text: [
-          "Brockman 1987 年 11 月 29 日生于北达科他州汤普森，中学就读于 Red River High School，数学、化学和计算机科学成绩突出。2003、2005 和 2007 年，他三次参加面向数学特长高中生的暑期项目 Canada/USA Mathcamp。",
-          "2006 年，他在国际化学奥林匹克获得银牌。2007 年，他入围 Intel Science Talent Search 决赛，是北达科他州自 1973 年以来的第一位决赛选手。",
+        "title": "中学竞赛",
+        "text": [
+          "2006 年，Brockman 代表美国参加在韩国举行的国际化学奥林匹克，并获得银牌。美国化学会的获奖公告记载，他当时就读于北达科他州 Red River High School。",
+          "2007 年，他进入 Intel Science Talent Search 决赛。主办方的最终成绩表将 Gregory Brockman 列为第六名，并记录他获得当届 Glenn T. Seaborg 奖。"
         ],
-        sourceIds: ["wiki-greg-brockman"],
+        "sourceIds": [
+          "acs-brockman-2006",
+          "sts-brockman-2007"
+        ],
+        "paragraphSourceIds": [
+          [
+            "acs-brockman-2006"
+          ],
+          [
+            "sts-brockman-2007"
+          ]
+        ]
       },
       {
-        title: "哈佛、MIT 与 Stripe",
-        text: [
-          "2008 年，Brockman 进入哈佛大学，大约一年后离开，之后短暂就读于麻省理工学院。两所学校他都没有读完。",
-          "2010 年，他从麻省理工学院退学，加入 Stripe。这家公司由他在麻省理工学院的同学 Patrick Collison 与 John Collison 创办，他是最早的员工之一。2013 年，他成为 Stripe 的首任 CTO；条目记载，这一阶段 Stripe 的规模从 5 人增长到 205 人。2015 年 5 月，他离开 Stripe。",
+        "title": "哈佛、MIT 与 Stripe",
+        "text": [
+          "在 2016 年的自述《My path to OpenAI》中，Brockman 记述自己先就读哈佛大学，之后转到麻省理工学院。他原本参与编程语言相关研究，接触到尚未发布产品的 Stripe 团队后决定离校加入。",
+          "Brockman 在 2014 年的署名文章中写道，自己于 2010 年以工程师身份加入 Stripe，早期工作包括后端基础设施与服务器架构。文章说，公司在约一年半前正式将他的职位定为 CTO；这一表述对应 2013 年前后。"
         ],
-        sourceIds: ["wiki-greg-brockman"],
+        "sourceIds": [
+          "brockman-path",
+          "brockman-stripe-cto"
+        ],
+        "paragraphSourceIds": [
+          [
+            "brockman-path"
+          ],
+          [
+            "brockman-stripe-cto"
+          ]
+        ]
       },
       {
-        title: "组建 OpenAI",
-        text: [
-          "2015 年，Brockman 与 Sam Altman、Elon Musk 会面后，牵头招募 OpenAI 的创始团队，从其他机构的高薪职位上请来了包括 Ilya Sutskever 在内的研究者。同年 12 月，OpenAI 成立；最初一段时间，这家机构就在他家的客厅里办公。",
-          "他是联合创始人兼总裁，也担任过 CTO，并在 2017 至 2023 年间是董事会成员。在研究与工程上，他主持了 OpenAI Gym 和 Dota 2 机器人项目 OpenAI Five。",
-          "他也常常是 OpenAI 对外展示成果的人。2019 年 2 月 14 日，OpenAI 公布 GPT-2，但因担心被滥用而暂不公开，同年 5 月才向少量测试者开放。2023 年 3 月 14 日，他在直播中演示了 GPT-4；4 月 20 日，他在 TED 上讲述了 ChatGPT 的潜力。",
+        "title": "组建 OpenAI 与研究项目",
+        "text": [
+          "Brockman 在 2016 年回顾创建 OpenAI 的经过时写道，离开 Stripe 前，他曾与 Sam Altman 讨论下一步计划。随后，Altman 组织了一场包括 Ilya Sutskever、Elon Musk 等人在内的晚餐；会后，Brockman 决定全职投入新研究机构的筹备。",
+          "2015 年 12 月的 OpenAI 成立公告把 Brockman 列为 CTO。2016 年，他与 Vicki Cheung、John Schulman 等人共同署名《OpenAI Gym》论文，介绍用于强化学习研究的工具集。",
+          "2018 年 6 月发布的《OpenAI Five》技术介绍也将他列为共同作者。该项目由五个神经网络组成，在《Dota 2》中通过自我对弈进行训练。"
         ],
-        sourceIds: ["wiki-greg-brockman"],
+        "sourceIds": [
+          "brockman-path",
+          "openai-founding",
+          "openai-gym-paper",
+          "openai-five-2018"
+        ],
+        "paragraphSourceIds": [
+          [
+            "brockman-path"
+          ],
+          [
+            "openai-founding",
+            "openai-gym-paper"
+          ],
+          [
+            "openai-five-2018"
+          ]
+        ]
       },
       {
-        title: "2023 年 11 月的五天",
-        text: [
-          "2023 年 11 月 17 日，在 Altman 被解职的同时，Brockman 被告知已被移出董事会。按原安排他将向临时 CEO Mira Murati 汇报，但他在当天宣布离开公司。",
-          "11 月 20 日，微软 CEO Satya Nadella 宣布他与 Altman 将加入微软，带领新的高级 AI 研究团队。11 月 21 日，随着让 Altman 复职的协议达成，他回到 OpenAI。董事会重组后，Bret Taylor 接替他出任董事会主席。",
+        "title": "总裁任命与公开演示",
+        "text": [
+          "2022 年 5 月 5 日，OpenAI 宣布 Brockman 出任总裁。公司将这一新职位描述为结合关键工程工作和公司战略，并说明他当时着重于旗舰 AI 系统的训练。",
+          "2023 年 4 月 18 日，Brockman 在温哥华的 TED2023 第二场会议展示 ChatGPT 插件，并与 Chris Anderson 讨论开发过程和发布风险。"
         ],
-        sourceIds: ["wiki-greg-brockman", "wiki-bret-taylor"],
+        "sourceIds": [
+          "openai-roles-2022",
+          "ted-brockman-2023"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-roles-2022"
+          ],
+          [
+            "ted-brockman-2023"
+          ]
+        ]
       },
       {
-        title: "长假之后",
-        text: [
-          "2024 年 8 月至 11 月，Brockman 休了一段长假；路透社在 11 月 12 日报道他返回 OpenAI。",
-          "2025 年 11 月，《财富》杂志的一篇报道称他为 OpenAI 的“首席建设者”，负责把 Altman 的数据中心计划变为现实。早在 2017 年，他入选过《福布斯》企业科技领域的 30 位 30 岁以下人物。",
+        "title": "2023 年 11 月的离任与回任",
+        "text": [
+          "2023 年 11 月 17 日，OpenAI 公告宣布 Brockman 卸任董事会主席；公告最初的安排是让他继续在公司任职，向 CEO 汇报。",
+          "11 月 29 日，OpenAI 的正式回任公告确认他再次担任总裁。Altman 在同一公告中说明，两人将合作管理公司；新董事会主席为 Bret Taylor。"
         ],
-        sourceIds: ["wiki-greg-brockman"],
-      },
+        "sourceIds": [
+          "openai-transition",
+          "openai-return"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-transition"
+          ],
+          [
+            "openai-return"
+          ]
+        ]
+      }
     ],
+    "reviewed": "2026-10-08",
+    "reviewNote": "已逐段核对旧稿；保留内容采用本人文章、公司公告、论文及竞赛主办方资料。纠正 TED 现场日期，移除未经本轮原始资料核实的董事任期起点、休假细节和媒体职务描述。"
   },
   "ilya-sutskever": {
-    facts: [
-      ["出生", "1986 年 · 苏联高尔基（今俄罗斯下诺夫哥罗德）"],
-      ["成长", "以色列耶路撒冷，16 岁移居加拿大"],
-      ["教育", "多伦多大学数学学士（2005）、计算机科学硕士（2007）与博士（2013）"],
-      ["导师", "Geoffrey Hinton"],
-      ["荣誉", "2022 年当选英国皇家学会会士"],
+    "facts": [
+      [
+        "成长",
+        "在以色列长大，青少年时期移居加拿大",
+        [
+          "utoronto-ilya-honorary"
+        ]
+      ],
+      [
+        "教育",
+        "多伦多大学数学学士（2005）、计算机科学硕士（2007）与博士（2013）",
+        [
+          "utoronto-ilya-degrees",
+          "utoronto-ilya-honorary"
+        ]
+      ],
+      [
+        "导师",
+        "Geoffrey Hinton",
+        [
+          "ilya-thesis"
+        ]
+      ],
+      [
+        "荣誉",
+        "2022 年当选英国皇家学会会士",
+        [
+          "royalsociety-ilya"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "三个国家的少年时代",
-        text: [
-          "Sutskever 1986 年生于苏联高尔基，即今天俄罗斯的下诺夫哥罗德。5 岁时，他随家人移民以色列，在耶路撒冷长大。八年级时，他已经开始在以色列开放大学修课。",
-          "16 岁时他迁往加拿大，以三年级本科生的身份被多伦多大学 University College 录取。",
+        "title": "多伦多大学与神经网络",
+        "text": [
+          "Sutskever 在以色列长大，青少年时期移居加拿大。多伦多大学的介绍记载，他从十一年级进入该校数学项目，开始修读高年级课程。",
+          "他先后取得多伦多大学数学学士、计算机科学硕士与博士学位，年份分别为 2005、2007 和 2013 年。博士论文题为《Training Recurrent Neural Networks》，导师为 Geoffrey Hinton。",
+          "2012 年，他与 Alex Krizhevsky、Hinton 合作开发卷积神经网络 AlexNet，用于识别图像中的物体。"
         ],
-        sourceIds: ["wiki-ilya-sutskever"],
+        "sourceIds": [
+          "utoronto-ilya-honorary",
+          "utoronto-ilya-degrees",
+          "ilya-thesis"
+        ],
+        "paragraphSourceIds": [
+          [
+            "utoronto-ilya-honorary"
+          ],
+          [
+            "utoronto-ilya-degrees",
+            "utoronto-ilya-honorary",
+            "ilya-thesis"
+          ],
+          [
+            "utoronto-ilya-honorary"
+          ]
+        ]
       },
       {
-        title: "多伦多大学与 AlexNet",
-        text: [
-          "他在多伦多大学一路读完三个学位：2005 年数学学士，2007 年计算机科学硕士，2013 年计算机科学博士。博士导师是 Geoffrey Hinton，论文题为《Training recurrent neural networks》。",
-          "2012 年，他与 Hinton、Alex Krizhevsky 一起构建了卷积神经网络 AlexNet。三人合著的论文《ImageNet Classification with Deep Convolutional Neural Networks》发表于当年的 NeurIPS，2017 年又刊登在《Communications of the ACM》上。",
+        "title": "DNNResearch 与 Google Brain",
+        "text": [
+          "Sutskever、Krizhevsky 与 Hinton 于 2012 年共同成立 DNNResearch。2013 年 3 月，多伦多大学宣布谷歌收购这家公司，并说明 Sutskever 与 Krizhevsky 将加入谷歌。",
+          "Sutskever 的个人学术主页记载，他在 Google Brain 担任过三年研究科学家。2014 年，他与 Oriol Vinyals、Quoc V. Le 共同发表《Sequence to Sequence Learning with Neural Networks》，提出使用神经网络完成序列到序列任务的方法。"
         ],
-        sourceIds: ["wiki-ilya-sutskever"],
+        "sourceIds": [
+          "utoronto-dnnresearch",
+          "ilya-homepage",
+          "seq2seq"
+        ],
+        "paragraphSourceIds": [
+          [
+            "utoronto-dnnresearch"
+          ],
+          [
+            "ilya-homepage",
+            "seq2seq"
+          ]
+        ]
       },
       {
-        title: "斯坦福、DNNResearch 与 Google Brain",
-        text: [
-          "2012 年，Sutskever 在斯坦福大学 Andrew Ng 的团队做了大约两个月博士后，随后回到多伦多大学，加入 Hinton 新成立的公司 DNNResearch，这是从 Hinton 研究组分拆出来的。",
-          "2013 年，谷歌收购 DNNResearch，他成为 Google Brain 的研究科学家。在谷歌，他与 Oriol Vinyals、Quoc Viet Le 合作提出序列到序列学习算法（2014 年论文），参与了 TensorFlow 的工作，也是 2016 年 AlphaGo 论文的众多作者之一。",
+        "title": "OpenAI 与超级对齐",
+        "text": [
+          "2015 年 12 月，OpenAI 的成立公告将 Sutskever 列为研究负责人。2019 年 3 月的 OpenAI LP 公告记录了他的首席科学家与非营利董事会成员身份。",
+          "2023 年 7 月 5 日，他与 Jan Leike 共同署名发布“超级对齐”项目，宣布共同领导新团队，目标是在四年内解决超级智能对齐的核心技术挑战。文中明确指出，这是一项目标，并不保证能够成功。",
+          "在同一篇文章中，两位作者表示，超级智能可能在这个十年内出现。他们将研究问题表述为：如何确保比人类聪明得多的 AI 系统遵循人的意图。"
         ],
-        sourceIds: ["wiki-ilya-sutskever"],
+        "sourceIds": [
+          "openai-founding",
+          "openai-lp",
+          "openai-superalignment"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-founding",
+            "openai-lp"
+          ],
+          [
+            "openai-superalignment"
+          ],
+          [
+            "openai-superalignment"
+          ]
+        ]
       },
       {
-        title: "OpenAI 首席科学家",
-        text: [
-          "2015 年底，Sutskever 离开谷歌，成为 OpenAI 的联合创始人兼首席科学家，并在 2017 至 2023 年间担任非营利董事会成员。",
-          "其维基百科条目认为，是他确立了 OpenAI 依靠规模扩展的研究取向，他在 ChatGPT 的开发中起了关键作用，并主持了后来通向 o1 等推理模型的研究；条目也把 CLIP 和 DALL-E 列入他的贡献。2023 年，他宣布与 Jan Leike 共同领导“超级对齐”项目，目标是在四年内解决超级智能的对齐问题。",
-          "他对技术走向的公开表态不多，但常引起讨论：2022 年他发推称今天的大型神经网络“有一点点意识”，引发了关于 AI 意识的争论；2023 年他写道，超级智能看似遥远，却可能在这个十年内出现。",
+        "title": "2023 年 11 月与离开 OpenAI",
+        "text": [
+          "2023 年 11 月 17 日，OpenAI 董事会宣布解除 Altman 的 CEO 职务，并在同一公告中将 Sutskever 列为董事会成员。",
+          "据《时代》周刊 11 月 20 日报道，Sutskever 随后公开表示，对自己参与董事会行动感到遗憾。11 月 29 日，OpenAI 的回任公告明确，他不再担任董事。",
+          "2024 年 5 月 14 日，OpenAI 宣布 Sutskever 离开，并由 Jakub Pachocki 接任首席科学家。公告中 Altman 提到，Sutskever 将去从事一项对他个人有意义的工作。"
         ],
-        sourceIds: ["wiki-ilya-sutskever"],
+        "sourceIds": [
+          "openai-transition",
+          "time-ilya-regret",
+          "openai-return",
+          "openai-ilya-departure"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-transition"
+          ],
+          [
+            "time-ilya-regret",
+            "openai-return"
+          ],
+          [
+            "openai-ilya-departure"
+          ]
+        ]
       },
       {
-        title: "2023 年 11 月与离开",
-        text: [
-          "2023 年 11 月，OpenAI 董事会解除 Altman 的职务，理由是他对董事会并非始终坦诚。据其维基百科条目，Sutskever 参与了这次表决，并在随后的全员会议上称这是“董事会在履行职责”。",
-          "接下来的一周里，他公开表示后悔：“我对自己参与了董事会的行动感到遗憾。”大约一周后 Altman 复职，Sutskever 退出董事会。",
-          "2024 年 5 月，他宣布离开 OpenAI，去做一个“对我个人非常有意义”的新项目。与他共同领导超级对齐项目的 Jan Leike 在数小时后也宣布离职。",
+        "title": "创办 Safe Superintelligence",
+        "text": [
+          "2024 年，Sutskever 参与创办 Safe Superintelligence（SSI），创始团队还包括 Daniel Gross 和 Daniel Levy。公司宣布以安全超级智能为唯一的研发目标与产品方向，并在帕洛阿尔托及特拉维夫设有办公室。",
+          "2024 年 9 月 4 日，SSI 公布获得 10 亿美元融资，投资方包括 NFDG、a16z、红杉资本、DST Global 和 SV Angel。",
+          "2025 年 7 月 3 日，SSI 发布 Sutskever 署名的公告，确认他正式担任 CEO、Daniel Levy 担任总裁。公告同时说明，Gross 已于 6 月 29 日离开公司。"
         ],
-        sourceIds: ["wiki-ilya-sutskever"],
+        "sourceIds": [
+          "ssi-investor",
+          "ssi-about",
+          "ssi-founder",
+          "ssi-founder-levy",
+          "ssi-founder-gross",
+          "ssi-updates"
+        ],
+        "paragraphSourceIds": [
+          [
+            "ssi-investor",
+            "ssi-about",
+            "ssi-founder",
+            "ssi-founder-levy",
+            "ssi-founder-gross"
+          ],
+          [
+            "ssi-updates"
+          ],
+          [
+            "ssi-updates"
+          ]
+        ]
       },
       {
-        title: "SSI 与学术荣誉",
-        text: [
-          "2024 年 6 月，Sutskever 宣布与 Daniel Gross、Daniel Levy 共同创办 Safe Superintelligence（SSI），在帕洛阿尔托和特拉维夫设有办公室。他表示，公司的“第一个产品将是安全的超级智能”，在此之前不会做别的事。",
-          "2024 年 9 月，SSI 从 Andreessen Horowitz、红杉资本、DST Global 和 SV Angel 等机构筹得 10 亿美元；2025 年 3 月再融资 20 亿美元，据报道估值达到 320 亿美元。2025 年 6 月，公司拒绝了 Meta 的收购提议；此后 Gross 离开并加入 Meta，Sutskever 接任 CEO。",
-          "学术荣誉方面，他 2015 年入选《麻省理工科技评论》35 岁以下创新者，2022 年当选英国皇家学会会士，2022、2023 和 2024 年连续获得 NeurIPS 时间检验奖，2023 和 2024 年入选《时代》周刊 AI 领域百人榜，2025 年获多伦多大学荣誉博士学位。",
+        "title": "学术荣誉",
+        "text": [
+          "2022 年，Sutskever 当选英国皇家学会会士。皇家学会的档案列举了他在 AlexNet 与序列到序列学习方面的共同发明经历。",
+          "2025 年 6 月 6 日，多伦多大学宣布向他授予荣誉理学博士学位，以表彰他的计算机科学工作及在安全、负责任 AI 方面的公共贡献。"
         ],
-        sourceIds: ["wiki-ilya-sutskever"],
-      },
+        "sourceIds": [
+          "royalsociety-ilya",
+          "utoronto-ilya-honorary"
+        ],
+        "paragraphSourceIds": [
+          [
+            "royalsociety-ilya"
+          ],
+          [
+            "utoronto-ilya-honorary"
+          ]
+        ]
+      }
     ],
+    "reviewed": "2026-10-08",
+    "reviewNote": "学位、研究、任职与 SSI 历史采用原始资料；2023 年董事会事件仍保留，但事后表示遗憾的内容明确归于《时代》报道，不断言未经原始记录核实的个人投票或全员会议措辞。"
   },
   "mira-murati": {
-    facts: [
-      ["出生", "1988 年 12 月 16 日 · 阿尔巴尼亚发罗拉"],
-      ["教育", "科尔比学院文学士（2011）· 达特茅斯学院工程学士（机械工程，2012）"],
-      ["此前", "Tesla Model X 产品经理 · Leap Motion 产品与工程负责人"],
-      ["荣誉", "2024 年达特茅斯学院荣誉理学博士"],
+    "reviewed": "2026-10-08",
+    "reviewNote": "已逐句对照原稿并补入学校、公司公告与本人文章；出生及早期任职年份仍保留维基二手汇编，离职与公开对谈另有具名媒体及评论来源。创意工作言论保留，是否收录仍待维护者决定。",
+    "facts": [
+      [
+        "出生",
+        "1988 年 12 月 16 日 · 阿尔巴尼亚发罗拉",
+        [
+          "wiki-mira-murati"
+        ]
+      ],
+      [
+        "教育",
+        "科尔比学院文学士 · 达特茅斯学院工程学士（2012）",
+        [
+          "dartmouth-mira-honorary-bio"
+        ]
+      ],
+      [
+        "此前",
+        "2013—2016 年 Tesla 产品经理 · 2016—2018 年 Leap Motion",
+        [
+          "wiki-mira-murati"
+        ]
+      ],
+      [
+        "荣誉",
+        "2024 年达特茅斯学院荣誉理学博士",
+        [
+          "dartmouth-mira-honorary-award"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "从发罗拉到温哥华岛",
-        text: [
-          "Murati 1988 年 12 月 16 日生于阿尔巴尼亚发罗拉，能流利使用英语和意大利语。",
-          "16 岁时，她通过 Davis United World College Scholars 项目前往加拿大温哥华岛，就读于 Pearson College UWC，并在 2007 年取得国际文凭（IB）。",
+        "title": "早年与双学位",
+        "text": [
+          "Murati 1988 年 12 月 16 日生于阿尔巴尼亚发罗拉。她曾就读于加拿大的 Pearson College UWC，学校的校友名录将她列为 2007 届毕业生。",
+          "达特茅斯学院的官方简介记载，她以 Davis UWC Scholar 身份就读科尔比学院，并通过双学位项目取得科尔比学院文学士和达特茅斯学院工程学士；达特茅斯将她列为 Thayer ’12 校友。"
         ],
-        sourceIds: ["wiki-mira-murati"],
+        "sourceIds": [
+          "wiki-mira-murati",
+          "pearson-mira-alumni",
+          "dartmouth-mira-honorary-bio"
+        ],
+        "paragraphSourceIds": [
+          [
+            "wiki-mira-murati",
+            "pearson-mira-alumni"
+          ],
+          [
+            "dartmouth-mira-honorary-bio"
+          ]
+        ]
       },
       {
-        title: "两个学位与早期工作",
-        text: [
-          "她通过双学位项目在美国完成本科：2011 年获科尔比学院文学士，2012 年获达特茅斯学院工程学士，专业是机械工程。",
-          "2011 年，她在高盛东京做过暑期分析师实习，也曾在 Zodiac Aerospace 短暂实习。2013 年她加入 Tesla，担任 Model X 的产品经理，直到 2016 年。2016 至 2018 年，她在增强现实创业公司 Leap Motion（今 Ultraleap）负责产品与工程。",
+        "title": "Tesla 与 Leap Motion",
+        "text": [
+          "2013 至 2016 年，Murati 在 Tesla 担任 Model X 产品经理；2016 至 2018 年在 Leap Motion 工作。达特茅斯的履历说明，她在 Leap Motion 负责产品与工程团队，在 Tesla 参与车辆产品的设计、开发和发布。"
         ],
-        sourceIds: ["wiki-mira-murati"],
+        "sourceIds": [
+          "wiki-mira-murati",
+          "dartmouth-mira-honorary-bio"
+        ],
+        "paragraphSourceIds": [
+          [
+            "wiki-mira-murati",
+            "dartmouth-mira-honorary-bio"
+          ]
+        ]
       },
       {
-        title: "在 OpenAI：从合作副总裁到 CTO",
-        text: [
-          "2018 年，Murati 加入 OpenAI，担任应用 AI 与合作伙伴关系副总裁，2022 年 5 月升任 CTO。在这个位置上，她主持了 ChatGPT、DALL-E、Codex 和 Sora 的相关工作，同时管理研究、产品和安全团队。",
-          "2022 年春，她在美国人文与科学院的刊物《Daedalus》上发表文章《Language & Coding Creativity》。2023 年 10 月，她在《财富》杂志“商界最具影响力的 100 位女性”榜单上列第 57 位。",
-          "2024 年 6 月，她在达特茅斯学院塞耶工程学院的一次对谈中说，一些内容质量不高的创意类工作可能会消失，这一说法受到作家、艺术家和达特茅斯学生的批评。同月，达特茅斯学院授予她荣誉理学博士学位。",
+        "title": "OpenAI 的研究与产品",
+        "text": [
+          "2018 年，Murati 加入 OpenAI，最初担任应用 AI 与合作伙伴关系副总裁。2022 年 5 月 5 日，OpenAI 宣布她出任 CTO，并说明她此前已领导研究、产品和合作伙伴职能，参与推动 DALL-E 研究成果发布。",
+          "2022 年春，她以 Ermira Murati 署名在《Daedalus》发表《Language & Coding Creativity》，讨论语言模型的创作能力及人与机器的关系。2024 年，达特茅斯的授予荣誉学位说明将 ChatGPT、DALL-E 和 Codex 列为她领导团队开展的项目。"
         ],
-        sourceIds: ["wiki-mira-murati"],
+        "sourceIds": [
+          "wiki-mira-murati",
+          "openai-roles-2022",
+          "murati-language-creativity",
+          "dartmouth-mira-honorary-award"
+        ],
+        "paragraphSourceIds": [
+          [
+            "wiki-mira-murati",
+            "openai-roles-2022"
+          ],
+          [
+            "murati-language-creativity",
+            "dartmouth-mira-honorary-award"
+          ]
+        ]
       },
       {
-        title: "临时 CEO 的三天与离任",
-        text: [
-          "2023 年 11 月 17 日，OpenAI 董事会解除 Altman 职务后，Murati 出任临时 CEO。大约三天后，她被 Emmett Shear 接替；再过两天左右，Altman 复职，Shear 离开，她回到 CTO 的岗位。",
-          "2024 年 9 月 25 日，她宣布卸任 CTO，理由是希望有机会“做自己的探索”。首席研究官 Bob McGrew 和研究副总裁 Barret Zoph 随后也宣布离开。",
+        "title": "2023 年的临时 CEO",
+        "text": [
+          "2023 年 11 月 17 日，OpenAI 董事会宣布 Altman 离任，并任命 Murati 为临时 CEO。11 月 29 日的公司公告正式确认 Altman 回任 CEO、Murati 回任 CTO；这份公告的日期与此前达成回任协议的日期应作区分。"
         ],
-        sourceIds: ["wiki-mira-murati"],
+        "sourceIds": [
+          "openai-transition",
+          "openai-return"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-transition",
+            "openai-return"
+          ]
+        ]
       },
       {
-        title: "Thinking Machines Lab",
-        text: [
-          "2025 年 2 月，Murati 创办的 Thinking Machines Lab 公开亮相。这是一家公益公司（public benefit corporation），宣布的使命是“让 AI 系统被更广泛地理解、可定制、并具备更通用的能力”。",
-          "据报道，公司从 Meta、Mistral 和 OpenAI 招募了约 30 名研究员和工程师，OpenAI 联合创始人 John Schulman 参与其中，Alec Radford 和 Bob McGrew 担任顾问。",
-          "融资方面，由 Andreessen Horowitz 领投的一轮融资使公司估值达到 120 亿美元（2025 年 7 月报道），阿尔巴尼亚政府也参与了投资。在治理上，Murati 在董事会事项上拥有加权的决定性一票。2025 年 10 月，公司发布首个产品 Tinker，一款用于创建定制前沿模型的工具。",
+        "title": "2024 年的公开活动与离任",
+        "text": [
+          "2024 年 6 月 8 日，Murati 在达特茅斯参加由 Jeffrey Blackburn 主持的 AI 对谈。她谈及一些创意类工作可能消失，并在内容质量不高的前提下质疑这类岗位存在的必要性。7 月 12 日，《The Dartmouth》刊登 Will Elliott 的署名评论，批评这一说法。",
+          "2024 年 6 月 9 日，达特茅斯学院授予 Murati 荣誉理学博士学位。",
+          "据美联社 2024 年 9 月 25 日报道，Murati 宣布将离开 OpenAI，表示希望腾出时间进行自己的探索。同一报道还记载，Bob McGrew 和 Barret Zoph 也宣布离职。"
         ],
-        sourceIds: ["wiki-mira-murati"],
+        "sourceIds": [
+          "dartmouth-mira-ai-discussion",
+          "dartmouth-elliott-murati",
+          "dartmouth-mira-honorary-award",
+          "ap-murati-departure"
+        ],
+        "paragraphSourceIds": [
+          [
+            "dartmouth-mira-ai-discussion",
+            "dartmouth-elliott-murati"
+          ],
+          [
+            "dartmouth-mira-honorary-award"
+          ],
+          [
+            "ap-murati-departure"
+          ]
+        ]
       },
-    ],
+      {
+        "title": "Thinking Machines Lab",
+        "text": [
+          "2025 年 2 月，Murati 创办的 Thinking Machines Lab 公开亮相。公司网站将其定位为 AI 研究与产品公司，强调可定制的 AI 系统以及人与 AI 的协作。",
+          "2025 年 10 月 1 日，公司发布 Tinker。官方公告将其描述为用于微调语言模型的 API：使用者控制算法和数据，由平台处理分布式训练的复杂性。"
+        ],
+        "sourceIds": [
+          "wiki-mira-murati",
+          "tml-about",
+          "tml-tinker"
+        ],
+        "paragraphSourceIds": [
+          [
+            "wiki-mira-murati",
+            "tml-about"
+          ],
+          [
+            "tml-tinker"
+          ]
+        ]
+      }
+    ]
   },
   "dario-amodei": {
-    facts: [
-      ["出生", "1983 年 · 美国旧金山"],
-      ["教育", "斯坦福大学物理学学士 · 普林斯顿大学生物物理学博士（2011）"],
-      ["导师", "Michael J. Berry · William Bialek"],
-      ["此前", "百度 · Google Brain · OpenAI 研究副总裁"],
-      ["荣誉", "2025、2026 年《时代》周刊百大人物"],
+    "facts": [
+      [
+        "教育",
+        "斯坦福大学本科 · 普林斯顿大学物理学博士（2011，研究方向为生物物理）",
+        [
+          "dario-princeton-bio"
+        ]
+      ],
+      [
+        "导师",
+        "Michael Berry · William Bialek",
+        [
+          "dario-princeton-bio"
+        ]
+      ],
+      [
+        "竞赛",
+        "2000 年美国物理队成员",
+        [
+          "dario-physics-team-2000"
+        ]
+      ],
+      [
+        "荣誉",
+        "2007 年 Hertz Fellow · 2012 年 Hertz 论文奖",
+        [
+          "dario-hertz-bio",
+          "hertz-thesis-awards"
+        ]
+      ],
+      [
+        "榜单",
+        "2025、2026 年 TIME 百大人物",
+        [
+          "time-dario-2025",
+          "time-dario-daniela-2026"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "家庭与求学",
-        text: [
-          "Amodei 1983 年生于旧金山，妹妹 Daniela 比他小四岁，后来与他一同创办了 Anthropic。父亲 Riccardo Amodei 是来自意大利托斯卡纳马萨马里蒂马的意大利裔皮革匠人，在他 23 岁时去世；母亲 Elena Engel 生于芝加哥，曾做图书馆项目经理。",
-          "他毕业于旧金山的 Lowell High School，2000 年入选美国物理奥林匹克代表队。大学起初就读于加州理工学院，是 Tom Tombrello 的 Physics 11 课程学生之一，之后转入斯坦福大学，取得物理学学士学位。",
+        "title": "物理训练与普林斯顿",
+        "text": [
+          "美国物理教师协会公布的 2000 年美国物理队名单中列有 Amodei。他后来在斯坦福大学完成本科，再进入普林斯顿大学读博。",
+          "2011 年，他获得普林斯顿大学物理学博士学位，研究方向为生物物理，导师是 Michael Berry 和 William Bialek。2007 年，他获选为 Hertz Fellow。"
         ],
-        sourceIds: ["wiki-dario-amodei"],
+        "sourceIds": [
+          "dario-physics-team-2000",
+          "dario-princeton-bio",
+          "dario-hertz-bio"
+        ],
+        "paragraphSourceIds": [
+          [
+            "dario-physics-team-2000",
+            "dario-princeton-bio"
+          ],
+          [
+            "dario-princeton-bio",
+            "dario-hertz-bio"
+          ]
+        ]
       },
       {
-        title: "普林斯顿：从物理到神经回路",
-        text: [
-          "Amodei 在普林斯顿大学攻读生物物理学博士，导师是 Michael J. Berry 和 William Bialek。2007 年，他在读期间获得 Hertz 基金会奖学金。",
-          "2011 年，他完成博士论文《Network-Scale Electrophysiology: Measuring and Understanding the Collective Behavior of Neural Circuits》，研究如何测量和理解神经回路的集体行为，并因这项工作获得 Hertz 论文奖。此后他在斯坦福大学医学院做博士后。",
+        "title": "神经回路研究",
+        "text": [
+          "他的博士论文题为《Network-Scale Electrophysiology: Measuring and Understanding the Collective Behavior of Neural Circuits》，研究神经回路的集体行为与电活动记录方法。Hertz 基金会的历届获奖名单将这篇论文列为 2012 年论文奖得主。",
+          "博士毕业后，他在斯坦福大学医学院做博士后。Hertz 基金会的简介记载，他研究过质谱技术在细胞蛋白质网络及癌症生物标志物分析中的应用。"
         ],
-        sourceIds: ["wiki-dario-amodei"],
+        "sourceIds": [
+          "dario-hertz-bio",
+          "hertz-thesis-awards",
+          "dario-bio"
+        ],
+        "paragraphSourceIds": [
+          [
+            "dario-hertz-bio",
+            "hertz-thesis-awards"
+          ],
+          [
+            "dario-bio",
+            "dario-hertz-bio"
+          ]
+        ]
       },
       {
-        title: "百度、Google Brain 与 OpenAI",
-        text: [
-          "2014 年 11 月至 2015 年 10 月，Amodei 在百度工作，随后加入 Google Brain 从事机器学习研究。",
-          "2016 年他加入 OpenAI，参与了 GPT-2、GPT-3 以及基于人类反馈的强化学习的研发，后来出任研究副总裁。他是 2017 年论文《Deep reinforcement learning from human preferences》的作者之一，这篇论文的合作者中还有后来同样出现在本图谱里的 Paul Christiano。",
-          "条目记载，他与妹妹因方向上的分歧离开了 OpenAI。",
+        "title": "Google Brain 与 OpenAI",
+        "text": [
+          "在 2021 年创办 Anthropic 之前，Amodei 先在 Google Brain 从事研究，后任 OpenAI 研究副总裁。据本人简介，他在 OpenAI 参与领导 GPT-2 与 GPT-3 的研发；所列资料未给出这些职务的精确起止日。",
+          "2017 年，他与 Paul Christiano、Jan Leike、Tom B. Brown、Miljan Martic 和 Shane Legg 合著《Deep reinforcement learning from human preferences》，研究用人类对行为片段的比较反馈训练强化学习系统。"
         ],
-        sourceIds: ["wiki-dario-amodei", "wiki-paul-christiano"],
+        "sourceIds": [
+          "dario-bio",
+          "anthropic-founding",
+          "rlhf-human-preferences"
+        ],
+        "paragraphSourceIds": [
+          [
+            "dario-bio",
+            "anthropic-founding"
+          ],
+          [
+            "rlhf-human-preferences"
+          ]
+        ]
       },
       {
-        title: "创办 Anthropic",
-        text: [
-          "2021 年，Amodei 与妹妹 Daniela 以及另外五位前 OpenAI 成员共同创办 Anthropic，其中包括 Jared Kaplan 和 Chris Olah。他出任 CEO，这家公司此后推出了 Claude 系列大语言模型。",
-          "2023 年 11 月 OpenAI 董事会风波期间，据路透社 11 月 21 日报道，OpenAI 董事会曾接触他，探讨由他接替 Altman 以及两家公司合并的可能；两项提议他都拒绝了。",
+        "title": "创办 Anthropic 与发布 Claude",
+        "text": [
+          "Anthropic 创立于 2021 年初。公司同年 5 月的公告将 Amodei 列为 CEO、Daniela Amodei 列为总裁，并把可靠性、可解释性及人类反馈列入研究方向。",
+          "2023 年 3 月 14 日，Anthropic 发布 Claude，提供对话界面和 API 使用方式，列出的用途包括摘要、问答、写作与编程。"
         ],
-        sourceIds: ["wiki-dario-amodei"],
+        "sourceIds": [
+          "anthropic-founding",
+          "anthropic-series-a-2021",
+          "anthropic-claude"
+        ],
+        "paragraphSourceIds": [
+          [
+            "anthropic-founding",
+            "anthropic-series-a-2021"
+          ],
+          [
+            "anthropic-claude"
+          ]
+        ]
       },
       {
-        title: "长文与公共立场",
-        text: [
-          "Amodei 习惯用长文阐述判断。2024 年 10 月 11 日，他发表《Machines of Loving Grace》，认为 AI 有可能极大地推进生物学、神经科学、经济发展与全球和平，并改变工作与意义。同年他提出“协约”（entente）的主张：民主国家应在强大 AI 上保持领先，并在合作的民主国家之间分享收益；12 月接受《金融时报》采访时，他重申民主国家必须保持领先，支持的政策工具包括半导体出口管制。",
-          "他同时反复谈论风险。2025 年 9 月，他对 Axios 表示，事情“变得非常、非常糟糕”的可能性是 25%。2026 年 1 月，他发表《The Adolescence of Technology》，把风险归为五类：失准的自主系统、被用于大规模破坏、被用于夺取权力、经济冲击，以及间接影响。文中提出，AI 可能在一到五年内取代一半的入门级白领岗位。",
+        "title": "两篇关于 AI 前景的文章",
+        "text": [
+          "2024 年 10 月，Amodei 发表《Machines of Loving Grace》，讨论强大 AI 在生物学、神经科学、经济发展、和平与治理、工作与意义方面的潜在益处。他在文中明确说明，这些描述是对未来的推测。",
+          "2026 年 1 月，他在《The Adolescence of Technology》中讨论自主系统、破坏性滥用、权力滥用、经济冲击及间接影响五类风险。文中还回顾了他在 2025 年作出的就业预测；这些是作者的判断，并非已经发生的结果。"
         ],
-        sourceIds: ["wiki-dario-amodei"],
-      },
-      {
-        title: "2026 年与美国国防部的分歧",
-        text: [
-          "2026 年 2 月，美国国防部要求 Anthropic 取消合同中的一项禁令，即不得将 Claude 用于大规模国内监控或完全自主武器。Amodei 拒绝了这一要求。",
-          "2 月下旬，Anthropic 被国防部列为“供应链风险”，特朗普政府下令各机构停止使用 Claude。3 月 26 日，一名联邦法官对国防部发出了临时禁令。",
-          "荣誉方面，他 2025 年和 2026 年两度入选《时代》周刊百大人物，2026 年与妹妹 Daniela 一同入选；2025 年，他还作为“AI 的缔造者”之一出现在《时代》年度人物中。",
+        "sourceIds": [
+          "dario-loving-grace",
+          "dario-adolescence"
         ],
-        sourceIds: ["wiki-dario-amodei"],
-      },
+        "paragraphSourceIds": [
+          [
+            "dario-loving-grace"
+          ],
+          [
+            "dario-adolescence"
+          ]
+        ]
+      }
     ],
+    "reviewed": "2026-10-08",
+    "reviewNote": "背景逐句对照原条目后，以本人文章、学校、奖项机构和论文资料重写；未取得原始支持的早年细节及争议叙述已删去。"
   },
   "demis-hassabis": {
-    facts: [
-      ["出生", "1976 年 7 月 27 日 · 英国伦敦"],
-      ["教育", "剑桥大学计算机科学双一等（1997）· 伦敦大学学院认知神经科学博士（2009）"],
-      ["导师", "Eleanor Maguire"],
-      ["棋力", "13 岁达到大师水平，等级分 2300"],
-      ["荣誉", "2024 年诺贝尔化学奖 · 2024 年受封爵士"],
+    "facts": [
+      [
+        "出生",
+        "1976 年 7 月 27 日 · 英国伦敦",
+        [
+          "demis-nobel-facts"
+        ]
+      ],
+      [
+        "教育",
+        "剑桥大学计算机科学双一等（1997）· 伦敦大学学院认知神经科学博士（2009）",
+        [
+          "demis-cv-2023",
+          "demis-ucl-nobel"
+        ]
+      ],
+      [
+        "导师",
+        "Eleanor Maguire",
+        [
+          "demis-ucl-nobel"
+        ]
+      ],
+      [
+        "棋力",
+        "13 岁达到大师水平，等级分 2300",
+        [
+          "demis-cv-2023"
+        ]
+      ],
+      [
+        "荣誉",
+        "2024 年诺贝尔化学奖 · 2024 年受封爵士",
+        [
+          "nobel-chemistry-2024-html",
+          "demis-ucl-nobel"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "棋童与第一台电脑",
-        text: [
-          "Hassabis 1976 年 7 月 27 日生于伦敦，在北伦敦长大，父亲是希腊裔塞浦路斯人，母亲是新加坡华人。他 4 岁时看父亲和叔叔下棋，由此学会了国际象棋；13 岁达到大师水平，等级分 2300，多次担任英格兰少年队队长，拥有候选大师头衔。",
-          "1984 年，他用下棋赢来的奖金买了一台 ZX Spectrum 48K，靠看书自学编程。他写的第一个 AI 程序运行在 Commodore Amiga 上，用来下黑白棋。",
-          "他 1988 至 1990 年就读于巴尼特的 Queen Elizabeth's School，之后在家由父母教了一年，再转入芬奇利的 Christ's College。16 岁时，他比同龄人提前两年完成了 A-level 考试。",
+        "title": "国际象棋与剑桥",
+        "text": [
+          "Hassabis 1976 年 7 月 27 日生于伦敦。据其公开简历，他少年时担任过英格兰少年国际象棋队队长，13 岁达到 2300 等级分。",
+          "1994 至 1997 年，他在剑桥大学 Queens' College 学习计算机科学，以双一等成绩获得学士学位。"
         ],
-        sourceIds: ["wiki-demis-hassabis"],
+        "sourceIds": [
+          "demis-nobel-facts",
+          "demis-cv-2023"
+        ],
+        "paragraphSourceIds": [
+          [
+            "demis-nobel-facts",
+            "demis-cv-2023"
+          ],
+          [
+            "demis-cv-2023"
+          ]
+        ]
       },
       {
-        title: "Bullfrog 与剑桥",
-        text: [
-          "Hassabis 参加《Amiga Power》杂志举办的“赢取 Bullfrog 工作机会”比赛，由此进入游戏公司 Bullfrog，从测试 1993 年的《Syndicate》做起。17 岁时，他与 Peter Molyneux 共同设计了 1994 年发行的《Theme Park》并担任主程序员。这款游戏卖出数百万份，带动了一类模拟经营游戏的出现。他在间隔年里挣到的钱足以支付自己的大学学费。",
-          "他进入剑桥大学 Queens' College 攻读计算机科学，1997 年以双一等成绩毕业。在校期间，他在 1995、1996 和 1997 年三次代表剑桥参加牛津剑桥国际象棋对抗赛。",
+        "title": "Bullfrog、Lionhead 与 Elixir",
+        "text": [
+          "在 Bullfrog 工作期间，17 岁的 Hassabis 参与创作了《Theme Park》。从剑桥毕业后，他在 Lionhead Studios 担任《Black & White》的 AI 主程序员；其简历将这两家公司的经历列于 1993 至 1998 年。",
+          "1998 年，他创办 Elixir Studios，并任 CEO 至 2005 年，参与《Republic: The Revolution》和《Evil Genius》的设计。2005 年，工作室出售知识产权和技术，他随后重返学术研究。"
         ],
-        sourceIds: ["wiki-demis-hassabis"],
+        "sourceIds": [
+          "demis-cv-2023"
+        ],
+        "paragraphSourceIds": [
+          [
+            "demis-cv-2023"
+          ],
+          [
+            "demis-cv-2023"
+          ]
+        ]
       },
       {
-        title: "Lionhead、Elixir 与智力运动",
-        text: [
-          "毕业后，他加入 Peter Molyneux 创办的 Lionhead Studios，担任《Black & White》（2001）的 AI 主程序员。",
-          "1998 年，他离开 Lionhead，在伦敦创办独立游戏工作室 Elixir Studios，先后与 Eidos Interactive、Vivendi Universal 和微软签下发行协议，并担任《Republic: The Revolution》和《Evil Genius》的执行设计师。2005 年 4 月，工作室把知识产权和技术出售给多家发行商后关闭。",
-          "这些年里他也是智力运动奥林匹克的常客：1998、1999、2000、2001 和 2003 年五次获得 Pentamind 世界冠军，2003 和 2004 年两次获得 Decamentathlon 世界冠军。他还在 2004 年获得《外交》游戏世界团体冠军，并六次在世界扑克大赛中进入奖金圈。",
+        "title": "记忆与想象研究",
+        "text": [
+          "2009 年，Hassabis 在伦敦大学学院取得认知神经科学博士学位，主要导师是 Eleanor Maguire。之后，他在该校 Gatsby 计算神经科学中心继续做博士后研究。",
+          "2007 年，他与合作者在《PNAS》发表关于海马体损伤与想象的论文。实验中的失忆症患者在构建新的想象场景时明显弱于对照组；作者据此讨论海马体为这些场景提供空间连贯性的作用。"
         ],
-        sourceIds: ["wiki-demis-hassabis"],
+        "sourceIds": [
+          "demis-ucl-nobel",
+          "demis-imagination-2007"
+        ],
+        "paragraphSourceIds": [
+          [
+            "demis-ucl-nobel"
+          ],
+          [
+            "demis-imagination-2007"
+          ]
+        ]
       },
       {
-        title: "转向神经科学",
-        text: [
-          "此后 Hassabis 进入伦敦大学学院 Queen Square 神经病学研究所，师从 Eleanor Maguire，2009 年取得认知神经科学博士学位，论文题为《Neural Processes Underpinning Episodic Memory》。",
-          "他的第一篇学术论文 2007 年发表于《PNAS》，显示海马体受损的失忆症患者同样无法想象新的经历。他据此提出，“场景构建”是回忆与想象共用的关键过程。这项关于想象的研究被《科学》杂志列入当年十大突破。",
-          "他曾在麻省理工学院 Tomaso Poggio 的实验室和哈佛大学做访问学者。2009 年，他成为伦敦大学学院 Gatsby 计算神经科学中心的 Henry Wellcome 博士后研究员，与 Peter Dayan 合作。",
+        "title": "DeepMind 与 AlphaGo",
+        "text": [
+          "2010 年，Hassabis 参与创办 DeepMind。2014 年，公司被 Google 收购。",
+          "DeepMind 的 AlphaGo 在 2015 年 10 月以 5 比 0 击败欧洲冠军樊麾，2016 年 3 月又在首尔以 4 比 1 击败李世石。这里记录的是团队系统的比赛成绩。"
         ],
-        sourceIds: ["wiki-demis-hassabis"],
+        "sourceIds": [
+          "demis-cv-2023",
+          "demis-ucl-nobel",
+          "deepmind-alphago-history"
+        ],
+        "paragraphSourceIds": [
+          [
+            "demis-cv-2023",
+            "demis-ucl-nobel"
+          ],
+          [
+            "deepmind-alphago-history"
+          ]
+        ]
       },
       {
-        title: "DeepMind 与 AlphaGo",
-        text: [
-          "2010 年，Hassabis 与 Shane Legg、Mustafa Suleyman 共同创办 DeepMind。公司提出的使命是先“解决智能”，再用它“解决其他一切”，方法是把系统神经科学与机器学习结合起来。",
-          "2013 年 12 月，DeepMind 公布了深度 Q 网络，它只凭屏幕像素就能以超出人类的水平玩 Atari 游戏。2014 年，谷歌以 4 亿英镑收购 DeepMind，公司继续留在伦敦，保持较大的独立性。",
-          "AlphaGo 在 2015 年 10 月以 5 比 0 击败欧洲冠军樊麾，2016 年 3 月以 4 比 1 击败李世石，2017 年以 3 比 0 击败柯洁。2016 年 7 月，DeepMind 还报告称，其系统把谷歌数据中心的冷却能耗降低了 40%。",
+        "title": "AlphaFold 与科学研究",
+        "text": [
+          "2020 年 11 月，DeepMind 公布 AlphaFold 在 CASP14 的评测结果：全部目标的 GDT 中位数为 92.4，最困难的自由建模类别为 87.0。两个分数对应不同的评测范围。",
+          "2022 年 7 月 28 日，Hassabis 署名宣布，DeepMind 与 EMBL-EBI 将 AlphaFold 数据库扩展到超过 2 亿个蛋白质预测结构。",
+          "2024 年 10 月 9 日，诺贝尔奖官方宣布，他与 John Jumper 因蛋白质结构预测共同获得当年化学奖的一半；另一半授予 David Baker。同年，他受封爵士。"
         ],
-        sourceIds: ["wiki-demis-hassabis"],
+        "sourceIds": [
+          "deepmind-alphafold-casp14",
+          "deepmind-alphafold-database-2022",
+          "nobel-chemistry-2024-html",
+          "demis-ucl-nobel"
+        ],
+        "paragraphSourceIds": [
+          [
+            "deepmind-alphafold-casp14"
+          ],
+          [
+            "deepmind-alphafold-database-2022"
+          ],
+          [
+            "nobel-chemistry-2024-html",
+            "demis-ucl-nobel"
+          ]
+        ]
       },
       {
-        title: "AlphaFold、公共角色与荣誉",
-        text: [
-          "2018 年 12 月，AlphaFold 在 CASP13 竞赛中胜出，43 个蛋白质里有 25 个的结构预测是所有参赛者中最准确的。2020 年 11 月，AlphaFold 2 在 CASP14 上取得 87.0 的 GDT 中位数，竞赛组织者表示这个问题已基本得到解决。此后，DeepMind 与 EMBL-EBI 合作建立 AlphaFold 蛋白质结构数据库，2022 年 7 月宣布公开约 2 亿个蛋白质的预测结构。",
-          "2021 年，他参与创办专注 AI 药物研发的 Isomorphic Labs 并担任 CEO。他 2018 年出任英国政府人工智能办公室顾问，2022 年出任英国高级研究与发明署（ARIA）顾问。在 AI 风险上，他 2023 年签署了关于 AI 可能导致人类灭绝风险的声明，并在同年 10 月表示，应当像对待气候危机一样认真对待 AI 风险。",
-          "他 2017 年获颁 CBE 并当选英国皇家工程院院士，2018 年当选英国皇家学会会士，2023 年获得拉斯克奖、生命科学突破奖和加拿大盖尔德纳国际奖，2024 年与 John M. Jumper 因蛋白质结构预测分享诺贝尔化学奖，同年因对人工智能的贡献受封爵士。",
+        "title": "Isomorphic Labs",
+        "text": [
+          "2021 年，Hassabis 创办 Isomorphic Labs，目标是将 AI 用于药物发现。公司 2022 年 5 月的管理团队公告将他列为创办人及代理 CEO。"
         ],
-        sourceIds: ["wiki-demis-hassabis"],
-      },
+        "sourceIds": [
+          "isomorphic-leadership-2022"
+        ],
+        "paragraphSourceIds": [
+          [
+            "isomorphic-leadership-2022"
+          ]
+        ]
+      }
     ],
+    "reviewed": "2026-10-08",
+    "reviewNote": "历史背景按原始资料复核；2026 年 9 月 16 日官方记录列出新职务，角色与图谱更新仍待确认。旧 CEO 标签不代表本轮确认的现职。",
+    "roleNote": {
+      "text": "职务更新待确认：2026 年 9 月 16 日官方资料已列为 DeepMind 主席、Alphabet 首席科学家；图谱暂保留旧记录。",
+      "sourceIds": [
+        "deepmind-institute-2026",
+        "google-ai-leadership-2026"
+      ]
+    }
   },
   "bret-taylor": {
-    facts: [
-      ["出生", "1980 年 · 美国加州奥克兰"],
-      ["教育", "斯坦福大学计算机科学学士（2002）与硕士（2003）"],
-      ["此前", "Google Maps 共同创造者 · Facebook CTO · Salesforce 联席 CEO"],
-      ["现任", "Sierra 联合创始人"],
+    "reviewed": "2026-10-08",
+    "reviewNote": "教育、产品、收购与主要任命已补入学校及公司原始资料；出生、部分早期职务日期与 Twitter 经历仍引用维基二手汇编。已删除 FriendFeed 收购导致 Facebook 引入点赞按钮的错误时序及未核实价格。",
+    "facts": [
+      [
+        "出生",
+        "1980 年 · 美国加州奥克兰",
+        [
+          "wiki-bret-taylor"
+        ]
+      ],
+      [
+        "教育",
+        "斯坦福大学计算机科学学士（2002）与硕士（2003）",
+        [
+          "stanford-taylor-friendfeed"
+        ]
+      ],
+      [
+        "此前",
+        "2010 年出任 Facebook CTO · 2021 年出任 Salesforce 联席 CEO",
+        [
+          "wiki-bret-taylor",
+          "salesforce-taylor-coceo"
+        ]
+      ],
+      [
+        "创业",
+        "2024 年与 Clay Bavor 公开推出 Sierra 平台",
+        [
+          "sierra-launch"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "东湾与斯坦福",
-        text: [
-          "Taylor 1980 年生于加州奥克兰，主要在旧金山湾区东岸长大，1998 年毕业于拉斐特的 Acalanes High School。",
-          "他在斯坦福大学先后取得计算机科学学士（2002）和硕士（2003）学位。",
+        "title": "斯坦福与 Google Maps",
+        "text": [
+          "Taylor 在斯坦福大学取得计算机科学学士（2002）和硕士（2003）学位。学校的校友报道记载，他在连读硕士期间已开始为 Google 工作。",
+          "2005 年 6 月 29 日，他以 Google Maps 产品经理身份在 Google 官方博客介绍 Google Maps API，让开发者可以在自己的网站中嵌入地图。Sierra 的官方简介也将他列为 Google Maps 的共同创造者。"
         ],
-        sourceIds: ["wiki-bret-taylor"],
+        "sourceIds": [
+          "stanford-taylor-friendfeed",
+          "google-taylor-maps-api",
+          "sierra-bret-bio"
+        ],
+        "paragraphSourceIds": [
+          [
+            "stanford-taylor-friendfeed"
+          ],
+          [
+            "google-taylor-maps-api",
+            "sierra-bret-bio"
+          ]
+        ]
       },
       {
-        title: "Google 与 Google Maps",
-        text: [
-          "2003 年，Taylor 由 Marissa Mayer 招入 Google，从助理产品经理做起。他带领团队做出了 Search by Location 和 Google Local，这两个产品是 Google Maps 的前身；他也是 Google Maps 的共同创造者之一。",
-          "2007 年 6 月，他离开 Google，以驻场创业者的身份加入风险投资机构 Benchmark Capital。",
+        "title": "FriendFeed 与 Facebook",
+        "text": [
+          "2007 年，Taylor 离开 Google，进入 Benchmark Capital 担任驻场创业者。同年 10 月，他与 Paul Buchheit、Jim Norris 和 Sanjeev Singh 共同创办 FriendFeed。",
+          "2009 年 8 月 10 日，Facebook 宣布同意收购 FriendFeed，团队将加入 Facebook，四位创始人将在产品与工程团队担任高级职务；公告没有公布交易金额。Taylor 随后在 2010 年出任 Facebook CTO，并于 2012 年离开公司。"
         ],
-        sourceIds: ["wiki-bret-taylor"],
+        "sourceIds": [
+          "stanford-taylor-friendfeed",
+          "facebook-friendfeed-acquisition",
+          "wiki-bret-taylor"
+        ],
+        "paragraphSourceIds": [
+          [
+            "stanford-taylor-friendfeed",
+            "facebook-friendfeed-acquisition"
+          ],
+          [
+            "facebook-friendfeed-acquisition",
+            "wiki-bret-taylor"
+          ]
+        ]
       },
       {
-        title: "FriendFeed 与 Facebook",
-        text: [
-          "在 Benchmark 期间，Taylor 与几位前 Google 同事在 2007 年共同创办了 FriendFeed，并担任 CEO。2009 年 8 月，Facebook 以估计 5000 万美元的价格收购了这家公司；Facebook 的“赞”按钮正是在这次收购之后从 FriendFeed 沿用而来。",
-          "他随收购加入 Facebook，2010 年 6 月出任 CTO。2012 年，他离开 Facebook 再次创业。",
+        "title": "Quip 与 Salesforce",
+        "text": [
+          "2012 年，Taylor 创办协作软件公司 Quip。2016 年，Quip 被 Salesforce 收购。",
+          "2019 年 12 月 12 日，Salesforce 宣布他由总裁兼首席产品官升任总裁兼 COO，职责包括产品、工程、安全、市场营销和传播。2021 年 11 月 30 日，公司又任命他为副董事长兼联席 CEO，与 Marc Benioff 共同领导公司。",
+          "2022 年 11 月 30 日，Salesforce 宣布 Taylor 将于 2023 年 1 月 31 日卸任副董事长和联席 CEO。"
         ],
-        sourceIds: ["wiki-bret-taylor"],
+        "sourceIds": [
+          "wiki-bret-taylor",
+          "salesforce-taylor-coo",
+          "salesforce-taylor-coceo",
+          "salesforce-taylor-departure"
+        ],
+        "paragraphSourceIds": [
+          [
+            "wiki-bret-taylor",
+            "salesforce-taylor-coo"
+          ],
+          [
+            "salesforce-taylor-coo",
+            "salesforce-taylor-coceo"
+          ],
+          [
+            "salesforce-taylor-departure"
+          ]
+        ]
       },
       {
-        title: "Quip 与 Salesforce",
-        text: [
-          "2012 年，Taylor 创办 Quip，一家做协作办公软件的公司，与 Google Docs 竞争。2016 年，Quip 被 Salesforce 收购。",
-          "在 Salesforce，他 2017 年出任首席产品官，2019 年升任总裁兼 COO。在 COO 任上，他主导了对 Slack 的收购（2021 年完成），牵头搭建 Customer 360 系统，并设立了助理产品经理培养项目。2021 年 11 月，他被任命为副董事长，并与 Marc Benioff 一同担任联席 CEO。",
-          "2022 年 11 月 30 日，他宣布将卸任联席 CEO 和副董事长，于 2023 年 1 月底生效。",
+        "title": "董事会经历",
+        "text": [
+          "2016 年，Taylor 加入 Twitter 董事会；2021 年出任董事长，任期在 2022 年 10 月收购完成、原董事会解散时结束。2023 年 6 月 27 日，Shopify 宣布他加入董事会。",
+          "2023 年 11 月 29 日，OpenAI 在正式宣布 Altman 回任 CEO 时，公布的新初始董事会由 Taylor 担任主席，另两名成员是 Larry Summers 和 Adam D’Angelo。"
         ],
-        sourceIds: ["wiki-bret-taylor"],
+        "sourceIds": [
+          "wiki-bret-taylor",
+          "shopify-taylor-board",
+          "openai-return"
+        ],
+        "paragraphSourceIds": [
+          [
+            "wiki-bret-taylor",
+            "shopify-taylor-board"
+          ],
+          [
+            "openai-return"
+          ]
+        ]
       },
       {
-        title: "董事会席位与 Sierra",
-        text: [
-          "2016 年 7 月，Twitter 宣布 Taylor 加入董事会；2021 年他出任董事长，直到 2022 年 10 月 Elon Musk 完成收购、董事会解散。2023 年，他加入 Shopify 董事会。",
-          "2023 年 2 月，他与前 Google 高管 Clay Bavor 共同创办面向企业的 AI 公司 Sierra，方向是用 AI 重做客户服务。彭博社 2024 年 1 月报道，Sierra 将以接近 10 亿美元的估值获得融资。",
-          "2023 年 11 月，在 Altman 短暂被解职又复职、OpenAI 董事会随之重组之后，他接替 Greg Brockman 出任 OpenAI 董事会主席。",
+        "title": "推出 Sierra",
+        "text": [
+          "2024 年 2 月 13 日，Taylor 与 Clay Bavor 联合署名介绍 Sierra，公开推出面向企业的对话式 AI 平台，帮助企业构建直接与消费者沟通、处理问题并执行操作的 AI agent。",
+          "该公告列举了客户支持、零售推荐和订阅管理等应用，也说明 agent 需要与企业既有系统连接，才能处理订单追踪、账户恢复和换货等任务。"
         ],
-        sourceIds: ["wiki-bret-taylor"],
-      },
-    ],
+        "sourceIds": [
+          "sierra-launch"
+        ],
+        "paragraphSourceIds": [
+          [
+            "sierra-launch"
+          ],
+          [
+            "sierra-launch"
+          ]
+        ]
+      }
+    ]
   },
   "fidji-simo": {
-    facts: [
-      ["出生", "1985 年 10 月 5 日 · 法国塞特"],
-      ["教育", "巴黎高等商学院管理学硕士，最后一年在 UCLA 安德森管理学院"],
-      ["此前", "eBay 战略团队 · Facebook 应用负责人 · Instacart CEO"],
-      ["荣誉", "2025 年《时代》周刊 AI 领域百人榜"],
+    "reviewed": "2026-10-08",
+    "reviewNote": "已逐句核对原稿，主要教育与任命改引 HEC、Instacart、Shopify、OpenAI 和本人公开说明；出生与转入 Facebook 的年份仍引用维基二手汇编。2026 年 9 月的官方来源支持站内顾问身份，未改图谱角色或关系状态。",
+    "facts": [
+      [
+        "出生",
+        "1985 年 10 月 5 日 · 法国塞特",
+        [
+          "wiki-fidji-simo"
+        ]
+      ],
+      [
+        "教育",
+        "巴黎高等商学院管理学硕士（2008），最后一年在 UCLA 就读",
+        [
+          "hec-simo-commencement",
+          "hec-simo-profile"
+        ]
+      ],
+      [
+        "此前",
+        "2007 年加入 eBay · 2011 年加入 Facebook · 2021 年出任 Instacart CEO",
+        [
+          "instacart-simo-ceo",
+          "wiki-fidji-simo"
+        ]
+      ],
+      [
+        "公开记录",
+        "2025 年获任 OpenAI CEO of Applications；2026 年 9 月官方履历确认顾问身份",
+        [
+          "openai-fidji-appointment",
+          "nscale-fidji-board"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "塞特与两所商学院",
-        text: [
-          "Simo 1985 年 10 月 5 日出生，在法国南部的塞特长大。她是家里第一个高中毕业的人。",
-          "她在巴黎高等商学院（HEC Paris）取得管理学硕士学位，课程的最后一年在加州大学洛杉矶分校安德森管理学院完成。",
+        "title": "塞特与商学院",
+        "text": [
+          "Simo 1985 年 10 月 5 日出生，在法国南部的塞特长大。她于 2008 年从巴黎高等商学院的管理学硕士项目毕业。",
+          "在 HEC 的本人回顾中，她谈到通过学校获得 eBay 实习机会，并通过 HEC 与 UCLA 的合作项目在洛杉矶完成最后一年的学习，随后说服 eBay 为她提供在加州工作的机会。"
         ],
-        sourceIds: ["wiki-fidji-simo"],
+        "sourceIds": [
+          "wiki-fidji-simo",
+          "hec-simo-commencement",
+          "hec-simo-profile"
+        ],
+        "paragraphSourceIds": [
+          [
+            "wiki-fidji-simo",
+            "hec-simo-commencement"
+          ],
+          [
+            "hec-simo-profile"
+          ]
+        ]
       },
       {
-        title: "eBay",
-        text: [
-          "2007 至 2011 年，Simo 在 eBay 的战略团队工作，参与搭建本地商务和分类广告方面的业务。",
+        "title": "eBay 与 Facebook",
+        "text": [
+          "2007 年，Simo 加入 eBay 战略团队，参与本地商业和分类广告业务。2011 年，她转入 Facebook。",
+          "Instacart 在 2021 年的任命公告中回顾了她此前约十年的 Facebook 经历：她担任过副总裁、Facebook App 负责人，负责信息流、视频、群组、Marketplace 和广告等产品的开发与策略，并参与移动端商业化。公告还记载，她推动了信息流自动播放视频以及 Facebook Live 和 Watch 的推出。"
         ],
-        sourceIds: ["wiki-fidji-simo"],
+        "sourceIds": [
+          "instacart-simo-ceo",
+          "wiki-fidji-simo"
+        ],
+        "paragraphSourceIds": [
+          [
+            "instacart-simo-ceo",
+            "wiki-fidji-simo"
+          ],
+          [
+            "instacart-simo-ceo"
+          ]
+        ]
       },
       {
-        title: "Facebook 的十年",
-        text: [
-          "2011 年，Simo 从 eBay 转入 Facebook，在那里工作了大约十年，最终出任副总裁、Facebook 应用负责人。",
-          "她带领团队建立了 Facebook 的广告业务，并完成了移动端的商业化。产品上，她把自动播放视频引入信息流，主持打造并推出了 Facebook Live 和 Facebook Watch。",
-          "这十年间，她先后负责过信息流、Stories、群组、视频、Marketplace、游戏、新闻、Dating 和广告等产品线的开发与策略。",
+        "title": "Instacart 与 Shopify",
+        "text": [
+          "2021 年 1 月，Simo 加入 Instacart 董事会。7 月 8 日，公司宣布任命她为 CEO，8 月 2 日生效，Apoorva Mehta 转任执行董事长。同年 12 月 16 日，Shopify 宣布她加入董事会。",
+          "2022 年 7 月 22 日，Instacart 宣布将由她出任董事长，待公司上市、Mehta 退出董事会时生效。公司的投资者问答确认，股票于 2023 年 9 月 19 日开始在纳斯达克交易，代码为 CART；2024 年 3 月的 OpenAI 公告已称她为 Instacart CEO 兼董事长。"
         ],
-        sourceIds: ["wiki-fidji-simo"],
+        "sourceIds": [
+          "instacart-simo-ceo",
+          "shopify-simo-board",
+          "instacart-simo-chair",
+          "instacart-ipo-faq",
+          "openai-new-directors-2024"
+        ],
+        "paragraphSourceIds": [
+          [
+            "instacart-simo-ceo",
+            "shopify-simo-board"
+          ],
+          [
+            "instacart-simo-chair",
+            "instacart-ipo-faq",
+            "openai-new-directors-2024"
+          ]
+        ]
       },
       {
-        title: "Instacart 与董事会席位",
-        text: [
-          "2021 年 1 月，Simo 加入 Instacart 董事会；7 月被任命为 CEO，8 月上任，接替转任执行董事长的 Apoorva Mehta。2023 年 9 月，Instacart 在纳斯达克上市，股票代码 CART，这次上市被认为结束了科技行业约二十年来最长的一段 IPO 空窗期；上市后，她接替 Mehta 兼任董事长。",
-          "她 2021 年 12 月加入 Shopify 董事会，此前还担任过 L.A. Dance Project 和太阳马戏团的董事。",
-          "在企业之外，她 2021 年 10 月参与创办 Metrodora Institute，一家专注神经免疫疾病的诊所兼研究中心。她公开谈到，自己多年求诊的经历是创办这家机构的动因之一。诊所 2023 年 4 月在犹他州盐湖城开业，2025 年 7 月 16 日停止临床运营；她同时是非营利组织 Complex Disorders Association 的创办人和主席。",
+        "title": "转入 OpenAI",
+        "text": [
+          "2024 年 3 月 8 日，OpenAI 宣布 Simo 加入董事会。2025 年 5 月 7 日，公司宣布她将担任新设的 CEO of Applications，直接向 Sam Altman 汇报，领导负责把研究成果交付给用户的业务与运营团队；公告明确 Altman 继续担任 OpenAI CEO。",
+          "2025 年 7 月 21 日，她在 OpenAI 网站发表《AI as the greatest source of empowerment for all》，说明自己将在数周后到任，并把知识、健康、创意表达、经济自主、时间和支持列为 AI 可能帮助人们获得更多能力的领域。"
         ],
-        sourceIds: ["wiki-fidji-simo"],
+        "sourceIds": [
+          "openai-new-directors-2024",
+          "openai-fidji-appointment",
+          "simo-empowerment-essay"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-new-directors-2024",
+            "openai-fidji-appointment"
+          ],
+          [
+            "simo-empowerment-essay"
+          ]
+        ]
       },
       {
-        title: "转入 OpenAI",
-        text: [
-          "2024 年 3 月，Simo 加入 OpenAI 董事会。2025 年 5 月 7 日，她宣布将在数月后卸任 Instacart CEO，转任 OpenAI 首任 CEO of Applications。",
-          "她在 2025 年 8 月到任，向 Sam Altman 汇报，负责范围涵盖产品、业务、技术与工程等职能。她此后的职务变化，见下一章所引的公开记录。",
-          "她多次入选商业榜单，包括《财富》40 位 40 岁以下精英（2016、2021 年）、《财富》最具影响力女性（2023 年）、CNBC Changemakers（2024 年）和《时代》周刊 AI 领域百人榜（2025 年）。",
+        "title": "顾问身份的后续确认",
+        "text": [
+          "Simo 后来在本人公开说明中宣布离开 OpenAI 的全职岗位，转任兼职顾问。2026 年 9 月 11 日，Nscale 宣布她加入董事会，其官方履历明确使用“前 OpenAI CEO of AGI Deployment”的称呼，并确认她继续担任 OpenAI 顾问。"
         ],
-        sourceIds: ["wiki-fidji-simo"],
-      },
-    ],
+        "sourceIds": [
+          "fidji-adviser-statement",
+          "nscale-fidji-board"
+        ],
+        "paragraphSourceIds": [
+          [
+            "fidji-adviser-statement",
+            "nscale-fidji-board"
+          ]
+        ]
+      }
+    ]
   },
   "paul-christiano": {
-    facts: [
-      ["教育", "麻省理工学院数学学位（2012）· 加州大学伯克利分校博士（2017）"],
-      ["导师", "Umesh Vazirani"],
-      ["竞赛", "2008 年国际数学奥林匹克银牌（美国队）"],
-      ["此前", "OpenAI 语言模型对齐团队负责人 · Alignment Research Center 创办人"],
-      ["荣誉", "2023 年《时代》周刊 AI 领域百人榜"],
+    "facts": [
+      [
+        "教育",
+        "麻省理工学院数学学士（2012）· 加州大学伯克利分校博士（2017）",
+        [
+          "paul-mit-author-bio",
+          "paul-berkeley-thesis"
+        ]
+      ],
+      [
+        "导师",
+        "Umesh Vazirani",
+        [
+          "paul-berkeley-thesis"
+        ]
+      ],
+      [
+        "竞赛",
+        "2008 年国际数学奥林匹克银牌（美国队）",
+        [
+          "paul-imo-results"
+        ]
+      ],
+      [
+        "此前",
+        "2017 至 2021 年领导 OpenAI 对齐研究；2021 年创办 ARC",
+        [
+          "openai-paul-board-2026",
+          "paul-announces-arc"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "数学竞赛与麻省理工",
-        text: [
-          "Christiano 中学就读于加州圣何塞的 Harker School。2008 年，他作为美国队成员参加第 49 届国际数学奥林匹克，获得银牌。",
-          "2012 年，他从麻省理工学院毕业，取得数学学位。在校期间，他做过数据结构、量子密码学和组合优化方面的研究。",
+        "title": "数学竞赛与大学研究",
+        "text": [
+          "2008 年，Christiano 代表美国参加国际数学奥林匹克并获银牌。2012 年，他取得麻省理工学院数学学士学位；本科期间研究过组合优化、数据结构和量子密码学。",
+          "2017 年，他在加州大学伯克利分校完成博士论文《Manipulation-resistant online learning》，导师是 Umesh Vazirani。论文研究在部分用户可能操纵反馈的情况下，如何为诚实用户提供在线学习的性能保证。"
         ],
-        sourceIds: ["wiki-paul-christiano"],
+        "sourceIds": [
+          "paul-imo-results",
+          "paul-mit-author-bio",
+          "paul-berkeley-thesis"
+        ],
+        "paragraphSourceIds": [
+          [
+            "paul-imo-results",
+            "paul-mit-author-bio"
+          ],
+          [
+            "paul-berkeley-thesis"
+          ]
+        ]
       },
       {
-        title: "伯克利的博士阶段",
-        text: [
-          "他在加州大学伯克利分校师从 Umesh Vazirani，2017 年取得博士学位，论文题为《Manipulation-resistant online learning》。",
-          "读博期间，他与 Katja Grace 在 AI Impacts 项目上合作，共同提出一种用“每秒遍历边数”（TEPS）比较超级计算机与大脑的初步方法，《IEEE Spectrum》在 2015 年报道过这项工作。他还试验过 Carl Shulman 提出的“捐赠者彩票”设想，筹集了近 5 万美元，集中捐给一家慈善机构。",
+        "title": "在 OpenAI 研究人类反馈",
+        "text": [
+          "OpenAI 的 2026 年公告回顾，Christiano 在 2017 至 2021 年领导该机构的对齐研究。他与合作者于 2017 年发表《Deep reinforcement learning from human preferences》，研究从人类对行为片段的比较中学习目标。",
+          "2018 年，他参与《AI safety via debate》和《Supervising strong learners by amplifying weak experts》，分别研究通过辩论及任务分解来监督复杂任务的方法。2021 年，他还是《Recursively Summarizing Books with Human Feedback》的作者之一。"
         ],
-        sourceIds: ["wiki-paul-christiano"],
+        "sourceIds": [
+          "openai-paul-board-2026",
+          "rlhf-human-preferences",
+          "ai-safety-debate-2018",
+          "amplification-2018",
+          "book-summarization-2021"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-paul-board-2026",
+            "rlhf-human-preferences"
+          ],
+          [
+            "ai-safety-debate-2018",
+            "amplification-2018",
+            "book-summarization-2021"
+          ]
+        ]
       },
       {
-        title: "在 OpenAI：对齐研究的四年",
-        text: [
-          "2017 至 2021 年，Christiano 在 OpenAI 领导语言模型对齐团队。2017 年，他与 Jan Leike、Tom Brown、Miljan Martic、Shane Legg 和 Dario Amodei 合著《Deep Reinforcement Learning from Human Preferences》。《时代》周刊和 Vox 都把他称为基于人类反馈的强化学习（RLHF）的主要设计者之一；《纽约时报》当年评价这项工作“被认为是 AI 安全研究上值得注意的一步”。",
-          "2018 年，他参与发表《AI safety via debate》，探讨在人类难以直接判断结果的领域里如何对 AI 实行可扩展的监督；同年还有《Supervising strong learners by amplifying weak experts》。2021 年，他参与了《Recursively Summarizing Books with Human Feedback》。当年他离开 OpenAI。",
+        "title": "Alignment Research Center",
+        "text": [
+          "2021 年 4 月 26 日，Christiano 宣布全职投入新成立的 Alignment Research Center（ARC），并说明自己已于当年 1 月底离开 OpenAI。创立公告把最初工作重点放在意图对齐的理论研究。",
+          "同年 12 月，ARC 发布首份技术报告《Eliciting Latent Knowledge》，讨论如何建立 AI 世界模型与人类理解之间的对应。2023 年 12 月，ARC Evals 宣布从 ARC 分拆，并采用 METR 这一名称。"
         ],
-        sourceIds: ["wiki-paul-christiano"],
+        "sourceIds": [
+          "paul-announces-arc",
+          "arc-elk-report-2021",
+          "metr-spinout-2023"
+        ],
+        "paragraphSourceIds": [
+          [
+            "paul-announces-arc"
+          ],
+          [
+            "arc-elk-report-2021",
+            "metr-spinout-2023"
+          ]
+        ]
       },
       {
-        title: "Alignment Research Center",
-        text: [
-          "2021 年 4 月 26 日，Christiano 宣布成立 Alignment Research Center（ARC）。这家机构专注概念性和理论性的对齐研究，包括为神经网络的行为寻找机制性解释的方法。",
-          "同年 12 月，他与 Ajeya Cotra、Mark Xu 发表了关于“引出潜在知识”（eliciting latent knowledge）的研究文档。ARC 还开发了用于识别和测试 AI 模型是否具有潜在危险的技术；2023 年 4 月，他对《经济学人》表示，ARC 正在考虑制定一套 AI 安全的行业标准。",
-          "2023 年 12 月，ARC 的评估团队 ARC Evals 分拆为独立的非营利机构 METR。",
+        "title": "顾问与公共机构任命",
+        "text": [
+          "2023 年 9 月，英国政府将 Christiano 列入 Frontier AI Taskforce 的首批专家顾问委员会成员。同月，Anthropic 公布他为长期利益信托的初始受托人之一；该公告后续脚注明确，他于 2024 年 4 月离任。",
+          "2024 年 4 月 16 日，NIST 公告宣布任命他为美国 AI 安全研究所的 AI 安全负责人。",
+          "VentureBeat 于 2024 年 3 月援引匿名人士报道任命遭到内部反对，也刊登了 Divyansh Kaushik 对其资历的支持。"
         ],
-        sourceIds: ["wiki-paul-christiano"],
-      },
-      {
-        title: "风险判断与公共角色",
-        text: [
-          "Christiano 对风险的表述向来具体。2017 年《连线》杂志报道，他担心的不是“邪恶的机器人”，而是当 AI 超出人类理解之后，其行为偏离设计目标。2023 年，他在 Bankless 播客上估计“AI 接管”的可能性为 10% 至 20%，并推测在人类水平的 AI 出现后不久，出现灾难性结局的可能性大约是一半对一半。",
-          "2023 年 9 月，他被任命为英国政府 Frontier AI Taskforce 顾问委员会成员。2024 年 4 月，他出任美国 AI 安全研究所（隶属 NIST）的 AI 安全负责人；此前的 3 月，VentureBeat 报道 NIST 有员工因他与有效利他主义运动的关联而反对这项任命，美国科学家联盟的 Divyansh Kaushik 则公开为他的资历辩护。",
-          "他还是 Anthropic 长期利益信托的初始受托人之一，并在 2023 年入选《时代》周刊 AI 领域百人榜。他 2026 年进入 OpenAI 治理层的经过，见下一章所引的公开记录。",
+        "sourceIds": [
+          "uk-frontier-taskforce-2023",
+          "anthropic-ltbt-2023",
+          "nist-paul-appointment-2024",
+          "venturebeat-nist-appointment-2024"
         ],
-        sourceIds: ["wiki-paul-christiano"],
-      },
+        "paragraphSourceIds": [
+          [
+            "uk-frontier-taskforce-2023",
+            "anthropic-ltbt-2023"
+          ],
+          [
+            "nist-paul-appointment-2024"
+          ],
+          [
+            "venturebeat-nist-appointment-2024"
+          ]
+        ]
+      }
     ],
+    "reviewed": "2026-10-08",
+    "reviewNote": "教育、研究与任命已补原始资料；任命争议仍为明确归因的媒体报道，保留待维护者统一决定。背景不重复后续公开治理记录。"
   },
   "jakub-pachocki": {
-    facts: [
-      ["出生", "1991 年 · 波兰格但斯克"],
-      ["教育", "华沙大学计算机科学本科 · 卡内基梅隆大学博士"],
-      ["导师", "Gary Miller"],
-      ["竞赛", "2012 年 Google Code Jam 冠军"],
+    "facts": [
+      [
+        "教育",
+        "华沙大学计算机科学本科 · 卡内基梅隆大学计算机科学博士（2016）",
+        [
+          "simons-jakub",
+          "cmu-jakub-phd"
+        ]
+      ],
+      [
+        "导师",
+        "Gary Miller",
+        [
+          "cmu-jakub-phd"
+        ]
+      ],
+      [
+        "竞赛",
+        "2012 年 Google Code Jam 冠军",
+        [
+          "uw-jakub-codejam"
+        ]
+      ]
     ],
-    chapters: [
+    "chapters": [
       {
-        title: "竞赛选手",
-        text: [
-          "Pachocki 1991 年生于波兰格但斯克。中学阶段，他六次进入波兰信息学奥林匹克决赛；2009 年，他入选国际信息学奥林匹克并获得银牌。",
-          "此后几年是他竞赛成绩最集中的时期。2011 年他获得 Google Code Jam 第三名。2012 年，他代表华沙大学参加 ICPC 世界总决赛，所在队伍获得金牌、总成绩第二；同年他夺得 Google Code Jam 冠军，并在 TopCoder Open 算法组获得第二名。2013 年，他又获得 Facebook Hacker Cup 第二名。他在 Topcoder、Codeforces 等平台上使用的账号名是“meret”。",
+        "title": "程序设计竞赛",
+        "text": [
+          "2009 年，Pachocki 代表波兰参加国际信息学奥林匹克，获得银牌。赛事成绩库记录了他的参赛年份与奖牌。",
+          "2011 年，他获得 Google Code Jam 第三名；2012 年夺冠。华沙大学的赛事成绩档案记录了这两次成绩，学校另有公告确认他是 2012 年 ICPC 世界总决赛亚军队伍的成员。"
         ],
-        sourceIds: ["wiki-jakub-pachocki"],
+        "sourceIds": [
+          "ioi-jakub",
+          "uw-jakub-codejam",
+          "uw-jakub-icpc"
+        ],
+        "paragraphSourceIds": [
+          [
+            "ioi-jakub"
+          ],
+          [
+            "uw-jakub-codejam",
+            "uw-jakub-icpc"
+          ]
+        ]
       },
       {
-        title: "华沙、匹兹堡与博士后",
-        text: [
-          "Pachocki 在华沙大学取得计算机科学本科学位。2011 至 2012 年，他在 Facebook 做过软件工程实习。",
-          "此后他前往卡内基梅隆大学，师从 Gary Miller 攻读博士，论文《Graphs and Beyond: Faster Algorithms for High Dimensional Convex Optimization》完成于 2016 年，研究图以及高维凸优化的更快算法。",
-          "博士毕业后，他先后在哈佛大学和 Simons 计算理论研究所做博士后。",
+        "title": "华沙与卡内基梅隆",
+        "text": [
+          "Pachocki 在华沙大学获得计算机科学本科学位，随后在卡内基梅隆大学师从 Gary Miller 进行博士研究。",
+          "卡内基梅隆大学记录，他于 2016 年 5 月获得计算机科学博士学位，论文为《Graphs and Beyond: Faster Algorithms for High Dimensional Convex Optimization》。研究集中于图相关的凸优化问题及高效算法。"
         ],
-        sourceIds: ["wiki-jakub-pachocki"],
+        "sourceIds": [
+          "simons-jakub",
+          "cmu-jakub-phd"
+        ],
+        "paragraphSourceIds": [
+          [
+            "simons-jakub",
+            "cmu-jakub-phd"
+          ],
+          [
+            "cmu-jakub-phd"
+          ]
+        ]
       },
       {
-        title: "在 OpenAI：从研究员到首席科学家",
-        text: [
-          "2017 年，Pachocki 加入 OpenAI。其维基百科条目记载，他在 2021 年出任研究总监，领导过 GPT-4 和 Dota 2 项目 OpenAI Five 的研发。",
-          "2024 年 5 月，在其导师 Ilya Sutskever 离开之后，他出任首席科学家。Sam Altman 当时称他“无疑是我们这一代最出色的头脑之一”。同年 10 月，《商业内幕》报道称，他正在领导一个代号为“Strawberry”的 AI 项目。",
+        "title": "研究访问与 OpenAI 项目",
+        "text": [
+          "Simons 计算理论研究所的访问记录列出，他在 2014 年秋季以访问研究生身份参加 Algorithmic Spectral Graph Theory 项目，并在 2019 年夏季以访问科学家身份参加 Foundations of Deep Learning 项目。",
+          "OpenAI 的 2024 年任命公告记载，Pachocki 自 2017 年起在公司领导研究项目，担任过研究总监，并领导 GPT-4、OpenAI Five 以及大规模强化学习和深度学习优化相关工作。"
         ],
-        sourceIds: ["wiki-jakub-pachocki"],
+        "sourceIds": [
+          "simons-jakub",
+          "openai-ilya-departure"
+        ],
+        "paragraphSourceIds": [
+          [
+            "simons-jakub"
+          ],
+          [
+            "openai-ilya-departure"
+          ]
+        ]
       },
+      {
+        "title": "首席科学家的任命",
+        "text": [
+          "2024 年 5 月 14 日，OpenAI 在宣布 Ilya Sutskever 离开的同一公告中，宣布由 Pachocki 接任首席科学家。",
+          "Sam Altman 在公告中评价 Pachocki 是这一代最出色的头脑之一，并表示他领导过公司的多个重要项目。"
+        ],
+        "sourceIds": [
+          "openai-ilya-departure"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-ilya-departure"
+          ],
+          [
+            "openai-ilya-departure"
+          ]
+        ]
+      }
     ],
-  },
+    "reviewed": "2026-10-08",
+    "reviewNote": "已逐段核对旧稿；保留内容改用大学、竞赛主办方、研究所和 OpenAI 资料。Simons 页面支持访问研究生与访问科学家身份，不支持旧稿所称的先后博士后经历；未补写未核实的入职职级年份。"
+  }
 };

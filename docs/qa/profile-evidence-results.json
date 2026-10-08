@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-08T07:08:55.373Z",
+  "browser": "140.0.7339.186",
+  "passed": [
+    "sam-altman: map, facts, paragraphs, repeated drawers, history, search, index",
+    "greg-brockman: map, facts, paragraphs, repeated drawers, history, search, index",
+    "ilya-sutskever: map, facts, paragraphs, repeated drawers, history, search, index",
+    "mira-murati: map, facts, paragraphs, repeated drawers, history, search, index",
+    "dario-amodei: map, facts, paragraphs, repeated drawers, history, search, index",
+    "demis-hassabis: map, facts, paragraphs, repeated drawers, history, search, index",
+    "bret-taylor: map, facts, paragraphs, repeated drawers, history, search, index",
+    "fidji-simo: map, facts, paragraphs, repeated drawers, history, search, index",
+    "paul-christiano: map, facts, paragraphs, repeated drawers, history, search, index",
+    "jakub-pachocki: map, facts, paragraphs, repeated drawers, history, search, index",
+    "Demis: dated current-role conflict is visible and sourced without graph changes",
+    "light 1440px: all ten profiles, focus, citations, no overflow",
+    "light 390px: all ten profiles, focus, citations, no overflow",
+    "light 320px: all ten profiles, focus, citations, no overflow",
+    "dark 1440px: all ten profiles, focus, citations, no overflow",
+    "dark 390px: all ten profiles, focus, citations, no overflow",
+    "dark 320px: all ten profiles, focus, citations, no overflow"
+  ],
+  "errors": []
+}

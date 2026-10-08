@@ -34,6 +34,7 @@ async function goto(path = "") {
   await page.waitForFunction(() => document.documentElement.dataset.route === location.hash);
   await page.evaluate(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await page.evaluate(() => document.fonts.ready);
+  await page.locator("main").evaluate(el => Promise.all(el.getAnimations({ subtree: true }).map(a => a.finished.catch(() => {}))));
 }
 async function openSettings() {
   const disclosure = page.locator(".atlas-controls");
