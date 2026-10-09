@@ -2,6 +2,16 @@
 
 一个以公司为起点的中文 AI 百科。连接人物、产品、组织治理与公开证据，采用象牙白、炭黑与低饱和绿色的编辑式布局。
 
+## 2026-10-09 试用前收尾
+
+- 补齐 Brad Lightcap 与 Tibo 的短传记，12 位人物现均有逐段来源背景；共 65 章、185 段、189 条来源
+- 核对背景、角色、关系和时间线，修复两条 Instacart 失效来源；Demis 待确认职衔提示继续保留
+- 新增生产包的三条完整阅读路径验收，覆盖 Chromium / WebKit、明暗主题、手机、返回/刷新、来源焦点和打印
+- 修复 WebKit 打印漏掉收起章节的问题，退出打印恢复原阅读状态；深色偏好不影响浅色打印
+- 加入只读权限、官方固定提交版本的 GitHub Actions；新 QA 截图统一留在仓库外
+
+详见 [收尾范围、验证与保留边界](docs/trial-readiness-2026-10-09.md)。以下较早更新记录描述当时状态。
+
 ## 2026-10-08 阅读界面减量
 
 - 配图署名、授权和依据统一收进图注末尾的“来源”，默认不再显示独立附加区
@@ -55,7 +65,7 @@
 - 深色模式跟随系统，可手动切换；深色配色在构建时由浅色自动推导（见 `vite.config.ts`）
 - 全站辅助文字不小于 13px，正文颜色统一
 
-内容方面，10 位人物新增了生平背景章节（`src/profiles.ts`）。这些章节目前依据英文维基百科条目整理，属于二手汇编，来源标题与页面阅读须知均已注明；内容尚未逐句对照原文核对。Brad Lightcap 与 Thibault Sottiaux 暂未补写。版本日期更新为 2026-10-08。
+当时的内容状态：10 位人物新增了生平背景章节（`src/profiles.ts`）。这些章节目前依据英文维基百科条目整理，属于二手汇编，来源标题与页面阅读须知均已注明；内容尚未逐句对照原文核对。Brad Lightcap 与 Thibault Sottiaux 暂未补写。版本日期更新为 2026-10-08。
 
 端到端测试有两处调整：首页公司数量的断言改为全部公司数；导航辅助函数改为等待页面渲染完成后再断言。
 
@@ -95,14 +105,14 @@
 
 - 公司优先首页，OpenAI 主专题
 - 9 个组织条目：1 个深度档案、8 个精选概览
-- 12 位人物：可阅读经历、贡献及带来源的里程碑
+- 12 位人物：全部附带逐段来源的背景传记、角色记录和里程碑
 - 6 个补充产品/治理实体
 - 32 条分类型关系：治理、任职、投资合作、产品
-- 13 个精选时间节点，186 份公开资料
+- 13 个精选时间节点，189 份公开资料
 - 搜索、主题筛选、可点选关系图、来源抽屉
 - 桌面与手机布局，键盘导航、焦点管理、减少动态效果支持
 
-版本更新日：**2026-10-08**，来源核验日逐条标注。不是实时人员目录，也不是完整行业数据库。关系图不推断汇报线，不把历史任职视为现任。完整来源见 [docs/sources.md](docs/sources.md)。
+版本更新日：**2026-10-09**，来源核验日逐条标注。不是实时人员目录，也不是完整行业数据库。关系图不推断汇报线，不把历史任职视为现任。完整来源见 [docs/sources.md](docs/sources.md)。
 
 ## 本地运行
 
@@ -116,31 +126,35 @@ npm run dev
 打开终端显示的本地地址。
 
 ```sh
-npm run check       # 类型检查、41 项数据/图谱/传记与审计测试、生产构建
+npm run check       # 类型检查、44 项数据/图谱/传记与审计测试、生产构建
 npm run preview     # 预览 dist
 ```
 
 ## 浏览器验证
 
 ```sh
-npx playwright install chromium-headless-shell
+npx playwright install chromium-headless-shell webkit
 npm run test:e2e
-npm run test:profiles  # 十篇档案的逐段证据、明暗主题及移动端回归
+npm run test:profiles  # 全部十二篇档案的逐段证据、明暗主题及移动端回归
 npm run test:writings  # 本人文章、原文链接、键盘及窄屏回归
 npm run test:illustrations # 章节展开、配图加载、图注证据及可访问性回归
 npm run test:reading # 紧凑图注、全文控制、署名侧栏及打印回归
+npm run test:browser # 以上回归及 dist 生产检查（先构建）
+npm run test:journeys # 三条完整阅读路径，Chromium + WebKit（先构建）
 ```
 
-测试自行创建和关闭本地 Vite 服务，不依赖另一个开发进程。涵盖主要页面、实体导航、搜索、安全转义、关系筛选、来源抽屉、重复开关、Escape/焦点恢复、键盘焦点圈定、浏览器前进后退、1440px/1024px/768px/390px/320px 无横向溢出，以及运行时错误检测。截图和机器可读结果写到 `docs/qa/`。
+测试自行创建和关闭本地 Vite 服务，不依赖另一个开发进程。涵盖主要页面、实体导航、搜索、安全转义、关系筛选、来源抽屉、重复开关、Escape/焦点恢复、键盘焦点圈定、浏览器前进后退、1440px/1024px/768px/390px/320px 无横向溢出，以及运行时错误检测。截图和机器可读结果默认写到系统临时目录，可用 `ATLAS_QA_DIR` 指定私有输出目录；新 QA 图片不提交到公开仓库。
 
 ```sh
 npm run test:visual  # 重新生成首页、图谱的桌面/手机截图
 ```
 
+Linux 上 WebKit 需要系统库，可用 `npx playwright install --with-deps chromium-headless-shell webkit` 安装官方浏览器及依赖。
+
 在受限执行环境中可以给 Playwright 设置可写缓存目录：
 
 ```sh
-PLAYWRIGHT_BROWSERS_PATH=/tmp/atlas-browsers npx playwright install chromium-headless-shell
+PLAYWRIGHT_BROWSERS_PATH=/tmp/atlas-browsers npx playwright install chromium-headless-shell webkit
 PLAYWRIGHT_BROWSERS_PATH=/tmp/atlas-browsers npm run test:e2e
 ```
 
@@ -166,6 +180,8 @@ node tests/production.mjs
 - `public/assets/`：照片与本地中文衬线字体子集
 - `tests/data.test.ts`、`tests/graph.test.ts`：数据引用、状态边界、一跳端点、分页与路由验证
 - `tests/e2e.mjs`、`tests/profiles-e2e.mjs`：Chromium 端到端及截图验证
+- `tests/reader-journeys.mjs`：Chromium / WebKit 的生产包完整阅读路径
+- `.github/workflows/ci.yml`：只读权限的锁定依赖、构建与浏览器验收
 
 所有事实描述经转义后插入页面；搜索不执行用户输入。外链使用 `noopener noreferrer`。哈希路由允许静态服务器直接刷新深链，不需要后端 rewrite。
 
@@ -186,9 +202,9 @@ node tests/production.mjs
 
 - OpenAI 是唯一深度专题，其他组织明确标为精选概览
 - 资料不会自动更新，核验日期不等于所有历史角色都延续至今
-- 五位人物有已核验许可的真实照片；其余人物采用明确的文字档案排版
+- 七位人物有已核验许可的真实照片；其余人物采用明确的文字档案排版
 - 当前交互和日期采用编辑预设，不提供后台编辑、订阅或联网生成
-- 无配置 GitHub Actions；本版附本地浏览器测试结果，不把未运行的远程 CI 宣称为通过
+- 自动检查的完成状态以对应提交的 GitHub Actions 为准；本地通过不能替代远程 CI 结果
 
 ## 图像与许可
 

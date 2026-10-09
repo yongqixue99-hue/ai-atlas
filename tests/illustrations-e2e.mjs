@@ -1,6 +1,5 @@
-import { chromium } from "playwright";
+import { browserHarness } from "./browser-harness.mjs";
 import { expect } from "@playwright/test";
-import { createServer } from "vite";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
@@ -8,15 +7,11 @@ import { profiles } from "../src/profiles.ts";
 import { biographyFigures } from "../src/illustrations.ts";
 import { sources } from "../src/data.ts";
 
-const server = await createServer({server:{host:"127.0.0.1",port:5185,strictPort:true}});
-await server.listen();
-const browser = await chromium.launch({headless:true});
-const context = await browser.newContext({viewport:{width:1440,height:1050},reducedMotion:"reduce"});
-const page = await context.newPage();
+const { browser, page, close, outputDir } = await browserHarness({ port: 5185, contextOptions: { viewport: { width: 1440, height: 1050 } } });
+const out = outputDir;
 const errors = [], passed = [];
 page.on("pageerror", error => errors.push(error.message));
 page.on("response", response => { if(response.url().startsWith("http://127.0.0.1") && response.status() >= 400) errors.push(`${response.status()} ${response.url()}`); });
-const out = process.env.ATLAS_QA_DIR || new URL("../docs/qa/", import.meta.url).pathname;
 async function goto(personId) {
   await page.goto(`http://127.0.0.1:5185/#/person/${personId}`);
   await page.waitForFunction(() => document.documentElement.dataset.route === location.hash);
@@ -126,4 +121,4 @@ try {
   const result={date:new Date().toISOString(),browser:browser.version(),passed,errors};
   await fs.writeFile(path.join(out,"illustrations-results.json"),JSON.stringify(result,null,2)+"\n");
   console.log(JSON.stringify(result,null,2));
-} finally { await browser.close(); await server.close(); }
+} finally { await close(); }

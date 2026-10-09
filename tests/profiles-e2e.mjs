@@ -1,6 +1,5 @@
-import { chromium } from "playwright";
+import { browserHarness } from "./browser-harness.mjs";
 import { expect } from "@playwright/test";
-import { createServer } from "vite";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { profiles } from "../src/profiles.ts";
@@ -8,15 +7,12 @@ import { people, sources } from "../src/data.ts";
 
 // Content-specific regression coverage complements tests/e2e.mjs. These checks
 // validate citation wiring, not the truth of prose; the editorial audit does that.
-const server = await createServer({ server: { host: "127.0.0.1", port: 5183, strictPort: true } });
-await server.listen();
-const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+const { browser, page, close, outputUrl } = await browserHarness({ port: 5183 });
+const out = outputUrl;
 const errors = [];
 const passed = [];
 page.on("pageerror", e => errors.push(e.message));
 page.on("response", r => { if (r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
-const out = process.env.ATLAS_QA_DIR ? new URL(`file://${process.env.ATLAS_QA_DIR.replace(/\/$/, "")}/`) : new URL("../docs/qa/", import.meta.url);
 async function goto(route) {
   await page.goto(`http://127.0.0.1:5183/#${route}`);
   await page.waitForFunction(() => document.documentElement.dataset.route === location.hash);
@@ -100,7 +96,7 @@ try {
         await page.locator("#chapter-1").evaluate(el => el.scrollIntoView({ block: "start", behavior: "instant" }));
         await page.screenshot({ animations: "disabled", path: new URL(`audited-chapters-${theme}-${width === 1440 ? "desktop" : "mobile"}.png`, out).pathname });
       }
-      passed.push(`${theme} ${width}px: all ten profiles, focus, citations, no overflow`);
+      passed.push(`${theme} ${width}px: all ${Object.keys(profiles).length} profiles, focus, citations, no overflow`);
     }
   }
   await page.emulateMedia({ colorScheme: "light" });
@@ -114,6 +110,5 @@ try {
   await fs.writeFile(new URL("profile-evidence-results.json", out), JSON.stringify({ date: new Date().toISOString(), browser: browser.version(), passed, errors }, null, 2) + "\n");
   console.log(JSON.stringify({ passed, errors }, null, 2));
 } finally {
-  await browser.close();
-  await server.close();
+  await close();
 }

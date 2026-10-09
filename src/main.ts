@@ -77,6 +77,28 @@ let searchKind = "all";
 let lastFocused: HTMLElement | null = null;
 let chapterSpy: IntersectionObserver | null = null;
 const biographyOpenState = new Map<string, boolean>();
+const printMedia = matchMedia("print");
+let biographyPrintState: Map<HTMLDetailsElement, boolean> | null = null;
+
+// WebKit keeps closed native <details> hidden even when print CSS exposes their
+// contents. Open them for printing, then restore the reader's exact screen state.
+function setBiographyPrintMode(printing: boolean) {
+  if (printing) {
+    biographyPrintState ??= new Map();
+    app.querySelectorAll<HTMLDetailsElement>(".biography-disclosure").forEach(disclosure => {
+      if (!biographyPrintState!.has(disclosure)) biographyPrintState!.set(disclosure, disclosure.open);
+      disclosure.open = true;
+    });
+  } else if (biographyPrintState) {
+    for (const [disclosure, open] of biographyPrintState) {
+      if (disclosure.isConnected) disclosure.open = open;
+    }
+    biographyPrintState = null;
+  }
+}
+window.addEventListener("beforeprint", () => setBiographyPrintMode(true));
+window.addEventListener("afterprint", () => setBiographyPrintMode(false));
+printMedia.addEventListener("change", event => setBiographyPrintMode(event.matches));
 
 function personContextHref(p: Person) {
   return graphHref(p.id);
@@ -391,7 +413,7 @@ function personPage(p: Person) {
     { title: "人物资料来源", body: sourceList(allSources) },
   ];
   const no = (i: number) => String(i + 1).padStart(2, "0");
-  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span>${profile?.roleNote ? `<p class="profile-role-note">${esc(profile.roleNote.text)} ${profileCitation(profile.roleNote.sourceIds, "查看职务更新依据")}</p>` : ""}<p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value, ids]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}${ids?.length ? ` ${profileCitation(ids, `${term}的资料来源`)}` : ""}</dd></div>`).join("")}</dl>` : ""}<div class="person-reading-links"><a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a>${selectedWritings.length ? `<button class="text-link writings-jump" data-jump="person-writings">阅读本人文章 <span>${selectedWritings.length}</span> ↓</button>` : ""}</div></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="${c.id || `chapter-${i + 1}`}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${profile ? `<div class="biography-controls"><span>${profile.chapters.length} 个背景章节 · ${personFigures(p.id).length} 幅配图</span><button data-biographies="expand" aria-controls="${profile.chapters.map((_, i) => `biography-${i + 1}`).join(" ")}" aria-expanded="false">展开全文</button></div>` : ""}${chapters.map((c, i) => `<section class="chapter" id="${c.id || `chapter-${i + 1}`}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile?.reviewNote ? `<p class="profile-review-note">${esc(profile.reviewNote)}</p><p class="profile-reviewed">背景复核 <time datetime="${esc(profile.reviewed || "")}">${esc(profile.reviewed || "")}</time></p>` : profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
+  return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span>${profile?.roleNote ? `<p class="profile-role-note">${esc(profile.roleNote.text)} ${profileCitation(profile.roleNote.sourceIds, "查看职务更新依据")}</p>` : ""}<p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value, ids]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}${ids?.length ? ` ${profileCitation(ids, `${term}的资料来源`)}` : ""}</dd></div>`).join("")}</dl>` : ""}<div class="person-reading-links"><a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a>${selectedWritings.length ? `<button class="text-link writings-jump" data-jump="person-writings">阅读本人文章 <span>${selectedWritings.length}</span> ↓</button>` : ""}</div></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="${c.id || `chapter-${i + 1}`}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${profile ? `<div class="biography-controls"><span>${profile.chapters.length} 个背景章节${personFigures(p.id).length ? ` · ${personFigures(p.id).length} 幅配图` : ""}</span><button data-biographies="expand" aria-controls="${profile.chapters.map((_, i) => `biography-${i + 1}`).join(" ")}" aria-expanded="false">展开全文</button></div>` : ""}${chapters.map((c, i) => `<section class="chapter" id="${c.id || `chapter-${i + 1}`}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile?.reviewNote ? `<p class="profile-review-note">${esc(profile.reviewNote)}</p><p class="profile-reviewed">背景复核 <time datetime="${esc(profile.reviewed || "")}">${esc(profile.reviewed || "")}</time></p>` : profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
 }
 function timeline(entityId?: string) {
   const list = events.filter(
@@ -591,7 +613,7 @@ function bindEvents() {
   syncBiographyToggle();
   biographyDisclosures.forEach(disclosure => {
     disclosure.addEventListener("toggle", () => {
-      biographyOpenState.set(disclosure.dataset.biographyKey!, disclosure.open);
+      if (!biographyPrintState?.has(disclosure)) biographyOpenState.set(disclosure.dataset.biographyKey!, disclosure.open);
       syncBiographyToggle();
     });
     disclosure.addEventListener("keydown", event => {
@@ -610,6 +632,7 @@ function bindEvents() {
     });
     syncBiographyToggle();
   });
+  if (biographyPrintState || printMedia.matches) setBiographyPrintMode(true);
   // Highlight the chapter being read in the page contents.
   chapterSpy?.disconnect();
   const jumps = [...app.querySelectorAll<HTMLButtonElement>(".chapter-nav [data-jump]")];

@@ -52,6 +52,13 @@
   #app .figure-heading h3 { font-size:21px; }
 }
 @media print {
+  /* A dark reading preference must not produce light text on unprinted paper. */
+  :root { color-scheme:light!important; }
+  html, body { background:#fff!important; }
+  .header, .skip-link, .chapter-nav { display:none!important; }
+  .person-reading { display:block!important; }
+  .biography-figure { break-inside:avoid; page-break-inside:avoid; }
+  .chapter > header { break-after:avoid; }
   .biography-controls, .biography-disclosure > summary, .figure-source { display:none; }
   .figure-print-credit { display:block; }
   .biography-disclosure::details-content { content-visibility:visible!important; }

@@ -1,18 +1,7 @@
-import { chromium } from "playwright";
-import { createServer } from "vite";
-import fs from "node:fs/promises";
-const out = process.env.ATLAS_QA_DIR ? new URL(`file://${process.env.ATLAS_QA_DIR.replace(/\/$/, "")}/`) : new URL("../docs/qa/", import.meta.url);
-await fs.mkdir(out, { recursive: true });
-const server = await createServer({
-  server: { host: "127.0.0.1", port: 5180, strictPort: true },
-});
-await server.listen();
-const browser = await chromium.launch({ headless: true });
+import { browserHarness } from "./browser-harness.mjs";
+const { page, close, outputUrl } = await browserHarness({ port: 5180 });
+const out = outputUrl;
 try {
-  const page = await browser.newPage({
-    viewport: { width: 1440, height: 1000 },
-    deviceScaleFactor: 1,
-  });
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("http://127.0.0.1:5180");
@@ -39,6 +28,5 @@ try {
   });
   console.log(JSON.stringify({ errors }));
 } finally {
-  await browser.close();
-  await server.close();
+  await close();
 }

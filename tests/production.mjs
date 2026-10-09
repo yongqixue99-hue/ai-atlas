@@ -1,18 +1,15 @@
-import { chromium } from "playwright";
-import { preview } from "vite";
+import { browserHarness } from "./browser-harness.mjs";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 
 // Run after npm run build: verifies the shipped bundle rather than Vite's dev transform.
-const server = await preview({ preview: { host: "127.0.0.1", port: 5182, strictPort: true } });
-const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+const { browser, page, close, outputUrl } = await browserHarness({ port: 5182, production: true });
+const out = outputUrl;
 const errors = [];
 page.on("pageerror", (error) => errors.push(error.message));
 page.on("response", (response) => {
   if (response.status() >= 400) errors.push(`${response.status()} ${response.url()}`);
 });
-const out = process.env.ATLAS_QA_DIR ? new URL(`file://${process.env.ATLAS_QA_DIR.replace(/\/$/, "")}/`) : new URL("../docs/qa/", import.meta.url);
 const routes = [
   ["home-desktop", "/"],
   ["people-desktop", "/people"],
@@ -70,6 +67,5 @@ try {
   await fs.writeFile(new URL("production-results.json", out), JSON.stringify(result, null, 2) + "\n");
   console.log(JSON.stringify(result));
 } finally {
-  await browser.close();
-  await new Promise((resolve) => server.httpServer.close(resolve));
+  await close();
 }

@@ -1,6 +1,6 @@
 # AI Atlas source register
 
-版本更新：2026-10-08（UTC）。各来源保留各自实际核验日；旧来源没有统一改成新版日期。
+版本更新：2026-10-09（UTC）。各来源保留各自实际核验日；旧来源没有统一改成新版日期。
 
 ## Coverage and interpretation
 
@@ -19,7 +19,7 @@
 
 ## Image and asset notes
 
-Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使用已核验出处和 Creative Commons 许可的真实照片，其余人物使用字母排版。具体出处、许可与显示裁切记录在 assets.md 及站内「关于」页。公司品牌图形来自 Simple Icons 与 Lobe Icons，使用范围与许可见 assets.md；仍无图形的组织以文字标签表示。
+Sam Altman、Greg Brockman、Mira Murati、Dario Amodei、Demis Hassabis、Bret Taylor 和 Fidji Simo 使用已核验出处和 Creative Commons 许可的真实照片，其余人物使用字母排版。具体出处、许可与显示裁切记录在 assets.md 及站内「关于」页。公司品牌图形来自 Simple Icons 与 Lobe Icons，使用范围与许可见 assets.md；仍无图形的组织以文字标签表示。
 
 ## Claim-to-source map
 
@@ -60,42 +60,65 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 
 ## 2026-10-08 背景审校范围
 
-本轮复核 `src/profiles.ts` 十篇背景正文与速览；原有公司、角色、关系和事件不是本轮全面复审对象。新增原始资料及明确归因的媒体来源，保留三篇的部分维基依赖。来源被重新阅读，不意味着所有引用它的现职都仍成立。Demis 的 About 页与新官方职衔冲突已明确提示；详见 [审校说明](editorial-audit-2026-10-08.md)。
+2026-10-08 首轮复核 `src/profiles.ts` 当时的十篇背景正文与速览；原有公司、角色、关系和事件不是本轮全面复审对象。新增原始资料及明确归因的媒体来源，保留三篇的部分维基依赖。来源被重新阅读，不意味着所有引用它的现职都仍成立。Demis 的 About 页与新官方职衔冲突已明确提示；详见 [审校说明](editorial-audit-2026-10-08.md)。
 
 ## Public sources
+
+
+2026-10-09 补齐 Brad 与 Tibo 的短传记，增加杜克论文、活动页和 OpenAI/Reddit 公告三条来源。对角色、关系和时间线做针对性一致性复核；替换两个失效的 Instacart 新闻页为官方投资者 PDF，保留原发布日期。只将本轮实际重新打开的来源更新核验日；没有把全部 189 份资料宣称为重新核验。
+
+### brad-duke-thesis-2012
+
+- 标题：Bradford Colton Lightcap、William Anthony Peek / Duke · The Effects of Digital Media on Advertising Markets（共同署名荣誉论文）
+- 链接：https://sites.duke.edu/djepapers/files/2016/10/lightcap-peek-dje.pdf
+- 发布日期：2012
+- 核验日期：2026-10-09
+
+### brad-duke-event-2020
+
+- 标题：Duke · Fireside Chat with Brad Lightcap（2020-12-17 活动与当时 CFO 职称）
+- 链接：https://calendar.duke.edu/show?fq=id%3ACAL-2c918084-764335d0-0176-4874f9cc-000019c2demobedework%40mysite.edu
+- 核验日期：2026-10-09
+
+### openai-brad-reddit-2024
+
+- 标题：OpenAI / Reddit · OpenAI and Reddit Partnership（合作范围、牵头与审批披露）
+- 链接：https://openai.com/index/openai-and-reddit-partnership/
+- 发布日期：2024-05-16
+- 核验日期：2026-10-09
 
 ### openai-tibo-forum
 
 - 标题：OpenAI Forum · Codex is for Everyone（2026-05-13 活动与讲者简介）
 - 链接：https://forum.openai.com/public/events/codex-is-for-everyone-why-codex-matters-beyond-code-fa40puy7wi
-- 核验日期：2026-10-07
+- 核验日期：2026-10-09
 
 ### openai-tibo-astral
 
 - 标题：OpenAI · OpenAI to acquire Astral（Tibo 职称与 Codex 方向）
 - 链接：https://openai.com/index/openai-to-acquire-astral/
 - 发布日期：2026-03-19
-- 核验日期：2026-10-07
+- 核验日期：2026-10-09
 
 ### vivatech-tibo-2026
 
 - 标题：VivaTech · Thibault Sottiaux 与 Peter Steinberger 讲者公告
 - 链接：https://vivatech.com/media/press-releases/breaking-news-peter-steinberger-creator-of-openclaw-and-thibault-sottiaux-openai-two-ai-experts-for-an-exceptional-session-at-vivatech
 - 发布日期：2026-05-28
-- 核验日期：2026-10-07
+- 核验日期：2026-10-09
 
 ### openai-tibo-ona
 
 - 标题：OpenAI · OpenAI to acquire Ona（Core Products Lead）
 - 链接：https://openai.com/index/openai-to-acquire-ona/
 - 发布日期：2026-06-11
-- 核验日期：2026-10-07
+- 核验日期：2026-10-09
 
 ### openai-tibo-platform
 
 - 标题：OpenAI · Defense Factory（Head of Core Products & Platform）
 - 链接：https://openai.com/the-defense-factory/
-- 核验日期：2026-10-07
+- 核验日期：2026-10-09
 
 ### openai-jakub-2026
 
@@ -129,14 +152,14 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：OpenAI · Leadership updates（Brad Lightcap 的历史职责）
 - 链接：https://openai.com/index/leadership-updates-march-2025/
 - 发布日期：2025-03-24
-- 核验日期：2026-10-07
+- 核验日期：2026-10-09
 
 ### brad-departure-reuters
 
 - 标题：Reuters / Investing.com · Brad Lightcap announces departure（媒体交叉核验）
 - 链接：https://www.investing.com/news/stock-market-news/senior-openai-executive-brad-lightcap-to-leave-for-new-venture-4852370
 - 发布日期：2026-08-11
-- 核验日期：2026-10-07
+- 核验日期：2026-10-09
 
 ### sierra-bret-bio
 
@@ -212,7 +235,7 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：OpenAI · Leadership team update
 - 链接：https://openai.com/index/leadership-team-update/
 - 发布日期：2022-05-05
-- 核验日期：2026-10-08
+- 核验日期：2026-10-09
 
 ### openai-transition
 
@@ -814,9 +837,9 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 ### instacart-simo-ceo
 
 - 标题：Instacart · Fidji Simo appointed CEO
-- 链接：https://company.instacart.com/pressreleases/instacart-appoints-board-member-fidji-simo-to-chief-executive-officer-and-announces-founder-and-current-ceo-apoorva-mehta-will-serve-as-executive-chairman-of-the-board
+- 链接：https://investors.instacart.com/node/6671/pdf
 - 发布日期：2021-07-08
-- 核验日期：2026-10-08
+- 核验日期：2026-10-09
 
 ### shopify-simo-board
 
@@ -1105,4 +1128,207 @@ Sam Altman、Greg Brockman、Mira Murati、Dario Amodei 和 Demis Hassabis 使�
 - 标题：Sam Altman · Reflections
 - 链接：https://blog.samaltman.com/reflections
 - 发布日期：2025-01
+- 核验日期：2026-10-08
+
+### senate-altman-testimony-2023
+
+- 标题：Sam Altman / 美国参议院司法委员会 · 2023 年 5 月 16 日书面证词
+- 链接：https://www.judiciary.senate.gov/download/2023-05-16-testimony-altman
+- 发布日期：2023-05-16
+- 核验日期：2026-10-08
+
+### brockman-leaving-stripe
+
+- 标题：Greg Brockman · Leaving Stripe
+- 链接：https://blog.gregbrockman.com/leaving-stripe
+- 发布日期：2015-05-06
+- 核验日期：2026-10-08
+
+### quip-launch-2013
+
+- 标题：Bret Taylor、Kevin Gibbs / Quip · Introducing Quip
+- 链接：https://quip.com/blog/introducing-quip
+- 发布日期：2013-07-31
+- 核验日期：2026-10-08
+
+### quip-salesforce-2016
+
+- 标题：Bret Taylor、Kevin Gibbs / Quip · Quip + Salesforce = Big News（含 8 月 26 日交易完成更新）
+- 链接：https://quip.com/blog/salesforce
+- 发布日期：2016-08-01
+- 核验日期：2026-10-08
+
+### twitter-taylor-board-2016
+
+- 标题：Twitter / SEC · 2016 年 7 月董事任命 Form 8-K
+- 链接：https://www.sec.gov/Archives/edgar/data/1418091/000156459016021048/twtr-8k_20160705.htm
+- 发布日期：2016-07-05
+- 核验日期：2026-10-08
+
+### twitter-taylor-chair-2021
+
+- 标题：Twitter / SEC · Jack Dorsey steps down; Bret Taylor to Become Independent Chair
+- 链接：https://www.sec.gov/Archives/edgar/data/1418091/000119312521342255/d401229dex991.htm
+- 发布日期：2021-11-29
+- 核验日期：2026-10-08
+
+### twitter-board-end-2022
+
+- 标题：Twitter / SEC · 收购完成及董事任期结束 Form 8-K（10 月 28 日签署）
+- 链接：https://www.sec.gov/Archives/edgar/data/1418091/000119312522272772/d411753d8k.htm
+- 发布日期：2022-10
+- 核验日期：2026-10-08
+
+### marquette-taylor-cto-2010
+
+- 标题：Marquette University · Bret Taylor Becomes Facebook’s CTO（2010 年任命邮件的馆藏条目）
+- 链接：https://epublications.marquette.edu/zuckerberg_files_transcripts/29/
+- 发布日期：2010-06-02
+- 核验日期：2026-10-08
+
+### ilya-alexnet-2012
+
+- 标题：Krizhevsky、Sutskever、Hinton · ImageNet Classification with Deep Convolutional Neural Networks
+- 链接：https://www.cs.toronto.edu/~hinton/absps/imagenet.pdf
+- 发布日期：2012
+- 核验日期：2026-10-08
+
+### ilya-gpt-pretraining-2018
+
+- 标题：Radford 等 · Improving Language Understanding by Generative Pre-Training
+- 链接：https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf
+- 发布日期：2018
+- 核验日期：2026-10-08
+
+### openai-language-unsupervised-2018
+
+- 标题：Alec Radford / OpenAI · Improving language understanding with unsupervised learning
+- 链接：https://openai.com/index/language-unsupervised/
+- 发布日期：2018-06-11
+- 核验日期：2026-10-08
+
+### jakub-multi-agent-2017
+
+- 标题：Bansal 等 · Emergent Complexity via Multi-Agent Competition
+- 链接：https://arxiv.org/abs/1710.03748
+- 发布日期：2017-10-10
+- 核验日期：2026-10-08
+
+### openai-competitive-self-play-2017
+
+- 标题：OpenAI · Competitive self-play
+- 链接：https://openai.com/index/competitive-self-play/
+- 发布日期：2017-10-11
+- 核验日期：2026-10-08
+
+### jakub-openai-five-paper-2019
+
+- 标题：OpenAI、Berner 等 · Dota 2 with Large Scale Deep Reinforcement Learning
+- 链接：https://arxiv.org/abs/1912.06680
+- 发布日期：2019-12-13
+- 核验日期：2026-10-08
+
+### paul-electrical-flows-2010
+
+- 标题：Christiano 等 · Electrical Flows, Laplacian Systems, and Faster Approximation of Maximum Flow in Undirected Graphs
+- 链接：https://arxiv.org/abs/1010.2921
+- 发布日期：2010-10-14
+- 核验日期：2026-10-08
+
+### paul-human-preferences-explainer-2017
+
+- 标题：Amodei、Christiano、Ray / OpenAI · Learning from human preferences
+- 链接：https://openai.com/index/learning-from-human-preferences/
+- 发布日期：2017-06-13
+- 核验日期：2026-10-08
+
+### dario-concrete-safety-2016
+
+- 标题：Amodei 等 · Concrete Problems in AI Safety
+- 链接：https://arxiv.org/abs/1606.06565
+- 发布日期：2016-06-21
+- 核验日期：2026-10-08
+
+### dario-scaling-laws-2020
+
+- 标题：Kaplan 等 · Scaling Laws for Neural Language Models
+- 链接：https://arxiv.org/abs/2001.08361
+- 发布日期：2020-01-23
+- 核验日期：2026-10-08
+
+### anthropic-constitutional-ai-2022
+
+- 标题：Bai 等 · Constitutional AI: Harmlessness from AI Feedback
+- 链接：https://arxiv.org/abs/2212.08073
+- 发布日期：2022-12-15
+- 核验日期：2026-10-08
+
+### deepmind-atari-2013
+
+- 标题：Mnih 等 · Playing Atari with Deep Reinforcement Learning
+- 链接：https://arxiv.org/abs/1312.5602
+- 发布日期：2013-12-19
+- 核验日期：2026-10-08
+
+### deepmind-alphafold3-2024
+
+- 标题：Abramson 等 · Accurate structure prediction of biomolecular interactions with AlphaFold 3
+- 链接：https://www.nature.com/articles/s41586-024-07487-w
+- 发布日期：2024-05-08
+- 核验日期：2026-10-08
+
+### demis-queens-nobel-2024
+
+- 标题：Queens’ College · Sir Demis Hassabis wins Nobel Prize in Chemistry
+- 链接：https://www.queens.cam.ac.uk/about-us/news-events/sir-demis-hassabis-wins-nobel-prize-in-chemistry/
+- 发布日期：2024-10-09
+- 核验日期：2026-10-08
+
+### simo-facebook-watch-2018
+
+- 标题：Fidji Simo · Facebook Watch Is Going Global
+- 链接：https://about.fb.com/news/2018/08/facebook-watch-global/
+- 发布日期：2018-08-29
+- 核验日期：2026-10-08
+
+### simo-facebook-app-2019
+
+- 标题：Mark Zuckerberg · A Note From Mark Zuckerberg
+- 链接：https://about.fb.com/news/2019/03/a-note-from-mark-zuckerberg/
+- 发布日期：2019-03-14
+- 核验日期：2026-10-08
+
+### instacart-platform-2022
+
+- 标题：Instacart · Instacart Launches Instacart Platform with New Advertising, Fulfillment and Insights Solutions for Retailers
+- 链接：https://company.instacart.com/pressreleases/instacart-launches-instacart-platform-with-new-advertising-fulfillment-and-insights-solutions-for-retailers
+- 发布日期：2022-03-23
+- 核验日期：2026-10-08
+
+### instacart-simo-transition-2025
+
+- 标题：Instacart · Instacart Appoints Chris Rogers as Chief Executive Officer
+- 链接：https://investors.instacart.com/node/9511/pdf
+- 发布日期：2025-05-28
+- 核验日期：2026-10-09
+
+### embl-alphafold-launch-2021
+
+- 标题：EMBL-EBI · DeepMind and EMBL release the most complete database of predicted 3D structures of human proteins
+- 链接：https://www.ebi.ac.uk/about/news/announcements/alphafold-database-launch/
+- 发布日期：2021-07-22
+- 核验日期：2026-10-08
+
+### photo-bret-taylor-2024
+
+- 标题：Wikimedia Commons · Bret Taylor 在 TechCrunch Disrupt 2024（照片及 CC BY 2.0 许可）
+- 链接：https://commons.wikimedia.org/wiki/File:TechCrunch_Disrupt_2024_D2_Bret_Taylor-3.jpg
+- 发布日期：2024-10-29
+- 核验日期：2026-10-08
+
+### photo-fidji-simo-2016
+
+- 标题：Wikimedia Commons · Loïc Le Meur 拍摄 Fidji Simo（照片及 CC BY 2.0 许可）
+- 链接：https://commons.wikimedia.org/wiki/File:Fidji_Simo_(cropped).jpg
+- 发布日期：2016-02-29
 - 核验日期：2026-10-08

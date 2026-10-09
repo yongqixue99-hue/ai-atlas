@@ -1,15 +1,11 @@
-import { chromium } from "playwright";
+import { browserHarness } from "./browser-harness.mjs";
 import { expect } from "@playwright/test";
-import { createServer } from "vite";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-const server = await createServer({server:{host:"127.0.0.1",port:5186,strictPort:true}});
-await server.listen();
-const browser = await chromium.launch();
-const page = await browser.newPage({viewport:{width:1440,height:1000}, reducedMotion:"reduce"});
-const out = process.env.ATLAS_QA_DIR || new URL("../docs/qa/", import.meta.url).pathname;
+const { browser, page, close, outputDir } = await browserHarness({ port: 5186 });
+const out = outputDir;
 const errors = [], passed = [], measurements = [];
 page.on("pageerror", e=>errors.push(e.message));
 page.on("response", r=>{if(r.url().startsWith("http://127.0.0.1") && r.status()>=400) errors.push(`${r.status()} ${r.url()}`);});
@@ -96,4 +92,4 @@ try {
   const result={date:new Date().toISOString(),browser:browser.version(),passed,measurements,errors};
   await fs.writeFile(path.join(out,"reading-results.json"),JSON.stringify(result,null,2)+"\n");
   console.log(JSON.stringify(result,null,2));
-}finally{await browser.close();await server.close();}
+}finally{await close();}

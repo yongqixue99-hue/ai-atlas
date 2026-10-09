@@ -1,4 +1,4 @@
-// Background dossiers reviewed on 2026-10-08. Sources attach to individual
+// Background dossiers reviewed on the date recorded per profile. Sources attach to individual
 // fact rows and paragraphs; chapter sources are their exact union. A review
 // date records editorial work, not an assertion that historical roles are current.
 // Remaining secondary-source dependencies and pending role updates stay visible.
@@ -1839,5 +1839,215 @@ export const profiles: Record<string, Profile> = {
     ],
     "reviewed": "2026-10-08",
     "reviewNote": "以大学、竞赛、研究所、OpenAI 公告及共同署名论文扩写。区分博士阶段的算法研究、模拟环境自博弈和大规模系统工程；团队成果保留共同作者归属。Simons 身份仍限定为访问研究生与访问科学家，不补猜博士后或晋升年份。"
+  },
+  "brad-lightcap": {
+    "facts": [
+      [
+        "学习",
+        "2012 年在杜克大学共同撰写经济学荣誉论文",
+        [
+          "brad-duke-thesis-2012"
+        ]
+      ],
+      [
+        "此前",
+        "先后与 Sam Altman 在 Y Combinator、OpenAI 共事（2025 年公告回顾）",
+        [
+          "openai-leadership-2025"
+        ]
+      ],
+      [
+        "运营",
+        "2022 年 5 月获任 OpenAI COO；2025 年 3 月职责扩展",
+        [
+          "openai-roles-2022",
+          "openai-leadership-2025"
+        ]
+      ],
+      [
+        "合作",
+        "2024 年 OpenAI 与 Reddit 的合作由其作为 COO 牵头",
+        [
+          "openai-brad-reddit-2024"
+        ]
+      ]
+    ],
+    "chapters": [
+      {
+        "title": "从经济学论文到 AI 机构运营",
+        "text": [
+          "2012 年，Lightcap 与 William Anthony Peek 在杜克大学共同撰写经济学荣誉论文《The Effects of Digital Media on Advertising Markets》。论文研究互联网兴起后广告支出与经济总量的关系，以及数字媒体对传统广告市场的影响；这是两位作者共同完成的本科阶段研究。",
+          "杜克大学为 2020 年 12 月 17 日的一场 AI 对谈发布活动页时，将 Lightcap 列为 OpenAI 首席财务官。Sam Altman 在 2025 年 3 月的官方公告中回顾，两人已合作九年，先在 Y Combinator，之后在 OpenAI。"
+        ],
+        "paragraphSourceIds": [
+          [
+            "brad-duke-thesis-2012"
+          ],
+          [
+            "brad-duke-event-2020",
+            "openai-leadership-2025"
+          ]
+        ],
+        "sourceIds": [
+          "brad-duke-thesis-2012",
+          "brad-duke-event-2020",
+          "openai-leadership-2025"
+        ]
+      },
+      {
+        "title": "2022 年：从组织运营扩展到商业策略",
+        "text": [
+          "2022 年 5 月 5 日，OpenAI 宣布 Lightcap 出任首席运营官。公告介绍，他此前负责财务、法务、人事与运营，参与公司组织、团队与资本基础的扩展。",
+          "同一公告将新岗位的重点放在与应用 AI 团队合作、完善业务和商业策略，并表示他将继续管理 OpenAI Startup Fund。"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-roles-2022"
+          ],
+          [
+            "openai-roles-2022"
+          ]
+        ],
+        "sourceIds": [
+          "openai-roles-2022"
+        ]
+      },
+      {
+        "title": "2024 年：与 Reddit 的产品和数据合作",
+        "text": [
+          "2024 年 5 月 16 日，OpenAI 与 Reddit 公布合作：OpenAI 将通过 Reddit 的 Data API 访问内容，用于 ChatGPT 等产品；Reddit 则计划利用 OpenAI 的模型平台开发 AI 功能，OpenAI 也将成为其广告合作伙伴。",
+          "Lightcap 在公告中谈到，合作将使 ChatGPT 更好地使用 Reddit 的及时信息，并为 Reddit 开发 AI 功能提供机会。公告明确说明，这项合作由 OpenAI 的 COO 牵头，并获独立董事会批准。"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-brad-reddit-2024"
+          ],
+          [
+            "openai-brad-reddit-2024"
+          ]
+        ],
+        "sourceIds": [
+          "openai-brad-reddit-2024"
+        ]
+      },
+      {
+        "title": "2025 年职责扩展与 2026 年离任公告",
+        "text": [
+          "2025 年 3 月 24 日，OpenAI 宣布进一步扩大 Lightcap 的 COO 职责，由他负责业务与日常运营，推动全球部署，重点涵盖商业策略、关键合作、基础设施和运营工作。",
+          "据 Reuters 2026 年 8 月 11 日报道，Lightcap 在同年 4 月已转向特别项目，并在当天通过 X 宣布将离开 OpenAI、开展新的事业。报道援引 OpenAI 的回应称，他此前已逐步离开大型团队的日常管理。8 月 11 日是公开宣布离任的日期，报道并未确定最后工作日或新事业的具体内容。"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-leadership-2025"
+          ],
+          [
+            "brad-departure-reuters"
+          ]
+        ],
+        "sourceIds": [
+          "openai-leadership-2025",
+          "brad-departure-reuters"
+        ]
+      }
+    ],
+    "reviewed": "2026-10-09",
+    "reviewNote": "新增短篇传记，以本人共同署名的大学论文、杜克活动页及 OpenAI 历史公告为主要依据，逐事实和逐段标注。2026 年离任仍依赖已打开核对的 Reuters 二手报道，未把其转述的 X 发言冒充直接核验的原帖。未补猜毕业学位、入职生效日、新事业或现任职称。"
+  },
+  "thibault-sottiaux": {
+    "facts": [
+      [
+        "别名",
+        "Tibo（2026 年 OpenAI Forum 讲者简介）",
+        [
+          "openai-tibo-forum"
+        ]
+      ],
+      [
+        "教育",
+        "Université catholique de Louvain：计算机科学、计算数学与应用数学（2026 年官方简介）",
+        [
+          "openai-tibo-forum"
+        ]
+      ],
+      [
+        "此前",
+        "Google 软件工程师；Google DeepMind 的 Gemini 人类数据与研究工作流基础设施工作",
+        [
+          "openai-tibo-forum"
+        ]
+      ],
+      [
+        "职责记录",
+        "2026 年 3 月为 Codex Lead；同年 6 月公告为 Core Products Lead",
+        [
+          "openai-tibo-astral",
+          "openai-tibo-ona"
+        ]
+      ]
+    ],
+    "chapters": [
+      {
+        "title": "计算机、数学与研究基础设施",
+        "text": [
+          "OpenAI Forum 为 2026 年 5 月 13 日活动发布的简介确认，Thibault Sottiaux 常用的名字是 Tibo。他在 Université catholique de Louvain 获得计算机科学、计算数学和应用数学相关学位。",
+          "同一简介记载，他早年担任 Google 软件工程师，并在决策、预测建模和数据库系统领域从事应用研究。在加入 OpenAI 前，他在 Google DeepMind 领导 Gemini 的人类数据工作，搭建支持研究的 AI 与机器学习工作流基础设施。"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-tibo-forum"
+          ],
+          [
+            "openai-tibo-forum"
+          ]
+        ],
+        "sourceIds": [
+          "openai-tibo-forum"
+        ]
+      },
+      {
+        "title": "Codex：从写代码到完整开发流程",
+        "text": [
+          "2026 年 3 月 19 日，OpenAI 的 Astral 拟收购公告将 Sottiaux 列为 Codex Lead。公告描述的方向，是让 Codex 除了生成代码，还能规划修改、操作代码库、运行工具、验证结果并持续维护软件。Astral 的 Python 工具被放在这一开发流程中介绍。",
+          "Sottiaux 在公告中的发言也把目标放在整个软件开发生命周期。公告同时说明，交易仍需满足交割条件、取得监管批准，交割前双方保持独立，整合工作因此仍以交易完成为前提。"
+        ],
+        "paragraphSourceIds": [
+          [
+            "openai-tibo-astral"
+          ],
+          [
+            "openai-tibo-astral"
+          ]
+        ],
+        "sourceIds": [
+          "openai-tibo-astral"
+        ]
+      },
+      {
+        "title": "2026 年：更广的产品与平台范围",
+        "text": [
+          "2026 年 5 月 28 日，VivaTech 的讲者公告称 Sottiaux 领导 OpenAI 的 Product & Platform，覆盖 ChatGPT、Codex 与 API 平台。公告把他的工作描述为将前沿模型能力转化成可靠、实用的产品。",
+          "6 月 11 日，OpenAI 的 Ona 拟收购公告使用 Core Products Lead 这一职称。他在公告中谈到企业对安全和可控执行环境的需要。公司将 Ona 的技术与可持续运行的云端代理环境联系起来，并明确交易当时尚待交割。",
+          "2026 年 10 月 9 日核验的 OpenAI Defense Factory 页面将 Sottiaux 标为 Head of Core Products & Platform。页面介绍，安全、应用与研究团队共同开展安全强化行动；Sottiaux 在其中强调，应以处理安全事件的紧迫程度加强防御，并在集中行动之后继续测试和改进。"
+        ],
+        "paragraphSourceIds": [
+          [
+            "vivatech-tibo-2026"
+          ],
+          [
+            "openai-tibo-ona"
+          ],
+          [
+            "openai-tibo-platform"
+          ]
+        ],
+        "sourceIds": [
+          "vivatech-tibo-2026",
+          "openai-tibo-ona",
+          "openai-tibo-platform"
+        ]
+      }
+    ],
+    "reviewed": "2026-10-09",
+    "reviewNote": "新增短篇传记，使用 OpenAI 官方简介、带日期的拟收购公告、VivaTech 主办方公告及本次打开的官方页面。早期教育与研究经历主要依赖 2026 年官方简介，未补猜年份、学位层级或私人经历；职称按各来源日期呈现，拟议收购与产品目标不写成已完成事实。"
   }
 };

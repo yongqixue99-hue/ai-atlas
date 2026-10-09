@@ -5,11 +5,16 @@ import { profiles } from "../src/profiles.ts";
 import { sources } from "../src/data.ts";
 import { biographyFigures, personFigures, renderBiographyFigure } from "../src/illustrations.ts";
 
-test("all ten biographies have purposefully placed, sourced illustrations", () => {
-  assert.equal(Object.keys(profiles).length, 10);
+const illustratedPersonIds = [
+  "sam-altman", "greg-brockman", "ilya-sutskever", "mira-murati", "dario-amodei",
+  "demis-hassabis", "bret-taylor", "fidji-simo", "paul-christiano", "jakub-pachocki",
+];
+
+test("all ten existing illustrated biographies retain purposefully placed, sourced illustrations", () => {
+  assert.deepEqual([...new Set(biographyFigures.map(f => f.personId))].sort(), [...illustratedPersonIds].sort());
   assert.equal(new Set(biographyFigures.map(f => f.id)).size, biographyFigures.length);
   const knownSources = new Set(sources.map(source => source.id));
-  for (const personId of Object.keys(profiles)) {
+  for (const personId of illustratedPersonIds) {
     assert.ok(personFigures(personId).length > 0, personId);
   }
   for (const figure of biographyFigures) {
@@ -27,6 +32,21 @@ test("all ten biographies have purposefully placed, sourced illustrations", () =
       const svg = renderBiographyFigure(figure, "/");
       assert.match(svg, /role="img" aria-label="/);
       assert.match(svg, /AI Atlas 原创图解/);
+    }
+  }
+});
+
+test("Brad and Tibo have sourced biographies without requiring new illustrations", () => {
+  for (const personId of ["brad-lightcap", "thibault-sottiaux"]) {
+    const profile = profiles[personId];
+    assert.ok(profile, personId);
+    assert.ok(profile.facts.length >= 2, personId);
+    assert.ok(profile.chapters.length >= 2, personId);
+    assert.equal(personFigures(personId).length, 0, personId);
+    for (const chapter of profile.chapters) {
+      assert.ok(chapter.text.length > 0, `${personId}: ${chapter.title}`);
+      assert.equal(chapter.paragraphSourceIds.length, chapter.text.length);
+      chapter.paragraphSourceIds.forEach(ids => assert.ok(ids.length > 0));
     }
   }
 });

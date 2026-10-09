@@ -1,0 +1,49 @@
+name: Reader acceptance
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reader-acceptance-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  acceptance:
+    name: Data, build, and reader journeys
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      # Screenshots are ephemeral/private; never commit or upload QA artifacts.
+      ATLAS_QA_DIR: ${{ runner.temp }}/atlas-qa
+    steps:
+      # Release commits verified against each official actions repository.
+      - name: Check out source
+        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        with:
+          persist-credentials: false
+      - name: Set up Node.js
+        uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
+        with:
+          node-version: '24'
+          package-manager-cache: false
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Typecheck, unit tests, and production build
+        run: npm run check
+      - name: Install Chromium and WebKit
+        run: npx playwright install --with-deps chromium-headless-shell webkit
+      - name: Existing browser regressions and production smoke
+        run: npm run test:browser
+      - name: Three reader journeys in Chromium and WebKit
+        run: npm run test:journeys
+      - name: Confirm QA did not change tracked source
+        run: git diff --exit-code
+      - name: Remove ephemeral QA output
+        if: always()
+        run: rm -rf -- "$ATLAS_QA_DIR"

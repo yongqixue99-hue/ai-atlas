@@ -1,22 +1,17 @@
-import { chromium } from "playwright";
+import { browserHarness } from "./browser-harness.mjs";
 import { expect } from "@playwright/test";
-import { createServer } from "vite";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { people, sources } from "../src/data.ts";
 import { writings, featuredWritings, writingSource } from "../src/writings.ts";
 
-const server = await createServer({ server: { host: "127.0.0.1", port: 5184, strictPort: true } });
-await server.listen();
-const browser = await chromium.launch({ headless: true });
-const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: "reduce" });
-const page = await context.newPage();
+const { browser, context, page, close, outputDir } = await browserHarness({ port: 5184 });
+const out = outputDir;
 const errors = [];
 const passed = [];
 page.on("pageerror", e => errors.push(e.message));
 page.on("response", r => { if (r.url().startsWith("http://127.0.0.1") && r.status() >= 400) errors.push(`${r.status()} ${r.url()}`); });
-const out = process.env.ATLAS_QA_DIR || new URL("../docs/qa/", import.meta.url).pathname;
 async function goto(route) {
   await page.goto(`http://127.0.0.1:5184/#${route}`);
   await page.waitForFunction(() => document.documentElement.dataset.route === location.hash);
@@ -142,6 +137,5 @@ try {
   await fs.writeFile(path.join(out, "writings-results.json"), JSON.stringify(result, null, 2) + "\n");
   console.log(JSON.stringify(result));
 } finally {
-  await browser.close();
-  await server.close();
+  await close();
 }

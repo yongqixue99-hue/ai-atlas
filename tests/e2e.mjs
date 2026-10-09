@@ -1,6 +1,5 @@
-import { chromium } from "playwright";
+import { browserHarness } from "./browser-harness.mjs";
 import { expect } from "@playwright/test";
-import { createServer } from "vite";
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import { companies, people, relationships, foundationBoard } from "../src/data.ts";
@@ -10,18 +9,12 @@ const openaiRelations = relationships.filter(
 );
 const employmentCount = 5;
 const companyCount = companies.length;
-const server = await createServer({
-  server: { host: "127.0.0.1", port: 5181, strictPort: true },
-});
-await server.listen();
-const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+const { browser, page, close, outputUrl } = await browserHarness({ port: 5181 });
+const out = outputUrl;
 const passed = [];
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const base = "http://127.0.0.1:5181/";
-const out = process.env.ATLAS_QA_DIR ? new URL(`file://${process.env.ATLAS_QA_DIR.replace(/\/$/, "")}/`) : new URL("../docs/qa/", import.meta.url);
-await fs.mkdir(out, { recursive: true });
 async function check(name, fn) {
   await fn();
   passed.push(name);
@@ -652,6 +645,5 @@ try {
   );
   console.log(`All ${passed.length} end-to-end checks passed.`);
 } finally {
-  await browser.close();
-  await server.close();
+  await close();
 }

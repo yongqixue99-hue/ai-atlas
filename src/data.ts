@@ -88,7 +88,7 @@ export interface AtlasEvent {
   sourceIds: string[];
 }
 
-export const datasetDate = "2026-10-08";
+export const datasetDate = "2026-10-09";
 
 /** Foundation membership is separate from the Group board and management. */
 export const foundationBoard: {
@@ -115,37 +115,57 @@ export const foundationBoard: {
 
 export const sources: Source[] = [
   {
+    "id": "brad-duke-thesis-2012",
+    "title": "Bradford Colton Lightcap、William Anthony Peek / Duke · The Effects of Digital Media on Advertising Markets（共同署名荣誉论文）",
+    "url": "https://sites.duke.edu/djepapers/files/2016/10/lightcap-peek-dje.pdf",
+    "published": "2012",
+    "verified": "2026-10-09"
+  },
+  {
+    "id": "brad-duke-event-2020",
+    "title": "Duke · Fireside Chat with Brad Lightcap（2020-12-17 活动与当时 CFO 职称）",
+    "url": "https://calendar.duke.edu/show?fq=id%3ACAL-2c918084-764335d0-0176-4874f9cc-000019c2demobedework%40mysite.edu",
+    "verified": "2026-10-09"
+  },
+  {
+    "id": "openai-brad-reddit-2024",
+    "title": "OpenAI / Reddit · OpenAI and Reddit Partnership（合作范围、牵头与审批披露）",
+    "url": "https://openai.com/index/openai-and-reddit-partnership/",
+    "published": "2024-05-16",
+    "verified": "2026-10-09"
+  },
+  {
     "id": "openai-tibo-forum",
     "title": "OpenAI Forum · Codex is for Everyone（2026-05-13 活动与讲者简介）",
     "url": "https://forum.openai.com/public/events/codex-is-for-everyone-why-codex-matters-beyond-code-fa40puy7wi",
-    "verified": "2026-10-07"
+    "verified": "2026-10-09"
   },
   {
     "id": "openai-tibo-astral",
     "title": "OpenAI · OpenAI to acquire Astral（Tibo 职称与 Codex 方向）",
     "url": "https://openai.com/index/openai-to-acquire-astral/",
     "published": "2026-03-19",
-    "verified": "2026-10-07"
+    "verified": "2026-10-09"
   },
   {
     "id": "vivatech-tibo-2026",
     "title": "VivaTech · Thibault Sottiaux 与 Peter Steinberger 讲者公告",
     "url": "https://vivatech.com/media/press-releases/breaking-news-peter-steinberger-creator-of-openclaw-and-thibault-sottiaux-openai-two-ai-experts-for-an-exceptional-session-at-vivatech",
     "published": "2026-05-28",
-    "verified": "2026-10-07"
+    "verified": "2026-10-09"
   },
   {
     "id": "openai-tibo-ona",
     "title": "OpenAI · OpenAI to acquire Ona（Core Products Lead）",
     "url": "https://openai.com/index/openai-to-acquire-ona/",
     "published": "2026-06-11",
-    "verified": "2026-10-07"
+    "verified": "2026-10-09"
   },
   {
     "id": "openai-tibo-platform",
     "title": "OpenAI · Defense Factory（Head of Core Products & Platform）",
     "url": "https://openai.com/the-defense-factory/",
-    "verified": "2026-10-07"
+    "verified": "2026-10-09"
   },
   {
     "id": "openai-jakub-2026",
@@ -179,14 +199,14 @@ export const sources: Source[] = [
     "title": "OpenAI · Leadership updates（Brad Lightcap 的历史职责）",
     "url": "https://openai.com/index/leadership-updates-march-2025/",
     "published": "2025-03-24",
-    "verified": "2026-10-07"
+    "verified": "2026-10-09"
   },
   {
     "id": "brad-departure-reuters",
     "title": "Reuters / Investing.com · Brad Lightcap announces departure（媒体交叉核验）",
     "url": "https://www.investing.com/news/stock-market-news/senior-openai-executive-brad-lightcap-to-leave-for-new-venture-4852370",
     "published": "2026-08-11",
-    "verified": "2026-10-07"
+    "verified": "2026-10-09"
   },
   {
     "id": "sierra-bret-bio",
@@ -262,7 +282,7 @@ export const sources: Source[] = [
     "title": "OpenAI · Leadership team update",
     "url": "https://openai.com/index/leadership-team-update/",
     "published": "2022-05-05",
-    "verified": "2026-10-08"
+    "verified": "2026-10-09"
   },
   {
     "id": "openai-transition",
@@ -864,9 +884,9 @@ export const sources: Source[] = [
   {
     "id": "instacart-simo-ceo",
     "title": "Instacart · Fidji Simo appointed CEO",
-    "url": "https://company.instacart.com/pressreleases/instacart-appoints-board-member-fidji-simo-to-chief-executive-officer-and-announces-founder-and-current-ceo-apoorva-mehta-will-serve-as-executive-chairman-of-the-board",
+    "url": "https://investors.instacart.com/node/6671/pdf",
     "published": "2021-07-08",
-    "verified": "2026-10-08"
+    "verified": "2026-10-09"
   },
   {
     "id": "shopify-simo-board",
@@ -1335,9 +1355,9 @@ export const sources: Source[] = [
   {
     "id": "instacart-simo-transition-2025",
     "title": "Instacart · Instacart Appoints Chris Rogers as Chief Executive Officer",
-    "url": "https://company.instacart.com/pressreleases/instacart-appoints-chris-rogers-as-chief-executive-officer",
+    "url": "https://investors.instacart.com/node/9511/pdf",
     "published": "2025-05-28",
-    "verified": "2026-10-08"
+    "verified": "2026-10-09"
   },
   {
     "id": "embl-alphafold-launch-2021",

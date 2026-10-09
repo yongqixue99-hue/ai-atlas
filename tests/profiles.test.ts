@@ -25,8 +25,9 @@ function checkIds(ids: string[] | undefined, label: string) {
   for (const id of ids) assert.ok(knownSources.has(id), `${label}: ${id}`);
 }
 
-test("all ten existing background dossiers retain an explicit, bounded review date", () => {
-  assert.equal(Object.keys(profiles).length, 10);
+test("every person has a background dossier with an explicit, bounded review date", () => {
+  assert.equal(people.length, 12);
+  assert.deepEqual(Object.keys(profiles).sort(), people.map(p => p.id).sort());
   for (const [id, profile] of Object.entries(profiles)) {
     assert.match(profile.reviewed, /^\d{4}-\d{2}-\d{2}$/);
     assert.ok(profile.reviewed <= datasetDate, id);
