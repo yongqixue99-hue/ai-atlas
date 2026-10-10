@@ -140,3 +140,12 @@
   .writing-list > li { padding:21px 0; }
   .person-reading-links { gap:18px; }
 }
+
+/* Contextual search lands on the matching reading block without adding UI. */
+.person-page .writing-list > li, .person-page #person-sources .sources-list > article, .timeline > article { scroll-margin-top:110px; }
+.search-result > span:nth-child(2) { min-width:0; overflow-wrap:anywhere; }
+.search-modal .empty-state .text-link { margin-top:14px; }
+@media (max-width:760px) {
+  .person-page .writing-list > li, .person-page #person-sources .sources-list > article, .timeline > article { scroll-margin-top:24px; }
+  .search-modal .search-result small { display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+}

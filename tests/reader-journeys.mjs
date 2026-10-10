@@ -145,13 +145,15 @@ for (const browserName of browsers) {
           await context.route(originalUrl, route => route.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>Original article test target</title><main>Original article navigation test</main>" }));
           const inline = page.locator(`.writing-inline[href="${originalUrl}"]`).first();
           await expect(inline).toBeVisible();
-          const personUrl = page.url();
+          let personUrl = page.url();
           for (const link of [inline, page.locator(`.writing-list h3 a[href="${originalUrl}"]`)]) {
             if (link !== inline) {
               await page.locator(".writings-jump").click();
               await expect(page.locator("#person-writings")).toBeFocused();
+              assert.equal(new URL(page.url()).hash, "#/person/sam-altman?section=person-writings");
               await screenshot("bio-to-article");
             }
+            personUrl = page.url();
             await expect(link).toHaveAttribute("target", "_blank");
             await expect(link).toHaveAttribute("rel", "noopener noreferrer");
             await expect(link).toHaveAttribute("aria-label", /新标签页/);

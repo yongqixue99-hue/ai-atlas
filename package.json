@@ -8,7 +8,7 @@
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0",
     "typecheck": "tsc --noEmit",
-    "test": "node --experimental-strip-types --test tests/data.test.ts tests/graph.test.ts tests/map.test.ts tests/profiles.test.ts tests/writings.test.ts tests/illustrations.test.ts tests/browser-harness.test.mjs",
+    "test": "node --experimental-strip-types --test tests/data.test.ts tests/graph.test.ts tests/map.test.ts tests/profiles.test.ts tests/writings.test.ts tests/illustrations.test.ts tests/browser-harness.test.mjs tests/search.test.ts",
     "test:e2e": "node tests/e2e.mjs",
     "test:visual": "node tests/visual.mjs",
     "check": "npm run typecheck && npm test && npm run build",
@@ -18,7 +18,8 @@
     "test:reading": "node tests/reading-e2e.mjs",
     "test:production": "node tests/production.mjs",
     "test:browser": "npm run test:e2e && npm run test:profiles && npm run test:writings && npm run test:illustrations && npm run test:reading && npm run test:production",
-    "test:journeys": "node tests/reader-journeys.mjs"
+    "test:journeys": "node tests/reader-journeys.mjs",
+    "test:discovery": "node tests/discovery-e2e.mjs"
   },
   "devDependencies": {
     "@playwright/test": "1.55.1",

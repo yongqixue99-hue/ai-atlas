@@ -11,6 +11,7 @@ import "./biographies.css";
 import { biographyFigures, personFigures, renderBiographyFigure, renderFigureCredit } from "./illustrations";
 import { renderMap, bindMap } from "./map";
 import { profiles } from "./profiles";
+import { searchAtlas, normalizeSearchQuery } from "./search";
 import { personWritings, featuredWritings, writingSource, writingSegments, writingKindLabels } from "./writings";
 import openaiLogo from "./assets/openai.svg?raw";
 import anthropicLogo from "./assets/anthropic.svg?raw";
@@ -34,6 +35,9 @@ type Company = (typeof companies)[number];
 type Person = (typeof people)[number];
 type Relationship = (typeof relationships)[number];
 const app = document.querySelector<HTMLDivElement>("#app")!;
+// Hash routes own their reading target; native reload restoration can otherwise
+// override a newly expanded chapter after WebKit finishes loading.
+history.scrollRestoration = "manual";
 const arrow =
   '<span class="arrow-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6 18 18 6M6 6h12v12"/></svg></span>';
 const searchIcon =
@@ -383,7 +387,7 @@ function linkedWritingText(text: string, personId: string, sourceIds: readonly s
 function writingsSection(p: Person) {
   return `<p class="writings-intro">本人署名与合著原文精选。观点和预测保留作者语境，合著成果归于完整作者团队。链接均在新标签页打开。</p><ol class="writing-list">${featuredWritings(p.id).map(w => {
     const source = writingSource(w)!;
-    return `<li data-writing="${esc(w.sourceId)}"><div class="writing-meta"><span>${writingKindLabels[w.kind]} · ${w.authorship === "coauthored" ? "共同署名" : "本人署名"}</span><span>${w.dateNote ? `${esc(w.dateNote)} ` : ""}${source.published ? `<time datetime="${esc(source.published)}">${esc(w.dateLabel || source.published)}</time>` : "原文未标日期"}</span></div><h3><a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(w.title)}，阅读原文（新标签页）">${esc(w.title)} ${arrow}</a></h3><p class="writing-summary">${esc(w.summary)}</p><p class="writing-byline">${esc(w.authors)}<span>${esc(new URL(source.url).hostname.replace(/^www\./, ""))}</span></p></li>`;
+    return `<li id="writing-${esc(w.sourceId)}" data-writing="${esc(w.sourceId)}"><div class="writing-meta"><span>${writingKindLabels[w.kind]} · ${w.authorship === "coauthored" ? "共同署名" : "本人署名"}</span><span>${w.dateNote ? `${esc(w.dateNote)} ` : ""}${source.published ? `<time datetime="${esc(source.published)}">${esc(w.dateLabel || source.published)}</time>` : "原文未标日期"}</span></div><h3><a href="${esc(source.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(w.title)}，阅读原文（新标签页）">${esc(w.title)} ${arrow}</a></h3><p class="writing-summary">${esc(w.summary)}</p><p class="writing-byline">${esc(w.authors)}<span>${esc(new URL(source.url).hostname.replace(/^www\./, ""))}</span></p></li>`;
   }).join("")}</ol>`;
 }
 function personPage(p: Person) {
@@ -407,10 +411,10 @@ function personPage(p: Person) {
       const open = biographyOpenState.get(key) ?? chapterIndex === 0;
       return { title: c.title, body: `${paragraphs[0]}<details class="biography-disclosure" id="biography-${chapterIndex + 1}" data-biography-key="${esc(key)}" ${open ? "open" : ""}><summary><span class="when-closed">继续阅读 · ${paragraphs.length - 1} 段${figures.length ? " · 含配图" : ""}</span><span class="when-open">收起本章</span></summary><div class="biography-more">${paragraphs.slice(1).join("")}${figures.map(figure => renderBiographyFigure(figure, import.meta.env.BASE_URL)).join("")}</div></details>` };
     }),
-    { title: profile ? "公开记录中的角色" : "经历与贡献", body: p.paragraphs.map((text, index) => `<p>${linkedWritingText(text, p.id, p.paragraphSourceIds?.[index] || [])}</p>${p.paragraphSourceIds?.[index]?.length ? sourceButton(p.paragraphSourceIds[index], "本段依据") : ""}`).join("") },
+    { title: profile ? "公开记录中的角色" : "经历与贡献", id: "person-roles", body: p.paragraphs.map((text, index) => `<p>${linkedWritingText(text, p.id, p.paragraphSourceIds?.[index] || [])}</p>${p.paragraphSourceIds?.[index]?.length ? sourceButton(p.paragraphSourceIds[index], "本段依据") : ""}`).join("") },
     ...(selectedWritings.length ? [{ title: "文章与观点", id: "person-writings", body: writingsSection(p) }] : []),
     { title: "沿着时间阅读", body: `<div class="milestones">${p.milestones.map((m) => `<article><time>${esc(m.date)}</time><div><p>${esc(m.text)}</p>${sourceButton(m.sourceIds)}</div></article>`).join("")}</div>` },
-    { title: "人物资料来源", body: sourceList(allSources) },
+    { title: "人物资料来源", id: "person-sources", body: sourceList(allSources, true) },
   ];
   const no = (i: number) => String(i + 1).padStart(2, "0");
   return `${header("people")}<main id="main" class="person-page">${breadcrumb([{ text: "人物", href: "#/people" }, { text: p.name }])}<section class="person-hero"><div><div class="eyebrow">PEOPLE / 人物档案</div><h1>${esc(p.name)}</h1><p class="cn-name">${esc(p.cnName)}${p.aliases?.length ? `<span> · 常用称呼 ${esc(p.aliases[0])}</span>` : ""}</p><span class="role-label">${esc(p.role)}</span>${profile?.roleNote ? `<p class="profile-role-note">${esc(profile.roleNote.text)} ${profileCitation(profile.roleNote.sourceIds, "查看职务更新依据")}</p>` : ""}<p class="person-deck">${esc(p.summary)}</p>${profile ? `<dl class="quick-facts">${profile.facts.map(([term, value, ids]) => `<div><dt>${esc(term)}</dt><dd>${esc(value)}${ids?.length ? ` ${profileCitation(ids, `${term}的资料来源`)}` : ""}</dd></div>`).join("")}</dl>` : ""}<div class="person-reading-links"><a href="${esc(personContextHref(p))}" class="text-link">放回公司的脉络中阅读 ${arrow}</a>${selectedWritings.length ? `<button class="text-link writings-jump" data-jump="person-writings">阅读本人文章 <span>${selectedWritings.length}</span> ↓</button>` : ""}</div></div>${egoMap(p)}</section><dl class="fact-strip is-person">${facts.map(([term, value, cls]) => `<div class="${cls}"><dt>${term}</dt><dd>${value}</dd></div>`).join("")}</dl><div class="reading-layout person-reading"><nav class="chapter-nav" aria-label="本页目录"><span>本页目录</span>${chapters.map((c, i) => `<button data-jump="${c.id || `chapter-${i + 1}`}"><i>${no(i)}</i>${esc(c.title)}</button>`).join("")}</nav><article>${profile ? `<div class="biography-controls"><span>${profile.chapters.length} 个背景章节${personFigures(p.id).length ? ` · ${personFigures(p.id).length} 幅配图` : ""}</span><button data-biographies="expand" aria-controls="${profile.chapters.map((_, i) => `biography-${i + 1}`).join(" ")}" aria-expanded="false">展开全文</button></div>` : ""}${chapters.map((c, i) => `<section class="chapter" id="${c.id || `chapter-${i + 1}`}"><header><span>${no(i)}</span><h2>${esc(c.title)}</h2></header>${c.body}</section>`).join("")}</article><aside class="reading-aside">${personLinks(p)}<div class="person-note"><span>阅读须知</span><p>这里不将集体成果归于某一个人，也不以历史头衔暗示当前职位。请结合事件日期和原始资料阅读。</p>${profile?.reviewNote ? `<p class="profile-review-note">${esc(profile.reviewNote)}</p><p class="profile-reviewed">背景复核 <time datetime="${esc(profile.reviewed || "")}">${esc(profile.reviewed || "")}</time></p>` : profile ? "<p>生平背景章节依据维基百科条目整理，属于二手汇编；任职与治理事实以「公开记录中的角色」所引的原始公告为准。</p>" : ""}</div></aside></div>${personNext(p)}</main>${footer()}`;
@@ -424,16 +428,16 @@ function timeline(entityId?: string) {
     .sort((a, b) => a.date.localeCompare(b.date))
     .map(
       (e, i, sorted) =>
-        `${e.date.slice(0, 4) !== sorted[i - 1]?.date.slice(0, 4) ? `<div class="timeline-year" aria-hidden="true">${esc(e.date.slice(0, 4))}</div>` : ""}<article><time>${esc(e.date)}</time><div class="timeline-dot"></div><div><h3>${esc(e.title)}</h3><p>${esc(e.description)}</p><div class="timeline-foot"><span>${e.entityIds.map((id) => esc(relationshipName(id))).join(" / ")}</span>${sourceButton(e.sourceIds, "事件来源")}</div></div></article>`,
+        `${e.date.slice(0, 4) !== sorted[i - 1]?.date.slice(0, 4) ? `<div class="timeline-year" aria-hidden="true">${esc(e.date.slice(0, 4))}</div>` : ""}<article id="event-${esc(e.id)}"><time>${esc(e.date)}</time><div class="timeline-dot"></div><div><h3>${esc(e.title)}</h3><p>${esc(e.description)}</p><div class="timeline-foot"><span>${e.entityIds.map((id) => esc(relationshipName(id))).join(" / ")}</span>${sourceButton(e.sourceIds, "事件来源")}</div></div></article>`,
     )
     .join("")}</div>`;
 }
-function sourceList(ids: readonly string[]) {
+function sourceList(ids: readonly string[], anchors = false) {
   return `<div class="sources-list">${[...new Set(ids)]
     .map((id, index) => {
       const s = sourceById(id);
       return s
-        ? `<article><span class="source-index">${String(index + 1).padStart(2, "0")}</span><div><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ${arrow}</a><p>${esc(new URL(s.url).hostname)}${s.published ? ` · 发布 ${esc(s.published)}` : ""} · 核验 ${esc(s.verified)}</p></div></article>`
+        ? `<article${anchors ? ` id="source-${esc(id)}"` : ""}><span class="source-index">${String(index + 1).padStart(2, "0")}</span><div><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)} ${arrow}</a><p>${esc(new URL(s.url).hostname)}${s.published ? ` · 发布 ${esc(s.published)}` : ""} · 核验 ${esc(s.verified)}</p></div></article>`
         : "";
     })
     .join("")}</div>`;
@@ -556,6 +560,11 @@ function render() {
       ? "未收录 · AI Atlas"
       : "AI Atlas · 看见公司，理解 AI 的未来";
   }
+  const section = params.get("section");
+  if (section && !readingTarget(section)) {
+    params.delete("section");
+    history.replaceState(history.state, "", `#${path}${params.size ? `?${params}` : ""}`);
+  }
   bindEvents();
   // Marks which route is on screen; the end-to-end suite waits on it after navigating.
   document.documentElement.dataset.route = location.hash;
@@ -649,12 +658,18 @@ function bindEvents() {
   }
   app.querySelectorAll<HTMLButtonElement>("[data-jump]").forEach((b) =>
     b.addEventListener("click", () => {
-      const target = document.getElementById(b.dataset.jump!);
-      const disclosure = target?.querySelector<HTMLDetailsElement>(".biography-disclosure");
-      if (disclosure) disclosure.open = true;
-      target?.setAttribute("tabindex", "-1");
-      target?.scrollIntoView({ block: "start", behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "instant" : "smooth" });
-      target?.focus({ preventScroll: true });
+      const section = b.dataset.jump!;
+      const [path, query = ""] = (location.hash.slice(1) || "/").split("?");
+      // Keep the current reading location shareable without adding a Back step
+      // for every table-of-contents click. Search navigation still creates history.
+      if (path.startsWith("/person/")) {
+        const params = new URLSearchParams(query);
+        params.set("section", section);
+        const hash = `#${path}?${params}`;
+        if (location.hash !== hash) history.replaceState(history.state, "", hash);
+        document.documentElement.dataset.route = location.hash;
+      }
+      focusReadingTarget(document.getElementById(section));
     }),
   );
   app.querySelector<HTMLInputElement>("[data-source-filter]")?.addEventListener("input", (e) => {
@@ -803,7 +818,7 @@ function openSources(ids: string[], figureId?: string) {
 function openSearch() {
   searchKind = "all";
   openModal(
-    `<div class="eyebrow">FIND YOUR NEXT CONNECTION</div><h2 id="modal-title">想从哪里开始？</h2><label class="search-input">${searchIcon}<input id="atlas-search" type="search" placeholder="公司、人物、产品或关键词…" autocomplete="off" aria-label="搜索 Atlas"></label><div class="pills search-filters">${[
+    `<div class="eyebrow">FIND YOUR NEXT CONNECTION</div><h2 id="modal-title">想从哪里开始？</h2><label class="search-input">${searchIcon}<input id="atlas-search" type="search" placeholder="姓名、文章标题或正文关键词…" autocomplete="off" aria-label="搜索 Atlas"></label><div class="pills search-filters">${[
       ["all", "全部"],
       ["company", "公司"],
       ["person", "人物"],
@@ -821,6 +836,7 @@ function openSearch() {
   input.focus();
   input.addEventListener("input", () => search(input.value));
   document.querySelector<HTMLElement>(".search-modal .modal")?.addEventListener("keydown", (e) => {
+    if (e.isComposing || e.keyCode === 229) return;
     const results = [...document.querySelectorAll<HTMLElement>("#search-results .search-result")];
     if (e.key === "Enter" && e.target === input) results[0]?.click();
     if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
@@ -848,73 +864,85 @@ function openSearch() {
   search("");
 }
 function search(query: string) {
-  const q = query.trim().toLocaleLowerCase();
-  const entries = [
-    ...companies.map((c) => ({
-      kind: "company",
-      name: c.name,
-      sub: c.tagline,
-      mark: brand(c),
-      text: [c.name, c.cnName, c.tagline, ...c.description, ...c.topics].join(
-        " ",
-      ),
-      href: `#/company/${c.id}`,
-    })),
-    ...people.map((p) => ({
-      kind: "person",
-      name: p.name,
-      sub: (q && personWritings(p.id).find(w => `${w.title} ${w.summary}`.toLocaleLowerCase().includes(q))?.title) || p.role,
-      mark: face(p),
-      text: [p.name, p.cnName, ...(p.aliases || []), p.summary, p.role, ...p.paragraphs, ...personWritings(p.id).flatMap(w => [w.title, w.summary])].join(" "),
-      href: `#/person/${p.id}`,
-    })),
-    ...additionalEntities.map((e) => ({
-      kind: e.type === "product" ? "product" : "organization",
-      name: e.name,
-      sub: e.summary,
-      mark: `<span class="brand">${esc(e.initial)}</span>`,
-      text: e.name + " " + e.cnName + " " + e.summary,
-      href: `#/entity/${e.id}`,
-    })),
-    ...events.map((e) => ({
-      kind: "event",
-      name: e.title,
-      sub: e.date,
-      mark: `<span class="brand">${esc(e.date.slice(2, 4))}</span>`,
-      text: e.title + " " + e.description,
-      href: "#/timeline",
-    })),
-  ];
-  const hits = entries.filter(
-    (e) =>
-      (searchKind === "all" ||
-        e.kind === searchKind ||
-        (searchKind === "company" && e.kind === "organization")) &&
-      (!q || e.text.toLocaleLowerCase().includes(q)),
-  );
+  const q = normalizeSearchQuery(query);
+  const hits = searchAtlas(query, searchKind);
+  const elsewhere = q && !hits.length && searchKind !== "all" ? searchAtlas(query).length : 0;
   const box = document.querySelector("#search-results")!;
   const lit = (text: string) => {
     const at = q ? text.toLocaleLowerCase().indexOf(q) : -1;
     return at < 0 ? esc(text) : `${esc(text.slice(0, at))}<mark>${esc(text.slice(at, at + q.length))}</mark>${esc(text.slice(at + q.length))}`;
   };
   const kinds: Record<string, string> = { company: "公司", organization: "组织", person: "人物", product: "产品", event: "事件" };
-  box.innerHTML = `<p class="search-count">${q ? `找到 ${hits.length} 条线索` : "探索索引中的精选条目"}</p>${hits.length ? hits.map((e) => `<a class="search-result" href="${e.href}"><span class="result-mark">${e.mark}</span><span><strong>${lit(e.name)}</strong><small><span class="result-kind">${kinds[e.kind]}</span> · ${lit(e.sub)}</small></span>${arrow}</a>`).join("") : `<div class="empty-state"><h3>还没有找到这条线索</h3><p>试试「OpenAI」「治理」「ChatGPT」或人物的英文名。</p></div>`}`;
-  box
-    .querySelectorAll("a")
-    .forEach((a) => a.addEventListener("click", () => closeModal(false)));
+  const mark = (id: string, kind: string) => {
+    const company = companyById(id), person = personById(id), entity = extraById(id);
+    if (company) return brand(company);
+    if (person) return face(person);
+    const event = kind === "event" && events.find(e => e.id === id);
+    return `<span class="brand">${esc(entity?.initial || (event && event.date.slice(2, 4)) || "")}</span>`;
+  };
+  box.innerHTML = `<p class="search-count">${q ? `找到 ${hits.length} 条线索` : "探索索引中的精选条目"}</p>${hits.length ? hits.map(e => `<a class="search-result" href="${esc(e.href)}"><span class="result-mark">${mark(e.markId, e.kind)}</span><span><strong>${lit(e.name)}</strong><small><span class="result-kind">${kinds[e.kind]}</span> · ${lit(e.sub)}</small></span>${arrow}</a>`).join("") : `<div class="empty-state"><h3>${elsewhere ? "这个分类中没有匹配项" : "还没有找到这条线索"}</h3><p>${elsewhere ? `其他分类还有 ${elsewhere} 条相关线索。` : "试试缩短关键词，或搜索人物姓名、文章标题和正文中的词语。"}</p>${elsewhere ? '<button class="text-link" data-search-reset>查看全部分类</button>' : ""}</div>`}`;
+  box.querySelector<HTMLButtonElement>("[data-search-reset]")?.addEventListener("click", () => {
+    searchKind = "all";
+    document.querySelectorAll<HTMLElement>("[data-search-kind]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.searchKind === "all")));
+    search(query);
+    document.querySelector<HTMLInputElement>("#atlas-search")?.focus();
+  });
+  box.querySelectorAll<HTMLAnchorElement>("a.search-result").forEach(a => a.addEventListener("click", event => {
+    // Modified clicks retain native new-tab behavior and the current search.
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+    closeModal(false);
+    if (a.hash === location.hash) {
+      event.preventDefault();
+      focusRoute();
+    }
+  }));
+}
+
+function readingTarget(section: string): HTMLElement | null {
+  const path = (location.hash.slice(1) || "/").split("?")[0];
+  if (!path.startsWith("/person/") && path !== "/timeline") return null;
+  const target = document.getElementById(section);
+  return target && app.contains(target) && target.matches(".person-page .chapter, .person-page .writing-list > li, .person-page #person-sources .sources-list > article, .timeline > article") ? target : null;
+}
+function focusReadingTarget(target: HTMLElement | null) {
+  if (!target) return false;
+  const disclosure = target.querySelector<HTMLDetailsElement>(".biography-disclosure");
+  if (disclosure) {
+    disclosure.open = true;
+    biographyOpenState.set(disclosure.dataset.biographyKey!, true);
+  }
+  target.setAttribute("tabindex", "-1");
+  target.scrollIntoView({ block: "start", behavior: "instant" });
+  target.focus({ preventScroll: true });
+  return true;
+}
+function focusRoute() {
+  const params = new URLSearchParams((location.hash.slice(1) || "/").split("?")[1] || "");
+  if (focusReadingTarget(readingTarget(params.get("section") || ""))) return;
+  window.scrollTo({ top: 0, behavior: "instant" });
+  const main = app.querySelector<HTMLElement>("main");
+  main?.setAttribute("tabindex", "-1");
+  main?.focus({ preventScroll: true });
 }
 // Opacity only, so measured geometry never shifts while a page arrives.
 function fadeIn() {
   if (matchMedia("(prefers-reduced-motion:reduce)").matches) return;
   app.querySelector("main")?.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 320, easing: "ease" });
 }
+// On a document reload WebKit completes native restoration after module
+// evaluation. Reapply a deep target at pageshow, once layout is ready.
+window.addEventListener("pageshow", () => {
+  const route = location.hash;
+  if (!new URLSearchParams(route.split("?")[1] || "").has("section")) return;
+  requestAnimationFrame(() => {
+    if (location.hash === route && !document.querySelector(".modal")) focusRoute();
+  });
+});
 window.addEventListener("hashchange", () => {
   closeModal(false);
   render();
   fadeIn();
-  window.scrollTo({ top: 0, behavior: "instant" });
-  document.querySelector<HTMLElement>("main")?.setAttribute("tabindex", "-1");
-  document.querySelector<HTMLElement>("main")?.focus({ preventScroll: true });
+  focusRoute();
 });
 matchMedia("(max-width:600px)").addEventListener("change", () => {
   if (activeGraph) {
@@ -924,6 +952,7 @@ matchMedia("(max-width:600px)").addEventListener("change", () => {
   }
 });
 document.addEventListener("keydown", (e) => {
+  if (e.isComposing || e.keyCode === 229) return;
   const modal = document.querySelector<HTMLElement>(".modal");
   if (e.key === "Escape" && modal) {
     e.preventDefault();
@@ -955,4 +984,5 @@ document.addEventListener("keydown", (e) => {
   }
 });
 render();
+if (new URLSearchParams(location.hash.split("?")[1] || "").has("section")) focusRoute();
 fadeIn();

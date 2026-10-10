@@ -2,6 +2,15 @@
 
 一个以公司为起点的中文 AI 百科。连接人物、产品、组织治理与公开证据，采用象牙白、炭黑与低饱和绿色的编辑式布局。
 
+## 2026-10-10 搜索与阅读定位
+
+- 精确姓名、别名、产品名和文章标题优先，回车直接进入最相关条目
+- 搜索覆盖全部传记正文；简短上下文说明命中位置，直接展开对应章节、文章或时间节点
+- 人物目录目标可由网址恢复；修复重复选择焦点、中文输入法确认键与空分类恢复
+- 新增 Chromium / WebKit 明暗主题、桌面及窄屏的生产包搜索验收，资料与简洁布局保留
+
+详见 [搜索改动、复现与验证范围](docs/discovery-optimization-2026-10-10.md)。
+
 ## 2026-10-09 试用前收尾
 
 - 补齐 Brad Lightcap 与 Tibo 的短传记，12 位人物现均有逐段来源背景；共 65 章、185 段、189 条来源
@@ -126,7 +135,7 @@ npm run dev
 打开终端显示的本地地址。
 
 ```sh
-npm run check       # 类型检查、44 项数据/图谱/传记与审计测试、生产构建
+npm run check       # 类型检查、数据/图谱/传记/搜索与审计测试、生产构建
 npm run preview     # 预览 dist
 ```
 
@@ -141,6 +150,7 @@ npm run test:illustrations # 章节展开、配图加载、图注证据及可访
 npm run test:reading # 紧凑图注、全文控制、署名侧栏及打印回归
 npm run test:browser # 以上回归及 dist 生产检查（先构建）
 npm run test:journeys # 三条完整阅读路径，Chromium + WebKit（先构建）
+npm run test:discovery # 搜索、正文定位、输入法与历史，Chromium + WebKit（先构建）
 ```
 
 测试自行创建和关闭本地 Vite 服务，不依赖另一个开发进程。涵盖主要页面、实体导航、搜索、安全转义、关系筛选、来源抽屉、重复开关、Escape/焦点恢复、键盘焦点圈定、浏览器前进后退、1440px/1024px/768px/390px/320px 无横向溢出，以及运行时错误检测。截图和机器可读结果默认写到系统临时目录，可用 `ATLAS_QA_DIR` 指定私有输出目录；新 QA 图片不提交到公开仓库。
@@ -172,7 +182,8 @@ node tests/production.mjs
 - `src/profiles.ts`：带逐条、逐段引用及复核边界的人物背景
 - `src/illustrations.ts` / `src/biographies.css`：有据图解、许可照片及渐进阅读
 - `src/writings.ts`：经署名核验的原文目录、精选阅读与安全标题匹配
-- `src/main.ts`：视图、哈希路由、检索、筛选与模态层交互
+- `src/main.ts`：视图、哈希路由、筛选与模态层交互
+- `src/search.ts`：本地全文索引、相关性排序与阅读目标映射
 - `src/graph.ts`：一跳图谱状态、节点归并、分页与证据渲染
 - `src/graph.css`、`src/home.css`：依据概念图实现的关系页与首页样式
 - `src/style.css`：响应式编辑设计、可访问状态、动效

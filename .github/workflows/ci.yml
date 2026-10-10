@@ -43,6 +43,8 @@ jobs:
         run: npm run test:browser
       - name: Three reader journeys in Chromium and WebKit
         run: npm run test:journeys
+      - name: Search and contextual discovery in Chromium and WebKit
+        run: npm run test:discovery
       - name: Confirm QA did not change tracked source
         run: git diff --exit-code
       - name: Remove ephemeral QA output

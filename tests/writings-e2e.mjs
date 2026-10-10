@@ -49,7 +49,7 @@ try {
     await jumpToWriting();
     await page.locator('.chapter-nav [data-jump="person-writings"]').click();
     await expect(page.locator("#person-writings")).toBeFocused();
-    assert.equal(page.url().split("#")[1], `/person/${p.id}`);
+    assert.equal(page.url().split("#")[1], `/person/${p.id}?section=person-writings`);
     passed.push(`${p.id}: verified catalogue, safe inline links, repeated jump and keyboard focus`);
   }
   await goto("/person/greg-brockman");
@@ -74,7 +74,7 @@ try {
     await popup.waitForLoadState();
     assert.equal(popup.url(), originalUrl);
     assert.equal(await popup.evaluate(() => window.opener), null);
-    assert.equal(page.url().split("#")[1], "/person/sam-altman");
+    assert.equal(page.url().split("#")[1], "/person/sam-altman?section=person-writings");
     await popup.close();
     await expect(external).toBeFocused();
   }
@@ -94,7 +94,7 @@ try {
 
   await page.locator(".search-trigger").click();
   await page.locator("#atlas-search").fill("The Intelligence Age");
-  const hit = page.locator('.search-result[href="#/person/sam-altman"]');
+  const hit = page.locator('.search-result[href="#/person/sam-altman?section=writing-sam-intelligence-age"]');
   await expect(hit).toContainText("The Intelligence Age");
   await hit.click();
   await expect(page.getByRole("dialog")).toHaveCount(0);
